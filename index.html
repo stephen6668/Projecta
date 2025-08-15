@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projecta — Sicherheitsschmuck</title>
+  <meta name="description" content="Elegantes Sicherheitsschmuck-Armband — Standort, Alarm, Akku-Überwachung" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables - Modern Design System (Xcode/iOS optimized) */
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #333333;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --shadow-medium: rgba(0, 0, 0, 0.12);
+      --shadow-dark: rgba(0, 0, 0, 0.2);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --container-width: 1200px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-secondary: 'Playfair Display', 'Times New Roman', Georgia, serif;
+      
+      /* iOS Safe Area Support */
+      --safe-area-inset-top: env(safe-area-inset-top, 0px);
+      --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-area-inset-left: env(safe-area-inset-left, 0px);
+      --safe-area-inset-right: env(safe-area-inset-right, 0px);
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* iOS specific optimizations */
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+      /* Support for safe areas on iOS */
+      padding-left: var(--safe-area-inset-left);
+      padding-right: var(--safe-area-inset-right);
+    }
+
+    /* Focus Styles */
+    *:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+      border-radius: var(--border-radius-sm);
+    }
+
+    /* Typography */
+    h1, h2, h3, .heading, .section-title {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent-primary);
+      line-height: 1.1;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      margin: 0.5rem auto 1rem;
+      border-radius: 2px;
+    }
+
+    .lead {
+      font-size: 1.125rem;
+      color: var(--accent-secondary);
+      line-height: 1.7;
+    }
+
+    /* Layout */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .spaced {
+      padding: 5rem 0;
+    }
+
+    /* Header - iOS optimized */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+      /* iOS safe area support */
+      padding-top: calc(1rem + var(--safe-area-inset-top));
+      padding-left: var(--safe-area-inset-left);
+      padding-right: var(--safe-area-inset-right);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .brand:hover {
+      color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .logo {
+      height: 52px;
+      margin-right: 0.6rem;
+      transition: var(--transition);
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* Hamburger Menu Button - Touch optimized */
+    .burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 44px; /* Increased for better touch target */
+      height: 44px; /* iOS recommended minimum touch target */
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition);
+      position: relative;
+      z-index: 1001;
+      /* Touch optimization */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .burger:hover, .burger:focus {
+      background: rgba(207, 161, 90, 0.1);
+      transform: scale(1.05);
+    }
+
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--accent-primary);
+      border-radius: 2px;
+      transition: var(--transition);
+      transform-origin: center;
+      margin: 2px auto;
+    }
+
+    .burger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+      background: var(--gold);
+    }
+
+    .burger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .burger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+      background: var(--gold);
+    }
+
+    /* Sidebar Menu - iOS optimized */
+    .sidebar-menu {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 320px;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 247, 243, 0.98) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: -8px 0 32px var(--shadow-medium);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: calc(6rem + var(--safe-area-inset-top)) 2rem calc(2rem + var(--safe-area-inset-bottom));
+      z-index: 999;
+      border-left: 1px solid rgba(207, 161, 90, 0.1);
+      /* iOS scroll optimization */
+      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+    }
+
+    .sidebar-menu.active {
+      right: 0;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sidebar-nav a {
+      padding: 1.25rem 0;
+      text-decoration: none;
+      color: var(--accent-primary);
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+      transition: var(--transition);
+      position: relative;
+      border-radius: var(--border-radius-sm);
+      font-family: var(--font-secondary);
+      /* iOS touch optimization */
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: rgba(207, 161, 90, 0.2);
+      min-height: 44px; /* iOS minimum touch target */
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar-nav a:hover {
+      color: var(--gold);
+      padding-left: 1.5rem;
+      background: rgba(207, 161, 90, 0.05);
+      transform: translateY(-1px);
+    }
+
+    .sidebar-nav a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .sidebar-nav a:hover::before {
+      width: 1rem;
+    }
+
+    .admin-link {
+      color: var(--gold) !important;
+      background: rgba(207, 161, 90, 0.1) !important;
+      border-radius: var(--border-radius-sm);
+      margin-top: 1rem;
+      padding: 1rem !important;
+      font-weight: 600;
+    }
+
+    .admin-link:hover {
+      background: var(--gold) !important;
+      color: var(--white) !important;
+    }
+
+    /* Menu Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Hero Section - iOS optimized */
+    .hero-fullscreen {
+      height: 100vh;
+      /* Account for iOS notch/safe area */
+      height: calc(100vh - var(--safe-area-inset-top));
+      margin-top: calc(80px + var(--safe-area-inset-top));
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249, 247, 243, 0.7) 0%, rgba(239, 232, 220, 0.7) 100%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    .hero-text .heading {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--accent-primary);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 16px var(--shadow-light);
+    }
+
+    .hero-text .lead {
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      color: var(--accent-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Product Section */
+    .product-reveal {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-reveal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .product-fullscreen {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .reveal-image {
+      position: relative;
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 20px 60px var(--shadow-medium);
+      transition: var(--transition);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+
+    .reveal-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: var(--border-radius);
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .reveal-image:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 80px var(--shadow-dark);
+    }
+
+    .reveal-text {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 3rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 16px 48px var(--shadow-light);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+
+    .reveal-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .reveal-text h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 1.5rem;
+      color: var(--accent-primary);
+    }
+
+    .reveal-text p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+      color: var(--accent-secondary);
+    }
+
+    .reveal-text ul {
+      padding-left: 0;
+      margin-bottom: 2rem;
+      list-style: none;
+    }
+
+    .reveal-text li {
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .reveal-text li::before {
+      content: attr(data-icon);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.2rem;
+    }
+
+    /* Video Section */
+    .reveal-video {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 20px 60px var(--shadow-medium);
+      transition: var(--transition);
+    }
+
+    .reveal-video:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 80px var(--shadow-dark);
+    }
+
+    .reveal-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Buttons - Touch optimized */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius-sm);
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      /* iOS touch optimization */
+      min-height: 44px;
+      min-width: 44px;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(207, 161, 90, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(207, 161, 90, 0.4);
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 1rem 2rem;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 3rem 0;
+      margin-top: 5rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Cookie Banner - iOS optimized */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(207, 161, 90, 0.2);
+      padding: 1.5rem;
+      /* iOS safe area support */
+      padding-bottom: calc(1.5rem + var(--safe-area-inset-bottom));
+      padding-left: calc(1.5rem + var(--safe-area-inset-left));
+      padding-right: calc(1.5rem + var(--safe-area-inset-right));
+      box-shadow: 0 -8px 32px var(--shadow-light);
+      z-index: 1000;
+      display: none;
+    }
+
+    .cookie-banner.show {
+      display: block;
+    }
+
+    .cookie-content {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--accent-primary);
+    }
+
+    .cookie-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--accent-primary);
+      border: 1px solid rgba(207, 161, 90, 0.2);
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      border-radius: var(--border-radius-sm);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* iOS Responsive Design */
+    @media (max-width: 768px) {
+      .sidebar-menu {
+        width: 280px;
+        right: -280px;
+        padding: calc(5rem + var(--safe-area-inset-top)) 1.5rem calc(2rem + var(--safe-area-inset-bottom));
+      }
+
+      .spaced {
+        padding: 3rem 0;
+      }
+
+      .product-fullscreen {
+        gap: 2rem;
+      }
+
+      .reveal-text {
+        padding: 1.5rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      /* iOS specific mobile adjustments */
+      .hero-text .heading {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar-menu {
+        width: 100vw;
+        right: -100vw;
+      }
+
+      .brand-text {
+        font-size: 1.5rem;
+      }
+      
+      .burger {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* iPhone X and newer - notch support */
+    @supports (padding: max(0px)) {
+      .site-header {
+        padding-top: max(1rem, env(safe-area-inset-top));
+      }
+      
+      .hero-fullscreen {
+        margin-top: max(80px, calc(80px + env(safe-area-inset-top)));
+      }
+      
+      .sidebar-menu {
+        padding-top: max(6rem, calc(6rem + env(safe-area-inset-top)));
+        padding-bottom: max(2rem, calc(2rem + env(safe-area-inset-bottom)));
+      }
+      
+      .cookie-banner {
+        padding-bottom: max(1.5rem, calc(1.5rem + env(safe-area-inset-bottom)));
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Zur Startseite">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+
+      <button id="burger" class="burger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar Menu -->
+  <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+  <nav id="sidebar-menu" class="sidebar-menu" role="navigation" aria-label="Hauptnavigation">
+    <div class="sidebar-nav">
+      <a href="index.html">Home</a>
+      <a href="produkt-uebersicht.html">Produkt</a>
+      <a href="cart.html">Warenkorb</a>
+      <a href="about.html">Über Uns</a>
+      <a href="contact.html">Kontakt</a>
+      <a href="product-future.html">Zukünftige Produkte</a>
+      <a href="admin.html" class="admin-link">Admin</a>
+      <a href="login.html">Anmelden</a>
+      <a href="register.html">Registrieren</a>
+    </div>
+  </nav>
+
+  <!-- Hauptinhalt -->
+  <main>
+
+    <!-- Hero-Bereich -->
+    <section class="hero hero-fullscreen" id="hero" role="region" aria-label="Einführung">
+      <div class="hero-bg" style="background-image:url('images/hero.jpg')" data-parallax></div>
+      <div class="hero-content container">
+        <div class="hero-text">
+          <h1 class="heading">Sicherheit, die du gerne trägst.</h1>
+          <p class="lead">Diskretes Armband mit Standortfunktion, Alarm & Akku-Benachrichtigung — entwickelt für ihnen ihre sicherheit zu bieten ohne Smartphone in der Nähe.</p>
+          <p><a href="product.html" class="btn btn-primary">Jetzt entdecken</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produktabschnitt: Projecta Premium -->
+    <section class="product-reveal container spaced" id="product-reveal" role="region" aria-label="Produktvorschau">
+      <div class="product-fullscreen">
+        <img src="images/produkt1.png" alt="Projecta Premium Armband" class="reveal-image">
+        <div class="reveal-text">
+          <h2>Safty-Band</h2>
+          <p>Warum unser Armband unverzichtbar ist
+          Unser Armband ist Ihr persönlicher Sicherheitsbegleiter – entwickelt, um in kritischen Situationen schnell und zuverlässig Hilfe zu rufen. Mit einem unauffälligen Design lässt es sich bequem im Alltag tragen und ist im Ernstfall sofort einsatzbereit. Dank der integrierten Technik kann es Ihren Standort direkt an den hinterlegten Notfallkontakt senden – sogar ohne verbundenes Smartphone..</p>
+          <ul>
+            <li data-icon="🔒">SOS-Alarm per Knopfdruck – Senden sie ihrenStandort in Sekundenschnellen an ihren Notfallkontakt per Knopfdruck</li>
+            <li data-icon="📍">Standortübertragung ohne Handy – Ihr Standort wird direkt an den Notfallkontakt gesendet, auch ohne aktive Bluetooth- oder Handyverbindung</li>
+            <li data-icon="🔋">Lange Akkulaufzeit – Für zuverlässigen Schutz über Tage hinweg, mit Warnmeldung bei niedrigem Akkustand (in der App)</li>
+            <li data-icon="🎨">Unauffälliges, modernes Design – Sie tragen Sicherheit, ohne dass es auffällt.</li>
+          </ul>
+          <p>Ob im Alltag, auf Reisen oder beim Sport – das Safty-Band bietet ein beruhigendes Gefühl von Sicherheit, das man gerne trägt.</p>
+          <a href="product.html" class="btn btn-primary">Mehr erfahren</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zukünftige Produkte: Projecta Classic -->
+    <section class="product-reveal container spaced" id="future-products" role="region" aria-label="Zukünftige Produkte">
+      <div class="product-fullscreen">
+        <!-- Text links -->
+        <div class="reveal-text">
+          <h2>App</h2>
+          <p>Warum unsere App wichtig ist
+          Unsere App dient in erster Linie dazu, Ihren persönlichen Notfallkontakt einzurichten und zu verwalten. Sobald das Armband im Ernstfall ausgelöst wird, kann es den Standort auch ohne verbundenes Smartphone an den hinterlegten Kontakt senden. So sind Sie selbst dann geschützt, wenn Ihr Handy nicht in Reichweite ist.
+
+          .</p>
+          <ul>
+            <li data-icon="🔔">Notfallkontakt einrichten & verwalten – Hinterlegen Sie die Person, die im Ernstfall benachrichtigt werden soll.</li>
+            <li data-icon="📍">Automatischer Standortversand – Das Armband sendet den Standort auch ohne Smartphone an den Notfallkontakt.</li>
+            <li data-icon="🔋">    •    Akkustandsanzeige – Überwachen Sie den Batteriestand des Armbands und erhalten Sie Warnmeldungen bei niedrigem Akku.</li>
+            <li data-icon="🎨">Individuelle Einstellungen – Passen Sie Benachrichtigungen und Alarme nach Ihren Wünschen an.</li>
+          </ul>
+          <p>Eine Elegante App die ihnen dabei hilft ihr Safty-Band einzurichten.</p>
+          <a href="product.html" class="btn btn-primary">Mehr erfahren</a>
+        </div>
+
+        <!-- Video rechts (etwas breiter und länger) -->
+               <div class="reveal-video" style="flex: 0 1 360px; min-width: 280px; aspect-ratio: 4 / 5;">
+                 <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius:16px; box-shadow:0 12px 36px rgba(0,0,0,0.08);">
+                   <source src="videos/App.mp4" type="video/mp4">
+                   Dein Browser unterstützt das Video-Tag nicht.
+                 </video>
+               </div>
+
+             </div>
+           </section>
+
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> Projecta — Alle Rechte vorbehalten.</div>
+        <div class="footer-links">
+          <a href="about.html">Über Uns</a>
+          <a href="contact.html">Kontakt</a>
+          <a href="admin.html">Admin</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Cookie-Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen">
+    <div class="cookie-content">
+      <p>Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern. Sie können wählen, ob Sie alle Cookies akzeptieren oder nur notwendige zulassen.</p>
+      <div class="cookie-buttons">
+        <button id="accept-cookies" class="btn btn-primary">Alle akzeptieren</button>
+        <button id="reject-cookies" class="btn btn-outline">Nur notwendige</button>
+        <button id="customize-cookies" class="btn btn-secondary">Einstellungen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Warten bis DOM geladen ist
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Dynamisches Jahr im Footer
+      const yearElement = document.getElementById("year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+
+      // Menu Toggle Funktionalität
+      const burger = document.getElementById('burger');
+      const sidebarMenu = document.getElementById('sidebar-menu');
+      const menuOverlay = document.getElementById('menu-overlay');
+      
+      // Prüfen ob alle Elemente vorhanden sind
+      if (!burger || !sidebarMenu || !menuOverlay) {
+        console.error('Menu elements not found');
+        return;
+      }
+
+      function toggleMenu() {
+        const isOpen = sidebarMenu.classList.contains('active');
+        
+        burger.classList.toggle('active');
+        sidebarMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        
+        // Update ARIA attributes
+        burger.setAttribute('aria-expanded', !isOpen);
+        menuOverlay.setAttribute('aria-hidden', isOpen);
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+      }
+
+      function closeMenu() {
+        burger.classList.remove('active');
+        sidebarMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        
+        // Reset ARIA attributes
+        burger.setAttribute('aria-expanded', 'false');
+        menuOverlay.setAttribute('aria-hidden', 'true');
+        
+        // Restore body scroll
+        document.body.style.overflow = '';
+      }
+
+      // Event Listeners
+      burger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      menuOverlay.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeMenu();
+      });
+
+      // Close menu when clicking on a link
+      const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          closeMenu();
+        });
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidebarMenu.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+
+      // Cookie Banner Logic
+      const cookieBanner = document.getElementById('cookie-banner');
+      const acceptCookies = document.getElementById('accept-cookies');
+      const rejectCookies = document.getElementById('reject-cookies');
+      const customizeCookies = document.getElementById('customize-cookies');
+
+      if (cookieBanner && acceptCookies && rejectCookies && customizeCookies) {
+        // Show cookie banner (using in-memory storage for demo)
+        let cookiesAccepted = false;
+        if (!cookiesAccepted) {
+          setTimeout(() => {
+            cookieBanner.classList.add('show');
+          }, 2000);
+        }
+
+        acceptCookies.addEventListener('click', function() {
+          cookiesAccepted = true;
+          cookieBanner.classList.remove('show');
+        });
+
+        rejectCookies.addEventListener('click', function() {
+          cookiesAccepted = true;
+          cookieBanner.classList.remove('show');
+        });
+
+        customizeCookies.addEventListener('click', function() {
+          alert('Cookie-Einstellungen werden in einem separaten Modal geöffnet.');
+        });
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            closeMenu(); // Close menu before scrolling
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Parallax effect for hero background (iOS optimized)
+      let ticking = false;
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const parallaxElement = document.querySelector('[data-parallax]');
+        if (parallaxElement) {
+          const speed = 0.3;
+          parallaxElement.style.transform = `translateY(${scrolled * speed}px)`;
+        }
+        ticking = false;
+      }
+
+      function requestParallaxUpdate() {
+        if (!ticking && !window.DeviceMotionEvent) { // Disable on mobile for performance
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+
+      // Only enable parallax on non-touch devices
+      if (!('ontouchstart' in window)) {
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+      }
+
+      // Add loading animation for images
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        img.addEventListener('load', () => {
+          img.style.opacity = '1';
+        });
+        if (!img.complete) {
+          img.style.opacity = '0';
+          img.style.transition = 'opacity 0.3s ease';
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
