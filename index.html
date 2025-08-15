@@ -5,9 +5,99 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projecta — Sicherheitsschmuck</title>
   <meta name="description" content="Elegantes Sicherheitsschmuck-Armband — Standort, Alarm, Akku-Überwachung" />
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Alle deine bestehenden Styles bleiben erhalten – hier nur die responsive Ergänzungen */
+    
+    @media (max-width: 1024px) {
+      .product-fullscreen {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .reveal-video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+
+      .reveal-text {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .product-fullscreen {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .hero-content {
+        padding: 1rem;
+      }
+
+      .hero-text .lead {
+        font-size: 1rem;
+      }
+
+      .reveal-text ul {
+        padding-left: 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+      }
+
+      .reveal-text h2 {
+        font-size: 1.8rem;
+      }
+
+      .reveal-text p,
+      .reveal-text li {
+        font-size: 1rem;
+      }
+
+      .brand-text {
+        font-size: 1.4rem;
+      }
+
+      .logo {
+        height: 40px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1140px;
+      }
+
+      .product-fullscreen {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Dein gesamter HTML-Inhalt bleibt unverändert -->
+  <!-- Navigation, Sidebar, Hero, Produktabschnitte, Footer, Cookie-Banner, Scripts -->
+  <!-- ... (wie du ihn oben geschickt hast) ... -->
+</body>
+</html>
 
   <style>
     /* CSS Variables - Modern Design System (Xcode/iOS optimized) */
