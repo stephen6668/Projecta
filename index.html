@@ -906,6 +906,7 @@
       <a href="admin.html" class="admin-link">Admin</a>
       <a href="login.html">Anmelden</a>
       <a href="register.html">Registrieren</a>
+      
     </div>
   </nav>
 
@@ -1158,6 +1159,15 @@
       function handleVideoPlayback() {
         const videos = document.querySelectorAll('video');
         videos.forEach(video => {
+          // Pause videos on small screens to save bandwidth
+          if (window.innerWidth < 768) {
+            video.pause();
+          } else {
+            video.play();
+          }
+        });
+      }
+
       // Initial call and resize listener
       handleVideoPlayback();
       window.addEventListener('resize', handleVideoPlayback, { passive: true });
