@@ -1159,12 +1159,7 @@
       function handleVideoPlayback() {
         const videos = document.querySelectorAll('video');
         videos.forEach(video => {
-          // Pause videos on small screens to save bandwidth
-          if (window.innerWidth < 768) {
-            video.pause();
-          } else {
-            video.play();
-          }
+         
         });
       }
 
