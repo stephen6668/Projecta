@@ -1306,46 +1306,41 @@
         let total = 0;
 
         cart.forEach((item, index) => {
-          const product = products[item.productId];
-          if (!product) return;
-
-          const itemTotal = product.price * item.quantity;
+          const itemTotal = item.price * item.quantity;
           total += itemTotal;
 
           cartHTML += `
             <div class="cart-item" style="animation-delay: ${index * 0.1}s">
-              <img src="${product.image}" alt="${product.name}" />
+              <img src="${item.image}" alt="${item.name}" />
               <div class="cart-item-info">
-                <h3>${product.name}</h3>
-                <p class="price">€${product.price.toFixed(2)}</p>
+                <h3>${item.name}</h3>
+                <p class="price">€${item.price.toFixed(2)}</p>
                 <div class="quantity-controls">
-                  <button class="quantity-btn" onclick="changeQuantity('${item.productId}', -1)">−</button>
+                  <button class="quantity-btn" onclick="changeQuantity('${item.id}', -1)">−</button>
                   <input type="number" class="quantity-input" value="${item.quantity}" min="1"
-                         onchange="updateQuantity('${item.productId}', this.value)" />
-                  <button class="quantity-btn" onclick="changeQuantity('${item.productId}', 1)">+</button>
+                         onchange="updateQuantity('${item.id}', this.value)" />
+                  <button class="quantity-btn" onclick="changeQuantity('${item.id}', 1)">+</button>
                 </div>
-                <p>${product.description}</p>
+                <p>${item.description || ''}</p>
+                ${item.engraving ? `<p>Gravur: ${item.engraving}</p>` : ''}
+                ${item.imageFileName ? `<p>Bildgravur: ${item.imageFileName}</p>` : ''}
               </div>
               <div class="cart-item-actions">
                 <div class="item-total">€${itemTotal.toFixed(2)}</div>
-                <button class="remove-btn" onclick="removeFromCart('${item.productId}')">
-                  Entfernen
-                </button>
+                <button class="remove-btn" onclick="removeFromCart('${item.id}')">Entfernen</button>
               </div>
             </div>
           `;
         });
 
         cartItemsContainer.innerHTML = cartHTML;
-
-        // Update summary
         document.getElementById('subtotal').textContent = `€${total.toFixed(2)}`;
         document.getElementById('total').textContent = `€${total.toFixed(2)}`;
       }
 
-      // Cart manipulation functions (make them global)
-      window.changeQuantity = function(productId, change) {
-        const item = cart.find(item => item.productId === productId);
+
+      window.changeQuantity = function(id, change) {
+        const item = cart.find(item => item.id === id);
         if (item) {
           item.quantity = Math.max(1, item.quantity + change);
           localStorage.setItem('projecta-cart', JSON.stringify(cart));
@@ -1354,9 +1349,9 @@
         }
       };
 
-      window.updateQuantity = function(productId, newQuantity) {
+      window.updateQuantity = function(id, newQuantity) {
         const quantity = Math.max(1, parseInt(newQuantity) || 1);
-        const item = cart.find(item => item.productId === productId);
+        const item = cart.find(item => item.id === id);
         if (item) {
           item.quantity = quantity;
           localStorage.setItem('projecta-cart', JSON.stringify(cart));
@@ -1365,12 +1360,14 @@
         }
       };
 
-      window.removeFromCart = function(productId) {
-        cart = cart.filter(item => item.productId !== productId);
+
+      window.removeFromCart = function(id) {
+        cart = cart.filter(item => item.id !== id);
         localStorage.setItem('projecta-cart', JSON.stringify(cart));
         renderCart();
         showNotification('Produkt entfernt', 'entfernt');
       };
+
 
       function showNotification(message, action = 'aktualisiert') {
         const notification = document.getElementById('cart-notification');
@@ -1514,3 +1511,4 @@
   </script>
 </body>
 </html>
+
