@@ -695,12 +695,21 @@
         min-height: 80vh;
       }
       
-      .reveal-image {
+      .product-fullscreen:nth-child(odd) .reveal-image {
         justify-self: end;
       }
       
-      .reveal-text {
+      .product-fullscreen:nth-child(odd) .reveal-text {
         justify-self: start;
+      }
+
+      .product-fullscreen:nth-child(even) .reveal-image {
+        justify-self: start;
+        order: -1;
+      }
+      
+      .product-fullscreen:nth-child(even) .reveal-text {
+        justify-self: end;
       }
       
       .footer-inner {
@@ -713,6 +722,10 @@
       .product-fullscreen {
         grid-template-columns: 1fr 1fr;
         gap: 3rem;
+      }
+
+      .product-fullscreen:nth-child(even) .reveal-image {
+        order: -1;
       }
     }
 
@@ -933,7 +946,7 @@
           <h2>Safty-Band</h2>
           <p>Das Projecta Safty-Band vereint stilvolles Design mit intelligenter Sicherheitstechnologie. Es wurde speziell für Menschen entwickelt, die sich diskret schützen möchten, ohne auf Ästhetik zu verzichten.</p>
           <ul>
-            <li data-icon="🔒"	>	•	SOS-Alarm per Knopfdruck – Senden sie ihrenStandort in Sekundenschnellen an ihren Notfallkontakt per Knopfdruck
+            <li data-icon="🔒">	•	SOS-Alarm per Knopfdruck – Senden sie ihrenStandort in Sekundenschnellen an ihren Notfallkontakt per Knopfdruck
 </li>
             <li data-icon="📍">•	Standortübertragung ohne Handy – Ihr Standort wird direkt an den Notfallkontakt gesendet, auch ohne aktive Bluetooth- oder Handyverbindung.</li>
             <li data-icon="🔋">•	Lange Akkulaufzeit – Für zuverlässigen Schutz über Tage hinweg, mit Warnmeldung bei niedrigem Akkustand (in der App)</li>
@@ -945,7 +958,7 @@
       </div>
     </section>
 
-    <!-- Zukünftige Produkte: Projecta Classic -->
+    <!-- Zukünftige Produkte: Projecta App -->
     <section class="product-reveal container spaced" id="future-products" role="region" aria-label="Zukünftige Produkte">
       <div class="product-fullscreen">
         <!-- Text links -->
@@ -969,6 +982,29 @@
             <source src="videos/App.mp4" type="video/mp4">
             Dein Browser unterstützt das Video-Tag nicht.
           </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Neuer Produktabschnitt: Projecta Hub -->
+    <section class="product-reveal container spaced" id="third-product" role="region" aria-label="Projecta Hub">
+      <div class="product-fullscreen">
+        <!-- Bild links -->
+        <img src="images/hub-device.png" alt="Projecta Hub - Zentrale Sicherheitsstation" class="reveal-image">
+        
+        <!-- Text rechts -->
+        <div class="reveal-text">
+          <h2>Projecta Hub</h2>
+          <p>Die zentrale Sicherheitsstation für Ihr Zuhause. Der Projecta Hub verbindet alle Ihre Sicherheitsgeräte und bietet eine umfassende Überwachungslösung für die ganze Familie.</p>
+          <ul>
+            <li data-icon="🏠">•	Zentrale Steuerung – Alle Projecta-Geräte in einem System vereint und überwacht.</li>
+            <li data-icon="📡">•	24/7 Überwachung – Kontinuierliche Verbindung zu allen registrierten Armbändern der Familie.</li>
+            <li data-icon="🚨">•	Sofortige Benachrichtigung – Erhalten Sie Echtzeitwarnungen bei Notfällen oder ungewöhnlichen Aktivitäten.</li>
+            <li data-icon="🌐">•	Cloud-Integration – Sichere Datenspeicherung und Zugriff von überall aus über die mobile App.</li>
+            <li data-icon="🔐">•	Geofencing-Bereiche – Definieren Sie sichere Zonen und werden Sie benachrichtigt, wenn diese verlassen werden.</li>
+          </ul>
+          <p>Der perfekte Ergänzung zu Ihrem Projecta Armband – für Familien, die keine Kompromisse bei der Sicherheit eingehen möchten.</p>
+          <a href="product.html" class="btn btn-primary">Vorbestellung</a>
         </div>
       </div>
     </section>
