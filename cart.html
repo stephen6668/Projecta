@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Warenkorb – Projecta</title>
-  <meta name="description" content="Ihr Warenkorb - Sicherheitsschmuck-Armbänder und Halsketten von Projecta" />
+  <meta name="description" content="Ihr Warenkorb - Sicherheitsschmuck-Armbänder von Projecta" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       --font-secondary: 'Playfair Display', 'Times New Roman', Georgia, serif;
-
+     
       /* iOS Safe Area Support */
       --safe-area-inset-top: env(safe-area-inset-top, 0px);
       --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
@@ -413,21 +413,6 @@
       font-family: var(--font-secondary);
     }
 
-    .product-details {
-      margin-bottom: 1rem;
-    }
-
-    .product-details p {
-      margin: 0.5rem 0;
-      color: var(--accent-secondary);
-      font-size: 0.95rem;
-    }
-
-    .product-details .detail-label {
-      font-weight: 600;
-      color: var(--accent-primary);
-    }
-
     .quantity-controls {
       display: flex;
       align-items: center;
@@ -449,8 +434,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      min-width: 44px;
     }
 
     .quantity-btn:hover {
@@ -467,7 +450,6 @@
       font-size: 1rem;
       font-weight: 600;
       background: rgba(255, 255, 255, 0.8);
-      min-height: 44px;
     }
 
     .cart-item-actions {
@@ -489,7 +471,6 @@
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      min-height: 44px;
     }
 
     .remove-btn:hover {
@@ -533,13 +514,6 @@
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: var(--accent-primary);
-    }
-
-    .summary-line {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
     }
 
     .cart-summary .total-amount {
@@ -728,121 +702,35 @@
     .cart-item:nth-child(2) { animation-delay: 0.2s; }
     .cart-item:nth-child(3) { animation-delay: 0.3s; }
 
-    /* Responsive Design - Mobile First Approach */
-    
-    /* Small mobile devices (320px - 479px) */
-    @media (max-width: 479px) {
-      .container {
-        padding: 0 1rem;
-      }
-
+    /* iOS Responsive Design */
+    @media (max-width: 768px) {
       .sidebar-menu {
-        width: 100vw;
-        right: -100vw;
-        padding: calc(5rem + var(--safe-area-inset-top)) 1rem calc(2rem + var(--safe-area-inset-bottom));
-      }
-
-      .brand-text {
-        font-size: 1.4rem;
-      }
-
-      .logo {
-        height: 40px;
-        margin-right: 0.4rem;
-      }
-
-      .burger {
-        width: 40px;
-        height: 40px;
-        padding: 6px;
-      }
-
-      .burger span {
-        width: 20px;
-        height: 2px;
+        width: 280px;
+        right: -280px;
+        padding: calc(5rem + var(--safe-area-inset-top)) 1.5rem calc(2rem + var(--safe-area-inset-bottom));
       }
 
       .cart-section {
         padding: calc(2rem + 80px + var(--safe-area-inset-top)) 0 2rem;
       }
 
-      .cart-title {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-      }
-
       .cart-item {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 1rem;
-        padding: 1.5rem 1rem;
-      }
-
-      .cart-item img {
-        width: 100px;
-        height: 100px;
-        justify-self: center;
-      }
-
-      .cart-item-info h3 {
-        font-size: 1.3rem;
-      }
-
-      .cart-item-info .price {
-        font-size: 1.1rem;
-      }
-
-      .quantity-controls {
-        justify-content: center;
-        gap: 0.75rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .quantity-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-      }
-
-      .quantity-input {
-        width: 50px;
-        padding: 0.4rem;
+        gap: 1.5rem;
       }
 
       .cart-item-actions {
         align-items: center;
-        gap: 0.75rem;
       }
 
-      .remove-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.8rem;
+      .container {
+        padding: 0 1rem;
       }
 
-      .item-total {
-        font-size: 1.1rem;
-      }
-
-      .cart-summary {
-        padding: 1.5rem;
-        text-align: center;
-      }
-
-      .summary-line {
-        font-size: 1rem;
-      }
-
-      .cart-summary .total-amount {
-        font-size: 1.6rem;
-      }
-
-      .btn-group {
+      .footer-inner {
         flex-direction: column;
-      }
-
-      .btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+        text-align: center;
       }
 
       .cart-notification {
@@ -850,150 +738,34 @@
         right: 1rem;
         max-width: none;
         bottom: calc(1rem + var(--safe-area-inset-bottom));
-        padding: 1rem 1.5rem;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 1rem;
       }
     }
 
-    /* Mobile devices (480px - 767px) */
-    @media (min-width: 480px) and (max-width: 767px) {
+    @media (max-width: 480px) {
       .sidebar-menu {
-        width: 320px;
-        right: -320px;
-        padding: calc(5rem + var(--safe-area-inset-top)) 1.5rem calc(2rem + var(--safe-area-inset-bottom));
-      }
-
-      .cart-section {
-        padding: calc(2.5rem + 80px + var(--safe-area-inset-top)) 0 2.5rem;
-      }
-
-      .cart-item {
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
-        gap: 1.5rem;
-        padding: 1.75rem;
-      }
-
-      .cart-item img {
-        grid-row: 1 / 3;
-      }
-
-      .cart-item-info {
-        grid-column: 2;
-        grid-row: 1;
-      }
-
-      .cart-item-actions {
-        grid-column: 2;
-        grid-row: 2;
-        align-items: flex-start;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .cart-notification {
-        right: 1.5rem;
-        bottom: calc(1.5rem + var(--safe-area-inset-bottom));
-      }
-    }
-
-    /* Tablets (768px - 1023px) */
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .container {
-        padding: 0 1.5rem;
-      }
-
-      .cart-item {
-        grid-template-columns: auto 1fr auto;
-        gap: 1.75rem;
-        padding: 2rem 1.75rem;
-      }
-
-      .cart-item img {
-        width: 110px;
-        height: 110px;
-      }
-
-      .quantity-controls {
-        gap: 0.85rem;
-      }
-
-      .cart-summary {
-        padding: 2rem;
-      }
-    }
-
-    /* Large tablets and small desktops (1024px - 1199px) */
-    @media (min-width: 1024px) and (max-width: 1199px) {
-      .container {
-        padding: 0 1.75rem;
-      }
-
-      .cart-item {
-        gap: 1.85rem;
-        padding: 2rem 1.85rem;
-      }
-
-      .cart-item img {
-        width: 115px;
-        height: 115px;
-      }
-    }
-
-    /* Desktop and larger (1200px+) */
-    @media (min-width: 1200px) {
-      .cart-item {
-        gap: 2rem;
-        padding: 2rem;
-      }
-
-      .cart-item img {
-        width: 120px;
-        height: 120px;
-      }
-    }
-
-    /* Landscape orientation optimizations */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .cart-section {
-        padding: calc(1.5rem + 70px + var(--safe-area-inset-top)) 0 1.5rem;
-      }
-
-      .cart-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-      }
-
-      .cart-item {
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .cart-summary {
-        padding: 2rem;
-      }
-
-      .site-header {
-        padding: 0.75rem 0;
-        padding-top: calc(0.75rem + var(--safe-area-inset-top));
-      }
-
-      .logo {
-        height: 40px;
+        width: 100vw;
+        right: -100vw;
       }
 
       .brand-text {
         font-size: 1.5rem;
+      }
+     
+      .burger {
+        width: 40px;
+        height: 40px;
+      }
+
+      .cart-item {
+        padding: 1.5rem;
+      }
+
+      .cart-summary {
+        padding: 1.5rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
       }
     }
 
@@ -1002,11 +774,11 @@
       .site-header {
         padding-top: max(1rem, env(safe-area-inset-top));
       }
-
+     
       .cart-section {
         padding-top: max(calc(3rem + 80px), calc(3rem + 80px + env(safe-area-inset-top)));
       }
-
+     
       .sidebar-menu {
         padding-top: max(6rem, calc(6rem + env(safe-area-inset-top)));
         padding-bottom: max(2rem, calc(2rem + env(safe-area-inset-bottom)));
@@ -1018,66 +790,12 @@
       }
     }
 
-    /* High DPI displays */
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      .cart-item img {
-        image-rendering: -webkit-optimize-contrast;
-      }
-
-      .logo {
-        image-rendering: -webkit-optimize-contrast;
-      }
-    }
-
     /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-      }
-
-      html {
-        scroll-behavior: auto;
-      }
-    }
-
-    /* Print styles */
-    @media print {
-      .site-header,
-      .sidebar-menu,
-      .menu-overlay,
-      .cart-notification,
-      .site-footer {
-        display: none !important;
-      }
-
-      .cart-section {
-        padding-top: 2rem;
-        background: white;
-      }
-
-      .cart-item {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        break-inside: avoid;
-      }
-
-      .btn {
-        display: none !important;
-      }
-    }
-
-    /* Focus visible for better keyboard navigation */
-    @supports selector(:focus-visible) {
-      *:focus {
-        outline: none;
-      }
-
-      *:focus-visible {
-        outline: 2px solid var(--gold);
-        outline-offset: 2px;
-        border-radius: var(--border-radius-sm);
       }
     }
   </style>
@@ -1119,8 +837,8 @@
     <!-- Cart Section -->
     <section class="cart-section" role="region" aria-label="Warenkorb">
       <div class="container">
-        <h1 class="cart-title">Dein Warenkorb</h1>
-
+        <h1 class="cart-title">🛍️ Dein Warenkorb</h1>
+       
         <!-- Cart Items Container -->
         <div id="cart-items" class="cart-items">
           <!-- Items will be dynamically inserted here -->
@@ -1130,15 +848,25 @@
         <div id="empty-cart" class="empty-cart" style="display: none;">
           <div class="empty-cart-icon">🛒</div>
           <h3>Dein Warenkorb ist leer</h3>
-          <p>Entdecke unsere eleganten Sicherheitsarmbänder und Halsketten und füge deine Favoriten hinzu.</p>
+          <p>Entdecke unsere eleganten Sicherheitsarmbänder und füge deine Favoriten hinzu.</p>
           <div class="btn-group">
-            <a href="produkt-uebersicht.html" class="btn btn-primary">Armbänder entdecken</a>
-            <a href="necklace.html" class="btn btn-outline">Halsketten entdecken</a>
+            <a href="produkt-uebersicht.html" class="btn btn-primary">Produkte entdecken</a>
           </div>
         </div>
 
-       
-
+        <!-- Cart Summary -->
+        <div id="cart-summary" class="cart-summary" style="display: none;">
+          <h3>Bestellübersicht</h3>
+          <div class="summary-line">
+            <span>Zwischensumme:</span>
+            <span id="subtotal">€0,00</span>
+          </div>
+          <div class="summary-line">
+            <span>Versand:</span>
+            <span id="shipping">Kostenlos</span>
+          </div>
+          <div class="total-amount" id="total">€0,00</div>
+         
           <div class="btn-group">
             <a href="produkt-uebersicht.html" class="btn btn-outline">Weiter shoppen</a>
             <button id="checkout-btn" class="btn btn-primary">Zur Kasse</button>
@@ -1163,7 +891,7 @@
 
   <!-- Cart Notification -->
   <div id="cart-notification" class="cart-notification" style="display: none;">
-    <p>Produkt erfolgreich <strong id="notification-action">hinzugefügt</strong>!</p>
+    <p>✅ Produkt erfolgreich <strong id="notification-action">hinzugefügt</strong>!</p>
     <div class="btn-group">
       <button id="continue-shopping" class="btn btn-outline">Weiter shoppen</button>
       <a href="cart.html" class="btn btn-primary">Zum Warenkorb</a>
@@ -1174,7 +902,7 @@
   <script>
     // Warten bis DOM geladen ist
     document.addEventListener('DOMContentLoaded', function() {
-
+     
       // Dynamisches Jahr im Footer
       const yearElement = document.getElementById("year");
       if (yearElement) {
@@ -1185,7 +913,7 @@
       const burger = document.getElementById('burger');
       const sidebarMenu = document.getElementById('sidebar-menu');
       const menuOverlay = document.getElementById('menu-overlay');
-
+     
       // Prüfen ob alle Elemente vorhanden sind
       if (!burger || !sidebarMenu || !menuOverlay) {
         console.error('Menu elements not found');
@@ -1194,15 +922,15 @@
 
       function toggleMenu() {
         const isOpen = sidebarMenu.classList.contains('active');
-
+       
         burger.classList.toggle('active');
         sidebarMenu.classList.toggle('active');
         menuOverlay.classList.toggle('active');
-
+       
         // Update ARIA attributes
         burger.setAttribute('aria-expanded', !isOpen);
         menuOverlay.setAttribute('aria-hidden', isOpen);
-
+       
         // Prevent body scroll when menu is open
         document.body.style.overflow = isOpen ? '' : 'hidden';
       }
@@ -1211,11 +939,11 @@
         burger.classList.remove('active');
         sidebarMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
-
+       
         // Reset ARIA attributes
         burger.setAttribute('aria-expanded', 'false');
         menuOverlay.setAttribute('aria-hidden', 'true');
-
+       
         // Restore body scroll
         document.body.style.overflow = '';
       }
@@ -1247,81 +975,50 @@
         }
       });
 
-      // Cart Functionality - Erweiterte Produktdatenbank
+      // Cart Functionality
       let cart = JSON.parse(localStorage.getItem('projecta-cart') || '[]');
 
-      // Erweiterte Produktdatenbank mit Armbändern und Halsketten
+      // Sample products for demo
       const products = {
-        // Armbänder
         'safety-band': {
           id: 'safety-band',
-          name: 'Safety Band Premium',
+          name: 'Safety Band',
           price: 135.00,
           image: 'images/produkt1.png',
-          description: 'Premium Sicherheitsarmband mit GPS-Ortung',
-          type: 'Armband'
+          description: 'Premium Sicherheitsarmband mit GPS-Ortung'
         },
         'classic': {
           id: 'classic',
           name: 'Projecta Classic',
           price: 29.90,
           image: 'images/image.png',
-          description: 'Basis Sicherheitsarmband',
-          type: 'Armband'
+          description: 'Basis Sicherheitsarmband'
         },
         'premium': {
           id: 'premium',
           name: 'Projecta Premium',
           price: 49.90,
           image: 'images/premium.jpg',
-          description: 'Erweiterte Sicherheitsfunktionen',
-          type: 'Armband'
+          description: 'Erweiterte Sicherheitsfunktionen'
         },
         'deluxe': {
           id: 'deluxe',
           name: 'Projecta Deluxe',
           price: 69.90,
           image: 'images/deluxe.jpg',
-          description: 'Luxus Sicherheitsarmband',
-          type: 'Armband'
-        },
-        
-        // Halsketten
-        'necklace-basic': {
-          id: 'necklace-basic',
-          name: 'Projecta Necklace Basic',
-          price: 39.90,
-          image: 'images/halskette1.png',
-          description: 'Elegante Sicherheitskette mit Basis-Funktionen',
-          type: 'Halskette'
-        },
-        'necklace-premium': {
-          id: 'necklace-premium',
-          name: 'Projecta Necklace Premium',
-          price: 59.90,
-          image: 'images/halskette1.png',
-          description: 'Premium Sicherheitskette mit erweiterten Funktionen',
-          type: 'Halskette'
-        },
-        'necklace-deluxe': {
-          id: 'necklace-deluxe',
-          name: 'Projecta Necklace Deluxe',
-          price: 79.90,
-          image: 'images/halskette1.png',
-          description: 'Luxus Sicherheitskette mit GPS und Notfallfunktionen',
-          type: 'Halskette'
-        },
-        'necklace-gold': {
-          id: 'necklace-gold',
-          name: 'Projecta Necklace Gold Edition',
-          price: 149.90,
-          image: 'images/halskette1.png',
-          description: '18K vergoldete Sicherheitskette mit Premium-Features',
-          type: 'Halskette'
+          description: 'Luxus Sicherheitsarmband'
         }
       };
 
-      // Funktion zum Rendern des Warenkorbs
+      // Add demo items to cart if empty
+      if (cart.length === 0) {
+        cart = [
+          { productId: 'safety-band', quantity: 1 },
+          { productId: 'classic', quantity: 2 }
+        ];
+        localStorage.setItem('projecta-cart', JSON.stringify(cart));
+      }
+
       function renderCart() {
         const cartItemsContainer = document.getElementById('cart-items');
         const cartSummaryContainer = document.getElementById('cart-summary');
@@ -1341,55 +1038,46 @@
         let total = 0;
 
         cart.forEach((item, index) => {
-          // Fallback zu products wenn das Item keine vollständigen Daten hat
-          const product = products[item.id] || item;
-          const name = product.name || item.name || 'Unbekanntes Produkt';
-          const price = product.price || item.price || 0;
-          const image = product.image || item.image || 'images/placeholder.jpg';
-          const description = product.description || item.description || '';
-          const type = product.type || item.type || '';
+          const product = products[item.productId];
+          if (!product) return;
 
-          const itemTotal = price * item.quantity;
+          const itemTotal = product.price * item.quantity;
           total += itemTotal;
 
           cartHTML += `
             <div class="cart-item" style="animation-delay: ${index * 0.1}s">
-              <img src="${image}" alt="${name}" onerror="this.src='images/placeholder.jpg'" />
+              <img src="${product.image}" alt="${product.name}" />
               <div class="cart-item-info">
-                <h3>${name}</h3>
-                <p class="price">€${price.toFixed(2)}</p>
-                
-                <div class="product-details">
-                  ${type ? `<p><span class="detail-label">Typ:</span> ${type}</p>` : ''}
-                  ${description ? `<p><span class="detail-label">Beschreibung:</span> ${description}</p>` : ''}
-                  ${item.engraving ? `<p><span class="detail-label">Gravur:</span> ${item.engraving}</p>` : ''}
-                  ${item.imageFileName ? `<p><span class="detail-label">Bildgravur:</span> ${item.imageFileName}</p>` : ''}
-                  ${item.selectedOptions ? `<p><span class="detail-label">Optionen:</span> ${item.selectedOptions}</p>` : ''}
-                </div>
-                
+                <h3>${product.name}</h3>
+                <p class="price">€${product.price.toFixed(2)}</p>
                 <div class="quantity-controls">
-                  <button class="quantity-btn" onclick="changeQuantity('${item.id}', -1)" aria-label="Menge verringern">−</button>
+                  <button class="quantity-btn" onclick="changeQuantity('${item.productId}', -1)">−</button>
                   <input type="number" class="quantity-input" value="${item.quantity}" min="1"
-                         onchange="updateQuantity('${item.id}', this.value)" aria-label="Produktmenge" />
-                  <button class="quantity-btn" onclick="changeQuantity('${item.id}', 1)" aria-label="Menge erhöhen">+</button>
+                         onchange="updateQuantity('${item.productId}', this.value)" />
+                  <button class="quantity-btn" onclick="changeQuantity('${item.productId}', 1)">+</button>
                 </div>
+                <p>${product.description}</p>
               </div>
               <div class="cart-item-actions">
                 <div class="item-total">€${itemTotal.toFixed(2)}</div>
-                <button class="remove-btn" onclick="removeFromCart('${item.id}')" aria-label="Produkt entfernen">Entfernen</button>
+                <button class="remove-btn" onclick="removeFromCart('${item.productId}')">
+                  Entfernen
+                </button>
               </div>
             </div>
           `;
         });
 
         cartItemsContainer.innerHTML = cartHTML;
+
+        // Update summary
         document.getElementById('subtotal').textContent = `€${total.toFixed(2)}`;
         document.getElementById('total').textContent = `€${total.toFixed(2)}`;
       }
 
-      // Globale Funktionen für Warenkorb-Management
-      window.changeQuantity = function(id, change) {
-        const item = cart.find(item => item.id === id);
+      // Cart manipulation functions (make them global)
+      window.changeQuantity = function(productId, change) {
+        const item = cart.find(item => item.productId === productId);
         if (item) {
           item.quantity = Math.max(1, item.quantity + change);
           localStorage.setItem('projecta-cart', JSON.stringify(cart));
@@ -1398,9 +1086,9 @@
         }
       };
 
-      window.updateQuantity = function(id, newQuantity) {
+      window.updateQuantity = function(productId, newQuantity) {
         const quantity = Math.max(1, parseInt(newQuantity) || 1);
-        const item = cart.find(item => item.id === id);
+        const item = cart.find(item => item.productId === productId);
         if (item) {
           item.quantity = quantity;
           localStorage.setItem('projecta-cart', JSON.stringify(cart));
@@ -1409,65 +1097,24 @@
         }
       };
 
-      window.removeFromCart = function(id) {
-        const removedItem = cart.find(item => item.id === id);
-        cart = cart.filter(item => item.id !== id);
+      window.removeFromCart = function(productId) {
+        cart = cart.filter(item => item.productId !== productId);
         localStorage.setItem('projecta-cart', JSON.stringify(cart));
         renderCart();
-        showNotification(`${removedItem?.name || 'Produkt'} entfernt`, 'entfernt');
+        showNotification('Produkt entfernt', 'entfernt');
       };
 
-      // Globale Funktion zum Hinzufügen von Produkten zum Warenkorb
-      window.addToCart = function(productData) {
-        const existingItem = cart.find(item => item.id === productData.id);
-        
-        if (existingItem) {
-          existingItem.quantity += productData.quantity || 1;
-        } else {
-          cart.push({
-            id: productData.id,
-            name: productData.name,
-            price: productData.price,
-            image: productData.image,
-            description: productData.description,
-            type: productData.type,
-            quantity: productData.quantity || 1,
-            engraving: productData.engraving || '',
-            imageFileName: productData.imageFileName || '',
-            selectedOptions: productData.selectedOptions || ''
-          });
-        }
-        
-        localStorage.setItem('projecta-cart', JSON.stringify(cart));
-        showNotification(`${productData.name} hinzugefügt`, 'hinzugefügt');
-        
-        // Optional: Warenkorb-Anzahl in der Navigation aktualisieren
-        updateCartCount();
-      };
-
-      // Funktion zur Aktualisierung der Warenkorb-Anzahl
-      function updateCartCount() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartCountElements = document.querySelectorAll('.cart-count');
-        cartCountElements.forEach(element => {
-          element.textContent = totalItems;
-          element.style.display = totalItems > 0 ? 'inline' : 'none';
-        });
-      }
-
-      // Benachrichtigungs-System
       function showNotification(message, action = 'aktualisiert') {
         const notification = document.getElementById('cart-notification');
         const actionElement = document.getElementById('notification-action');
-
+       
         if (notification && actionElement) {
           actionElement.textContent = action;
           notification.style.display = 'block';
-
-          // Auto-hide nach 4 Sekunden
+         
           setTimeout(() => {
             notification.style.display = 'none';
-          }, 4000);
+          }, 3000);
         }
       }
 
@@ -1476,60 +1123,24 @@
       if (continueShoppingBtn) {
         continueShoppingBtn.addEventListener('click', function() {
           document.getElementById('cart-notification').style.display = 'none';
-          // Zurück zur vorherigen Seite oder zur Produktübersicht
-          if (document.referrer && document.referrer.includes(window.location.hostname)) {
-            window.history.back();
-          } else {
-            window.location.href = 'produkt-uebersicht.html';
-          }
+          window.location.href = 'produkt-uebersicht.html';
         });
       }
 
-      // Checkout button - Weiterleitung zur Kasse
+      // Checkout button
       const checkoutBtn = document.getElementById('checkout-btn');
       if (checkoutBtn) {
         checkoutBtn.addEventListener('click', function() {
           if (cart.length > 0) {
-            // Weiterleitung zur Checkout-Seite
-            window.location.href = 'checkout.html';
-          } else {
-            alert('Ihr Warenkorb ist leer!');
+            alert('Weiterleitung zur Kasse... (Demo-Funktionalität)');
+            // In a real app, redirect to checkout page
           }
         });
       }
 
-      // Demo-Daten für die Anzeige (nur wenn Warenkorb leer ist)
-      if (cart.length === 0) {
-        cart = [
-          {
-            id: 'safety-band',
-            name: 'Safety Band Premium',
-            price: 135.00,
-            image: 'images/produkt1.png',
-            description: 'Premium Sicherheitsarmband mit GPS-Ortung',
-            type: 'Armband',
-            quantity: 1
-          },
-          {
-            id: 'necklace-premium',
-            name: 'Projecta Necklace Premium',
-            price: 59.90,
-            image: 'images/necklace-premium.jpg',
-            description: 'Premium Sicherheitskette mit erweiterten Funktionen',
-            type: 'Halskette',
-            quantity: 1,
-            engraving: 'Mein Name'
-          }
-        ];
-        localStorage.setItem('projecta-cart', JSON.stringify(cart));
-      }
-
       // Initial render
       renderCart();
-      updateCartCount();
 
-      // Event Listeners für bessere Benutzerfreundlichkeit
-      
       // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -1545,7 +1156,7 @@
         });
       });
 
-      // Loading-Animation für Bilder
+      // Add loading animation for images
       const images = document.querySelectorAll('img');
       images.forEach(img => {
         img.addEventListener('load', () => {
@@ -1557,17 +1168,17 @@
         }
       });
 
-      // Mobile Touch-Optimierung
+      // Mobile touch optimization
       if ('ontouchstart' in window) {
         document.body.classList.add('touch-device');
-
-        // Touch-Interaktionen für Buttons optimieren
+       
+        // Optimize touch interactions for buttons
         const buttons = document.querySelectorAll('.btn, .quantity-btn, .remove-btn');
         buttons.forEach(button => {
           button.addEventListener('touchstart', function() {
             this.style.transform = 'scale(0.95)';
           }, { passive: true });
-
+         
           button.addEventListener('touchend', function() {
             setTimeout(() => {
               this.style.transform = '';
@@ -1576,7 +1187,7 @@
         });
       }
 
-      // Intersection Observer für Scroll-Animationen
+      // Intersection Observer for scroll animations
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -1590,7 +1201,7 @@
         });
       }, observerOptions);
 
-      // Warenkorb-Items für Animationen beobachten
+      // Observe cart items for animations
       const observeCartItems = () => {
         const cartItems = document.querySelectorAll('.cart-item');
         cartItems.forEach(item => {
@@ -1599,79 +1210,10 @@
         });
       };
 
-      // Nach dem ersten Rendern aufrufen
+      // Call after initial render
       setTimeout(observeCartItems, 100);
 
-      // Resize-Handler für responsive Anpassungen
-      let resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-          // Menü bei Größenänderung schließen um Layout-Probleme zu vermeiden
-          if (window.innerWidth > 768 && sidebarMenu.classList.contains('active')) {
-            closeMenu();
-          }
-        }, 250);
-      });
-
-      // Orientierungsänderung behandeln
-      window.addEventListener('orientationchange', function() {
-        setTimeout(function() {
-          // Reflow erzwingen um Orientierungsänderungen zu handhaben
-          document.body.style.display = 'none';
-          document.body.offsetHeight; // Reflow auslösen
-          document.body.style.display = '';
-          
-          // Menü bei Orientierungsänderung schließen
-          if (sidebarMenu.classList.contains('active')) {
-            closeMenu();
-          }
-        }, 100);
-      });
-
-      // Tastatur-Navigation verbessern
-      document.addEventListener('keydown', function(e) {
-        // Tab-Navigation für Warenkorb-Items
-        if (e.key === 'Tab') {
-          const focusableElements = document.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
-          
-          // Sicherstellen dass fokussierbare Elemente sichtbar sind
-          focusableElements.forEach(el => {
-            el.addEventListener('focus', function() {
-              this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
-          });
-        }
-      });
-
     });
-
-    // Globale Hilfsfunktionen für andere Seiten
-    
-    // Funktion zum Abrufen der aktuellen Warenkorb-Daten
-    window.getCartData = function() {
-      return JSON.parse(localStorage.getItem('projecta-cart') || '[]');
-    };
-
-    // Funktion zum Leeren des Warenkorbs
-    window.clearCart = function() {
-      localStorage.removeItem('projecta-cart');
-      if (typeof renderCart === 'function') {
-        renderCart();
-      }
-      if (typeof updateCartCount === 'function') {
-        updateCartCount();
-      }
-    };
-
-    // Funktion zur Warenkorb-Validation
-    window.validateCart = function() {
-      const cart = window.getCartData();
-      return cart.every(item => item.id && item.name && item.price && item.quantity > 0);
-    };
-
   </script>
 </body>
 </html>
