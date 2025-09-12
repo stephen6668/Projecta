@@ -862,7 +862,7 @@
           <!-- Product Gallery -->
           <div class="product-gallery">
             <div class="main-image" id="main-image">
-              <img id="zoom-image" src="images/kette.png" alt="Projecta Halskette" />
+              <img id="zoom-image" src="images/halskette1.png" alt="Projecta Halskette" />
             </div>
             <div class="thumbs" id="thumbs">
               <img src="images/halskette1.png" data-full="images/halskette1.png" alt="Thumbnail 1" class="active">
@@ -874,10 +874,10 @@
           <!-- Product Info -->
           <div class="product-info">
             <div class="product-box">
-              <h1 id="product-title">Safety-Necklace</h1>
-              <p class="price" id="product-price">€94.00</p>
+              <h1 id="product-title">Safety-Halskette</h1>
+              <p class="price" id="product-price">€165.00</p>
               <div class="product-description" id="product-desc">
-                Ihre Eleganze Halskette dieauserdem die standort send funktion und die Alarm funktion enthält. wenn sie sich in einer Gefahrensituation wieder finden betätigen sie den Knopf auf der Rückseite und ihr Standort wird automatich an ihren Notfallkontakt gesendet. Bei zwei mal betätigen des Knopfes wird ein Lauter Alarmabgespielt so dass sie die aufmerksamkeit auf sich ziehen können und bei gedrückt halten des Knopfes wird der Alarm wieder abgestellt
+                Elegant, diskret und lebensrettend: Unsere Premium Sicherheitshalskette kombiniert zeitloses Design mit modernster Notfalltechnologie. Mit einem unauffälligen Knopfdruck sendet sie deinen Standort an vertraute Kontakte und kann einen stillen oder hörbaren Alarm auslösen – komplett unabhängig vom Smartphone.
               </div>
 
               <div class="product-options">
@@ -1098,7 +1098,7 @@
         fileInfo.classList.add('show');
       });
 
-      // Cart functionality with enhanced error handling
+      // Cart functionality
       let cart = [];
       try {
         const cartData = localStorage.getItem('projecta-cart');
@@ -1114,7 +1114,7 @@
       function updateCartBadge() {
         const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
         const badge = document.getElementById('cart-badge');
-        
+       
         if (badge) {
           if (totalItems > 0) {
             badge.textContent = totalItems > 99 ? '99+' : totalItems;
@@ -1201,7 +1201,7 @@
       }
 
       // Add to cart functionality
-      document.getElementById("add-to-cart").addEventListener("click", function() {
+      document.getElementById("add-to-cart").addEventListener("click", async function() {
         console.log("Button geklickt!");
 
         // Produktdaten sammeln
