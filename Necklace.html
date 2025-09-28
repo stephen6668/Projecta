@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Warenkorb – Projecta</title>
-  <meta name="description" content="Ihr Warenkorb - Sicherheitsschmuck-Armbänder und Halsketten von Projecta" />
+  <title>Produkt — Projecta Halskette</title>
+  <meta name="description" content="Elegant, sicher und personalisierbar - Premium Sicherheitshalsketten von Projecta" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS Variables - Modern Design System (Xcode/iOS optimized) */
+    /* CSS Variables - Modern Design System (iOS optimized) */
     :root {
       --bg-primary: #F9F7F3;
       --bg-secondary: #EFE8DC;
@@ -28,7 +28,7 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       --font-secondary: 'Playfair Display', 'Times New Roman', Georgia, serif;
-
+     
       /* iOS Safe Area Support */
       --safe-area-inset-top: env(safe-area-inset-top, 0px);
       --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
@@ -55,11 +55,9 @@
       background: var(--bg-primary);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      /* iOS specific optimizations */
       -webkit-text-size-adjust: 100%;
       -webkit-tap-highlight-color: transparent;
       overflow-x: hidden;
-      /* Support for safe areas on iOS */
       padding-left: var(--safe-area-inset-left);
       padding-right: var(--safe-area-inset-right);
     }
@@ -72,28 +70,12 @@
     }
 
     /* Typography */
-    h1, h2, h3, .heading, .section-title {
+    h1, h2, h3, .heading {
       font-family: var(--font-secondary);
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--accent-primary);
       line-height: 1.1;
-    }
-
-    .section-title::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      margin: 0.5rem auto 1rem;
-      border-radius: 2px;
-    }
-
-    .lead {
-      font-size: 1.125rem;
-      color: var(--accent-secondary);
-      line-height: 1.7;
     }
 
     /* Layout */
@@ -120,7 +102,6 @@
       padding: 1rem 0;
       box-shadow: 0 4px 24px var(--shadow-light);
       border-bottom: 1px solid rgba(207, 161, 90, 0.1);
-      /* iOS safe area support */
       padding-top: calc(1rem + var(--safe-area-inset-top));
       padding-left: var(--safe-area-inset-left);
       padding-right: var(--safe-area-inset-right);
@@ -163,8 +144,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      width: 44px; /* Increased for better touch target */
-      height: 44px; /* iOS recommended minimum touch target */
+      width: 44px;
+      height: 44px;
       cursor: pointer;
       background: none;
       border: none;
@@ -173,7 +154,6 @@
       transition: var(--transition);
       position: relative;
       z-index: 1001;
-      /* Touch optimization */
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       user-select: none;
@@ -210,6 +190,24 @@
       background: var(--gold);
     }
 
+    /* Cart Badge */
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4444;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      z-index: 2;
+    }
+
     /* Sidebar Menu - iOS optimized */
     .sidebar-menu {
       position: fixed;
@@ -227,7 +225,6 @@
       padding: calc(6rem + var(--safe-area-inset-top)) 2rem calc(2rem + var(--safe-area-inset-bottom));
       z-index: 999;
       border-left: 1px solid rgba(207, 161, 90, 0.1);
-      /* iOS scroll optimization */
       -webkit-overflow-scrolling: touch;
       overflow-y: auto;
     }
@@ -253,10 +250,9 @@
       position: relative;
       border-radius: var(--border-radius-sm);
       font-family: var(--font-secondary);
-      /* iOS touch optimization */
       -webkit-touch-callout: none;
       -webkit-tap-highlight-color: rgba(207, 161, 90, 0.2);
-      min-height: 44px; /* iOS minimum touch target */
+      min-height: 44px;
       display: flex;
       align-items: center;
     }
@@ -327,37 +323,27 @@
       visibility: visible;
     }
 
-    /* Cart Section */
-    .cart-section {
+    /* Product Section */
+    .product-section {
       background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
       padding: calc(3rem + 80px + var(--safe-area-inset-top)) 0 3rem;
-      min-height: 80vh;
+      min-height: 100vh;
     }
 
-    .cart-title {
-      text-align: center;
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      color: var(--accent-primary);
-      margin-bottom: 2rem;
-      font-family: var(--font-secondary);
+    .product-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
     }
 
-    .cart-title::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      margin: 0.5rem auto 1rem;
-      border-radius: 2px;
+    /* Product Gallery */
+    .product-gallery {
+      position: sticky;
+      top: calc(6rem + var(--safe-area-inset-top));
     }
 
-    /* Cart Items */
-    .cart-items {
-      margin-bottom: 3rem;
-    }
-
-    .cart-item {
+    .main-image {
       background: rgba(255, 255, 255, 0.9);
       border-radius: var(--border-radius);
       box-shadow: 0 16px 48px var(--shadow-light);
@@ -366,16 +352,11 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 2rem;
       margin-bottom: 2rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 2rem;
-      align-items: center;
-      position: relative;
       overflow: hidden;
-      transition: var(--transition);
+      position: relative;
     }
 
-    .cart-item::before {
+    .main-image::before {
       content: '';
       position: absolute;
       top: 0;
@@ -385,128 +366,57 @@
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
     }
 
-    .cart-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 24px 60px var(--shadow-medium);
-    }
-
-    .cart-item img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
+    .main-image img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
       border-radius: var(--border-radius-sm);
-      box-shadow: 0 8px 24px var(--shadow-light);
-    }
-
-    .cart-item-info h3 {
-      font-family: var(--font-secondary);
-      font-size: 1.5rem;
-      margin: 0 0 0.5rem 0;
-      color: var(--accent-primary);
-    }
-
-    .cart-item-info .price {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      font-family: var(--font-secondary);
-    }
-
-    .product-details {
-      margin-bottom: 1rem;
-    }
-
-    .product-details p {
-      margin: 0.5rem 0;
-      color: var(--accent-secondary);
-      font-size: 0.95rem;
-    }
-
-    .product-details .detail-label {
-      font-weight: 600;
-      color: var(--accent-primary);
-    }
-
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .quantity-btn {
-      width: 36px;
-      height: 36px;
-      border: 2px solid var(--gold);
-      background: transparent;
-      color: var(--gold);
-      border-radius: 50%;
-      font-size: 1.2rem;
-      font-weight: 600;
-      cursor: pointer;
       transition: var(--transition);
+    }
+
+    .main-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .thumbs {
       display: flex;
-      align-items: center;
+      gap: 1rem;
       justify-content: center;
-      min-height: 44px;
-      min-width: 44px;
+      flex-wrap: wrap;
     }
 
-    .quantity-btn:hover {
-      background: var(--gold);
-      color: var(--white);
-    }
-
-    .quantity-input {
-      width: 60px;
-      padding: 0.5rem;
-      border: 1px solid rgba(207, 161, 90, 0.3);
+    .thumbs img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      cursor: pointer;
       border-radius: var(--border-radius-sm);
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.8);
-      min-height: 44px;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      box-shadow: 0 4px 12px var(--shadow-light);
     }
 
-    .cart-item-actions {
+    .thumbs img:hover {
+      transform: scale(1.1);
+      border-color: var(--gold);
+      box-shadow: 0 8px 24px var(--shadow-medium);
+    }
+
+    .thumbs img.active {
+      border-color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    /* Product Info */
+    .product-info {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 1rem;
+      gap: 2rem;
     }
 
-    .remove-btn {
-      background: transparent;
-      border: 2px solid #dc2626;
-      color: #dc2626;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--border-radius-sm);
-      cursor: pointer;
-      font-weight: 600;
-      transition: var(--transition);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      min-height: 44px;
-    }
-
-    .remove-btn:hover {
-      background: #dc2626;
-      color: var(--white);
-      transform: translateY(-1px);
-    }
-
-    .item-total {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--accent-primary);
-      font-family: var(--font-secondary);
-    }
-
-    /* Cart Summary */
-    .cart-summary {
+    .product-box {
       background: rgba(255, 255, 255, 0.95);
       border-radius: var(--border-radius);
       box-shadow: 0 16px 48px var(--shadow-light);
@@ -514,12 +424,11 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 2.5rem;
-      text-align: right;
       position: relative;
       overflow: hidden;
     }
 
-    .cart-summary::before {
+    .product-box::before {
       content: '';
       position: absolute;
       top: 0;
@@ -529,49 +438,133 @@
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
     }
 
-    .cart-summary h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    .product-box h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin: 0 0 1rem 0;
       color: var(--accent-primary);
     }
 
-    .summary-line {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-
-    .cart-summary .total-amount {
+    .price {
       font-size: 2rem;
       font-weight: 700;
       color: var(--gold);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       font-family: var(--font-secondary);
     }
 
-    /* Empty Cart */
-    .empty-cart {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--accent-secondary);
-    }
-
-    .empty-cart-icon {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-
-    .empty-cart h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent-secondary);
-    }
-
-    .empty-cart p {
+    .product-description {
       font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--accent-secondary);
       margin-bottom: 2rem;
+    }
+
+    /* Product Options */
+    .product-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .option-group label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-primary);
+      font-family: var(--font-secondary);
+    }
+
+    .option-group select,
+    .option-group input[type="text"],
+    .option-group input[type="number"] {
+      font-size: 1rem;
+      padding: 1rem;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid rgba(207, 161, 90, 0.3);
+      background: rgba(255, 255, 255, 0.9);
+      width: 100%;
+      box-shadow: 0 4px 12px var(--shadow-light);
+      transition: var(--transition);
+      font-family: var(--font-primary);
+    }
+
+    .option-group select:focus,
+    .option-group input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(207, 161, 90, 0.1);
+      transform: translateY(-1px);
+    }
+
+    /* File Upload Styling */
+    .file-upload-container {
+      position: relative;
+      margin-top: 1rem;
+    }
+
+    .file-upload {
+      display: none;
+    }
+
+    .file-upload-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border: 2px dashed rgba(207, 161, 90, 0.3);
+      border-radius: var(--border-radius-sm);
+      background: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      color: var(--accent-secondary);
+      min-height: 60px;
+    }
+
+    .file-upload-label:hover {
+      border-color: var(--gold);
+      background: rgba(207, 161, 90, 0.05);
+      transform: translateY(-1px);
+    }
+
+    .file-upload-label.has-file {
+      border-color: var(--gold);
+      background: rgba(207, 161, 90, 0.1);
+      color: var(--accent-primary);
+    }
+
+    .file-info {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(76, 175, 80, 0.1);
+      border-radius: var(--border-radius-sm);
+      font-size: 0.9rem;
+      color: #2e7d32;
+      display: none;
+    }
+
+    .file-info.show {
+      display: block;
+    }
+
+    .file-error {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(244, 67, 54, 0.1);
+      border-radius: var(--border-radius-sm);
+      font-size: 0.9rem;
+      color: #c62828;
+      display: none;
+    }
+
+    .file-error.show {
+      display: block;
     }
 
     /* Buttons */
@@ -590,13 +583,13 @@
       overflow: hidden;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      /* iOS touch optimization */
       min-height: 44px;
       min-width: 44px;
       -webkit-touch-callout: none;
       -webkit-tap-highlight-color: transparent;
       -webkit-user-select: none;
       user-select: none;
+      font-family: var(--font-secondary);
     }
 
     .btn:active {
@@ -615,54 +608,34 @@
       background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
     }
 
-    .btn-outline {
-      background: transparent;
-      color: var(--gold);
-      border: 2px solid var(--gold);
-    }
-
-    .btn-outline:hover {
-      background: var(--gold);
-      color: var(--white);
-    }
-
     .btn-group {
       display: flex;
       gap: 1rem;
-      justify-content: center;
+      margin-top: 2rem;
       flex-wrap: wrap;
     }
 
-    /* Notification */
+    /* Notifications */
     .cart-notification {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: rgba(255, 255, 255, 0.95);
+      top: calc(4rem + var(--safe-area-inset-top));
+      right: calc(2rem + var(--safe-area-inset-right));
+      background: rgba(76, 175, 80, 0.95);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(207, 161, 90, 0.3);
+      color: white;
       padding: 1.5rem 2rem;
       border-radius: var(--border-radius);
       box-shadow: 0 16px 48px var(--shadow-medium);
       z-index: 1000;
+      font-weight: 600;
+      transform: translateX(400px);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       max-width: 320px;
-      color: var(--accent-primary);
-      animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      /* iOS safe area support */
-      bottom: calc(2rem + var(--safe-area-inset-bottom));
-      right: calc(2rem + var(--safe-area-inset-right));
     }
 
-    .cart-notification::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    .cart-notification.show {
+      transform: translateX(0);
     }
 
     /* Footer */
@@ -670,7 +643,6 @@
       background: var(--accent-primary);
       color: var(--white);
       padding: 3rem 0;
-      margin-top: 5rem;
     }
 
     .footer-inner {
@@ -719,281 +691,99 @@
       }
     }
 
-    .cart-item {
+    .product-box,
+    .product-gallery {
       opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
+      animation: fadeInUp 0.8s ease-out forwards;
     }
 
-    .cart-item:nth-child(1) { animation-delay: 0.1s; }
-    .cart-item:nth-child(2) { animation-delay: 0.2s; }
-    .cart-item:nth-child(3) { animation-delay: 0.3s; }
+    .product-gallery {
+      animation-delay: 0.2s;
+    }
 
-    /* Responsive Design - Mobile First Approach */
-    
-    /* Small mobile devices (320px - 479px) */
-    @media (max-width: 479px) {
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .product-detail {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .product-gallery {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar-menu {
+        width: 280px;
+        right: -280px;
+        padding: calc(5rem + var(--safe-area-inset-top)) 1.5rem calc(2rem + var(--safe-area-inset-bottom));
+      }
+
+      .product-section {
+        padding: calc(2rem + 80px + var(--safe-area-inset-top)) 0 2rem;
+      }
+
       .container {
         padding: 0 1rem;
       }
 
-      .sidebar-menu {
-        width: 100vw;
-        right: -100vw;
-        padding: calc(5rem + var(--safe-area-inset-top)) 1rem calc(2rem + var(--safe-area-inset-bottom));
+      .product-detail {
+        gap: 2rem;
       }
 
-      .brand-text {
-        font-size: 1.4rem;
-      }
-
-      .logo {
-        height: 40px;
-        margin-right: 0.4rem;
-      }
-
-      .burger {
-        width: 40px;
-        height: 40px;
-        padding: 6px;
-      }
-
-      .burger span {
-        width: 20px;
-        height: 2px;
-      }
-
-      .cart-section {
-        padding: calc(2rem + 80px + var(--safe-area-inset-top)) 0 2rem;
-      }
-
-      .cart-title {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .cart-item {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1rem;
-        padding: 1.5rem 1rem;
-      }
-
-      .cart-item img {
-        width: 100px;
-        height: 100px;
-        justify-self: center;
-      }
-
-      .cart-item-info h3 {
-        font-size: 1.3rem;
-      }
-
-      .cart-item-info .price {
-        font-size: 1.1rem;
-      }
-
-      .quantity-controls {
-        justify-content: center;
-        gap: 0.75rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .quantity-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-      }
-
-      .quantity-input {
-        width: 50px;
-        padding: 0.4rem;
-      }
-
-      .cart-item-actions {
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .remove-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.8rem;
-      }
-
-      .item-total {
-        font-size: 1.1rem;
-      }
-
-      .cart-summary {
+      .main-image {
         padding: 1.5rem;
-        text-align: center;
       }
 
-      .summary-line {
-        font-size: 1rem;
+      .product-box {
+        padding: 2rem;
       }
 
-      .cart-summary .total-amount {
-        font-size: 1.6rem;
-      }
-
-      .btn-group {
+      .footer-inner {
         flex-direction: column;
-      }
-
-      .btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+        text-align: center;
       }
 
       .cart-notification {
         left: 1rem;
         right: 1rem;
         max-width: none;
-        bottom: calc(1rem + var(--safe-area-inset-bottom));
-        padding: 1rem 1.5rem;
+        top: calc(2rem + var(--safe-area-inset-top));
+        transform: translateY(-400px);
       }
 
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 1rem;
+      .cart-notification.show {
+        transform: translateY(0);
       }
     }
 
-    /* Mobile devices (480px - 767px) */
-    @media (min-width: 480px) and (max-width: 767px) {
+    @media (max-width: 480px) {
       .sidebar-menu {
-        width: 320px;
-        right: -320px;
-        padding: calc(5rem + var(--safe-area-inset-top)) 1.5rem calc(2rem + var(--safe-area-inset-bottom));
-      }
-
-      .cart-section {
-        padding: calc(2.5rem + 80px + var(--safe-area-inset-top)) 0 2.5rem;
-      }
-
-      .cart-item {
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
-        gap: 1.5rem;
-        padding: 1.75rem;
-      }
-
-      .cart-item img {
-        grid-row: 1 / 3;
-      }
-
-      .cart-item-info {
-        grid-column: 2;
-        grid-row: 1;
-      }
-
-      .cart-item-actions {
-        grid-column: 2;
-        grid-row: 2;
-        align-items: flex-start;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .cart-notification {
-        right: 1.5rem;
-        bottom: calc(1.5rem + var(--safe-area-inset-bottom));
-      }
-    }
-
-    /* Tablets (768px - 1023px) */
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .container {
-        padding: 0 1.5rem;
-      }
-
-      .cart-item {
-        grid-template-columns: auto 1fr auto;
-        gap: 1.75rem;
-        padding: 2rem 1.75rem;
-      }
-
-      .cart-item img {
-        width: 110px;
-        height: 110px;
-      }
-
-      .quantity-controls {
-        gap: 0.85rem;
-      }
-
-      .cart-summary {
-        padding: 2rem;
-      }
-    }
-
-    /* Large tablets and small desktops (1024px - 1199px) */
-    @media (min-width: 1024px) and (max-width: 1199px) {
-      .container {
-        padding: 0 1.75rem;
-      }
-
-      .cart-item {
-        gap: 1.85rem;
-        padding: 2rem 1.85rem;
-      }
-
-      .cart-item img {
-        width: 115px;
-        height: 115px;
-      }
-    }
-
-    /* Desktop and larger (1200px+) */
-    @media (min-width: 1200px) {
-      .cart-item {
-        gap: 2rem;
-        padding: 2rem;
-      }
-
-      .cart-item img {
-        width: 120px;
-        height: 120px;
-      }
-    }
-
-    /* Landscape orientation optimizations */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .cart-section {
-        padding: calc(1.5rem + 70px + var(--safe-area-inset-top)) 0 1.5rem;
-      }
-
-      .cart-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-      }
-
-      .cart-item {
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .cart-summary {
-        padding: 2rem;
-      }
-
-      .site-header {
-        padding: 0.75rem 0;
-        padding-top: calc(0.75rem + var(--safe-area-inset-top));
-      }
-
-      .logo {
-        height: 40px;
+        width: 100vw;
+        right: -100vw;
       }
 
       .brand-text {
         font-size: 1.5rem;
+      }
+
+      .burger {
+        width: 40px;
+        height: 40px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .thumbs {
+        gap: 0.5rem;
+      }
+
+      .thumbs img {
+        width: 60px;
+        height: 60px;
       }
     }
 
@@ -1003,7 +793,7 @@
         padding-top: max(1rem, env(safe-area-inset-top));
       }
 
-      .cart-section {
+      .product-section {
         padding-top: max(calc(3rem + 80px), calc(3rem + 80px + env(safe-area-inset-top)));
       }
 
@@ -1013,19 +803,8 @@
       }
 
       .cart-notification {
-        bottom: max(2rem, calc(2rem + env(safe-area-inset-bottom)));
+        top: max(calc(4rem), calc(4rem + env(safe-area-inset-top)));
         right: max(2rem, calc(2rem + env(safe-area-inset-right)));
-      }
-    }
-
-    /* High DPI displays */
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      .cart-item img {
-        image-rendering: -webkit-optimize-contrast;
-      }
-
-      .logo {
-        image-rendering: -webkit-optimize-contrast;
       }
     }
 
@@ -1035,49 +814,6 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-      }
-
-      html {
-        scroll-behavior: auto;
-      }
-    }
-
-    /* Print styles */
-    @media print {
-      .site-header,
-      .sidebar-menu,
-      .menu-overlay,
-      .cart-notification,
-      .site-footer {
-        display: none !important;
-      }
-
-      .cart-section {
-        padding-top: 2rem;
-        background: white;
-      }
-
-      .cart-item {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        break-inside: avoid;
-      }
-
-      .btn {
-        display: none !important;
-      }
-    }
-
-    /* Focus visible for better keyboard navigation */
-    @supports selector(:focus-visible) {
-      *:focus {
-        outline: none;
-      }
-
-      *:focus-visible {
-        outline: 2px solid var(--gold);
-        outline-offset: 2px;
-        border-radius: var(--border-radius-sm);
       }
     }
   </style>
@@ -1103,90 +839,127 @@
   <nav id="sidebar-menu" class="sidebar-menu" role="navigation" aria-label="Hauptnavigation">
     <div class="sidebar-nav">
       <a href="index.html">Home</a>
-      <a href="produkt-uebersicht.html">Produkt</a>
-      <a href="necklace.html">Halsketten</a>
-      <a href="cart.html" class="active">Warenkorb</a>
+      <a href="product.html">Armband</a>
+      <a href="necklace.html" class="active">Halskette</a>
+      <a href="cart.html" style="position: relative;">
+        Warenkorb
+        <span id="cart-badge" class="cart-badge"></span>
+      </a>
       <a href="about.html">Über Uns</a>
       <a href="contact.html">Kontakt</a>
-      <a href="product-future.html">Zukünftige Produkte</a>
+      <a href="future-products.html">Zukünftige Produkte</a>
       <a href="admin.html" class="admin-link">Admin</a>
-      <a href="login.html">Anmelden</a>
-      <a href="register.html">Registrieren</a>
     </div>
   </nav>
 
   <!-- Hauptinhalt -->
   <main>
-    <!-- Cart Section -->
-    <section class="cart-section" role="region" aria-label="Warenkorb">
+    <!-- Product Section -->
+    <section class="product-section" role="region" aria-label="Produkt Details">
       <div class="container">
-        <h1 class="cart-title">Dein Warenkorb</h1>
-
-        <!-- Cart Items Container -->
-        <div id="cart-items" class="cart-items">
-          <!-- Items will be dynamically inserted here -->
-        </div>
-
-        <!-- Empty Cart Message -->
-        <div id="empty-cart" class="empty-cart" style="display: none;">
-          <div class="empty-cart-icon">🛒</div>
-          <h3>Dein Warenkorb ist leer</h3>
-          <p>Entdecke unsere eleganten Sicherheitsarmbänder und Halsketten und füge deine Favoriten hinzu.</p>
-          <div class="btn-group">
-            <a href="produkt-uebersicht.html" class="btn btn-primary">Armbänder entdecken</a>
-            <a href="necklace.html" class="btn btn-outline">Halsketten entdecken</a>
+        <div class="product-detail">
+         
+          <!-- Product Gallery -->
+          <div class="product-gallery">
+            <div class="main-image" id="main-image">
+              <img id="zoom-image" src="images/halskette1.png" alt="Projecta Halskette" />
+            </div>
+            <div class="thumbs" id="thumbs">
+              <img src="images/halskette1.png" data-full="images/halskette1.png" alt="Thumbnail 1" class="active">
+              <img src="images/halskette2.png" data-full="images/halskette2.png" alt="Thumbnail 2">
+              <img src="images/halskette3.jpg" data-full="images/halskette3.jpg" alt="Thumbnail 3">
+            </div>
           </div>
-        </div>
 
-        <!-- Cart Summary -->
-        <div id="cart-summary" class="cart-summary" style="display: none;">
-          <h3>Bestellübersicht</h3>
-          <div class="summary-line">
-            <span>Zwischensumme:</span>
-            <span id="subtotal">€0,00</span>
-          </div>
-          <div class="summary-line">
-            <span>Versand:</span>
-            <span id="shipping">Kostenlos</span>
-          </div>
-          <div class="total-amount" id="total">€0,00</div>
+          <!-- Product Info -->
+          <div class="product-info">
+            <div class="product-box">
+              <h1 id="product-title">Safety-Halskette</h1>
+              <p class="price" id="product-price">€165.00</p>
+              <div class="product-description" id="product-desc">
+                Elegant, diskret und lebensrettend: Unsere Premium Sicherheitshalskette kombiniert zeitloses Design mit modernster Notfalltechnologie. Mit einem unauffälligen Knopfdruck sendet sie deinen Standort an vertraute Kontakte und kann einen stillen oder hörbaren Alarm auslösen – komplett unabhängig vom Smartphone.
+              </div>
 
-          <div class="btn-group">
-            <a href="produkt-uebersicht.html" class="btn btn-outline">Weiter shoppen</a>
-            <button id="checkout-btn" class="btn btn-primary">Zur Kasse</button>
+              <div class="product-options">
+                <div class="option-group">
+                  <label for="quantity">Menge</label>
+                  <input id="quantity" type="number" min="1" value="1">
+                </div>
+
+                <div class="option-group">
+                  <label for="chain-length">Kettenlänge</label>
+                  <select id="chain-length">
+                    <option value="40cm">40 cm - Kurz</option>
+                    <option value="45cm" selected>45 cm - Standard</option>
+                    <option value="50cm">50 cm - Lang</option>
+                    <option value="55cm">55 cm - Extra Lang</option>
+                  </select>
+                </div>
+
+                <div class="option-group">
+                  <label for="chain-color">Kettenfarbe</label>
+                  <select id="chain-color">
+                    <option value="silber">Silber</option>
+                    <option value="gold">Gold</option>
+                    <option value="rosegold">Roségold</option>
+                    <option value="schwarz">Schwarz</option>
+                  </select>
+                </div>
+
+                <div class="option-group">
+                  <label for="engraving">Textgravur (optional)</label>
+                  <input type="text" id="engraving" placeholder="Dein Text (max. 30 Zeichen)" maxlength="30" />
+                </div>
+
+                <div class="option-group">
+                  <label for="image-upload">Bildgravur (PDF, JPG, PNG - max. 5MB)</label>
+                  <div class="file-upload-container">
+                    <input type="file" id="image-upload" class="file-upload" accept=".pdf,.jpg,.jpeg,.png" />
+                    <label for="image-upload" class="file-upload-label" id="file-upload-label">
+                      <span>📁 Datei für Gravur auswählen</span>
+                    </label>
+                    <div id="file-info" class="file-info"></div>
+                    <div id="file-error" class="file-error"></div>
+                  </div>
+                  <small style="color: var(--accent-secondary); font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+                    💡 Tipp: Hochauflösende Bilder (min. 300 DPI) sorgen für beste Gravur-Qualität
+                  </small>
+                </div>
+
+                <div class="btn-group">
+                  <button id="add-to-cart" class="btn btn-primary">In den Warenkorb</button>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="site-footer" role="contentinfo">
-      <div class="container footer-inner">
-        <div>© <span id="year"></span> Projecta — Alle Rechte vorbehalten.</div>
-        <div class="footer-links">
-          <a href="about.html">Über Uns</a>
-          <a href="contact.html">Kontakt</a>
-          <a href="admin.html">Admin</a>
-        </div>
-      </div>
-    </footer>
-
   </main>
 
-  <!-- Cart Notification -->
-  <div id="cart-notification" class="cart-notification" style="display: none;">
-    <p>Produkt erfolgreich <strong id="notification-action">hinzugefügt</strong>!</p>
-    <div class="btn-group">
-      <button id="continue-shopping" class="btn btn-outline">Weiter shoppen</button>
-      <a href="cart.html" class="btn btn-primary">Zum Warenkorb</a>
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Projecta — Alle Rechte vorbehalten.</div>
+      <div class="footer-links">
+        <a href="about.html">Über Uns</a>
+        <a href="contact.html">Kontakt</a>
+        <a href="admin.html">Admin</a>
+      </div>
     </div>
+  </footer>
+
+  <!-- Cart Notification -->
+  <div id="cart-notification" class="cart-notification">
+    ✅ Produkt wurde erfolgreich zum Warenkorb hinzugefügt!
   </div>
 
   <!-- Scripts -->
   <script>
     // Warten bis DOM geladen ist
     document.addEventListener('DOMContentLoaded', function() {
-
+     
       // Dynamisches Jahr im Footer
       const yearElement = document.getElementById("year");
       if (yearElement) {
@@ -1197,8 +970,7 @@
       const burger = document.getElementById('burger');
       const sidebarMenu = document.getElementById('sidebar-menu');
       const menuOverlay = document.getElementById('menu-overlay');
-
-      // Prüfen ob alle Elemente vorhanden sind
+     
       if (!burger || !sidebarMenu || !menuOverlay) {
         console.error('Menu elements not found');
         return;
@@ -1206,15 +978,15 @@
 
       function toggleMenu() {
         const isOpen = sidebarMenu.classList.contains('active');
-
+       
         burger.classList.toggle('active');
         sidebarMenu.classList.toggle('active');
         menuOverlay.classList.toggle('active');
-
+       
         // Update ARIA attributes
         burger.setAttribute('aria-expanded', !isOpen);
         menuOverlay.setAttribute('aria-hidden', isOpen);
-
+       
         // Prevent body scroll when menu is open
         document.body.style.overflow = isOpen ? '' : 'hidden';
       }
@@ -1223,11 +995,11 @@
         burger.classList.remove('active');
         sidebarMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
-
+       
         // Reset ARIA attributes
         burger.setAttribute('aria-expanded', 'false');
         menuOverlay.setAttribute('aria-hidden', 'true');
-
+       
         // Restore body scroll
         document.body.style.overflow = '';
       }
@@ -1259,289 +1031,291 @@
         }
       });
 
-      // Cart Functionality - Erweiterte Produktdatenbank
-      let cart = JSON.parse(localStorage.getItem('projecta-cart') || '[]');
+      // Thumbnail-Galerie
+      document.querySelectorAll('#thumbs img').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          // Remove active class from all thumbnails
+          document.querySelectorAll('#thumbs img').forEach(img => {
+            img.classList.remove('active');
+          });
+         
+          // Add active class to clicked thumbnail
+          this.classList.add('active');
+         
+          // Change main image
+          const fullImage = this.dataset.full;
+          document.getElementById('zoom-image').src = fullImage;
+        });
+      });
 
-      // Erweiterte Produktdatenbank mit Armbändern und Halsketten
-      const products = {
-        // Armbänder
-        'safety-band': {
-          id: 'safety-band',
-          name: 'Safety Band Premium',
-          price: 135.00,
-          image: 'images/produkt1.png',
-          description: 'Premium Sicherheitsarmband mit GPS-Ortung',
-          type: 'Armband'
-        },
-        'classic': {
-          id: 'classic',
-          name: 'Projecta Classic',
-          price: 29.90,
-          image: 'images/image.png',
-          description: 'Basis Sicherheitsarmband',
-          type: 'Armband'
-        },
-        'premium': {
-          id: 'premium',
-          name: 'Projecta Premium',
-          price: 49.90,
-          image: 'images/premium.jpg',
-          description: 'Erweiterte Sicherheitsfunktionen',
-          type: 'Armband'
-        },
-        'deluxe': {
-          id: 'deluxe',
-          name: 'Projecta Deluxe',
-          price: 69.90,
-          image: 'images/deluxe.jpg',
-          description: 'Luxus Sicherheitsarmband',
-          type: 'Armband'
-        },
+      // File Upload Funktionalität
+      const fileUpload = document.getElementById('image-upload');
+      const fileUploadLabel = document.getElementById('file-upload-label');
+      const fileInfo = document.getElementById('file-info');
+      const fileError = document.getElementById('file-error');
+      let uploadedFile = null;
+
+      fileUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
         
-        // Halsketten
-        'necklace-basic': {
-          id: 'necklace-basic',
-          name: 'Projecta Necklace Basic',
-          price: 39.90,
-          image: 'images/necklace-basic.jpg',
-          description: 'Elegante Sicherheitskette mit Basis-Funktionen',
-          type: 'Halskette'
-        },
-        'necklace-premium': {
-          id: 'necklace-premium',
-          name: 'Projecta Necklace Premium',
-          price: 59.90,
-          image: 'images/necklace-premium.jpg',
-          description: 'Premium Sicherheitskette mit erweiterten Funktionen',
-          type: 'Halskette'
-        },
-        'necklace-deluxe': {
-          id: 'necklace-deluxe',
-          name: 'Projecta Necklace Deluxe',
-          price: 79.90,
-          image: 'images/necklace-deluxe.jpg',
-          description: 'Luxus Sicherheitskette mit GPS und Notfallfunktionen',
-          type: 'Halskette'
-        },
-        'necklace-gold': {
-          id: 'necklace-gold',
-          name: 'Projecta Necklace Gold Edition',
-          price: 149.90,
-          image: 'images/necklace-gold.jpg',
-          description: '18K vergoldete Sicherheitskette mit Premium-Features',
-          type: 'Halskette'
-        }
-      };
-
-      // Funktion zum Rendern des Warenkorbs
-      function renderCart() {
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartSummaryContainer = document.getElementById('cart-summary');
-        const emptyCartContainer = document.getElementById('empty-cart');
-
-        if (cart.length === 0) {
-          cartItemsContainer.innerHTML = '';
-          cartSummaryContainer.style.display = 'none';
-          emptyCartContainer.style.display = 'block';
+        // Reset previous states
+        fileInfo.classList.remove('show');
+        fileError.classList.remove('show');
+        fileUploadLabel.classList.remove('has-file');
+        
+        if (!file) {
+          fileUploadLabel.innerHTML = '<span>📁 Datei für Gravur auswählen</span>';
+          uploadedFile = null;
           return;
         }
 
-        emptyCartContainer.style.display = 'none';
-        cartSummaryContainer.style.display = 'block';
+        // Validate file type
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+        if (!allowedTypes.includes(file.type)) {
+          fileError.textContent = '❌ Nur JPG, PNG und PDF Dateien sind erlaubt.';
+          fileError.classList.add('show');
+          fileUpload.value = '';
+          uploadedFile = null;
+          return;
+        }
 
-        let cartHTML = '';
-        let total = 0;
+        // Validate file size (5MB max)
+        if (file.size > 5 * 1024 * 1024) {
+          fileError.textContent = '❌ Datei ist zu groß. Maximum: 5MB';
+          fileError.classList.add('show');
+          fileUpload.value = '';
+          uploadedFile = null;
+          return;
+        }
 
-        cart.forEach((item, index) => {
-          // Fallback zu products wenn das Item keine vollständigen Daten hat
-          const product = products[item.id] || item;
-          const name = product.name || item.name || 'Unbekanntes Produkt';
-          const price = product.price || item.price || 0;
-          const image = product.image || item.image || 'images/placeholder.jpg';
-          const description = product.description || item.description || '';
-          const type = product.type || item.type || '';
+        // File is valid
+        uploadedFile = file;
+        fileUploadLabel.classList.add('has-file');
+        fileUploadLabel.innerHTML = `<span>✅ ${file.name}</span>`;
+        
+        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+        fileInfo.textContent = `📋 Datei bereit: ${file.name} (${fileSizeMB} MB)`;
+        fileInfo.classList.add('show');
+      });
 
-          const itemTotal = price * item.quantity;
-          total += itemTotal;
-
-          cartHTML += `
-            <div class="cart-item" style="animation-delay: ${index * 0.1}s">
-              <img src="${image}" alt="${name}" onerror="this.src='images/placeholder.jpg'" />
-              <div class="cart-item-info">
-                <h3>${name}</h3>
-                <p class="price">€${price.toFixed(2)}</p>
-                
-                <div class="product-details">
-                  ${type ? `<p><span class="detail-label">Typ:</span> ${type}</p>` : ''}
-                  ${description ? `<p><span class="detail-label">Beschreibung:</span> ${description}</p>` : ''}
-                  ${item.engraving ? `<p><span class="detail-label">Gravur:</span> ${item.engraving}</p>` : ''}
-                  ${item.imageFileName ? `<p><span class="detail-label">Bildgravur:</span> ${item.imageFileName}</p>` : ''}
-                  ${item.selectedOptions ? `<p><span class="detail-label">Optionen:</span> ${item.selectedOptions}</p>` : ''}
-                </div>
-                
-                <div class="quantity-controls">
-                  <button class="quantity-btn" onclick="changeQuantity('${item.id}', -1)" aria-label="Menge verringern">−</button>
-                  <input type="number" class="quantity-input" value="${item.quantity}" min="1"
-                         onchange="updateQuantity('${item.id}', this.value)" aria-label="Produktmenge" />
-                  <button class="quantity-btn" onclick="changeQuantity('${item.id}', 1)" aria-label="Menge erhöhen">+</button>
-                </div>
-              </div>
-              <div class="cart-item-actions">
-                <div class="item-total">€${itemTotal.toFixed(2)}</div>
-                <button class="remove-btn" onclick="removeFromCart('${item.id}')" aria-label="Produkt entfernen">Entfernen</button>
-              </div>
-            </div>
-          `;
-        });
-
-        cartItemsContainer.innerHTML = cartHTML;
-        document.getElementById('subtotal').textContent = `€${total.toFixed(2)}`;
-        document.getElementById('total').textContent = `€${total.toFixed(2)}`;
+      // Cart functionality
+      let cart = [];
+      try {
+        const cartData = localStorage.getItem('projecta-cart');
+        if (cartData) {
+          cart = JSON.parse(cartData);
+        }
+      } catch (e) {
+        console.error("Fehler beim Laden des Warenkorbs:", e);
+        cart = [];
       }
 
-      // Globale Funktionen für Warenkorb-Management
-      window.changeQuantity = function(id, change) {
-        const item = cart.find(item => item.id === id);
-        if (item) {
-          item.quantity = Math.max(1, item.quantity + change);
-          localStorage.setItem('projecta-cart', JSON.stringify(cart));
-          renderCart();
-          showNotification('Menge aktualisiert');
+      // Update cart badge
+      function updateCartBadge() {
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        const badge = document.getElementById('cart-badge');
+       
+        if (badge) {
+          if (totalItems > 0) {
+            badge.textContent = totalItems > 99 ? '99+' : totalItems;
+            badge.style.display = 'flex';
+          } else {
+            badge.style.display = 'none';
+          }
         }
-      };
-
-      window.updateQuantity = function(id, newQuantity) {
-        const quantity = Math.max(1, parseInt(newQuantity) || 1);
-        const item = cart.find(item => item.id === id);
-        if (item) {
-          item.quantity = quantity;
-          localStorage.setItem('projecta-cart', JSON.stringify(cart));
-          renderCart();
-          showNotification('Menge aktualisiert');
-        }
-      };
-
-      window.removeFromCart = function(id) {
-        const removedItem = cart.find(item => item.id === id);
-        cart = cart.filter(item => item.id !== id);
-        localStorage.setItem('projecta-cart', JSON.stringify(cart));
-        renderCart();
-        showNotification(`${removedItem?.name || 'Produkt'} entfernt`, 'entfernt');
-      };
-
-      // Globale Funktion zum Hinzufügen von Produkten zum Warenkorb
-      window.addToCart = function(productData) {
-        const existingItem = cart.find(item => item.id === productData.id);
-        
-        if (existingItem) {
-          existingItem.quantity += productData.quantity || 1;
-        } else {
-          cart.push({
-            id: productData.id,
-            name: productData.name,
-            price: productData.price,
-            image: productData.image,
-            description: productData.description,
-            type: productData.type,
-            quantity: productData.quantity || 1,
-            engraving: productData.engraving || '',
-            imageFileName: productData.imageFileName || '',
-            selectedOptions: productData.selectedOptions || ''
-          });
-        }
-        
-        localStorage.setItem('projecta-cart', JSON.stringify(cart));
-        showNotification(`${productData.name} hinzugefügt`, 'hinzugefügt');
-        
-        // Optional: Warenkorb-Anzahl in der Navigation aktualisieren
-        updateCartCount();
-      };
-
-      // Funktion zur Aktualisierung der Warenkorb-Anzahl
-      function updateCartCount() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartCountElements = document.querySelectorAll('.cart-count');
-        cartCountElements.forEach(element => {
-          element.textContent = totalItems;
-          element.style.display = totalItems > 0 ? 'inline' : 'none';
-        });
       }
 
-      // Benachrichtigungs-System
-      function showNotification(message, action = 'aktualisiert') {
+      // Show notification
+      function showNotification(message) {
         const notification = document.getElementById('cart-notification');
-        const actionElement = document.getElementById('notification-action');
-
-        if (notification && actionElement) {
-          actionElement.textContent = action;
-          notification.style.display = 'block';
-
-          // Auto-hide nach 4 Sekunden
+        if (notification) {
+          notification.textContent = message;
+          notification.classList.add('show');
+         
           setTimeout(() => {
-            notification.style.display = 'none';
-          }, 4000);
+            notification.classList.remove('show');
+          }, 3000);
         }
       }
 
-      // Continue shopping button
-      const continueShoppingBtn = document.getElementById('continue-shopping');
-      if (continueShoppingBtn) {
-        continueShoppingBtn.addEventListener('click', function() {
-          document.getElementById('cart-notification').style.display = 'none';
-          // Zurück zur vorherigen Seite oder zur Produktübersicht
-          if (document.referrer && document.referrer.includes(window.location.hostname)) {
-            window.history.back();
-          } else {
-            window.location.href = 'produkt-uebersicht.html';
-          }
+      // Convert file to base64 for email sending
+      function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
         });
       }
 
-      // Checkout button - Weiterleitung zur Kasse
-      const checkoutBtn = document.getElementById('checkout-btn');
-      if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
-          if (cart.length > 0) {
-            // Weiterleitung zur Checkout-Seite
-            window.location.href = 'checkout.html';
-          } else {
-            alert('Ihr Warenkorb ist leer!');
+      // Send email with file attachment
+      async function sendEmailWithFile(productData, file) {
+        try {
+          let emailBody = `Neue Halsketten-Bestellung:\n\n`;
+          emailBody += `Produkt: ${productData.name}\n`;
+          emailBody += `Preis: ${productData.price}\n`;
+          emailBody += `Menge: ${productData.quantity}\n`;
+          emailBody += `Kettenlänge: ${productData.chainLength}\n`;
+          emailBody += `Kettenfarbe: ${productData.chainColor}\n`;
+          emailBody += `Textgravur: ${productData.engraving || 'Keine'}\n`;
+          emailBody += `Bildgravur: ${file ? 'Ja - siehe Anhang' : 'Keine'}\n\n`;
+          emailBody += `Bestellt am: ${new Date().toLocaleString('de-DE')}\n`;
+
+          if (file) {
+            const base64File = await fileToBase64(file);
+            emailBody += `\n--- DATEI ANHANG ---\n`;
+            emailBody += `Dateiname: ${file.name}\n`;
+            emailBody += `Dateigröße: ${(file.size / 1024).toFixed(2)} KB\n`;
+            emailBody += `Dateityp: ${file.type}\n`;
+            emailBody += `Base64 Daten: ${base64File}\n`;
           }
+
+          // Create a hidden form to send the email
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = 'https://formspree.io/f/xyzpogpd'; // Replace with your actual Formspree endpoint
+          form.style.display = 'none';
+
+          const emailInput = document.createElement('input');
+          emailInput.type = 'hidden';
+          emailInput.name = '_subject';
+          emailInput.value = 'Neue Halsketten-Bestellung mit Bildgravur';
+
+          const bodyInput = document.createElement('input');
+          bodyInput.type = 'hidden';
+          bodyInput.name = 'message';
+          bodyInput.value = emailBody;
+
+          form.appendChild(emailInput);
+          form.appendChild(bodyInput);
+          document.body.appendChild(form);
+          
+          form.submit();
+          document.body.removeChild(form);
+
+          return true;
+        } catch (error) {
+          console.error('Fehler beim Senden der E-Mail:', error);
+          return false;
+        }
+      }
+
+      // Add to cart functionality
+      document.getElementById("add-to-cart").addEventListener("click", async function() {
+        console.log("Button geklickt!");
+
+        // Produktdaten sammeln
+        const productTitle = document.getElementById("product-title").textContent.trim();
+        const productPriceText = document.getElementById("product-price").textContent;
+        const price = parseFloat(productPriceText.replace('€', '').replace(',', '.'));
+        const quantity = parseInt(document.getElementById("quantity").value);
+        const chainLength = document.getElementById("chain-length").value;
+        const chainColor = document.getElementById("chain-color").value;
+        const engraving = document.getElementById("engraving").value.trim();
+        const image = document.getElementById("zoom-image").src;
+
+        // Validierung
+        if (quantity < 1) {
+          alert("Bitte wähle eine gültige Menge aus.");
+          return;
+        }
+
+        if (engraving.length > 30) {
+          alert("Die Textgravur darf maximal 30 Zeichen lang sein.");
+          return;
+        }
+
+        // Produkt-Objekt erstellen
+        const product = {
+          id: 'safety-necklace-' + Date.now(),
+          productId: 'safety-necklace',
+          name: productTitle,
+          price: price,
+          quantity: quantity,
+          chainLength: chainLength,
+          chainColor: chainColor,
+          engraving: engraving,
+          hasImageUpload: uploadedFile ? true : false,
+          imageFileName: uploadedFile ? uploadedFile.name : null,
+          image: image,
+          description: 'Premium Sicherheitshalskette mit GPS-Ortung'
+        };
+
+        console.log("Produkt-Objekt:", product);
+
+        // Show loading state
+        const originalText = this.textContent;
+        this.textContent = '⏳ Wird hinzugefügt...';
+        this.disabled = true;
+
+        try {
+          // If file is uploaded, send email with attachment
+          if (uploadedFile) {
+            const emailSent = await sendEmailWithFile(product, uploadedFile);
+            if (!emailSent) {
+              throw new Error('E-Mail konnte nicht gesendet werden');
+            }
+            showNotification(`✅ "${product.name}" mit Bildgravur wurde hinzugefügt und per E-Mail gesendet!`);
+          } else {
+            showNotification(`✅ "${product.name}" wurde zum Warenkorb hinzugefügt!`);
+          }
+
+          // Prüfen ob bereits ein ähnliches Produkt im Warenkorb ist (ohne Bildgravur)
+          const existingProductIndex = cart.findIndex(item =>
+            (item.name === product.name || item.productId === product.productId) &&
+            item.chainLength === product.chainLength &&
+            item.chainColor === product.chainColor &&
+            item.engraving === product.engraving &&
+            !item.hasImageUpload
+          );
+
+          if (existingProductIndex > -1 && !product.hasImageUpload) {
+            // Produkt existiert bereits, Menge erhöhen
+            cart[existingProductIndex].quantity += product.quantity;
+          } else {
+            // Neues Produkt hinzufügen
+            cart.push(product);
+          }
+
+          // Warenkorb speichern
+          localStorage.setItem('projecta-cart', JSON.stringify(cart));
+          console.log("Warenkorb gespeichert:", cart);
+
+          // Warenkorb-Badge aktualisieren
+          updateCartBadge();
+
+        } catch (error) {
+          console.error("Fehler:", error);
+          alert("Fehler beim Hinzufügen zum Warenkorb. Bitte versuchen Sie es erneut.");
+        } finally {
+          // Reset button
+          this.textContent = originalText;
+          this.disabled = false;
+        }
+      });
+
+      // Initial cart badge update
+      updateCartBadge();
+
+      // Mobile touch optimization
+      if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+       
+        // Optimize touch interactions for buttons
+        const buttons = document.querySelectorAll('.btn, .thumbs img, .file-upload-label');
+        buttons.forEach(button => {
+          button.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+          }, { passive: true });
+         
+          button.addEventListener('touchend', function() {
+            setTimeout(() => {
+              this.style.transform = '';
+            }, 150);
+          }, { passive: true });
         });
       }
 
-      // Demo-Daten für die Anzeige (nur wenn Warenkorb leer ist)
-      if (cart.length === 0) {
-        cart = [
-          {
-            id: 'safety-band',
-            name: 'Safety Band Premium',
-            price: 135.00,
-            image: 'images/produkt1.png',
-            description: 'Premium Sicherheitsarmband mit GPS-Ortung',
-            type: 'Armband',
-            quantity: 1
-          },
-          {
-            id: 'necklace-premium',
-            name: 'Projecta Necklace Premium',
-            price: 59.90,
-            image: 'images/necklace-premium.jpg',
-            description: 'Premium Sicherheitskette mit erweiterten Funktionen',
-            type: 'Halskette',
-            quantity: 1,
-            engraving: 'Mein Name'
-          }
-        ];
-        localStorage.setItem('projecta-cart', JSON.stringify(cart));
-      }
-
-      // Initial render
-      renderCart();
-      updateCartCount();
-
-      // Event Listeners für bessere Benutzerfreundlichkeit
-      
       // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -1557,7 +1331,7 @@
         });
       });
 
-      // Loading-Animation für Bilder
+      // Add loading animation for images
       const images = document.querySelectorAll('img');
       images.forEach(img => {
         img.addEventListener('load', () => {
@@ -1569,26 +1343,7 @@
         }
       });
 
-      // Mobile Touch-Optimierung
-      if ('ontouchstart' in window) {
-        document.body.classList.add('touch-device');
-
-        // Touch-Interaktionen für Buttons optimieren
-        const buttons = document.querySelectorAll('.btn, .quantity-btn, .remove-btn');
-        buttons.forEach(button => {
-          button.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.95)';
-          }, { passive: true });
-
-          button.addEventListener('touchend', function() {
-            setTimeout(() => {
-              this.style.transform = '';
-            }, 150);
-          }, { passive: true });
-        });
-      }
-
-      // Intersection Observer für Scroll-Animationen
+      // Intersection Observer for scroll animations
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -1602,88 +1357,42 @@
         });
       }, observerOptions);
 
-      // Warenkorb-Items für Animationen beobachten
-      const observeCartItems = () => {
-        const cartItems = document.querySelectorAll('.cart-item');
-        cartItems.forEach(item => {
-          item.style.animationPlayState = 'paused';
-          observer.observe(item);
+      // Observe animated elements
+      const animatedElements = document.querySelectorAll('.product-box, .product-gallery');
+      animatedElements.forEach(element => {
+        element.style.animationPlayState = 'paused';
+        observer.observe(element);
+      });
+
+      // Enhanced form validation
+      const quantityInput = document.getElementById('quantity');
+      const engravingInput = document.getElementById('engraving');
+
+      if (quantityInput) {
+        quantityInput.addEventListener('input', function() {
+          const value = parseInt(this.value);
+          if (value < 1) {
+            this.value = 1;
+          } else if (value > 10) {
+            this.value = 10;
+            showNotification('⚠️ Maximale Menge: 10 Stück');
+          }
         });
-      };
+      }
 
-      // Nach dem ersten Rendern aufrufen
-      setTimeout(observeCartItems, 100);
-
-      // Resize-Handler für responsive Anpassungen
-      let resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-          // Menü bei Größenänderung schließen um Layout-Probleme zu vermeiden
-          if (window.innerWidth > 768 && sidebarMenu.classList.contains('active')) {
-            closeMenu();
+      if (engravingInput) {
+        engravingInput.addEventListener('input', function() {
+          const remaining = 30 - this.value.length;
+          if (remaining < 5) {
+            this.style.borderColor = remaining === 0 ? '#dc2626' : '#f59e0b';
+          } else {
+            this.style.borderColor = 'rgba(207, 161, 90, 0.3)';
           }
-        }, 250);
-      });
+        });
+      }
 
-      // Orientierungsänderung behandeln
-      window.addEventListener('orientationchange', function() {
-        setTimeout(function() {
-          // Reflow erzwingen um Orientierungsänderungen zu handhaben
-          document.body.style.display = 'none';
-          document.body.offsetHeight; // Reflow auslösen
-          document.body.style.display = '';
-          
-          // Menü bei Orientierungsänderung schließen
-          if (sidebarMenu.classList.contains('active')) {
-            closeMenu();
-          }
-        }, 100);
-      });
-
-      // Tastatur-Navigation verbessern
-      document.addEventListener('keydown', function(e) {
-        // Tab-Navigation für Warenkorb-Items
-        if (e.key === 'Tab') {
-          const focusableElements = document.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
-          
-          // Sicherstellen dass fokussierbare Elemente sichtbar sind
-          focusableElements.forEach(el => {
-            el.addEventListener('focus', function() {
-              this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
-          });
-        }
-      });
-
+      console.log("Halsketten-Produktseite erfolgreich initialisiert");
     });
-
-    // Globale Hilfsfunktionen für andere Seiten
-    
-    // Funktion zum Abrufen der aktuellen Warenkorb-Daten
-    window.getCartData = function() {
-      return JSON.parse(localStorage.getItem('projecta-cart') || '[]');
-    };
-
-    // Funktion zum Leeren des Warenkorbs
-    window.clearCart = function() {
-      localStorage.removeItem('projecta-cart');
-      if (typeof renderCart === 'function') {
-        renderCart();
-      }
-      if (typeof updateCartCount === 'function') {
-        updateCartCount();
-      }
-    };
-
-    // Funktion zur Warenkorb-Validation
-    window.validateCart = function() {
-      const cart = window.getCartData();
-      return cart.every(item => item.id && item.name && item.price && item.quantity > 0);
-    };
-
   </script>
 </body>
 </html>
