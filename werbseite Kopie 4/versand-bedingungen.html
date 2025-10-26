@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Versand & Lieferbedingungen – Projecta</title>
+  <meta name="description" content="Informationen zu Versandkosten, Lieferzeiten und Lieferbedingungen bei Projecta" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #F9F7F3;
+      --accent-primary: #333333;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+    }
+
+    .logo { height: 48px; margin-right: 0.6rem; }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+    }
+
+    .back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .legal-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .legal-header h1 {
+      font-family: var(--font-secondary);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .legal-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .legal-section h2 {
+      font-family: var(--font-secondary);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .legal-section h3 {
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .legal-section p { margin-bottom: 1rem; line-height: 1.8; }
+    .legal-section ul, .legal-section ol { margin-left: 2rem; margin-bottom: 1rem; }
+    .legal-section li { margin-bottom: 0.5rem; line-height: 1.7; }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: white;
+      border-radius: var(--border-radius-sm);
+      overflow: hidden;
+      box-shadow: 0 4px 16px var(--shadow-light);
+    }
+
+    .price-table th {
+      background: var(--gold);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .price-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .price-table tr:hover { background: rgba(207, 161, 90, 0.05); }
+
+    .info-box {
+      background: rgba(207, 161, 90, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+      border: 2px solid #22c55e;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .legal-content { padding: 6rem 1rem 2rem; }
+      .legal-section { padding: 1.5rem; }
+      .price-table { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <a href="index.html" class="back-link">← Zurück</a>
+    </div>
+  </header>
+
+  <main class="legal-content">
+    
+    <div class="legal-header">
+      <h1>📦 Versand & Lieferbedingungen</h1>
+      <p style="color: var(--accent-secondary); font-size: 1.1rem;">Alles über Versandkosten, Lieferzeiten und Liefergebiete</p>
+    </div>
+
+    <section class="legal-section">
+      <h2>🌍 Liefergebiete</h2>
+      
+      <p>Wir liefern in folgende Länder:</p>
+      
+      <h3>✅ Luxemburg</h3>
+      <p>Kostenloser Versand ab €75,00 Bestellwert</p>
+      
+      <h3>✅ EU-Länder</h3>
+      <ul>
+        <li>Deutschland</li>
+        <li>Österreich</li>
+        <li>Belgien</li>
+        <li>Niederlande</li>
+        <li>Frankreich</li>
+        <li>Italien</li>
+        <li>Spanien</li>
+      </ul>
+      <p>Kostenloser Versand ab €150,00 Bestellwert</p>
+
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Lieferungen in weitere EU-Länder sind auf Anfrage möglich. Kontaktieren Sie uns unter <a href="mailto:service@projecta.lu">service@projecta.lu</a></p>
+      </div>
+    </section>
+
+    <section class="legal-section">
+      <h2>💰 Versandkosten</h2>
+      
+      <h3>Luxemburg</h3>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Versandart</th>
+            <th>Lieferzeit</th>
+            <th>Kosten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Standardversand</strong></td>
+            <td>3-5 Werktage</td>
+            <td>€4,90</td>
+          </tr>
+          <tr>
+            <td><strong>Expressversand</strong></td>
+            <td>1-2 Werktage</td>
+            <td>€9,90</td>
+          </tr>
+          <tr style="background: rgba(34, 197, 94, 0.1);">
+            <td><strong>Kostenloser Versand</strong></td>
+            <td>3-5 Werktage</td>
+            <td><strong>GRATIS ab €75</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>EU-Länder</h3>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Versandart</th>
+            <th>Lieferzeit</th>
+            <th>Kosten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Standardversand</strong></td>
+            <td>5-10 Werktage</td>
+            <td>€9,90</td>
+          </tr>
+          <tr>
+            <td><strong>Expressversand</strong></td>
+            <td>2-5 Werktage</td>
+            <td>€19,90</td>
+          </tr>
+          <tr style="background: rgba(34, 197, 94, 0.1);">
+            <td><strong>Kostenloser Versand</strong></td>
+            <td>5-10 Werktage</td>
+            <td><strong>GRATIS ab €150</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <h3 style="color: #16a34a; margin-bottom: 1rem;">🎉 Kostenloser Versand!</h3>
+        <p style="font-size: 1.1rem;"><strong>Luxemburg:</strong> Ab €75,00 Bestellwert<br>
+        <strong>EU:</strong> Ab €150,00 Bestellwert</p>
+      </div>
+    </section>
+
+    <section class="legal-section">
+      <h2>⏰ Lieferzeiten</h2>
+      
+      <h3>Standard-Produkte</h3>
+      <ul>
+        <li><strong>Luxemburg:</strong> 3-5 Werktage</li>
+        <li><strong>Deutschland, Österreich, Belgien:</strong> 5-7 Werktage</li>
+        <li><strong>Andere EU-Länder:</strong> 7-10 Werktage</li>
+      </ul>
+
+      <h3>Personalisierte Produkte (mit Gravur)</h3>
+      <ul>
+        <li><strong>Produktionszeit:</strong> 5-7 Werktage</li>
+        <li><strong>+ Versandzeit:</strong> Je nach Lieferland</li>
+        <li><strong>Gesamt:</strong> 7-14 Werktage</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Wichtig:</strong> Die Lieferzeiten gelten ab Zahlungseingang. Bei Zahlung per Vorkasse beginnt die Lieferzeit erst nach Gutschrift auf unserem Konto.</p>
+      </div>
+    </section>
+
+    <section class="legal-section">
+      <h2>🚚 Versanddienstleister</h2>
+      
+      <p>Wir arbeiten mit folgenden zuverlässigen Versandpartnern zusammen:</p>
+      
+      <h3>POST Luxembourg</h3>
+      <p>Hauptversandpartner für Luxemburg mit Sendungsverfolgung</p>
+      
+      <h3>DHL</h3>
+      <p>Internationaler Versand innerhalb der EU</p>
+      
+      <h3>DPD</h3>
+      <p>Schnelle Zustellung mit Lieferankündigung per SMS</p>
+      
+      <h3>UPS</h3>
+      <p>Expressversand für eilige Bestellungen</p>
+
+      <div class="highlight-box">
+        <h3 style="color: var(--gold); margin-bottom: 1rem;">📱 Sendungsverfolgung</h3>
+        <p>Nach Versand erhalten Sie automatisch eine E-Mail mit Tracking-Nummer, um Ihre Sendung live zu verfolgen.</p>
+      </div>
+    </section>
+
+    <section class="legal-section">
+      <h2>📦 Verpackung & Versand</h2>
+      
+      <h3>Umweltfreundliche Verpackung</h3>
+      <p>Wir legen großen Wert auf Nachhaltigkeit:</p>
+      <ul>
+        <li>🌱 Recycelbare Kartons</li>
+        <li>♻️ Plastikfreies Füllmaterial</li>
+        <li>📄 FSC-zertifizierte Materialien</li>
+        <li>🌍 CO₂-neutraler Versand (auf Wunsch)</li>
+      </ul>
+
+      <h3>Sichere Verpackung</h3>
+      <p>Ihre Bestellung wird sorgfältig verpackt:</p>
+      <ul>
+        <li>Stabile Versandkartons</li>
+        <li>Stoßdämpfendes Füllmaterial</li>
+        <li>Separate Polsterung für Schmuckstücke</li>
+        <li>Diskrete Verpackung ohne Werbeaufdrucke</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>🏠 Lieferoptionen</h2>
+      
+      <h3>Standardlieferung</h3>
+      <p>Zustellung an Ihre Wunschadresse zu den üblichen Geschäftszeiten (Mo-Fr, 8-18 Uhr)</p>
+      
+      <h3>Packstation (nur Deutschland)</h3>
+      <p>Lieferung an eine DHL Packstation Ihrer Wahl - 24/7 abhol</p>
+      
+      <h3>Abholung (nach Vereinbarung)</h3>
+      <p>Persönliche Abholung in Luxembourg nach telefonischer Terminvereinbarung möglich</p>
+
+      <div class="info-box">
+        <p><strong>Hinweis zur Zustellung:</strong> Bei Abwesenheit hinterlässt der Paketdienst eine Benachrichtigung. Sie können das Paket dann in der Filiale abholen oder eine erneute Zustellung vereinbaren.</p>
+      </div>
+    </section>
+
+    <section class="legal-section">
+      <h2>❓ Häufige Fragen zum Versand</h2>
+      
+      <h3>Kann ich mehrere Lieferadressen angeben?</h3>
+      <p>Ja, Sie können bei Bestellung verschiedene Rechnungs- und Lieferadressen angeben.</p>
+
+      <h3>Was passiert bei Lieferverzögerungen?</h3>
+      <p>Bei Verzögerungen informieren wir Sie umgehend per E-Mail und bieten Lösungen an.</p>
+
+      <h3>Kann ich meine Bestellung nachverfolgen?</h3>
+      <p>Ja, Sie erhalten nach Versand eine E-Mail mit Tracking-Link zur Sendungsverfolgung.</p>
+
+      <h3>Was ist bei beschädigter Lieferung?</h3>
+      <p>Bitte dokumentieren Sie Schäden mit Fotos und kontaktieren Sie uns innerhalb von 48 Stunden.</p>
+    </section>
+
+    <section class="legal-section" style="background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(212, 179, 115, 0.1) 100%);">
+      <h2>📞 Fragen zum Versand?</h2>
+      
+      <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+        <p><strong>📧 E-Mail:</strong> <a href="mailto:service@projecta.lu" style="font-size: 1.2rem; color: var(--gold);">service@projecta.lu</a></p>
+        <p style="margin-top: 1rem;"><strong>📞 Telefon:</strong> <a href="tel:+352123456789" style="font-size: 1.2rem; color: var(--gold);">+352 12 34 56 789</a></p>
+        <p style="margin-top: 1rem;"><strong>🕐 Erreichbarkeit:</strong> Mo-Fr: 09:00 - 18:00 Uhr | Sa: 10:00 - 14:00 Uhr</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

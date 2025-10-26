@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AGB – Allgemeine Geschäftsbedingungen – Projecta</title>
+  <meta name="description" content="Allgemeine Geschäftsbedingungen (AGB) für den Online-Shop von Projecta S.à r.l." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #333333;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .logo {
+      height: 48px;
+      margin-right: 0.6rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+    }
+
+    .back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--accent-primary);
+    }
+
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .legal-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .legal-header h1 {
+      font-family: var(--font-secondary);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .legal-header .subtitle {
+      color: var(--accent-secondary);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .toc {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .toc h2 {
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      margin-left: 1.5rem;
+    }
+
+    .toc li {
+      margin-bottom: 0.5rem;
+    }
+
+    .toc a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .toc a:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .legal-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+      scroll-margin-top: 100px;
+    }
+
+    .legal-section h2 {
+      font-family: var(--font-secondary);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .legal-section h3 {
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .legal-section h4 {
+      font-size: 1.1rem;
+      color: var(--accent-primary);
+      margin: 1rem 0 0.5rem;
+      font-weight: 600;
+    }
+
+    .legal-section p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .legal-section ul, .legal-section ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .legal-section strong {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .legal-section a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-light);
+      transition: var(--transition);
+    }
+
+    .legal-section a:hover {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+
+    .info-box {
+      background: rgba(207, 161, 90, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .warning-box {
+      background: rgba(220, 38, 38, 0.1);
+      border-left: 4px solid #dc2626;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .legal-content {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      .legal-section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    </div>
+  </header>
+
+  <!-- Hauptinhalt -->
+  <main class="legal-content">
+    
+    <div class="legal-header">
+      <h1>📋 Allgemeine Geschäftsbedingungen (AGB)</h1>
+      <p class="subtitle">Gültig für alle Bestellungen im Online-Shop von Projecta S.à r.l.</p>
+    </div>
+
+    <!-- Inhaltsverzeichnis -->
+    <div class="toc">
+      <h2>📑 Inhaltsverzeichnis</h2>
+      <ol>
+        <li><a href="#geltungsbereich">Geltungsbereich</a></li>
+        <li><a href="#vertragspartner">Vertragspartner & Kontakt</a></li>
+        <li><a href="#vertragsschluss">Vertragsschluss</a></li>
+        <li><a href="#widerrufsrecht">Widerrufsrecht für Verbraucher</a></li>
+        <li><a href="#preise">Preise & Versandkosten</a></li>
+        <li><a href="#zahlung">Zahlungsbedingungen</a></li>
+        <li><a href="#lieferung">Lieferung & Verfügbarkeit</a></li>
+        <li><a href="#eigentumsvorbehalt">Eigentumsvorbehalt</a></li>
+        <li><a href="#gewaehrleistung">Gewährleistung & Garantie</a></li>
+        <li><a href="#haftung">Haftungsbeschränkung</a></li>
+        <li><a href="#personalisierung">Personalisierung & Gravur</a></li>
+        <li><a href="#urheberrecht">Urheberrecht</a></li>
+        <li><a href="#datenschutz">Datenschutz</a></li>
+        <li><a href="#streitbeilegung">Streitbeilegung</a></li>
+        <li><a href="#schlussbestimmungen">Schlussbestimmungen</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. Geltungsbereich -->
+    <section id="geltungsbereich" class="legal-section">
+      <h2>§ 1 Geltungsbereich</h2>
+      
+      <p><strong>(1)</strong> Diese Allgemeinen Geschäftsbedingungen (nachfolgend "AGB") gelten für alle Verträge über die Lieferung von Waren, die zwischen der Projecta S.à r.l. (nachfolgend "Verkäufer") und einem Verbraucher oder Unternehmer (nachfolgend "Kunde") über den Online-Shop des Verkäufers geschlossen werden.</p>
+
+      <p><strong>(2)</strong> Verbraucher im Sinne dieser AGB ist jede natürliche Person, die ein Rechtsgeschäft zu Zwecken abschließt, die überwiegend weder ihrer gewerblichen noch ihrer selbständigen beruflichen Tätigkeit zugerechnet werden können.</p>
+
+      <p><strong>(3)</strong> Unternehmer im Sinne dieser AGB ist eine natürliche oder juristische Person oder eine rechtsfähige Personengesellschaft, die bei Abschluss eines Rechtsgeschäfts in Ausübung ihrer gewerblichen oder selbständigen beruflichen Tätigkeit handelt.</p>
+
+      <p><strong>(4)</strong> Abweichende, entgegenstehende oder ergänzende Allgemeine Geschäftsbedingungen des Kunden werden nur dann und insoweit Vertragsbestandteil, als der Verkäufer ihrer Geltung ausdrücklich schriftlich zugestimmt hat.</p>
+
+      <p><strong>(5)</strong> Diese AGB gelten auch für alle künftigen Geschäftsbeziehungen, selbst wenn nicht nochmals ausdrücklich auf sie Bezug genommen wird.</p>
+    </section>
+
+    <!-- 2. Vertragspartner -->
+    <section id="vertragspartner" class="legal-section">
+      <h2>§ 2 Vertragspartner & Kontakt</h2>
+      
+      <p><strong>Verkäufer und Vertragspartner:</strong></p>
+      
+      <p><strong>Projecta S.à r.l.</strong><br>
+      Rue de l'Exemple 123<br>
+      L-1234 Luxembourg<br>
+      Luxemburg</p>
+
+      <p><strong>Geschäftsführer:</strong> Max Mustermann</p>
+
+      <p><strong>Handelsregister:</strong> Luxembourg B 123456<br>
+      <strong>Umsatzsteuer-ID:</strong> LU 12345678</p>
+
+      <p><strong>Kontakt:</strong><br>
+      Telefon: <a href="tel:+352123456789">+352 12 34 56 789</a><br>
+      E-Mail: <a href="mailto:info@projecta.lu">info@projecta.lu</a><br>
+      Website: <a href="https://www.projecta.lu">www.projecta.lu</a></p>
+
+      <div class="info-box">
+        <p><strong>Kundenservice-Zeiten:</strong><br>
+        Montag bis Freitag: 09:00 - 18:00 Uhr<br>
+        Samstag: 10:00 - 14:00 Uhr</p>
+      </div>
+    </section>
+
+    <!-- 3. Vertragsschluss -->
+    <section id="vertragsschluss" class="legal-section">
+      <h2>§ 3 Vertragsschluss</h2>
+      
+      <p><strong>(1) Produktdarstellung</strong></p>
+      <p>Die Darstellung der Produkte im Online-Shop stellt kein rechtlich bindendes Angebot, sondern eine Aufforderung zur Bestellung dar (invitatio ad offerendum).</p>
+
+      <p><strong>(2) Bestellvorgang</strong></p>
+      <ol>
+        <li>Der Kunde wählt die gewünschten Produkte aus und legt sie in den Warenkorb</li>
+        <li>Der Kunde gibt seine persönlichen Daten und Lieferadresse ein</li>
+        <li>Der Kunde wählt die Zahlungsart und Versandart</li>
+        <li>Der Kunde hat die Möglichkeit, seine Angaben zu überprüfen und zu korrigieren</li>
+        <li>Durch Klick auf "Kostenpflichtig bestellen" gibt der Kunde ein verbindliches Angebot zum Kauf ab</li>
+      </ol>
+
+      <p><strong>(3) Auftragsbestätigung</strong></p>
+      <p>Der Verkäufer sendet dem Kunden nach Eingang der Bestellung eine automatische Eingangsbestätigung per E-Mail zu. Diese stellt noch keine Annahme des Angebots dar, sondern dient lediglich der Information, dass die Bestellung beim Verkäufer eingegangen ist.</p>
+
+      <p><strong>(4) Vertragsschluss</strong></p>
+      <p>Der Vertrag kommt erst dann zustande, wenn der Verkäufer das Angebot des Kunden durch eine Auftragsbestätigung per E-Mail oder durch Auslieferung der Ware annimmt.</p>
+
+      <p><strong>(5) Speicherung des Vertragstextes</strong></p>
+      <p>Der Vertragstext wird nach Vertragsschluss vom Verkäufer gespeichert und dem Kunden nach Absendung der Bestellung nebst den vorliegenden AGB per E-Mail zugeschickt. Der Kunde kann die AGB jederzeit unter <a href="agb.html">www.projecta.lu/agb</a> abrufen.</p>
+
+      <p><strong>(6) Technische Schritte zum Vertragsschluss</strong></p>
+      <p>Vor Absendung der Bestellung kann der Kunde seine Eingaben jederzeit durch die üblichen Tastatur- und Mausfunktionen korrigieren. Die einzelnen Bestellschritte werden auf der Website dokumentiert.</p>
+
+      <div class="info-box">
+        <p><strong>Wichtig:</strong> Mit dem Absenden der Bestellung erklären Sie sich mit diesen AGB sowie unseren <a href="datenschutz.html">Datenschutzbestimmungen</a> einverstanden.</p>
+      </div>
+    </section>
+
+    <!-- 4. Widerrufsrecht -->
+    <section id="widerrufsrecht" class="legal-section">
+      <h2>§ 4 Widerrufsrecht für Verbraucher</h2>
+      
+      <h3>Widerrufsbelehrung</h3>
+
+      <div class="warning-box">
+        <h4>Widerrufsrecht</h4>
+        <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
+        
+        <p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat.</p>
+
+        <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns:</p>
+        <p><strong>Projecta S.à r.l.</strong><br>
+        Rue de l'Exemple 123<br>
+        L-1234 Luxembourg<br>
+        E-Mail: <a href="mailto:widerruf@projecta.lu">widerruf@projecta.lu</a><br>
+        Telefon: <a href="tel:+352123456789">+352 12 34 56 789</a></p>
+
+        <p>mittels einer eindeutigen Erklärung (z.B. ein mit der Post versandter Brief, Telefax oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.</p>
+
+        <p>Sie können dafür das beigefügte <a href="widerruf.html">Muster-Widerrufsformular</a> verwenden, das jedoch nicht vorgeschrieben ist.</p>
+
+        <p><strong>Widerrufsfrist:</strong> Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+      </div>
+
+      <h3>Folgen des Widerrufs</h3>
+      <p><strong>(1)</strong> Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist.</p>
+
+      <p><strong>(2)</strong> Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.</p>
+
+      <p><strong>(3)</strong> Wir können die Rückzahlung verweigern, bis wir die Waren wieder zurückerhalten haben oder bis Sie den Nachweis erbracht haben, dass Sie die Waren zurückgesandt haben, je nachdem, welches der frühere Zeitpunkt ist.</p>
+
+      <p><strong>(4)</strong> Sie haben die Waren unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie uns über den Widerruf dieses Vertrags unterrichten, an uns zurückzusenden oder zu übergeben. Die Frist ist gewahrt, wenn Sie die Waren vor Ablauf der Frist von vierzehn Tagen absenden.</p>
+
+      <p><strong>(5)</strong> Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</p>
+
+      <p><strong>(6)</strong> Sie müssen für einen etwaigen Wertverlust der Waren nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Waren nicht notwendigen Umgang mit ihnen zurückzuführen ist.</p>
+
+      <h3>Ausschluss des Widerrufsrechts</h3>
+      <p>Das Widerrufsrecht besteht nicht bei folgenden Verträgen:</p>
+      <ul>
+        <li>Verträge zur Lieferung von Waren, die nach Kundenspezifikation angefertigt werden oder eindeutig auf die persönlichen Bedürfnisse zugeschnitten sind (z.B. personalisierte Produkte mit Gravur)</li>
+        <li>Verträge zur Lieferung versiegelter Waren, die aus Gründen des Gesundheitsschutzes oder der Hygiene nicht zur Rückgabe geeignet sind, wenn ihre Versiegelung nach der Lieferung entfernt wurde</li>
+        <li>Verträge zur Lieferung von Waren, die schnell verderben können oder deren Verfallsdatum schnell überschritten würde</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Muster-Widerrufsformular:</strong> Ein Widerrufsformular finden Sie unter <a href="widerruf.html">www.projecta.lu/widerruf</a></p>
+      </div>
+    </section>
+
+    <!-- 5. Preise -->
+    <section id="preise" class="legal-section">
+      <h2>§ 5 Preise & Versandkosten</h2>
+      
+      <p><strong>(1) Preise</strong></p>
+      <p>Alle Preise im Online-Shop verstehen sich inklusive der gesetzlichen Mehrwertsteuer und zuzüglich eventueller Versandkosten.</p>
+
+      <p><strong>(2) Versandkosten</strong></p>
+      <p>Die Versandkosten werden dem Kunden vor Abschluss der Bestellung im Bestellvorgang angezeigt und sind vom Kunden zusätzlich zu tragen, sofern nicht die versandkostenfreie Lieferung zugesagt ist.</p>
+
+      <p><strong>Versandkosten innerhalb Luxemburgs:</strong></p>
+      <ul>
+        <li>Standardversand (3-5 Werktage): €4,90</li>
+        <li>Expressversand (1-2 Werktage): €9,90</li>
+        <li>Kostenloser Versand ab €75,00 Bestellwert</li>
+      </ul>
+
+      <p><strong>Versandkosten innerhalb der EU:</strong></p>
+      <ul>
+        <li>Standardversand (5-7 Werktage): €9,90</li>
+        <li>Expressversand (2-4 Werktage): €19,90</li>
+        <li>Kostenloser Versand ab €150,00 Bestellwert</li>
+      </ul>
+
+      <p><strong>(3) Preisänderungen</strong></p>
+      <p>Bei offensichtlichen Fehlern, wie z.B. Schreib- oder Rechenfehlern, ist der Verkäufer nicht an den angegebenen Preis gebunden. Der Verkäufer wird den Kunden unverzüglich über den korrekten Preis informieren.</p>
+
+      <p><strong>(4) Zusatzkosten</strong></p>
+      <p>Fallen bei der gewählten Zahlungsart zusätzliche Kosten an, werden diese vor Vertragsschluss gesondert ausgewiesen.</p>
+    </section>
+
+    <!-- 6. Zahlung -->
+    <section id="zahlung" class="legal-section">
+      <h2>§ 6 Zahlungsbedingungen</h2>
+      
+      <p><strong>(1) Zahlungsarten</strong></p>
+      <p>Der Kunde kann aus folgenden Zahlungsarten wählen:</p>
+      <ul>
+        <li><strong>Kreditkarte</strong> (Visa, Mastercard, American Express)</li>
+        <li><strong>PayPal</strong></li>
+        <li><strong>Klarna</strong> (Sofortüberweisung, Rechnung, Ratenkauf)</li>
+        <li><strong>SEPA-Lastschrift</strong></li>
+        <li><strong>Vorkasse</strong> (Banküberweisung)</li>
+      </ul>
+
+      <p><strong>(2) Fälligkeit</strong></p>
+      <p>Die Kaufpreisforderung wird mit Vertragsschluss fällig. Bei Zahlung per Vorkasse ist der Kaufpreis unverzüglich nach Vertragsschluss zu zahlen.</p>
+
+      <p><strong>(3) Vorkasse</strong></p>
+      <p>Bei Zahlung per Vorkasse nennen wir Ihnen unsere Bankverbindung in der Auftragsbestätigung und liefern die Ware nach Zahlungseingang.</p>
+
+      <p><strong>Bankverbindung:</strong><br>
+      Empfänger: Projecta S.à r.l.<br>
+      IBAN: LU12 3456 7890 1234 5678<br>
+      BIC: EXAMPLE123<br>
+      Bank: Banque Exemple Luxembourg</p>
+
+      <p><strong>(4) Verzug</strong></p>
+      <p>Gerät der Kunde mit der Zahlung in Verzug, hat der Verkäufer Anspruch auf Verzugszinsen in Höhe von 5 Prozentpunkten über dem Basiszinssatz. Bei Unternehmern beträgt der Verzugszins 9 Prozentpunkte über dem Basiszinssatz.</p>
+
+      <p><strong>(5) Zahlungsabwicklung über Dritte</strong></p>
+      <p>Die Zahlungsabwicklung über die angebotenen Zahlungsdienstleister (PayPal, Stripe, Klarna) erfolgt über die jeweiligen Anbieter. Es gelten deren AGB und Datenschutzbestimmungen.</p>
+    </section>
+
+    <!-- 7. Lieferung -->
+    <section id="lieferung" class="legal-section">
+      <h2>§ 7 Lieferung & Verfügbarkeit</h2>
+      
+      <p><strong>(1) Liefergebiet</strong></p>
+      <p>Wir liefern ausschließlich nach:</p>
+      <ul>
+        <li>Luxemburg</li>
+        <li>Deutschland</li>
+        <li>Österreich</li>
+        <li>Belgien</li>
+        <li>Niederlande</li>
+        <li>Frankreich</li>
+        <li>Weitere EU-Länder auf Anfrage</li>
+      </ul>
+
+      <p><strong>(2) Lieferzeit</strong></p>
+      <p>Die Lieferzeit beträgt, sofern bei der jeweiligen Produktbeschreibung nichts anderes angegeben ist:</p>
+      <ul>
+        <li><strong>Standardversand Luxemburg:</strong> 3-5 Werktage nach Zahlungseingang</li>
+        <li><strong>Expressversand Luxemburg:</strong> 1-2 Werktage nach Zahlungseingang</li>
+        <li><strong>EU-Ausland:</strong> 5-10 Werktage nach Zahlungseingang</li>
+        <li><strong>Personalisierte Produkte:</strong> 7-14 Werktage nach Zahlungseingang</li>
+      </ul>
+
+      <p><strong>(3) Verfügbarkeit</strong></p>
+      <p>Die Ware wird vorbehaltlich der Verfügbarkeit geliefert. Sollte die bestellte Ware nicht verfügbar sein, wird der Kunde unverzüglich informiert und kann vom Vertrag zurücktreten. Bereits gezahlte Beträge werden umgehend erstattet.</p>
+
+      <p><strong>(4) Teillieferungen</strong></p>
+      <p>Teillieferungen sind zulässig, soweit dies für den Kunden zumutbar ist. Für Teillieferungen fallen keine zusätzlichen Versandkosten an.</p>
+
+      <p><strong>(5) Lieferung</strong></p>
+      <p>Die Lieferung erfolgt an die vom Kunden angegebene Lieferadresse. Eine Lieferung an Packstationen ist möglich.</p>
+
+      <p><strong>(6) Versanddienstleister</strong></p>
+      <p>Der Versand erfolgt durch folgende Versanddienstleister:</p>
+      <ul>
+        <li>DHL</li>
+        <li>DPD</li>
+        <li>POST Luxembourg</li>
+        <li>UPS</li>
+      </ul>
+
+      <p><strong>(7) Sendungsverfolgung</strong></p>
+      <p>Nach Versand der Ware erhält der Kunde eine Versandbestätigung mit Tracking-Nummer per E-Mail.</p>
+
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Die angegebenen Lieferzeiten beginnen bei Zahlung per Vorkasse am Tag nach Erteilung des Zahlungsauftrags an das überweisende Kreditinstitut bzw. bei anderen Zahlungsarten am Tag nach Vertragsschluss und enden mit Ablauf des letzten Tages der Frist.</p>
+      </div>
+    </section>
+
+    <!-- 8. Eigentumsvorbehalt -->
+    <section id="eigentumsvorbehalt" class="legal-section">
+      <h2>§ 8 Eigentumsvorbehalt</h2>
+      
+      <p><strong>(1)</strong> Die gelieferte Ware bleibt bis zur vollständigen Bezahlung des Kaufpreises Eigentum des Verkäufers.</p>
+
+      <p><strong>(2)</strong> Bei Verbrauchern gilt: Die Ware bleibt bis zur vollständigen Zahlung des Kaufpreises unser Eigentum.</p>
+
+      <p><strong>(3)</strong> Bei Unternehmern gilt darüber hinaus:</p>
+      <ul>
+        <li>Der Verkäufer behält sich das Eigentum an der Ware bis zum vollständigen Ausgleich aller Forderungen aus der laufenden Geschäftsbeziehung vor</li>
+        <li>Der Kunde ist verpflichtet, die Kaufsache pfleglich zu behandeln</li>
+        <li>Bei Pfändungen oder sonstigen Eingriffen Dritter hat der Kunde den Verkäufer unverzüglich zu informieren</li>
+        <li>Bei vertragswidrigem Verhalten des Kunden, insbesondere bei Zahlungsverzug, ist der Verkäufer berechtigt, vom Vertrag zurückzutreten und die Ware zurückzuverlangen</li>
+      </ul>
+    </section>
+
+    <!-- 9. Gewährleistung -->
+    <section id="gewaehrleistung" class="legal-section">
+      <h2>§ 9 Gewährleistung & Garantie</h2>
+      
+      <h3>Gesetzliche Gewährleistung</h3>
+      
+      <p><strong>(1) Mängelhaftung</strong></p>
+      <p>Es gilt das gesetzliche Mängelhaftungsrecht. Die Gewährleistungsfrist für Verbraucher beträgt 2 Jahre ab Erhalt der Ware. Für Unternehmer beträgt die Gewährleistungsfrist 1 Jahr.</p>
+
+      <p><strong>(2) Mängelanzeige</strong></p>
+      <p>Offensichtliche Mängel sind unverzüglich nach Erhalt der Ware zu rügen. Verdeckte Mängel sind unverzüglich nach Entdeckung anzuzeigen.</p>
+
+      <p><strong>(3) Nacherfüllung</strong></p>
+      <p>Bei berechtigten Mängelrügen erfolgt nach unserer Wahl Nachbesserung oder Ersatzlieferung. Schlägt die Nacherfüllung fehl, kann der Kunde nach seiner Wahl Minderung verlangen oder vom Vertrag zurücktreten.</p>
+
+      <p><strong>(4) Ausschluss</strong></p>
+      <p>Die Gewährleistung ist ausgeschlossen bei:</p>
+      <ul>
+        <li>Unsachgemäßer Behandlung oder Lagerung</li>
+        <li>Eigenmächtigen Reparaturversuchen</li>
+        <li>Natürlichem Verschleiß</li>
+        <li>Nichtbeachtung der Pflegehinweise</li>
+      </ul>
+
+      <h3>Herstellergarantie</h3>
+      
+      <p><strong>(5) Zusätzliche Garantie</strong></p>
+      <p>Zusätzlich zur gesetzlichen Gewährleistung gewähren wir folgende Herstellergarantie:</p>
+
+      <p><strong>Projecta Produktgarantie:</strong></p>
+      <ul>
+        <li><strong>Safety-Band:</strong> 3 Jahre Garantie auf Elektronik und Batterie</li>
+        <li><strong>Safety-Necklace:</strong> 2 Jahre Garantie auf Elektronik und Batterie</li>
+        <li><strong>Schmuckmaterial:</strong> 2 Jahre Garantie gegen Materialfehler</li>
+      </ul>
+
+      <p><strong>Garantiebedingungen:</strong></p>
+      <ul>
+        <li>Kostenlose Reparatur oder Ersatz bei Herstellungsfehlern</li>
+        <li>Nachweis durch Rechnung oder Kaufbeleg erforderlich</li>
+        <li>Bei grober Fahrlässigkeit oder Missbrauch erlischt die Garantie</li>
+        <li>Verschleißteile sind ausgenommen</li>
+      </ul>
+
+      <p><strong>(6) Garantieabwicklung</strong></p>
+      <p>Garantieansprüche sind zu richten an:<br>
+      E-Mail: <a href="mailto:garantie@projecta.lu">garantie@projecta.lu</a><br>
+      Telefon: <a href="tel:+352123456789">+352 12 34 56 789</a></p>
+
+      <div class="info-box">
+        <p><strong>Wichtig:</strong> Die freiwillige Herstellergarantie lässt Ihre gesetzlichen Gewährleistungsrechte unberührt. Diese können Sie jederzeit geltend machen.</p>
+      </div>
+    </section>
+
+    <!-- 10. Haftung -->
+    <section id="haftung" class="legal-section">
+      <h2>§ 10 Haftungsbeschränkung</h2>
+      
+      <p><strong>(1) Unbeschränkte Haftung</strong></p>
+      <p>Der Verkäufer haftet unbeschränkt:</p>
+      <ul>
+        <li>Bei Vorsatz und grober Fahrlässigkeit</li>
+        <li>Bei Verletzung von Leben, Körper oder Gesundheit</li>
+        <li>Nach den Vorschriften des Produkthaftungsgesetzes</li>
+        <li>Im Rahmen einer übernommenen Garantie</li>
+        <li>Bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten)</li>
+      </ul>
+
+      <p><strong>(2) Beschränkte Haftung</strong></p>
+      <p>Bei leicht fahrlässiger Verletzung unwesentlicher Vertragspflichten haftet der Verkäufer nur für den vorhersehbaren, vertragstypischen Schaden.</p>
+
+      <p><strong>(3) Ausschluss</strong></p>
+      <p>Im Übrigen ist die Haftung ausgeschlossen.</p>
+
+      <p><strong>(4) Datenverlust</strong></p>
+      <p>Für den Verlust von Daten haftet der Verkäufer nur, wenn der Kunde durch angemessene Datensicherungsmaßnahmen sichergestellt hat, dass verloren gegangene Daten mit vertretbarem Aufwand rekonstruiert werden können.</p>
+    </section>
+
+    <!-- 11. Personalisierung -->
+    <section id="personalisierung" class="legal-section">
+      <h2>§ 11 Personalisierung & Gravur</h2>
+      
+      <p><strong>(1) Individuelle Anfertigungen</strong></p>
+      <p>Bei personalisierten Produkten (z.B. Gravuren) ist der Kunde für die Richtigkeit der übermittelten Daten verantwortlich. Der Verkäufer erstellt vor der Produktion eine digitale Vorschau zur Freigabe.</p>
+
+      <p><strong>(2) Ausschluss des Widerrufsrechts</strong></p>
+      <p>Für nach Kundenspezifikation angefertigte Waren (personalisierte Produkte) besteht kein Widerrufsrecht gemäß § 312g Abs. 2 Nr. 1 BGB.</p>
+
+      <p><strong>(3) Lieferzeit</strong></p>
+      <p>Personalisierte Produkte haben eine verlängerte Lieferzeit von 7-14 Werktagen.</p>
+
+      <p><strong>(4) Gewährleistung</strong></p>
+      <p>Reklamationen aufgrund fehlerhafter Kundenvorgaben sind ausgeschlossen. Bei Herstellungsfehlern gelten die üblichen Gewährleistungsrechte.</p>
+
+      <p><strong>(5) Urheberrechte</strong></p>
+      <p>Der Kunde versichert, dass bei der Verwendung von Bildern, Logos oder Texten keine Rechte Dritter verletzt werden. Der Kunde stellt den Verkäufer von allen Ansprüchen Dritter frei.</p>
+
+      <div class="warning-box">
+        <p><strong>Wichtig:</strong> Bitte prüfen Sie Ihre Eingaben sorgfältig. Einmal in Produktion gegangene personalisierte Artikel können nicht mehr geändert oder storniert werden.</p>
+      </div>
+    </section>
+
+    <!-- 12. Urheberrecht -->
+    <section id="urheberrecht" class="legal-section">
+      <h2>§ 12 Urheberrecht</h2>
+      
+      <p><strong>(1) Schutz</strong></p>
+      <p>Alle auf der Website und in den Produkten enthaltenen Inhalte wie Texte, Bilder, Grafiken, Logos, Videos und Software sind urheberrechtlich geschützt.</p>
+
+      <p><strong>(2) Nutzungsrechte</strong></p>
+      <p>Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des Verkäufers.</p>
+
+      <p><strong>(3) Produktfotos</strong></p>
+      <p>Produktfotos und -beschreibungen dürfen nicht ohne Genehmigung für eigene kommerzielle Zwecke verwendet werden.</p>
+
+      <p><strong>(4) Marken</strong></p>
+      <p>"Projecta", das Projecta-Logo sowie weitere auf der Website verwendete Kennzeichen sind geschützte Marken.</p>
+    </section>
+
+    <!-- 13. Datenschutz -->
+    <section id="datenschutz" class="legal-section">
+      <h2>§ 13 Datenschutz</h2>
+      
+      <p><strong>(1)</strong> Der Verkäufer verarbeitet personenbezogene Daten des Kunden zur Erfüllung und Abwicklung der Bestellung sowie zur Bearbeitung von Anfragen.</p>
+
+      <p><strong>(2)</strong> Eine Weitergabe der Daten an Dritte erfolgt nur, soweit dies für die Vertragsabwicklung erforderlich ist (z.B. an Versanddienstleister, Zahlungsdienstleister).</p>
+
+      <p><strong>(3)</strong> Detaillierte Informationen zur Datenverarbeitung finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+
+      <p><strong>(4)</strong> Der Kunde hat ein Recht auf:</p>
+      <ul>
+        <li>Auskunft über seine gespeicherten Daten</li>
+        <li>Berichtigung unrichtiger Daten</li>
+        <li>Löschung seiner Daten</li>
+        <li>Einschränkung der Datenverarbeitung</li>
+        <li>Datenübertragbarkeit</li>
+        <li>Widerspruch gegen die Datenverarbeitung</li>
+      </ul>
+
+      <p><strong>(5)</strong> Anfragen sind zu richten an: <a href="mailto:datenschutz@projecta.lu">datenschutz@projecta.lu</a></p>
+    </section>
+
+    <!-- 14. Streitbeilegung -->
+    <section id="streitbeilegung" class="legal-section">
+      <h2>§ 14 Streitbeilegung</h2>
+      
+      <h3>Online-Streitbeilegung (OS)</h3>
+      <p><strong>(1)</strong> Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, die Sie unter folgendem Link finden:</p>
+      <p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a></p>
+      <p>Unsere E-Mail-Adresse lautet: <a href="mailto:info@projecta.lu">info@projecta.lu</a></p>
+
+      <h3>Verbraucherschlichtung</h3>
+      <p><strong>(2)</strong> Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+      <h3>Außergerichtliche Einigung</h3>
+      <p><strong>(3)</strong> Wir sind stets bemüht, eventuelle Meinungsverschiedenheiten aus unserem Vertrag einvernehmlich beizulegen. Kunden können sich jederzeit an unseren Kundenservice wenden.</p>
+
+      <div class="info-box">
+        <p><strong>Hinweis für Verbraucher:</strong> Bei Streitigkeiten können Sie sich auch an die für Sie zuständige Verbraucherschutzbehörde wenden.</p>
+      </div>
+    </section>
+
+    <!-- 15. Schlussbestimmungen -->
+    <section id="schlussbestimmungen" class="legal-section">
+      <h2>§ 15 Schlussbestimmungen</h2>
+      
+      <p><strong>(1) Anwendbares Recht</strong></p>
+      <p>Für sämtliche Rechtsbeziehungen zwischen dem Verkäufer und dem Kunden gilt das Recht des Großherzogtums Luxemburg unter Ausschluss des UN-Kaufrechts. Bei Verbrauchern gilt diese Rechtswahl nur, soweit hierdurch der durch zwingende Bestimmungen des Rechts des Staates des gewöhnlichen Aufenthaltes des Verbrauchers gewährte Schutz nicht entzogen wird.</p>
+
+      <p><strong>(2) Gerichtsstand</strong></p>
+      <p>Ist der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen, ist ausschließlicher Gerichtsstand für alle Streitigkeiten aus Vertragsverhältnissen zwischen dem Kunden und dem Verkäufer der Sitz des Verkäufers in Luxemburg.</p>
+
+      <p><strong>(3) Vertragssprache</strong></p>
+      <p>Die für den Vertragsschluss zur Verfügung stehende Sprache ist Deutsch. Der Vertragstext wird vom Verkäufer gespeichert und dem Kunden nach Vertragsschluss nebst den vorliegenden AGB in Textform (z.B. E-Mail) zugeschickt.</p>
+
+      <p><strong>(4) Salvatorische Klausel</strong></p>
+      <p>Sollten einzelne Bestimmungen dieser AGB unwirksam oder undurchführbar sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen hiervon unberührt. An die Stelle der unwirksamen oder undurchführbaren Bestimmung tritt diejenige wirksame und durchführbare Regelung, die rechtlich und wirtschaftlich dem am nächsten kommt, was die Vertragsparteien gewollt haben oder nach dem Sinn und Zweck dieser AGB gewollt hätten, wenn ihnen die Unwirksamkeit oder Undurchführbarkeit bekannt gewesen wäre.</p>
+
+      <p><strong>(5) Änderungen der AGB</strong></p>
+      <p>Der Verkäufer behält sich vor, diese AGB jederzeit zu ändern. Bestehende Verträge bleiben von Änderungen unberührt. Neue AGB gelten für zukünftige Bestellungen.</p>
+
+      <p><strong>(6) Abtretungsverbot</strong></p>
+      <p>Die Abtretung von Ansprüchen des Kunden gegen den Verkäufer ist ausgeschlossen.</p>
+
+      <p><strong>(7) Aufrechnung</strong></p>
+      <p>Der Kunde kann nur mit unbestrittenen oder rechtskräftig festgestellten Forderungen aufrechnen.</p>
+
+      <div class="info-box">
+        <p><strong>Stand der AGB:</strong> Januar 2025</p>
+        <p><strong>Letzte Aktualisierung:</strong> <span id="update-date"></span></p>
+        <p><strong>Version:</strong> 1.0</p>
+      </div>
+    </section>
+
+    <!-- Kontakt Box -->
+    <section class="legal-section" style="background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(212, 179, 115, 0.1) 100%);">
+      <h2>📞 Fragen zu den AGB?</h2>
+      
+      <p>Bei Fragen zu unseren Allgemeinen Geschäftsbedingungen stehen wir Ihnen gerne zur Verfügung:</p>
+
+      <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+        <p><strong>📧 E-Mail:</strong> <a href="mailto:info@projecta.lu" style="font-size: 1.2rem;">info@projecta.lu</a></p>
+        <p><strong>📞 Telefon:</strong> <a href="tel:+352123456789">+352 12 34 56 789</a><br>
+        Mo-Fr: 09:00 - 18:00 Uhr | Sa: 10:00 - 14:00 Uhr</p>
+        <p><strong>✉️ Post:</strong><br>
+        Projecta S.à r.l.<br>
+        Kundenservice<br>
+        Rue de l'Exemple 123<br>
+        L-1234 Luxembourg</p>
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(207, 161, 90, 0.1); border-radius: var(--border-radius-sm); border-left: 4px solid var(--gold);">
+        <p><strong>💡 Tipp:</strong> Die meisten Fragen werden bereits in unseren <a href="faq.html">FAQ (Häufige Fragen)</a> beantwortet.</p>
+      </div>
+    </section>
+
+    <!-- Weitere wichtige Links -->
+    <section class="legal-section">
+      <h2>📄 Weitere rechtliche Dokumente</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+        <a href="impressum.html" style="padding: 1.5rem; background: white; border-radius: var(--border-radius-sm); text-decoration: none; color: var(--accent-primary); border: 1px solid rgba(207, 161, 90, 0.2); transition: var(--transition); display: block;">
+          <strong style="color: var(--gold); display: block; margin-bottom: 0.5rem;">⚖️ Impressum</strong>
+          <span style="font-size: 0.9rem; color: var(--accent-secondary);">Anbieterkennzeichnung</span>
+        </a>
+        
+        <a href="datenschutz.html" style="padding: 1.5rem; background: white; border-radius: var(--border-radius-sm); text-decoration: none; color: var(--accent-primary); border: 1px solid rgba(207, 161, 90, 0.2); transition: var(--transition); display: block;">
+          <strong style="color: var(--gold); display: block; margin-bottom: 0.5rem;">🔒 Datenschutz</strong>
+          <span style="font-size: 0.9rem; color: var(--accent-secondary);">DSGVO-Informationen</span>
+        </a>
+        
+        <a href="widerruf.html" style="padding: 1.5rem; background: white; border-radius: var(--border-radius-sm); text-decoration: none; color: var(--accent-primary); border: 1px solid rgba(207, 161, 90, 0.2); transition: var(--transition); display: block;">
+          <strong style="color: var(--gold); display: block; margin-bottom: 0.5rem;">↩️ Widerruf</strong>
+          <span style="font-size: 0.9rem; color: var(--accent-secondary);">Widerrufsformular</span>
+        </a>
+        
+        <a href="versand.html" style="padding: 1.5rem; background: white; border-radius: var(--border-radius-sm); text-decoration: none; color: var(--accent-primary); border: 1px solid rgba(207, 161, 90, 0.2); transition: var(--transition); display: block;">
+          <strong style="color: var(--gold); display: block; margin-bottom: 0.5rem;">📦 Versand</strong>
+          <span style="font-size: 0.9rem; color: var(--accent-secondary);">Lieferbedingungen</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="cookie-policy.html">Cookie-Policy</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('update-date').textContent = new Date().toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    // Smooth Scroll für Anker-Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

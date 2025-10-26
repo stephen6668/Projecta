@@ -1,0 +1,236 @@
+/* Elegantes, hochwertiges Design – style.css
+   Fonts: Playfair Display (Headings), Inter (Body)
+   Farben: Tiefrot #8B0000, Beige #EFE8DC, Gold #C9A86A
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+
+/* --- Root Variables --- */
+:root {
+  --bg: #EFE8DC;
+  --bg-light: #F2ECE4;
+  --accent: #8B0000;
+  --muted: #2E2E2E;
+  --gold: #C9A86A;
+  --container: 1200px;
+  --radius: 16px;
+}
+
+/* --- Reset / Basis --- */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--muted);
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+/* --- Typography --- */
+h1, h2, h3, .heading, .section-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--gold);
+  margin: 0.5rem auto 1rem;
+  border-radius: 2px;
+}
+.lead {
+  font-size: 1.3rem;
+  color: var(--muted);
+}
+
+/* --- Layout --- */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 2rem;
+}
+.spaced {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* --- Burger-Menü --- */
+.burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.burger span {
+  width: 24px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  display: block;
+}
+
+/* --- Header --- */ .site-header { position: sticky; top: 0; z-index: 40; background: rgba(239,232,220,0.95); backdrop-filter: blur(6px); box-shadow: 0 2px 16px rgba(0,0,0,0.05); } .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; } .brand { display: flex; align-items: center; text-decoration: none; color: var(--accent); } .logo { height: 52px; margin-right: 0.6rem; } .brand-text { font-family: "Playfair Display", serif; font-weight: 700; font-size: 1.8rem; }
+/* --- Navigation --- */ .nav { display: flex; gap: 1.8rem; align-items: center; } .nav a { color: var(--accent); text-decoration: none; padding: 0.6rem 0.4rem; font-weight: 500; font-size: 1.1rem; transition: color 0.2s ease; } .nav a:hover { color: var(--gold); } .nav a.active { font-weight: 600; border-bottom: 2px solid var(--accent); } .admin-link { border: 1px solid transparent; padding: 0.4rem 0.6rem; border-radius: 8px; } .admin-link:hover { background: var(--accent); color: #fff; transition: background 0.2s ease, color 0.2s ease; }
+
+/* --- Hero-Bereich --- */
+.hero-fullscreen {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  color: #fff;
+}
+.hero-text .heading {
+  font-size: 3rem;
+  color: #fff;
+}
+.hero-text .lead {
+  font-size: 1.3rem;
+  color: #f0f0f0;
+}
+
+/* --- Produktabschnitt --- */
+.product-reveal {
+  background: var(--bg-light);
+}
+.product-fullscreen.side-by-side {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.reveal-image {
+  width: 50vw;
+  max-width: 640px;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+}
+.reveal-text.side {
+  width: 40vw;
+  max-width: 520px;
+  font-family: "Playfair Display", serif;
+  background: rgba(239,232,220,0.95);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  color: var(--accent);
+}
+.reveal-text h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+.reveal-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* --- Produktbilder --- */
+.product-gallery img {
+  max-width: 60%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.thumbs img {
+  max-width: 90px;
+  height: auto;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: var(--radius);
+  transition: transform 0.2s ease;
+}
+.thumbs img:hover {
+  transform: scale(1.05);
+}
+
+/* --- Elegante Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 1.3rem 2.2rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+.btn:hover:before {
+  left: 100%;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #A00000 100%);
+  color: #fff;
+  border: 0;
+  padding: 1.4rem 2.6rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  box-shadow: 0 8px 32px rgba(139,0,0,0.35), 0 4px 16px rgba(139,0,0,0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #600000 0%, #8B0000 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(139,0,0,0.4), 0 8px 24px rgba(139,0,0,0.25);
+}
+.btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(139,0,0,0.3);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 1.3rem 2.5rem;
+  font-weight: 600;
+  font-size: 1.15rem;

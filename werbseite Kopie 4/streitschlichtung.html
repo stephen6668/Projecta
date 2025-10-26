@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Streitschlichtung & Online-Streitbeilegung – Projecta</title>
+  <meta name="description" content="Informationen zur außergerichtlichen Streitbeilegung und Online-Streitbeilegungsplattform (OS) der EU" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #333333;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .logo {
+      height: 48px;
+      margin-right: 0.6rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+    }
+
+    .back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--accent-primary);
+    }
+
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .legal-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .legal-header h1 {
+      font-family: var(--font-secondary);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .legal-header .subtitle {
+      color: var(--accent-secondary);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .legal-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .legal-section h2 {
+      font-family: var(--font-secondary);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .legal-section h3 {
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .legal-section p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .legal-section ul, .legal-section ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .legal-section strong {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .legal-section a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-light);
+      transition: var(--transition);
+    }
+
+    .legal-section a:hover {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+
+    .info-box {
+      background: rgba(207, 161, 90, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .warning-box {
+      background: rgba(34, 197, 94, 0.1);
+      border-left: 4px solid #22c55e;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(207, 161, 90, 0.15) 0%, rgba(212, 179, 115, 0.15) 100%);
+      border: 2px solid var(--gold);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: var(--border-radius);
+      text-align: center;
+    }
+
+    .highlight-box h3 {
+      color: var(--gold);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-box .big-link {
+      display: inline-block;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius-sm);
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px var(--shadow-light);
+    }
+
+    .highlight-box .big-link:hover {
+      background: var(--gold);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(207, 161, 90, 0.3);
+    }
+
+    .contact-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 4px 16px var(--shadow-light);
+      margin: 1.5rem 0;
+      border: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .contact-card h4 {
+      color: var(--gold);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .contact-card p {
+      margin-bottom: 0.5rem;
+    }
+
+    .steps {
+      counter-reset: step-counter;
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .steps li {
+      counter-increment: step-counter;
+      position: relative;
+      padding-left: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    .steps li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .legal-content {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      .legal-section {
+        padding: 1.5rem;
+      }
+
+      .steps li {
+        padding-left: 3rem;
+      }
+
+      .steps li::before {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    </div>
+  </header>
+
+  <!-- Hauptinhalt -->
+  <main class="legal-content">
+    
+    <div class="legal-header">
+      <h1>⚔️ Streitschlichtung & Online-Streitbeilegung</h1>
+      <p class="subtitle">Informationen zur außergerichtlichen Beilegung von Verbraucherstreitigkeiten</p>
+    </div>
+
+    <!-- EU Online-Streitbeilegung -->
+    <section class="legal-section">
+      <h2>🇪🇺 Online-Streitbeilegung (OS) der Europäischen Union</h2>
+      
+      <p><strong>Gesetzliche Pflichtangabe gemäß Art. 14 Abs. 1 ODR-VO:</strong></p>
+      
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit. Diese Plattform soll als Anlaufstelle zur außergerichtlichen Beilegung von Streitigkeiten dienen, die aus Online-Kaufverträgen oder Online-Dienstleistungsverträgen zwischen in der EU ansässigen Verbrauchern und Händlern erwachsen.</p>
+
+      <div class="highlight-box">
+        <h3>🔗 EU-Streitbeilegungsplattform</h3>
+        <p>Die Plattform der EU zur Online-Streitbeilegung erreichen Sie unter folgendem Link:</p>
+        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="big-link">
+          → ec.europa.eu/consumers/odr/
+        </a>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--accent-secondary);">
+          Die Plattform ist in allen EU-Amtssprachen verfügbar
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <h4>Unsere Kontaktdaten für die OS-Plattform:</h4>
+        <p><strong>E-Mail-Adresse:</strong> <a href="mailto:info@projecta.lu">info@projecta.lu</a></p>
+        <p><strong>Firmenname:</strong> Projecta S.à r.l.</p>
+        <p><strong>Anschrift:</strong> Rue de l'Exemple 123, L-1234 Luxembourg</p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Was ist die OS-Plattform?</strong></p>
+        <p>Die OS-Plattform ist ein interaktives und mehrsprachiges Online-Tool für Verbraucher und Händler, die eine außergerichtliche Lösung für einen Streit im Zusammenhang mit einem Online-Kauf anstreben. Sie ermöglicht es Verbrauchern und Händlern, eine Beschwerde durch Ausfüllen eines elektronischen Beschwerdeformulars einzureichen.</p>
+      </div>
+    </section>
+
+    <!-- Teilnahme an Streitschlichtungsverfahren -->
+    <section class="legal-section">
+      <h2>🤝 Teilnahme an Streitschlichtungsverfahren</h2>
+      
+      <h3>Unsere Position zur Verbraucherschlichtung</h3>
+      
+      <p><strong>Hinweis gemäß § 36 VSBG (Verbraucherstreitbeilegungsgesetz):</strong></p>
+      
+      <div class="warning-box">
+        <p><strong>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</strong></p>
+      </div>
+
+      <p>Die Projecta S.à r.l. ist grundsätzlich nicht verpflichtet und auch nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des Verbraucherstreitbeilegungsgesetzes (VSBG) teilzunehmen.</p>
+
+      <h3>Warum keine Teilnahme an Schlichtungsverfahren?</h3>
+      <p>Als Unternehmen setzen wir auf direkte und persönliche Kommunikation mit unseren Kunden. Wir sind überzeugt, dass wir durch unseren Kundenservice die meisten Probleme schneller und effizienter lösen können als durch ein formelles Schlichtungsverfahren.</p>
+
+      <div class="info-box">
+        <p><strong>Wichtig:</strong> Diese Erklärung berührt nicht Ihr Recht, bei den zuständigen Gerichten Klage zu erheben oder andere gesetzliche Rechte geltend zu machen.</p>
+      </div>
+    </section>
+
+    <!-- Außergerichtliche Einigung -->
+    <section class="legal-section">
+      <h2>💬 Außergerichtliche Einigung bevorzugt</h2>
+      
+      <p>Wir sind stets bemüht, eventuelle Meinungsverschiedenheiten aus unserem Vertrag einvernehmlich und außergerichtlich beizulegen.</p>
+
+      <h3>So erreichen Sie uns bei Problemen:</h3>
+
+      <ol class="steps">
+        <li>
+          <strong>Kontaktieren Sie unseren Kundenservice</strong><br>
+          Beschreiben Sie Ihr Anliegen detailliert per E-Mail oder Telefon. Unser Team wird sich umgehend bei Ihnen melden.
+        </li>
+        <li>
+          <strong>Wir prüfen Ihren Fall</strong><br>
+          Ihr Anliegen wird von unseren Experten geprüft und wir erarbeiten eine faire Lösung.
+        </li>
+        <li>
+          <strong>Gemeinsame Lösungsfindung</strong><br>
+          Wir besprechen mit Ihnen mögliche Lösungsansätze und finden gemeinsam die beste Option.
+        </li>
+        <li>
+          <strong>Schnelle Umsetzung</strong><br>
+          Nach Einigung setzen wir die Lösung umgehend um – sei es Ersatzlieferung, Reparatur oder Erstattung.
+        </li>
+      </ol>
+
+      <div class="contact-card">
+        <h4>📞 Unser Kundenservice für Sie</h4>
+        <p><strong>E-Mail:</strong> <a href="mailto:service@projecta.lu">service@projecta.lu</a></p>
+        <p><strong>Telefon:</strong> <a href="tel:+352123456789">+352 12 34 56 789</a></p>
+        <p><strong>Öffnungszeiten:</strong></p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Montag bis Freitag: 09:00 - 18:00 Uhr</li>
+          <li>Samstag: 10:00 - 14:00 Uhr</li>
+        </ul>
+        <p style="margin-top: 1rem;"><strong>Durchschnittliche Antwortzeit:</strong> Innerhalb von 24 Stunden an Werktagen</p>
+      </div>
+    </section>
+
+    <!-- Verbraucherschlichtungsstellen -->
+    <section class="legal-section">
+      <h2>🏛️ Verbraucherschlichtungsstellen</h2>
+      
+      <p>Obwohl wir nicht verpflichtet sind, an Streitschlichtungsverfahren teilzunehmen, möchten wir Sie über die zuständigen Verbraucherschlichtungsstellen informieren:</p>
+
+      <h3>Für Luxemburg</h3>
+      <div class="contact-card">
+        <h4>Commission de surveillance du secteur financier (CSSF)</h4>
+        <p><strong>Adresse:</strong><br>
+        283, route d'Arlon<br>
+        L-1150 Luxembourg</p>
+        <p><strong>Telefon:</strong> +352 26 25 1-1</p>
+        <p><strong>E-Mail:</strong> <a href="mailto:direction@cssf.lu">direction@cssf.lu</a></p>
+        <p><strong>Website:</strong> <a href="https://www.cssf.lu" target="_blank" rel="noopener">www.cssf.lu</a></p>
+      </div>
+
+      <h3>Für Deutschland</h3>
+      <div class="contact-card">
+        <h4>Allgemeine Verbraucherschlichtungsstelle</h4>
+        <p><strong>Zentrum für Schlichtung e.V.</strong><br>
+        Straßburger Straße 8<br>
+        77694 Kehl am Rhein<br>
+        Deutschland</p>
+        <p><strong>Telefon:</strong> +49 7851 795 79 40</p>
+        <p><strong>E-Mail:</strong> <a href="mailto:mail@verbraucher-schlichter.de">mail@verbraucher-schlichter.de</a></p>
+        <p><strong>Website:</strong> <a href="https://www.verbraucher-schlichter.de" target="_blank" rel="noopener">www.verbraucher-schlichter.de</a></p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Die Kontaktaufnahme mit einer Schlichtungsstelle erfolgt auf eigene Initiative des Verbrauchers und ist für beide Parteien unverbindlich.</p>
+      </div>
+    </section>
+
+    <!-- Rechtliche Wege -->
+    <section class="legal-section">
+      <h2>⚖️ Rechtliche Wege</h2>
+      
+      <h3>Ihre Rechte bleiben unberührt</h3>
+      <p>Unabhängig von außergerichtlichen Streitbeilegungsverfahren steht Ihnen der Rechtsweg jederzeit offen. Sie können Ihre Ansprüche vor den ordentlichen Gerichten geltend machen.</p>
+
+      <h3>Zuständiges Gericht</h3>
+      <p><strong>Bei Verbrauchern:</strong><br>
+      Verbraucher können nach ihrer Wahl am Gericht ihres Wohnsitzes oder am Sitz des Verkäufers in Luxemburg klagen.</p>
+
+      <p><strong>Bei Unternehmern:</strong><br>
+      Für Streitigkeiten mit Unternehmern ist ausschließlich der Geschäftssitz des Verkäufers in Luxemburg zuständig.</p>
+
+      <h3>Anwendbares Recht</h3>
+      <p>Es gilt luxemburgisches Recht unter Ausschluss des UN-Kaufrechts. Bei Verbrauchern bleibt der Schutz zwingender Bestimmungen des Rechts ihres Wohnsitzlandes unberührt.</p>
+
+      <div class="warning-box">
+        <p><strong>Gut zu wissen:</strong> Bei kleineren Streitwerten kann auch ein vereinfachtes Mahnverfahren in Betracht kommen. Informieren Sie sich bei einem Rechtsanwalt über Ihre Möglichkeiten.</p>
+      </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="legal-section">
+      <h2>✅ Unsere Best Practices für Kundenzufriedenheit</h2>
+      
+      <p>Wir bei Projecta setzen auf folgende Grundsätze, um Streitigkeiten von vornherein zu vermeiden:</p>
+
+      <h3>1. Transparente Kommunikation</h3>
+      <ul>
+        <li>Klare und verständliche Produktbeschreibungen</li>
+        <li>Ehrliche Lieferzeiten und Verfügbarkeitsangaben</li>
+        <li>Vollständige Preisinformationen inklusive aller Kosten</li>
+      </ul>
+
+      <h3>2. Schneller Kundenservice</h3>
+      <ul>
+        <li>Antwort innerhalb von 24 Stunden an Werktagen</li>
+        <li>Persönliche Ansprechpartner</li>
+        <li>Mehrsprachiger Support (Deutsch, Französisch, Englisch)</li>
+      </ul>
+
+      <h3>3. Kulante Rückgabepolitik</h3>
+      <ul>
+        <li>14 Tage gesetzliches Widerrufsrecht</li>
+        <li>Kostenlose Rücksendung innerhalb Luxemburgs</li>
+        <li>Schnelle Rückerstattung nach Wareneingang</li>
+      </ul>
+
+      <h3>4. Qualitätsgarantie</h3>
+      <ul>
+        <li>3 Jahre Produktgarantie auf elektronische Komponenten</li>
+        <li>2 Jahre gesetzliche Gewährleistung</li>
+        <li>Kostenloser Reparaturservice während der Garantiezeit</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Unser Versprechen:</strong> Sollten Sie mit einem Produkt nicht zufrieden sein, kontaktieren Sie uns. Wir finden garantiert eine Lösung!</p>
+      </div>
+    </section>
+
+    <!-- FAQ Streitschlichtung -->
+    <section class="legal-section">
+      <h2>❓ Häufige Fragen zur Streitschlichtung</h2>
+      
+      <h3>Was bedeutet "außergerichtliche Streitbeilegung"?</h3>
+      <p>Außergerichtliche Streitbeilegung bedeutet, dass ein Konflikt zwischen Verkäufer und Käufer ohne Einschaltung eines Gerichts durch eine neutrale Schlichtungsstelle gelöst wird. Das Verfahren ist meist kostenlos oder kostengünstig und schneller als ein Gerichtsverfahren.</p>
+
+      <h3>Muss ich erst die OS-Plattform nutzen, bevor ich klagen kann?</h3>
+      <p>Nein. Die Nutzung der OS-Plattform oder einer Schlichtungsstelle ist freiwillig. Sie können jederzeit den ordentlichen Rechtsweg beschreiten.</p>
+
+      <h3>Kostet die Nutzung der OS-Plattform etwas?</h3>
+      <p>Die Einreichung einer Beschwerde auf der OS-Plattform ist kostenlos. Ob für das eigentliche Schlichtungsverfahren Kosten anfallen, hängt von der jeweiligen Schlichtungsstelle ab.</p>
+
+      <h3>Wie lange dauert ein Schlichtungsverfahren?</h3>
+      <p>Ein Schlichtungsverfahren sollte in der Regel innerhalb von 90 Tagen abgeschlossen sein. Dies kann jedoch je nach Komplexität des Falls variieren.</p>
+
+      <h3>Ist das Ergebnis der Schlichtung bindend?</h3>
+      <p>Das Ergebnis ist in der Regel nicht bindend. Beide Parteien müssen dem Vorschlag der Schlichtungsstelle zustimmen. Lehnt eine Partei ab, bleibt der Rechtsweg offen.</p>
+
+      <h3>Was passiert, wenn Projecta nicht am Verfahren teilnimmt?</h3>
+      <p>Da wir an freiwilligen Schlichtungsverfahren nicht teilnehmen, kann in einem solchen Fall kein Schlichtungsvorschlag erarbeitet werden. Sie behalten jedoch alle rechtlichen Möglichkeiten, Ihre Ansprüche durchzusetzen.</p>
+    </section>
+
+    <!-- Kontakt -->
+    <section class="legal-section" style="background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(212, 179, 115, 0.1) 100%);">
+      <h2>📞 Wir sind für Sie da!</h2>
+      
+      <p>Bei Fragen, Problemen oder Beschwerden kontaktieren Sie uns bitte direkt. Wir sind überzeugt, dass wir gemeinsam schnell eine zufriedenstellende Lösung finden werden.</p>
+
+      <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+        <h3 style="color: var(--gold); margin-bottom: 1.5rem;">Kontaktmöglichkeiten</h3>
+        
+        <p><strong>📧 E-Mail:</strong><br>
+        Allgemeine Anfragen: <a href="mailto:info@projecta.lu" style="font-size: 1.1rem;">info@projecta.lu</a><br>
+        Kundenservice: <a href="mailto:service@projecta.lu" style="font-size: 1.1rem;">service@projecta.lu</a><br>
+        Beschwerden: <a href="mailto:beschwerde@projecta.lu" style="font-size: 1.1rem;">beschwerde@projecta.lu</a></p>
+
+        <p style="margin-top: 1rem;"><strong>📞 Telefon:</strong><br>
+        <a href="tel:+352123456789" style="font-size: 1.2rem; font-weight: 600;">+352 12 34 56 789</a></p>
+
+        <p style="margin-top: 1rem;"><strong>🕐 Erreichbarkeit:</strong><br>
+        Montag - Freitag: 09:00 - 18:00 Uhr<br>
+        Samstag: 10:00 - 14:00 Uhr</p>
+
+        <p style="margin-top: 1rem;"><strong>✉️ Postanschrift:</strong><br>
+        Projecta S.à r.l.<br>
+        Kundenservice<br>
+        Rue de l'Exemple 123<br>
+        L-1234 Luxembourg</p>
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(207, 161, 90, 0.1); border-radius: var(--border-radius-sm); border-left: 4px solid var(--gold);">
+        <p><strong>💡 Tipp:</strong> Viele Antworten finden Sie auch in unseren <a href="faq.html">FAQ (Häufig gestellte Fragen)</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="streitschlichtung.html">Streitschlichtung</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
