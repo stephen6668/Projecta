@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vielen Dank — Projecta</title>
+  <meta name="description" content="Bestellbestätigung bei Projecta" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="product.html">Produkt</a>
+        <a href="cart.html">Warenkorb</a>
+        <a href="contact.html">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container spaced">
+    <h1>🎉 Vielen Dank für deine Bestellung!</h1>
+    <p>Wir haben deine Bestellung erhalten und senden dir in Kürze eine Bestätigung per E-Mail.</p>
+    <p>Du kannst jederzeit <a href="index.html">zur Startseite</a> zurückkehren oder weitere Produkte entdecken.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Projecta — Alle Rechte vorbehalten.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

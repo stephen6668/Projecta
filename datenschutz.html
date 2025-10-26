@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Datenschutzerklärung – Projecta</title>
+  <meta name="description" content="Datenschutzerklärung und Informationen zur Verarbeitung personenbezogener Daten bei Projecta S.à r.l." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #333333;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .logo {
+      height: 48px;
+      margin-right: 0.6rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+    }
+
+    .back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--accent-primary);
+    }
+
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .legal-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .legal-header h1 {
+      font-family: var(--font-secondary);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .legal-header .subtitle {
+      color: var(--accent-secondary);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .toc {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .toc h2 {
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      margin-left: 1.5rem;
+    }
+
+    .toc li {
+      margin-bottom: 0.5rem;
+    }
+
+    .toc a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .toc a:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .legal-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+      scroll-margin-top: 100px;
+    }
+
+    .legal-section h2 {
+      font-family: var(--font-secondary);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .legal-section h3 {
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .legal-section h4 {
+      font-size: 1.1rem;
+      color: var(--accent-primary);
+      margin: 1rem 0 0.5rem;
+      font-weight: 600;
+    }
+
+    .legal-section p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .legal-section ul, .legal-section ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .legal-section strong {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .legal-section a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-light);
+      transition: var(--transition);
+    }
+
+    .legal-section a:hover {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+
+    .info-box {
+      background: rgba(207, 161, 90, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .warning-box {
+      background: rgba(220, 38, 38, 0.1);
+      border-left: 4px solid #dc2626;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: white;
+      border-radius: var(--border-radius-sm);
+      overflow: hidden;
+      box-shadow: 0 4px 16px var(--shadow-light);
+    }
+
+    .data-table th {
+      background: var(--gold);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .data-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover {
+      background: rgba(207, 161, 90, 0.05);
+    }
+
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .legal-content {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      .legal-section {
+        padding: 1.5rem;
+      }
+
+      .data-table {
+        font-size: 0.9rem;
+      }
+
+      .data-table th, .data-table td {
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    </div>
+  </header>
+
+  <!-- Hauptinhalt -->
+  <main class="legal-content">
+    
+    <div class="legal-header">
+      <h1>🔒 Datenschutzerklärung</h1>
+      <p class="subtitle">Informationen über die Erhebung und Verarbeitung personenbezogener Daten gemäß Art. 13, 14 und 21 der Datenschutz-Grundverordnung (DSGVO)</p>
+    </div>
+
+    <!-- Inhaltsverzeichnis -->
+    <div class="toc">
+      <h2>📑 Inhaltsverzeichnis</h2>
+      <ol>
+        <li><a href="#verantwortlicher">Verantwortlicher & Datenschutzbeauftragter</a></li>
+        <li><a href="#grundlagen">Rechtsgrundlagen der Verarbeitung</a></li>
+        <li><a href="#kategorien">Kategorien personenbezogener Daten</a></li>
+        <li><a href="#zwecke">Zwecke der Datenverarbeitung</a></li>
+        <li><a href="#website">Datenverarbeitung beim Website-Besuch</a></li>
+        <li><a href="#cookies">Cookies & Tracking-Technologien</a></li>
+        <li><a href="#kontaktformular">Kontaktformular & E-Mail</a></li>
+        <li><a href="#bestellung">Online-Shop & Bestellabwicklung</a></li>
+        <li><a href="#zahlungsdienstleister">Zahlungsdienstleister</a></li>
+        <li><a href="#newsletter">Newsletter & Marketing</a></li>
+        <li><a href="#social-media">Social Media & Plugins</a></li>
+        <li><a href="#analyse">Webanalyse & Statistik</a></li>
+        <li><a href="#weitergabe">Weitergabe an Dritte</a></li>
+        <li><a href="#dauer">Speicherdauer</a></li>
+        <li><a href="#rechte">Ihre Rechte als Betroffener</a></li>
+        <li><a href="#widerruf">Widerspruchs- & Widerrufsrecht</a></li>
+        <li><a href="#beschwerde">Beschwerderecht</a></li>
+        <li><a href="#sicherheit">Datensicherheit</a></li>
+        <li><a href="#aenderungen">Änderungen der Datenschutzerklärung</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. Verantwortlicher -->
+    <section id="verantwortlicher" class="legal-section">
+      <h2>1. Verantwortlicher & Datenschutzbeauftragter</h2>
+      
+      <h3>Verantwortlicher im Sinne der DSGVO:</h3>
+      <p><strong>Projecta S.à r.l.</strong><br>
+      Rue de l'Exemple 123<br>
+      L-1234 Luxembourg<br>
+      Luxemburg</p>
+
+      <p><strong>Vertreten durch:</strong> Max Mustermann (Geschäftsführer)</p>
+
+      <p><strong>Kontakt:</strong><br>
+      Telefon: <a href="tel:+352123456789">+352 12 34 56 789</a><br>
+      E-Mail: <a href="mailto:info@projecta.lu">info@projecta.lu</a><br>
+      Website: <a href="https://www.projecta.lu">www.projecta.lu</a></p>
+
+      <h3>Datenschutzbeauftragter:</h3>
+      <p><strong>Name:</strong> [Name des Datenschutzbeauftragten]<br>
+      <strong>E-Mail:</strong> <a href="mailto:datenschutz@projecta.lu">datenschutz@projecta.lu</a></p>
+
+      <div class="info-box">
+        <p><strong>Wichtig:</strong> Bei Fragen zum Datenschutz können Sie sich jederzeit an unseren Datenschutzbeauftragten wenden.</p>
+      </div>
+    </section>
+
+    <!-- 2. Rechtsgrundlagen -->
+    <section id="grundlagen" class="legal-section">
+      <h2>2. Rechtsgrundlagen der Verarbeitung</h2>
+      
+      <p>Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage der folgenden Rechtsgrundlagen:</p>
+
+      <ul>
+        <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> - Einwilligung: Sie haben ausdrücklich in die Verarbeitung eingewilligt</li>
+        <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> - Vertragserfüllung: Die Verarbeitung ist zur Erfüllung eines Vertrags erforderlich</li>
+        <li><strong>Art. 6 Abs. 1 lit. c DSGVO</strong> - Rechtliche Verpflichtung: Die Verarbeitung ist zur Erfüllung einer rechtlichen Verpflichtung erforderlich</li>
+        <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> - Berechtigte Interessen: Die Verarbeitung ist zur Wahrung unserer berechtigten Interessen erforderlich</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Berechtigte Interessen:</strong> Unsere berechtigten Interessen umfassen insbesondere die Gewährleistung der IT-Sicherheit, die Verhinderung von Missbrauch, die Verbesserung unserer Dienste und die Durchsetzung rechtlicher Ansprüche.</p>
+      </div>
+    </section>
+
+    <!-- 3. Kategorien -->
+    <section id="kategorien" class="legal-section">
+      <h2>3. Kategorien personenbezogener Daten</h2>
+      
+      <p>Wir verarbeiten folgende Kategorien personenbezogener Daten:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Kategorie</th>
+            <th>Beispiele</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bestandsdaten</strong></td>
+            <td>Name, Anschrift, E-Mail-Adresse, Telefonnummer, Geburtsdatum</td>
+          </tr>
+          <tr>
+            <td><strong>Vertragsdaten</strong></td>
+            <td>Bestellnummer, Produktauswahl, Lieferadresse, Rechnungsadresse</td>
+          </tr>
+          <tr>
+            <td><strong>Zahlungsdaten</strong></td>
+            <td>Bankverbindung, Kreditkartennummer (verschlüsselt), Zahlungshistorie</td>
+          </tr>
+          <tr>
+            <td><strong>Nutzungsdaten</strong></td>
+            <td>IP-Adresse, Browser-Typ, Betriebssystem, Zugriffszeitpunkt</td>
+          </tr>
+          <tr>
+            <td><strong>Kommunikationsdaten</strong></td>
+            <td>E-Mail-Inhalt, Kontaktanfragen, Support-Tickets</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 4. Zwecke -->
+    <section id="zwecke" class="legal-section">
+      <h2>4. Zwecke der Datenverarbeitung</h2>
+      
+      <p>Wir verarbeiten Ihre personenbezogenen Daten zu folgenden Zwecken:</p>
+
+      <ul>
+        <li>Durchführung und Abwicklung von Bestellungen</li>
+        <li>Bereitstellung und Verbesserung unserer Website und Dienste</li>
+        <li>Kundenservice und Support</li>
+        <li>Beantwortung von Anfragen und Kommunikation</li>
+        <li>Versand von Bestellbestätigungen und Lieferinformationen</li>
+        <li>Zahlungsabwicklung</li>
+        <li>Betrugsbekämpfung und Sicherstellung der IT-Sicherheit</li>
+        <li>Erfüllung gesetzlicher Aufbewahrungspflichten</li>
+        <li>Marketing und Werbung (nur mit Ihrer Einwilligung)</li>
+        <li>Statistische Auswertungen und Verbesserung unserer Angebote</li>
+      </ul>
+    </section>
+
+    <!-- 5. Website-Besuch -->
+    <section id="website" class="legal-section">
+      <h2>5. Datenverarbeitung beim Website-Besuch</h2>
+      
+      <h3>Automatisch erfasste Daten (Server-Logfiles)</h3>
+      <p>Beim Besuch unserer Website werden automatisch folgende Informationen erfasst:</p>
+
+      <ul>
+        <li>IP-Adresse des anfragenden Rechners</li>
+        <li>Datum und Uhrzeit des Zugriffs</li>
+        <li>Name und URL der abgerufenen Datei</li>
+        <li>Übertragene Datenmenge</li>
+        <li>Meldung über erfolgreichen Abruf (HTTP-Status-Code)</li>
+        <li>Browser-Typ und Browser-Version</li>
+        <li>Betriebssystem des Nutzers</li>
+        <li>Referrer URL (zuvor besuchte Seite)</li>
+        <li>Hostname des zugreifenden Rechners</li>
+      </ul>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse)</p>
+      <p><strong>Zweck:</strong> Gewährleistung der Systemsicherheit, technische Administration, Optimierung der Website</p>
+      <p><strong>Speicherdauer:</strong> 7 Tage, danach automatische Löschung</p>
+
+      <div class="info-box">
+        <p><strong>Hosting:</strong> Unsere Website wird gehostet bei [Hosting-Provider Name], [Adresse]. Der Hosting-Provider verarbeitet die oben genannten Daten in unserem Auftrag als Auftragsverarbeiter gemäß Art. 28 DSGVO.</p>
+      </div>
+    </section>
+
+    <!-- 6. Cookies -->
+    <section id="cookies" class="legal-section">
+      <h2>6. Cookies & Tracking-Technologien</h2>
+      
+      <h3>Was sind Cookies?</h3>
+      <p>Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden und die Ihr Browser speichert. Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.</p>
+
+      <h3>Arten von Cookies</h3>
+      
+      <h4>Technisch notwendige Cookies (Essentiell)</h4>
+      <p>Diese Cookies sind für den Betrieb der Website zwingend erforderlich:</p>
+      <ul>
+        <li>Session-Cookies (Warenkorb, Login-Status)</li>
+        <li>Sicherheits-Cookies (CSRF-Schutz)</li>
+        <li>Cookie-Einstellungen</li>
+      </ul>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO</p>
+      <p><strong>Speicherdauer:</strong> Session oder bis zu 12 Monate</p>
+
+      <h4>Funktionale Cookies</h4>
+      <p>Diese Cookies ermöglichen erweiterte Funktionen:</p>
+      <ul>
+        <li>Spracheinstellungen</li>
+        <li>Layout-Präferenzen</li>
+        <li>Favoriten/Merkliste</li>
+      </ul>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+
+      <h4>Analyse-Cookies</h4>
+      <p>Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren:</p>
+      <ul>
+        <li>Google Analytics (anonymisiert)</li>
+        <li>Besucherzähler</li>
+        <li>Heatmaps</li>
+      </ul>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+
+      <h4>Marketing-Cookies</h4>
+      <p>Diese Cookies werden für Werbezwecke verwendet:</p>
+      <ul>
+        <li>Retargeting</li>
+        <li>Social Media Plugins</li>
+        <li>Personalisierte Werbung</li>
+      </ul>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+
+      <h3>Cookie-Verwaltung</h3>
+      <p>Sie können Ihre Cookie-Einstellungen jederzeit anpassen:</p>
+      <ul>
+        <li>Über unseren Cookie-Banner beim ersten Besuch</li>
+        <li>Über die <a href="cookie-policy.html">Cookie-Einstellungen</a></li>
+        <li>Über Ihre Browser-Einstellungen</li>
+      </ul>
+
+      <div class="warning-box">
+        <p><strong>Wichtig:</strong> Wenn Sie Cookies deaktivieren, können möglicherweise nicht alle Funktionen unserer Website genutzt werden.</p>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Cookie-Name</th>
+            <th>Typ</th>
+            <th>Zweck</th>
+            <th>Laufzeit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>projecta_session</td>
+            <td>Essentiell</td>
+            <td>Session-Verwaltung</td>
+            <td>Session</td>
+          </tr>
+          <tr>
+            <td>projecta_cart</td>
+            <td>Essentiell</td>
+            <td>Warenkorb-Speicherung</td>
+            <td>7 Tage</td>
+          </tr>
+          <tr>
+            <td>cookie_consent</td>
+            <td>Essentiell</td>
+            <td>Cookie-Einwilligung</td>
+            <td>12 Monate</td>
+          </tr>
+          <tr>
+            <td>_ga</td>
+            <td>Analyse</td>
+            <td>Google Analytics</td>
+            <td>24 Monate</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 7. Kontaktformular -->
+    <section id="kontaktformular" class="legal-section">
+      <h2>7. Kontaktformular & E-Mail</h2>
+      
+      <p>Wenn Sie uns per Kontaktformular oder E-Mail kontaktieren, werden die von Ihnen mitgeteilten Daten gespeichert:</p>
+
+      <h3>Verarbeitete Daten:</h3>
+      <ul>
+        <li>Name</li>
+        <li>E-Mail-Adresse</li>
+        <li>Betreff und Nachrichteninhalt</li>
+        <li>Zeitpunkt der Anfrage</li>
+        <li>Optional: Telefonnummer, Firma</li>
+      </ul>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse) bzw. Art. 6 Abs. 1 lit. b DSGVO bei Vertragsanbahnung</p>
+      <p><strong>Zweck:</strong> Bearbeitung Ihrer Anfrage, Kommunikation</p>
+      <p><strong>Speicherdauer:</strong> Bis zur vollständigen Bearbeitung der Anfrage, danach bis zu 3 Jahre für eventuelle Anschlussfragen</p>
+
+      <div class="info-box">
+        <p><strong>E-Mail-Sicherheit:</strong> Bitte beachten Sie, dass unverschlüsselte E-Mails nicht sicher sind. Für vertrauliche Informationen empfehlen wir die Nutzung unseres verschlüsselten Kontaktformulars.</p>
+      </div>
+    </section>
+
+    <!-- 8. Online-Shop -->
+    <section id="bestellung" class="legal-section">
+      <h2>8. Online-Shop & Bestellabwicklung</h2>
+      
+      <p>Zur Abwicklung Ihrer Bestellung verarbeiten wir folgende Daten:</p>
+
+      <h3>Bestelldaten:</h3>
+      <ul>
+        <li>Vor- und Nachname</li>
+        <li>E-Mail-Adresse</li>
+        <li>Rechnungsadresse</li>
+        <li>Lieferadresse (wenn abweichend)</li>
+        <li>Telefonnummer (optional, für Rückfragen)</li>
+        <li>Bestellte Produkte und Mengen</li>
+        <li>Zahlungsinformationen</li>
+        <li>Kundennummer (bei Bestandskunden)</li>
+      </ul>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</p>
+      <p><strong>Zweck:</strong> Vertragsabwicklung, Lieferung, Rechnungsstellung</p>
+      <p><strong>Speicherdauer:</strong> Mindestens bis zur Erfüllung gesetzlicher Aufbewahrungspflichten (10 Jahre nach Abschluss des Geschäftsjahres)</p>
+
+      <h3>Kundenkonto (optional)</h3>
+      <p>Sie können ein Kundenkonto erstellen, um zukünftige Bestellungen zu vereinfachen:</p>
+      <ul>
+        <li>Gespeicherte Adressen</li>
+        <li>Bestellhistorie</li>
+        <li>Merkzettel/Wunschliste</li>
+        <li>Newsletter-Abonnement</li>
+      </ul>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</p>
+      <p>Sie können Ihr Kundenkonto jederzeit löschen.</p>
+    </section>
+
+    <!-- 9. Zahlungsdienstleister -->
+    <section id="zahlungsdienstleister" class="legal-section">
+      <h2>9. Zahlungsdienstleister</h2>
+      
+      <p>Wir arbeiten mit folgenden Zahlungsdienstleistern zusammen:</p>
+
+      <h3>PayPal</h3>
+      <p><strong>Anbieter:</strong> PayPal (Europe) S.à r.l. et Cie, S.C.A.<br>
+      22-24 Boulevard Royal, L-2449 Luxembourg</p>
+      <p><strong>Datenschutzerklärung:</strong> <a href="https://www.paypal.com/de/webapps/mpp/ua/privacy-full" target="_blank">https://www.paypal.com/de/webapps/mpp/ua/privacy-full</a></p>
+
+      <h3>Stripe</h3>
+      <p><strong>Anbieter:</strong> Stripe Payments Europe Ltd.<br>
+      1 Grand Canal Street Lower, Grand Canal Dock, Dublin, Irland</p>
+      <p><strong>Datenschutzerklärung:</strong> <a href="https://stripe.com/de/privacy" target="_blank">https://stripe.com/de/privacy</a></p>
+
+      <h3>Klarna</h3>
+      <p><strong>Anbieter:</strong> Klarna Bank AB<br>
+      Sveavägen 46, 111 34 Stockholm, Schweden</p>
+      <p><strong>Datenschutzerklärung:</strong> <a href="https://www.klarna.com/de/datenschutz/" target="_blank">https://www.klarna.com/de/datenschutz/</a></p>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</p>
+      <p><strong>Datenübermittlung:</strong> Die Zahlungsdaten werden direkt an den jeweiligen Zahlungsdienstleister übermittelt. Wir speichern keine vollständigen Kreditkartendaten.</p>
+    </section>
+
+    <!-- 10. Newsletter -->
+    <section id="newsletter" class="legal-section">
+      <h2>10. Newsletter & Marketing</h2>
+      
+      <h3>Newsletter-Anmeldung</h3>
+      <p>Mit Ihrer Einwilligung können Sie unseren Newsletter abonnieren:</p>
+
+      <h4>Verarbeitete Daten:</h4>
+      <ul>
+        <li>E-Mail-Adresse (Pflichtfeld)</li>
+        <li>Name (optional)</li>
+        <li>Anmeldezeitpunkt</li>
+        <li>IP-Adresse zum Zeitpunkt der Anmeldung</li>
+        <li>Öffnungs- und Klickraten (zur Optimierung)</li>
+      </ul>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+      <p><strong>Zweck:</strong> Versand von Produktinformationen, Angeboten und Neuigkeiten</p>
+
+      <h3>Double-Opt-In-Verfahren</h3>
+      <p>Die Anmeldung erfolgt im Double-Opt-In-Verfahren:</p>
+      <ol>
+        <li>Sie geben Ihre E-Mail-Adresse ein</li>
+        <li>Sie erhalten eine Bestätigungs-E-Mail</li>
+        <li>Sie bestätigen Ihre Anmeldung durch Klick auf den Link</li>
+        <li>Erst dann wird Ihre E-Mail-Adresse in den Verteiler aufgenommen</li>
+      </ol>
+
+      <h3>Abmeldung (Widerruf)</h3>
+      <p>Sie können den Newsletter jederzeit abbestellen:</p>
+      <ul>
+        <li>Über den Abmelde-Link in jeder Newsletter-E-Mail</li>
+        <li>Über Ihr Kundenkonto</li>
+        <li>Per E-Mail an: <a href="mailto:newsletter@projecta.lu">newsletter@projecta.lu</a></li>
+      </ul>
+
+      <h3>Newsletter-Versand über Mailchimp</h3>
+      <p><strong>Anbieter:</strong> The Rocket Science Group LLC (Mailchimp)<br>
+      675 Ponce de Leon Ave NE, Suite 5000, Atlanta, GA 30308, USA</p>
+      <p><strong>Datenschutzerklärung:</strong> <a href="https://mailchimp.com/legal/privacy/" target="_blank">https://mailchimp.com/legal/privacy/</a></p>
+      <p><strong>Standardvertragsklauseln:</strong> Die Datenübermittlung in die USA erfolgt auf Basis von EU-Standardvertragsklauseln.</p>
+
+      <div class="info-box">
+        <p><strong>Analyse:</strong> Wir nutzen Newsletter-Statistiken (Öffnungsraten, Klickraten) zur Optimierung unserer Inhalte. Sie können dieser Auswertung widersprechen, indem Sie Bilder in E-Mails blockieren.</p>
+      </div>
+    </section>
+
+    <!-- 11. Social Media -->
+    <section id="social-media" class="legal-section">
+      <h2>11. Social Media & Plugins</h2>
+      
+      <h3>Social Media Profile</h3>
+      <p>Wir sind auf folgenden Social-Media-Plattformen vertreten:</p>
+      <ul>
+        <li><strong>Facebook:</strong> <a href="#">facebook.com/projecta</a></li>
+        <li><strong>Instagram:</strong> <a href="#">instagram.com/projecta</a></li>
+        <li><strong>LinkedIn:</strong> <a href="#">linkedin.com/company/projecta</a></li>
+      </ul>
+
+      <p>Beim Besuch unserer Social-Media-Profile gelten die Datenschutzbestimmungen der jeweiligen Plattform. Wir sind gemeinsam mit dem Plattformbetreiber verantwortlich für die Verarbeitung Ihrer Daten.</p>
+
+      <h3>Social Media Plugins</h3>
+      <p>Wir nutzen Social Media Plugins mit Zwei-Klick-Lösung:</p>
+      <ul>
+        <li>Beim ersten Besuch sind die Plugins inaktiv</li>
+        <li>Erst nach Ihrer Aktivierung werden Daten an den Anbieter übertragen</li>
+        <li>Sie können Ihre Einwilligung jederzeit widerrufen</li>
+      </ul>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+
+      <div class="warning-box">
+        <p><strong>Achtung:</strong> Social Media Anbieter setzen Cookies und können Ihr Nutzungsverhalten über verschiedene Websites hinweg verfolgen, auch wenn Sie nicht angemeldet sind.</p>
+      </div>
+    </section>
+
+    <!-- 12. Webanalyse -->
+    <section id="analyse" class="legal-section">
+      <h2>12. Webanalyse & Statistik</h2>
+      
+      <h3>Google Analytics</h3>
+      <p><strong>Anbieter:</strong> Google Ireland Limited<br>
+      Gordon House, Barrow Street, Dublin 4, Irland</p>
+
+      <h4>Verarbeitete Daten:</h4>
+      <ul>
+        <li>IP-Adresse (anonymisiert)</li>
+        <li>Browser-Informationen</li>
+        <li>Betriebssystem</li>
+        <li>Referrer URL</li>
+        <li>Besuchte Seiten und Verweildauer</li>
+        <li>Geräteinformationen</li>
+      </ul>
+
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+      <p><strong>Zweck:</strong> Analyse des Nutzerverhaltens, Optimierung der Website</p>
+
+      <h4>IP-Anonymisierung</h4>
+      <p>Wir nutzen Google Analytics mit aktivierter IP-Anonymisierung. Ihre IP-Adresse wird vor der Übermittlung an Google gekürzt.</p>
+
+      <h4>Google Analytics 4 (GA4)</h4>
+      <p>Wir verwenden Google Analytics 4, das standardmäßig keine IP-Adressen speichert.</p>
+
+      <h4>Widerspruch</h4>
+      <p>Sie können der Analyse widersprechen durch:</p>
+      <ul>
+        <li>Browser-Add-on: <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out</a></li>
+        <li>Cookie-Einstellungen auf unserer Website</li>
+      </ul>
+
+      <p><strong>Datenschutzerklärung Google:</strong> <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+      <p><strong>Auftragsverarbeitungsvertrag:</strong> Mit Google besteht ein Vertrag zur Auftragsverarbeitung.</p>
+    </section>
+
+    <!-- 13. Weitergabe -->
+    <section id="weitergabe" class="legal-section">
+      <h2>13. Weitergabe an Dritte</h2>
+      
+      <p>Eine Weitergabe Ihrer personenbezogenen Daten an Dritte erfolgt nur in folgenden Fällen:</p>
+
+      <h3>Auftragsverarbeiter</h3>
+      <p>Wir geben Ihre Daten an folgende Dienstleister weiter (Art. 28 DSGVO):</p>
+      <ul>
+        <li><strong>Hosting-Provider:</strong> Server-Betrieb und Wartung</li>
+        <li><strong>Versanddienstleister:</strong> DHL, DPD, UPS (für Lieferung)</li>
+        <li><strong>Zahlungsdienstleister:</strong> PayPal, Stripe, Klarna</li>
+        <li><strong>Newsletter-Dienst:</strong> Mailchimp</li>
+        <li><strong>Cloud-Dienste:</strong> Datenspeicherung und Backup</li>
+        <li><strong>IT-Support:</strong> Wartung und technische Unterstützung</li>
+      </ul>
+
+      <p>Mit allen Auftragsverarbeitern bestehen Verträge gemäß Art. 28 DSGVO.</p>
+
+      <h3>Rechtliche Verpflichtungen</h3>
+      <p>Weitergabe bei gesetzlicher Verpflichtung an:</p>
+      <ul>
+        <li>Steuerbehörden</li>
+        <li>Strafverfolgungsbehörden (bei begründetem Verdacht)</li>
+        <li>Aufsichtsbehörden</li>
+      </ul>
+
+      <h3>Datenübermittlung außerhalb der EU</h3>
+      <p>In einigen Fällen werden Daten in Drittländer übermittelt:</p>
+      <ul>
+        <li><strong>USA:</strong> Google, Mailchimp (auf Basis von Standardvertragsklauseln)</li>
+      </ul>
+
+      <p><strong>Garantien:</strong> Wir stellen durch geeignete Garantien sicher, dass ein angemessenes Datenschutzniveau gewährleistet ist (z.B. EU-Standardvertragsklauseln).</p>
+    </section>
+
+    <!-- 14. Speicherdauer -->
+    <section id="dauer" class="legal-section">
+      <h2>14. Speicherdauer</h2>
+      
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Datenart</th>
+            <th>Speicherdauer</th>
+            <th>Rechtsgrundlage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Server-Logfiles</td>
+            <td>7 Tage</td>
+            <td>Berechtigtes Interesse</td>
+          </tr>
+          <tr>
+            <td>Kontaktanfragen</td>
+            <td>3 Jahre nach Bearbeitung</td>
+            <td>Berechtigtes Interesse</td>
+          </tr>
+          <tr>
+            <td>Bestelldaten</td>
+            <td>10 Jahre</td>
+            <td>Gesetzliche Aufbewahrungspflicht (§ 147 AO)</td>
+          </tr>
+          <tr>
+            <td>Rechnungen</td>
+            <td>10 Jahre</td>
+            <td>Gesetzliche Aufbewahrungspflicht (§ 14b UStG)</td>
+          </tr>
+          <tr>
+            <td>Newsletter-Daten</td>
+            <td>Bis zum Widerruf</td>
+            <td>Einwilligung</td>
+          </tr>
+          <tr>
+            <td>Kundenkonto</td>
+            <td>Bis zur Löschung durch Nutzer</td>
+            <td>Vertragserfüllung</td>
+          </tr>
+          <tr>
+            <td>Analytics-Daten</td>
+            <td>26 Monate (Google Analytics 4)</td>
+            <td>Einwilligung</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Nach Ablauf der Speicherdauer werden die Daten routinemäßig gelöscht, sofern keine weitere Aufbewahrungspflicht besteht.</p>
+    </section>
+
+    <!-- 15. Ihre Rechte -->
+    <section id="rechte" class="legal-section">
+      <h2>15. Ihre Rechte als Betroffener</h2>
+      
+      <p>Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
+
+      <h3>Recht auf Auskunft (Art. 15 DSGVO)</h3>
+      <p>Sie haben das Recht, Auskunft über die von uns verarbeiteten personenbezogenen Daten zu erhalten. Dies umfasst:</p>
+      <ul>
+        <li>Welche Daten wir über Sie speichern</li>
+        <li>Zu welchen Zwecken die Verarbeitung erfolgt</li>
+        <li>An wen die Daten weitergegeben wurden</li>
+        <li>Wie lange die Daten gespeichert werden</li>
+        <li>Ihre weiteren Rechte</li>
+      </ul>
+
+      <h3>Recht auf Berichtigung (Art. 16 DSGVO)</h3>
+      <p>Sie haben das Recht, unrichtige personenbezogene Daten berichtigen zu lassen.</p>
+
+      <h3>Recht auf Löschung (Art. 17 DSGVO)</h3>
+      <p>Sie haben das Recht auf Löschung Ihrer Daten („Recht auf Vergessenwerden"), wenn:</p>
+      <ul>
+        <li>Die Daten für die Zwecke nicht mehr notwendig sind</li>
+        <li>Sie Ihre Einwilligung widerrufen</li>
+        <li>Sie Widerspruch einlegen und keine vorrangigen Gründe vorliegen</li>
+        <li>Die Daten unrechtmäßig verarbeitet wurden</li>
+        <li>Eine rechtliche Verpflichtung zur Löschung besteht</li>
+      </ul>
+
+      <p><strong>Ausnahmen:</strong> Eine Löschung kann nicht erfolgen, wenn gesetzliche Aufbewahrungspflichten bestehen.</p>
+
+      <h3>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</h3>
+      <p>Sie können die Einschränkung der Verarbeitung verlangen, wenn:</p>
+      <ul>
+        <li>Die Richtigkeit der Daten bestritten wird</li>
+        <li>Die Verarbeitung unrechtmäßig ist</li>
+        <li>Die Daten zur Geltendmachung von Rechtsansprüchen benötigt werden</li>
+        <li>Widerspruch eingelegt wurde</li>
+      </ul>
+
+      <h3>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</h3>
+      <p>Sie haben das Recht, Ihre Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten und an einen anderen Verantwortlichen zu übermitteln.</p>
+
+      <h3>Recht auf Widerspruch (Art. 21 DSGVO)</h3>
+      <p>Sie haben das Recht, aus Gründen Ihrer besonderen Situation der Verarbeitung zu widersprechen. Dies gilt insbesondere für:</p>
+      <ul>
+        <li>Verarbeitung aufgrund berechtigter Interessen</li>
+        <li>Direktwerbung und Profiling</li>
+      </ul>
+
+      <h3>Recht auf Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO)</h3>
+      <p>Sie können eine erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt davon unberührt.</p>
+
+      <div class="info-box">
+        <p><strong>So machen Sie Ihre Rechte geltend:</strong></p>
+        <p>📧 E-Mail: <a href="mailto:datenschutz@projecta.lu">datenschutz@projecta.lu</a><br>
+        📞 Telefon: <a href="tel:+352123456789">+352 12 34 56 789</a><br>
+        ✉️ Post: Projecta S.à r.l., Rue de l'Exemple 123, L-1234 Luxembourg</p>
+      </div>
+    </section>
+
+    <!-- 16. Widerruf -->
+    <section id="widerruf" class="legal-section">
+      <h2>16. Widerspruchs- & Widerrufsrecht</h2>
+      
+      <h3>Widerspruch gegen Direktwerbung</h3>
+      <div class="warning-box">
+        <p><strong>Widerspruchsrecht:</strong> Sie haben das Recht, jederzeit Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten zum Zwecke der Direktwerbung einzulegen. Dies gilt auch für das Profiling, soweit es mit solcher Direktwerbung in Verbindung steht.</p>
+        <p>Bei Widerspruch werden wir Ihre Daten nicht mehr für Zwecke der Direktwerbung verarbeiten.</p>
+      </div>
+
+      <h3>Widerspruch aus Gründen Ihrer besonderen Situation</h3>
+      <p>Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogener Daten, die aufgrund von Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen) erfolgt, Widerspruch einzulegen.</p>
+
+      <p>Wir werden die Verarbeitung einstellen, es sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen überwiegen.</p>
+
+      <h3>Widerruf von Einwilligungen</h3>
+      <p>Einwilligungen können Sie jederzeit widerrufen:</p>
+      <ul>
+        <li><strong>Newsletter:</strong> Abmelde-Link in jeder E-Mail</li>
+        <li><strong>Cookies:</strong> Cookie-Einstellungen auf der Website</li>
+        <li><strong>Kundenkonto:</strong> Löschfunktion im Profil</li>
+        <li><strong>Alle anderen:</strong> E-Mail an <a href="mailto:datenschutz@projecta.lu">datenschutz@projecta.lu</a></li>
+      </ul>
+    </section>
+
+    <!-- 17. Beschwerde -->
+    <section id="beschwerde" class="legal-section">
+      <h2>17. Beschwerderecht bei der Aufsichtsbehörde</h2>
+      
+      <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
+
+      <h3>Zuständige Aufsichtsbehörde in Luxemburg:</h3>
+      <p><strong>Commission nationale pour la protection des données (CNPD)</strong><br>
+      15, boulevard du Jazz<br>
+      L-4370 Belvaux<br>
+      Luxemburg</p>
+
+      <p><strong>Telefon:</strong> +352 26 10 60 -1<br>
+      <strong>E-Mail:</strong> <a href="mailto:info@cnpd.lu">info@cnpd.lu</a><br>
+      <strong>Website:</strong> <a href="https://cnpd.public.lu" target="_blank">https://cnpd.public.lu</a></p>
+
+      <h3>Für Beschwerden aus Deutschland:</h3>
+      <p><strong>Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)</strong><br>
+      Graurheindorfer Str. 153<br>
+      53117 Bonn<br>
+      Deutschland</p>
+
+      <p><strong>Telefon:</strong> +49 (0)228 997799-0<br>
+      <strong>E-Mail:</strong> <a href="mailto:poststelle@bfdi.bund.de">poststelle@bfdi.bund.de</a><br>
+      <strong>Website:</strong> <a href="https://www.bfdi.bund.de" target="_blank">https://www.bfdi.bund.de</a></p>
+
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Die Kontaktaufnahme mit einer Aufsichtsbehörde ist unabhängig von einem außergerichtlichen Rechtsbehelf möglich und lässt Ihre Rechte unberührt.</p>
+      </div>
+    </section>
+
+    <!-- 18. Sicherheit -->
+    <section id="sicherheit" class="legal-section">
+      <h2>18. Datensicherheit</h2>
+      
+      <p>Wir treffen umfangreiche technische und organisatorische Sicherheitsmaßnahmen zum Schutz Ihrer Daten:</p>
+
+      <h3>Technische Maßnahmen:</h3>
+      <ul>
+        <li><strong>SSL/TLS-Verschlüsselung:</strong> Alle Datenübertragungen erfolgen verschlüsselt</li>
+        <li><strong>Firewall-Systeme:</strong> Schutz vor unbefugtem Zugriff</li>
+        <li><strong>Regelmäßige Updates:</strong> Sicherheitspatches und Software-Updates</li>
+        <li><strong>Verschlüsselte Datenspeicherung:</strong> Sensible Daten werden verschlüsselt gespeichert</li>
+        <li><strong>Backup-Systeme:</strong> Regelmäßige Datensicherungen</li>
+        <li><strong>Zugriffskontrolle:</strong> Authentifizierung und Autorisierung</li>
+        <li><strong>Anonymisierung/Pseudonymisierung:</strong> Wo möglich</li>
+      </ul>
+
+      <h3>Organisatorische Maßnahmen:</h3>
+      <ul>
+        <li>Schulung der Mitarbeiter im Datenschutz</li>
+        <li>Vertraulichkeitsverpflichtungen</li>
+        <li>Zugriffsbeschränkungen nach dem Need-to-know-Prinzip</li>
+        <li>Incident-Response-Plan für Datenschutzverletzungen</li>
+        <li>Regelmäßige Datenschutz-Audits</li>
+        <li>Verträge zur Auftragsverarbeitung mit allen Dienstleistern</li>
+      </ul>
+
+      <h3>SSL-Verschlüsselung</h3>
+      <p>Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-bzw. TLS-Verschlüsselung. Sie erkennen eine verschlüsselte Verbindung am Schloss-Symbol in Ihrer Browserzeile und an der URL mit "https://".</p>
+
+      <div class="warning-box">
+        <p><strong>Wichtig:</strong> Trotz aller Sicherheitsmaßnahmen kann keine absolute Sicherheit garantiert werden. Bitte übermitteln Sie keine besonders sensiblen Daten unverschlüsselt per E-Mail.</p>
+      </div>
+    </section>
+
+    <!-- 19. Änderungen -->
+    <section id="aenderungen" class="legal-section">
+      <h2>19. Änderungen der Datenschutzerklärung</h2>
+      
+      <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen unserer Dienste und Datenverarbeitung anzupassen.</p>
+
+      <p><strong>Empfehlung:</strong> Besuchen Sie diese Seite regelmäßig, um sich über den aktuellen Stand der Datenschutzerklärung zu informieren.</p>
+
+      <p><strong>Bei wesentlichen Änderungen:</strong> Wir werden Sie per E-Mail oder durch einen deutlichen Hinweis auf unserer Website informieren.</p>
+
+      <div class="info-box">
+        <p><strong>Stand dieser Datenschutzerklärung:</strong> Januar 2025</p>
+        <p><strong>Letzte Aktualisierung:</strong> <span id="update-date"></span></p>
+      </div>
+    </section>
+
+    <!-- Kontakt Box -->
+    <section class="legal-section" style="background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(212, 179, 115, 0.1) 100%);">
+      <h2>Fragen zum Datenschutz?</h2>
+      
+      <p>Bei Fragen zur Erhebung, Verarbeitung oder Nutzung Ihrer personenbezogenen Daten, bei Auskünften, Berichtigung, Sperrung oder Löschung von Daten sowie Widerruf erteilter Einwilligungen wenden Sie sich bitte an:</p>
+
+      <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+        <p><strong>📧 E-Mail:</strong> <a href="mailto:datenschutz@projecta.lu" style="font-size: 1.2rem;">datenschutz@projecta.lu</a></p>
+        <p><strong>📞 Telefon:</strong> <a href="tel:+352123456789">+352 12 34 56 789</a></p>
+        <p><strong>✉️ Post:</strong><br>
+        Projecta S.à r.l.<br>
+        z.Hd. Datenschutzbeauftragter<br>
+        Rue de l'Exemple 123<br>
+        L-1234 Luxembourg</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="cookie-policy.html">Cookie-Policy</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('update-date').textContent = new Date().toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    // Smooth Scroll für Anker-Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

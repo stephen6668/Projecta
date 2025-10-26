@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projecta – Admin-Editing (Inline CMS)</title>
+  <style>
+    :root{
+      --brand-bg:#f4efe8;
+      --brand-fg:#111;
+      --border: #e6e2db;
+      --focus: #1f6feb;
+      --warn:#d98324;
+      --ok:#13a10e;
+      --err:#c62828;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    body{margin:0;font-family:sans-serif;background:var(--brand-bg);color:var(--brand-fg)}
+    header{padding:20px;border-bottom:1px solid var(--border);background:#fff;display:flex;justify-content:space-between;align-items:center}
+    main{padding:20px;max-width:900px;margin:auto}
+    footer{text-align:center;padding:20px;color:#555}
+    h1,h2{margin:0.2em 0}
+
+    .login-overlay{
+      position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);z-index:9999;
+    }
+    .login-card{
+      background:#fff;padding:20px;border-radius:10px;max-width:300px;width:100%;box-shadow:var(--shadow)
+    }
+    .login-card input{width:100%;padding:10px;margin-bottom:10px}
+    .login-card button{padding:10px;width:100%;cursor:pointer}
+
+    .admin-bar{
+      position:fixed;top:10px;right:10px;background:#fff;padding:10px;border-radius:8px;box-shadow:var(--shadow);border:1px solid var(--border);
+      display:none;z-index:10000;width:250px
+    }
+    .admin-bar select, .admin-bar input, .admin-bar button{width:100%;margin-bottom:6px;padding:6px}
+    .cms-highlight{outline:2px dashed var(--warn);cursor:pointer}
+  </style>
+</head>
+<body>
+
+<header>
+  <div data-cms="text"><strong>Projecta</strong> – Sicherheitsschmuck</div>
+  <button id="open-admin">Admin Login</button>
+</header>
+
+<main>
+  <h1 data-cms="text">Sicherheit, die du wirklich trägst.</h1>
+  <p data-cms="text">Praktischer Sicherheitsschmuck mit SOS-Alarm und Standortfreigabe. Entwickelt in Luxemburg. Bald erhältlich.</p>
+  <img data-cms="image" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=800" alt="Produktbild" style="max-width:100%">
+</main>
+
+<footer>
+  © <span data-cms="text">2025 Projecta S.à r.l.</span>
+</footer>
+
+<!-- Login Overlay -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-card">
+    <h3>🔐 Admin Login</h3>
+    <input type="email" id="admin-email" placeholder="E-Mail">
+    <input type="password" id="admin-pass" placeholder="Passwort">
+    <button id="login-btn">Login</button>
+    <p id="login-msg"></p>
+    <button id="close-login">Schließen</button>
+  </div>
+</div>
+
+<!-- Admin Toolbar -->
+<div class="admin-bar" id="admin-bar">
+  <h4>🛠 Admin-Panel</h4>
+  <select id="page-select">
+    <option value="index.html">index.html</option>
+    <option value="about.html">about.html</option>
+    <option value="contact.html">contact.html</option>
+    <option value="produkt-uebersicht.html">produkt-uebersicht.html</option>
+    <option value="product-future.html">product-future.html</option>
+    <option value="product.html">product.html</option>
+    <option value="cart.html">cart.html</option>
+    <option value="checkout.html">checkout.html</option>
+  </select>
+  <button id="toggle-edit">Bearbeitung starten</button>
+  <input type="text" id="edit-text" placeholder="Text bearbeiten">
+  <input type="url" id="edit-src" placeholder="Bild-URL">
+  <button id="apply-changes">Änderungen anwenden</button>
+  <hr>
+  <button id="save-page">Änderungen speichern (JSON)</button>
+  <input type="file" id="load-page" accept="application/json">
+  <button id="logout-btn">Logout</button>
+</div>
+
+<script>
+  const ADMIN_EMAIL = "admin@projecta.lu";
+  const ADMIN_PASS = "Projecta#2025";
+  let isLoggedIn = false;
+  let editMode = false;
+  let selectedEl = null;
+
+  const openAdmin = document.getElementById("open-admin");
+  const loginOverlay = document.getElementById("login-overlay");
+  const loginBtn = document.getElementById("login-btn");
+  const closeLogin = document.getElementById("close-login");
+  const loginMsg = document.getElementById("login-msg");
+  const adminBar = document.getElementById("admin-bar");
+  const logoutBtn = document.getElementById("logout-btn");
+  const toggleEdit = document.getElementById("toggle-edit");
+  const editText = document.getElementById("edit-text");
+  const editSrc = document.getElementById("edit-src");
+  const applyChanges = document.getElementById("apply-changes");
+  const pageSelect = document.getElementById("page-select");
+  const savePageBtn = document.getElementById("save-page");
+  const loadPageInput = document.getElementById("load-page");
+
+  // Login
+  openAdmin.onclick = () => loginOverlay.style.display = "flex";
+  closeLogin.onclick = () => loginOverlay.style.display = "none";
+  loginBtn.onclick = () => {
+    const email = document.getElementById("admin-email").value;
+    const pass = document.getElementById("admin-pass").value;
+    if(email === ADMIN_EMAIL && pass === ADMIN_PASS){
+      isLoggedIn = true;
+      loginOverlay.style.display = "none";
+      adminBar.style.display = "block";
+    } else {
+      loginMsg.textContent = "Falsche Daten!";
+    }
+  };
+
+  // Logout
+  logoutBtn.onclick = () => {
+    isLoggedIn = false;
+    adminBar.style.display = "none";
+    disableEdit();
+  };
+
+  // Seitenwechsel
+  pageSelect.onchange = () => {
+    if(confirm("Seite wechseln? Ungespeicherte Änderungen gehen verloren.")){
+      window.location.href = pageSelect.value;
+    }
+  };
+
+  // Bearbeitungsmodus
+  toggleEdit.onclick = () => {
+    editMode = !editMode;
+    toggleEdit.textContent = editMode ? "Bearbeitung stoppen" : "Bearbeitung starten";
+    if(editMode) enableEdit(); else disableEdit();
+  };
+
+  function enableEdit(){
+    document.querySelectorAll("[data-cms]").forEach(el => {
+      el.classList.add("cms-highlight");
+      el.addEventListener("click", selectEl);
+    });
+  }
+  function disableEdit(){
+    document.querySelectorAll("[data-cms]").forEach(el => {
+      el.classList.remove("cms-highlight");
+      el.removeEventListener("click", selectEl);
+    });
+    selectedEl = null;
+  }
+  function selectEl(e){
+    e.preventDefault();
+    e.stopPropagation();
+    selectedEl = e.target;
+    if(selectedEl.tagName === "IMG"){
+      editSrc.value = selectedEl.src;
+      editText.value = "";
+    } else {
+      editText.value = selectedEl.innerText;
+      editSrc.value = "";
+    }
+  }
+  applyChanges.onclick = () => {
+    if(!selectedEl) return;
+    if(editText.value && selectedEl.tagName !== "IMG"){
+      selectedEl.innerText = editText.value;
+    }
+    if(editSrc.value && selectedEl.tagName === "IMG"){
+      selectedEl.src = editSrc.value;
+    }
+  };
+
+  // --- Save CMS Data ---
+  savePageBtn.onclick = () => {
+    const cmsData = {};
+    document.querySelectorAll("[data-cms]").forEach((el,index)=>{
+      if(el.tagName==="IMG"){
+        cmsData[index] = {type:"img", src:el.src, alt:el.alt};
+      } else {
+        cmsData[index] = {type:"text", content:el.innerText};
+      }
+    });
+    const blob = new Blob([JSON.stringify(cmsData,null,2)], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "cms-data.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // --- Load CMS Data ---
+  loadPageInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try{
+        const data = JSON.parse(reader.result);
+        const cmsEls = document.querySelectorAll("[data-cms]");
+        Object.keys(data).forEach(key=>{
+          const el = cmsEls[key];
+          if(!el) return;
+          if(data[key].type==="img"){
+            el.src = data[key].src;
+            el.alt = data[key].alt || "";
+          } else {
+            el.innerText = data[key].content;
+          }
+        });
+      } catch(err){
+        alert("Fehler beim Laden der Datei!");
+      }
+    };
+    reader.readAsText(file);
+  };
+</script>
+</body>
+</html>

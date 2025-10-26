@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mein Konto – Projecta</title>
+  <meta name="description" content="Verwalten Sie Ihre Kontodaten und Einstellungen bei Projecta" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+  
+  <style>
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #333333;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .logo {
+      height: 48px;
+      margin-right: 0.6rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--accent-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--gold);
+    }
+
+    .logout-btn {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-primary);
+    }
+
+    .logout-btn:hover {
+      background: var(--accent-primary);
+    }
+
+    .account-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .account-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .account-header h1 {
+      font-family: var(--font-secondary);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .account-header .subtitle {
+      color: var(--accent-secondary);
+      font-size: 1.1rem;
+    }
+
+    .user-welcome {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      color: white;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .user-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .user-info h2 {
+      font-family: var(--font-secondary);
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .user-info p {
+      opacity: 0.9;
+    }
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .account-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+      transition: var(--transition);
+    }
+
+    .account-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px var(--shadow-light);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .section-icon {
+      font-size: 2rem;
+    }
+
+    .section-header h3 {
+      font-family: var(--font-secondary);
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .data-row:last-child {
+      border-bottom: none;
+    }
+
+    .data-label {
+      font-weight: 600;
+      color: var(--accent-secondary);
+      font-size: 0.9rem;
+    }
+
+    .data-value {
+      color: var(--accent-primary);
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .data-value.password {
+      font-family: monospace;
+      letter-spacing: 0.2rem;
+    }
+
+    .edit-btn {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-primary);
+      font-size: 0.9rem;
+    }
+
+    .edit-btn:hover {
+      background: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-group .edit-btn {
+      flex: 1;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .status-badge.active {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+
+    .status-badge.inactive {
+      background: rgba(244, 67, 54, 0.1);
+      color: #F44336;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--accent-secondary);
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(207, 161, 90, 0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .account-content {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      .account-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .user-welcome {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .data-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .data-value {
+        text-align: left;
+      }
+
+      .header-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <div class="header-nav">
+        <a href="index.html" class="nav-link">Startseite</a>
+        <button class="logout-btn" id="logoutBtn">Abmelden</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div id="loadingState" class="loading">
+    <div class="loading-spinner"></div>
+    <p>Lade Kontodaten...</p>
+  </div>
+
+  <!-- Main Content (Hidden until loaded) -->
+  <main class="account-content" id="mainContent" style="display: none;">
+    
+    <div class="account-header">
+      <h1>👤 Mein Konto</h1>
+      <p class="subtitle">Verwalten Sie Ihre persönlichen Daten und Einstellungen</p>
+    </div>
+
+    <!-- User Welcome -->
+    <div class="user-welcome">
+      <div class="user-avatar" id="userAvatar">MB</div>
+      <div class="user-info">
+        <h2 id="welcomeName">Willkommen zurück!</h2>
+        <p id="userMemberInfo">Lädt...</p>
+      </div>
+    </div>
+
+    <!-- Account Sections -->
+    <div class="account-grid">
+      
+      <!-- Persönliche Daten -->
+      <div class="account-section">
+        <div class="section-header">
+          <span class="section-icon">👤</span>
+          <h3>Persönliche Daten</h3>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Vorname</span>
+          <span class="data-value" id="firstName">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Nachname</span>
+          <span class="data-value" id="lastName">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Geburtsdatum</span>
+          <span class="data-value" id="birthDate">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Geschlecht</span>
+          <span class="data-value" id="gender">-</span>
+        </div>
+      </div>
+
+      <!-- Kontaktdaten -->
+      <div class="account-section">
+        <div class="section-header">
+          <span class="section-icon">📧</span>
+          <h3>Kontaktdaten</h3>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">E-Mail</span>
+          <span class="data-value" id="email">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Telefon</span>
+          <span class="data-value" id="phone">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">E-Mail bestätigt</span>
+          <span class="data-value"><span class="status-badge active" id="emailStatus">✓ Bestätigt</span></span>
+        </div>
+      </div>
+
+      <!-- Adresse -->
+      <div class="account-section">
+        <div class="section-header">
+          <span class="section-icon">🏠</span>
+          <h3>Rechnungsadresse</h3>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Straße & Nr.</span>
+          <span class="data-value" id="street">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">PLZ</span>
+          <span class="data-value" id="zipCode">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Stadt</span>
+          <span class="data-value" id="city">-</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Land</span>
+          <span class="data-value" id="country">-</span>
+        </div>
+      </div>
+
+      <!-- Sicherheit -->
+      <div class="account-section">
+        <div class="section-header">
+          <span class="section-icon">🔒</span>
+          <h3>Sicherheit</h3>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Passwort</span>
+          <span class="data-value password">••••••••</span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Konto-ID</span>
+          <span class="data-value" id="userId" style="font-size: 0.8rem; font-family: monospace;">-</span>
+        </div>
+      </div>
+
+      <!-- Newsletter & Benachrichtigungen -->
+      <div class="account-section">
+        <div class="section-header">
+          <span class="section-icon">🔔</span>
+          <h3>Benachrichtigungen</h3>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Newsletter</span>
+          <span class="data-value"><span class="status-badge" id="newsletterStatus">-</span></span>
+        </div>
+        
+        <div class="data-row">
+          <span class="data-label">Registriert seit</span>
+          <span class="data-value" id="registrationDate">-</span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="zahlungssicherheit.html">Zahlungssicherheit</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Appwrite Configuration
+    const client = new Appwrite.Client()
+      .setEndpoint('https://fra.cloud.appwrite.io/v1')
+      .setProject('68ee68b300144140da1c');
+
+    const account = new Appwrite.Account(client);
+    const databases = new Appwrite.Databases(client);
+
+    const DATABASE_ID = '68ee68c2001481512a67';
+    const COLLECTION_ID = '20122005';
+
+    // Format date
+    function formatDate(dateString) {
+      if (!dateString) return '-';
+      const date = new Date(dateString);
+      return date.toLocaleDateString('de-DE', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    }
+
+    // Get gender label
+    function getGenderLabel(gender) {
+      const labels = {
+        'male': 'Männlich',
+        'female': 'Weiblich',
+        'other': 'Divers'
+      };
+      return labels[gender] || '-';
+    }
+
+    // Load User Data
+    async function loadUserData() {
+      try {
+        // Get current user
+        const user = await account.get();
+        console.log('User:', user);
+
+        // Update basic info
+        document.getElementById('email').textContent = user.email;
+        document.getElementById('userId').textContent = user.$id;
+        document.getElementById('emailStatus').className = user.emailVerification ?
+          'status-badge active' : 'status-badge inactive';
+        document.getElementById('emailStatus').textContent = user.emailVerification ?
+          '✓ Bestätigt' : '✗ Nicht bestätigt';
+
+        // Registration date
+        const regDate = new Date(user.$createdAt);
+        document.getElementById('registrationDate').textContent = formatDate(user.$createdAt);
+        document.getElementById('userMemberInfo').textContent =
+          `Mitglied seit ${regDate.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}`;
+
+        // Try to load profile data
+        try {
+          const profile = await databases.getDocument(
+            DATABASE_ID,
+            COLLECTION_ID,
+            user.$id
+          );
+          console.log('Profile:', profile);
+
+          // Update profile data
+          document.getElementById('firstName').textContent = profile.firstName || '-';
+          document.getElementById('lastName').textContent = profile.lastName || '-';
+          document.getElementById('phone').textContent = profile.phone || '-';
+          document.getElementById('birthDate').textContent = formatDate(profile.birthDate);
+          document.getElementById('gender').textContent = getGenderLabel(profile.gender);
+          document.getElementById('street').textContent = profile.street || '-';
+          document.getElementById('zipCode').textContent = profile.zipCode || '-';
+          document.getElementById('city').textContent = profile.city || '-';
+          document.getElementById('country').textContent = profile.country || '-';
+
+          // Newsletter status
+          const newsletterBadge = document.getElementById('newsletterStatus');
+          newsletterBadge.className = profile.newsletter ? 'status-badge active' : 'status-badge inactive';
+          newsletterBadge.textContent = profile.newsletter ? '✓ Abonniert' : '✗ Nicht abonniert';
+
+          // Welcome message
+          const fullName = `${profile.firstName || ''} ${profile.lastName || ''}`.trim();
+          if (fullName) {
+            document.getElementById('welcomeName').textContent = `Willkommen zurück, ${profile.firstName}!`;
+            
+            // Avatar initials
+            const initials = `${profile.firstName?.charAt(0) || ''}${profile.lastName?.charAt(0) || ''}`;
+            document.getElementById('userAvatar').textContent = initials.toUpperCase() || '?';
+          }
+
+        } catch (profileError) {
+          console.log('No profile found:', profileError);
+          // Use name from account if available
+          if (user.name) {
+            const nameParts = user.name.split(' ');
+            document.getElementById('firstName').textContent = nameParts[0] || '-';
+            document.getElementById('lastName').textContent = nameParts.slice(1).join(' ') || '-';
+            document.getElementById('welcomeName').textContent = `Willkommen zurück, ${nameParts[0]}!`;
+            
+            const initials = nameParts.map(n => n.charAt(0)).join('');
+            document.getElementById('userAvatar').textContent = initials.toUpperCase() || '?';
+          }
+        }
+
+        // Show content, hide loading
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+
+      } catch (error) {
+        console.error('Error loading user data:', error);
+        // Redirect to login if not authenticated
+        window.location.href = 'login.html';
+      }
+    }
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      try {
+        await account.deleteSession('current');
+        window.location.href = 'login.html';
+      } catch (error) {
+        console.error('Logout error:', error);
+        // Force redirect even on error
+        window.location.href = 'login.html';
+      }
+    });
+
+    // Load data on page load
+    loadUserData();
+  </script>
+
+</body>
+</html>

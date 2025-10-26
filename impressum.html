@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Impressum – Projecta</title>
+  <meta name="description" content="Impressum und Anbieterkennzeichnung von Projecta S.à r.l." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #333333;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .logo {
+      height: 48px;
+      margin-right: 0.6rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+    }
+
+    .back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--accent-primary);
+    }
+
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .legal-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .legal-header h1 {
+      font-family: var(--font-secondary);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .legal-header .subtitle {
+      color: var(--accent-secondary);
+      font-size: 1.1rem;
+    }
+
+    .legal-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .legal-section h2 {
+      font-family: var(--font-secondary);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .legal-section h3 {
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .legal-section p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .legal-section strong {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .legal-section a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-light);
+      transition: var(--transition);
+    }
+
+    .legal-section a:hover {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+
+    .info-box {
+      background: rgba(207, 161, 90, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .contact-item {
+      padding: 1rem;
+      background: rgba(249, 247, 243, 0.5);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .legal-content {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      .legal-section {
+        padding: 1.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    </div>
+  </header>
+
+  <!-- Hauptinhalt -->
+  <main class="legal-content">
+    
+    <div class="legal-header">
+      <h1>⚖️ Impressum</h1>
+      <p class="subtitle">Angaben gemäß § 5 TMG und Informationspflicht nach § 55 RStV</p>
+    </div>
+
+    <!-- Anbieter -->
+    <section class="legal-section">
+      <h2>Angaben zum Anbieter</h2>
+      
+      <p><strong>Firmenname:</strong><br>
+      Projecta S.à r.l.- S</p>
+
+      <p><strong>Rechtsform:</strong><br>
+      Société à responsabilité limitée (S.à r.l.)</p>
+
+      <p><strong>Anschrift:</strong><br>
+      Rue de l'Exemple 123<br>
+      L-1234 Luxembourg<br>
+      Luxemburg</p>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <strong>📞 Telefon</strong>
+          <a href="tel:+352123456789">+352 12 34 56 789</a>
+        </div>
+        <div class="contact-item">
+          <strong>📧 E-Mail</strong>
+          <a href="mailto:info@projecta.lu">projecta.kontakt@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <strong>🌐 Website</strong>
+          <a href="https://www.projecta.lu">www.projecta.lu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Geschäftsführung -->
+    <section class="legal-section">
+      <h2>Vertretungsberechtigte Person(en)</h2>
+      
+      <p><strong>Geschäftsführer:</strong><br>
+      Stephen Backes</p>
+
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Die Geschäftsführung ist berechtigt, die Gesellschaft nach außen zu vertreten und in allen Angelegenheiten rechtsverbindlich zu handeln.</p>
+      </div>
+    </section>
+
+    <!-- Register -->
+    <section class="legal-section">
+      <h2>Registereintragung</h2>
+      
+      <p><strong>Handelsregister:</strong><br>
+      Eingetragen im Handelsregister Luxembourg</p>
+
+      <p><strong>Registernummer:</strong><br>
+      B 123456</p>
+
+      <p><strong>Registergericht:</strong><br>
+      Tribunal d'arrondissement Luxembourg</p>
+    </section>
+
+    <!-- Umsatzsteuer -->
+    <section class="legal-section">
+      <h2>Umsatzsteuer-Identifikation</h2>
+      
+      <p><strong>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:</strong><br>
+      LU 12345678</p>
+
+      <div class="info-box">
+        <p><strong>Wirtschafts-Identifikationsnummer (W-IdNr.):</strong> DE 123456789<br>
+        (Falls zutreffend für grenzüberschreitenden Handel)</p>
+      </div>
+    </section>
+
+    <!-- Aufsichtsbehörde -->
+    <section class="legal-section">
+      <h2>Zuständige Aufsichtsbehörde</h2>
+      
+      <p><strong>Ministère de l'Économie</strong><br>
+      19-21, boulevard Royal<br>
+      L-2449 Luxembourg<br>
+      Luxemburg</p>
+
+      <p><strong>Telefon:</strong> +352 247 74700<br>
+      <strong>E-Mail:</strong> <a href="mailto:info@eco.public.lu">info@eco.public.lu</a><br>
+      <strong>Website:</strong> <a href="https://meco.gouvernement.lu" target="_blank">https://meco.gouvernement.lu</a></p>
+    </section>
+
+    <!-- Berufshaftpflicht -->
+    <section class="legal-section">
+      <h2>Berufshaftpflichtversicherung</h2>
+      
+      <p><strong>Name und Sitz der Versicherung:</strong><br>
+      Musterversicherung AG<br>
+      Versicherungsstraße 1<br>
+      L-1234 Luxembourg</p>
+
+      <p><strong>Geltungsraum der Versicherung:</strong><br>
+      Europäische Union (EU) und Europäischer Wirtschaftsraum (EWR)</p>
+    </section>
+
+    <!-- Verantwortlich für den Inhalt -->
+    <section class="legal-section">
+      <h2>Verantwortlich für den Inhalt</h2>
+      
+      <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong></p>
+
+      <p>Max Mustermann<br>
+      Rue de l'Exemple 123<br>
+      L-1234 Luxembourg<br>
+      Luxemburg</p>
+
+      <p><strong>E-Mail:</strong> <a href="mailto:info@projecta.lu">info@projecta.lu</a></p>
+    </section>
+
+    <!-- Streitschlichtung -->
+    <section class="legal-section">
+      <h2>Streitschlichtung & Online-Streitbeilegung (OS)</h2>
+      
+      <h3>EU-Streitschlichtung</h3>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:</p>
+      <p><a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p>
+      <p>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+
+      <h3>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h3>
+      <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Bei Streitigkeiten zwischen Online-Händlern und Verbrauchern über die Erfüllung von Online-Kaufverträgen oder Dienstleistungsverträgen besteht die Möglichkeit einer außergerichtlichen Streitschlichtung.</p>
+      </div>
+    </section>
+
+    <!-- Haftung -->
+    <section class="legal-section">
+      <h2>Haftungsausschluss</h2>
+      
+      <h3>Haftung für Inhalte</h3>
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+
+      <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+      <h3>Haftung für Links</h3>
+      <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+
+      <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+    </section>
+
+    <!-- Urheberrecht -->
+    <section class="legal-section">
+      <h2>Urheberrecht</h2>
+      
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem luxemburgischen und deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+
+      <p>Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet.</p>
+
+      <p>Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+    </section>
+
+    <!-- Bildnachweise -->
+    <section class="legal-section">
+      <h2>Bildnachweise & Medien</h2>
+      
+      <p><strong>Verwendete Bilder und Grafiken:</strong></p>
+      <ul style="margin-left: 2rem; margin-top: 1rem;">
+        <li>Produktfotos: © Projecta S.à r.l.</li>
+        <li>Hero-Bilder: Stock-Fotografie von [Quelle angeben]</li>
+        <li>Icons: Font Awesome / Custom Icons</li>
+        <li>Logo: © Projecta S.à r.l. - Alle Rechte vorbehalten</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Alle auf dieser Website verwendeten Marken, Logos und Produktnamen sind Eigentum ihrer jeweiligen Rechteinhaber.</p>
+      </div>
+    </section>
+
+    <!-- Design & Umsetzung -->
+    <section class="legal-section">
+      <h2>Design & technische Umsetzung</h2>
+      
+      <p><strong>Konzept & Design:</strong><br>
+      Projecta S.à r.l.</p>
+
+      <p><strong>Technische Umsetzung:</strong><br>
+      Projecta S.à r.l.<br>
+      Rue de l'Exemple 123<br>
+      L-1234 Luxembourg</p>
+
+      <p><strong>Hosting:</strong><br>
+      [Hosting-Provider Name]<br>
+      [Adresse]</p>
+    </section>
+
+    <!-- Stand -->
+    <section class="legal-section">
+      <h2>Stand der Informationen</h2>
+      
+      <p><strong>Letzte Aktualisierung:</strong> Januar 2025</p>
+      
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Wir behalten uns vor, diese Angaben jederzeit ohne vorherige Ankündigung zu ändern oder zu ergänzen. Die jeweils aktuelle Version finden Sie stets auf dieser Seite.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
