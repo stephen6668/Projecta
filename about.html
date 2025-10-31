@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Widerrufsrecht – Projecta</title>
+  <meta name="description" content="Widerrufsbelehrung und Muster-Widerrufsformular für Projecta S.à r.l." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #670F0F;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .logo {
+      height: 48px;
+      margin-right: 0.6rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 1.75rem;
+    }
+
+    .back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--accent-primary);
+    }
+
+    .legal-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .legal-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .legal-header h1 {
+      font-family: var(--font-secondary);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .legal-header .subtitle {
+      color: var(--accent-secondary);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .toc {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .toc h2 {
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      margin-left: 1.5rem;
+    }
+
+    .toc li {
+      margin-bottom: 0.5rem;
+    }
+
+    .toc a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .toc a:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .legal-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+      scroll-margin-top: 100px;
+    }
+
+    .legal-section h2 {
+      font-family: var(--font-secondary);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(207, 161, 90, 0.2);
+    }
+
+    .legal-section h3 {
+      font-size: 1.3rem;
+      color: var(--accent-primary);
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .legal-section p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .legal-section ul, .legal-section ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-section li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .legal-section strong {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .legal-section a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-light);
+      transition: var(--transition);
+    }
+
+    .legal-section a:hover {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+
+    .info-box {
+      background: rgba(207, 161, 90, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .warning-box {
+      background: rgba(220, 38, 38, 0.1);
+      border-left: 4px solid #dc2626;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .highlight-box {
+      background: white;
+      border: 2px solid var(--gold);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+    }
+
+    .form-template {
+      background: #f8f9fa;
+      border: 2px dashed var(--gold);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: var(--border-radius-sm);
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+    }
+
+    .download-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: white;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(207, 161, 90, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 1rem 0;
+    }
+
+    .download-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(207, 161, 90, 0.4);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+      margin: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--gold);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.25rem;
+      top: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px var(--shadow-light);
+    }
+
+    .timeline-item h4 {
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .legal-content {
+        padding: 6rem 1rem 2rem;
+      }
+      
+      .legal-section {
+        padding: 1.5rem;
+      }
+
+      .timeline {
+        padding-left: 2rem;
+      }
+
+      .timeline-item::before {
+        left: -1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+      <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    </div>
+  </header>
+
+  <!-- Hauptinhalt -->
+  <main class="legal-content">
+    
+    <div class="legal-header">
+      <h1>↩️ Widerrufsrecht</h1>
+      <p class="subtitle">Ihre Rechte beim Online-Kauf – Widerrufsbelehrung gemäß luxemburgischem und EU-Recht</p>
+    </div>
+
+    <!-- Inhaltsverzeichnis -->
+    <div class="toc">
+      <h2>📑 Inhaltsverzeichnis</h2>
+      <ol>
+        <li><a href="#widerrufsbelehrung">Widerrufsbelehrung</a></li>
+        <li><a href="#widerrufsfrist">Widerrufsfrist</a></li>
+        <li><a href="#ausuebung">Ausübung des Widerrufsrechts</a></li>
+        <li><a href="#folgen">Folgen des Widerrufs</a></li>
+        <li><a href="#ruecksendung">Rücksendung der Waren</a></li>
+        <li><a href="#ausschluss">Ausschluss des Widerrufsrechts</a></li>
+        <li><a href="#muster">Muster-Widerrufsformular</a></li>
+        <li><a href="#kosten">Kosten und Wertersatz</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. Widerrufsbelehrung -->
+    <section id="widerrufsbelehrung" class="legal-section">
+      <h2>1. Widerrufsbelehrung</h2>
+      
+      <div class="highlight-box">
+        <h3 style="color: var(--gold); margin-top: 0;">Ihr Widerrufsrecht</h3>
+        <p>Sie haben das Recht, binnen <strong>14 Tagen</strong> ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
+        <p style="margin-bottom: 0;">Die Widerrufsfrist beträgt 14 Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat.</p>
+      </div>
+
+      <h3>Rechtsgrundlagen</h3>
+      <p>Dieses Widerrufsrecht basiert auf folgenden Rechtsgrundlagen:</p>
+      <ul>
+        <li><strong>Verbraucherschutzgesetz Luxembourg:</strong> Loi du 25 août 2006 relative à la protection du consommateur</li>
+        <li><strong>EU-Verbraucherrechte-Richtlinie:</strong> Richtlinie 2011/83/EU über Verbraucherrechte</li>
+        <li><strong>Code de la Consommation:</strong> Articles L221-18 bis L221-28</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>💡 Gut zu wissen:</strong> Das Widerrufsrecht gilt nur für Verbraucher, nicht für Unternehmen, die Waren für ihre gewerbliche oder selbstständige Tätigkeit erwerben.</p>
+      </div>
+    </section>
+
+    <!-- 2. Widerrufsfrist -->
+    <section id="widerrufsfrist" class="legal-section">
+      <h2>2. Widerrufsfrist</h2>
+      
+      <h3>📅 Beginn der Widerrufsfrist</h3>
+      <p>Die 14-tägige Widerrufsfrist beginnt:</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Bei einzelnen Produkten</h4>
+          <p>Am Tag, an dem Sie oder ein von Ihnen benannter Dritter (nicht der Beförderer) die Ware physisch in Besitz genommen hat.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Bei mehreren Waren (eine Bestellung, getrennte Lieferung)</h4>
+          <p>Am Tag, an dem Sie oder ein Dritter die <strong>letzte Ware</strong> in Besitz genommen haben bzw. hat.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Bei Lieferung in mehreren Teilsendungen</h4>
+          <p>Am Tag, an dem Sie oder ein Dritter die <strong>letzte Teilsendung</strong> in Besitz genommen haben bzw. hat.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Bei regelmäßiger Lieferung (Abo)</h4>
+          <p>Am Tag, an dem Sie oder ein Dritter die <strong>erste Ware</strong> in Besitz genommen haben bzw. hat.</p>
+        </div>
+      </div>
+
+      <h3>⏰ Ende der Widerrufsfrist</h3>
+      <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns mittels einer eindeutigen Erklärung (z.B. per Post, E-Mail oder Fax) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.</p>
+
+      <div class="warning-box">
+        <p><strong>⚠️ Wichtig:</strong> Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts <strong>vor Ablauf der Widerrufsfrist</strong> absenden.</p>
+      </div>
+
+      <h3>📧 Verlängerung der Widerrufsfrist</h3>
+      <p>Falls wir Sie nicht ordnungsgemäß über Ihr Widerrufsrecht belehrt haben, verlängert sich die Frist auf <strong>12 Monate und 14 Tage</strong> ab dem ursprünglichen Fristbeginn.</p>
+    </section>
+
+    <!-- 3. Ausübung -->
+    <section id="ausuebung" class="legal-section">
+      <h2>3. Ausübung des Widerrufsrechts</h2>
+      
+      <h3>Wie können Sie widerrufen?</h3>
+      <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns eine eindeutige Erklärung zukommen lassen. Sie können dafür:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+        
+        <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-sm); border: 2px solid var(--gold); box-shadow: 0 4px 16px var(--shadow-light);">
+          <h4 style="color: var(--gold); margin-bottom: 1rem;">📧 Per E-Mail</h4>
+          <p><strong>Adresse:</strong><br>
+          <a href="mailto:widerruf@projecta.lu">widerruf@projecta.lu</a></p>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--accent-secondary);">Schnellste Methode, sofortiger Eingang</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-sm); border: 2px solid var(--gold); box-shadow: 0 4px 16px var(--shadow-light);">
+          <h4 style="color: var(--gold); margin-bottom: 1rem;">✉️ Per Post</h4>
+          <p><strong>Adresse:</strong><br>
+          Projecta S.à r.l.<br>
+          Widerruf & Retouren<br>
+          Rue de l'Exemple 123<br>
+          L-1234 Luxembourg</p>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: var(--border-radius-sm); border: 2px solid var(--gold); box-shadow: 0 4px 16px var(--shadow-light);">
+          <h4 style="color: var(--gold); margin-bottom: 1rem;">📠 Per Fax</h4>
+          <p><strong>Nummer:</strong><br>
+          +352 12 34 56 788</p>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--accent-secondary);">Sendeprotokoll als Nachweis aufbewahren</p>
+        </div>
+
+      </div>
+
+      <h3>📝 Was muss die Widerrufserklärung enthalten?</h3>
+      <p>Ihre Widerrufserklärung sollte folgende Informationen enthalten:</p>
+      <ul>
+        <li><strong>Ihre Kontaktdaten:</strong> Name, Adresse, E-Mail, Telefon</li>
+        <li><strong>Bestellnummer:</strong> Damit wir die Bestellung zuordnen können</li>
+        <li><strong>Bestelldatum:</strong> Wann Sie bestellt haben</li>
+        <li><strong>Lieferdatum:</strong> Wann Sie die Ware erhalten haben</li>
+        <li><strong>Eindeutige Erklärung:</strong> "Hiermit widerrufe ich den Kauf..."</li>
+        <li><strong>Datum und Unterschrift</strong> (bei postalischem Widerruf)</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>💡 Tipp:</strong> Sie können unser Muster-Widerrufsformular verwenden (siehe unten), sind aber nicht dazu verpflichtet. Jede eindeutige Erklärung ist ausreichend.</p>
+      </div>
+
+      <h3>🌐 Online-Widerrufsformular</h3>
+      <p>Für Ihre Bequemlichkeit stellen wir Ihnen auch ein Online-Formular zur Verfügung:</p>
+      <div style="text-align: center; margin: 2rem 0;">
+        <a href="widerruf-formular.html" class="download-button">🖥️ Zum Online-Widerrufsformular</a>
+      </div>
+    </section>
+
+    <!-- 4. Folgen -->
+    <section id="folgen" class="legal-section">
+      <h2>4. Folgen des Widerrufs</h2>
+      
+      <h3>Was passiert nach dem Widerruf?</h3>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Schritt 1: Wir erhalten Ihren Widerruf</h4>
+          <p>Wir bestätigen den Eingang Ihres Widerrufs per E-Mail innerhalb von 24 Stunden.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Schritt 2: Sie senden die Ware zurück</h4>
+          <p>Sie müssen die Ware unverzüglich, spätestens binnen 14 Tagen nach Mitteilung des Widerrufs, an uns zurücksenden.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Schritt 3: Wir prüfen die Ware</h4>
+          <p>Nach Erhalt der Ware prüfen wir den Zustand. Die Ware sollte vollständig und unbeschädigt sein.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h4>Schritt 4: Wir erstatten den Kaufpreis</h4>
+          <p>Wir erstatten alle von Ihnen geleisteten Zahlungen innerhalb von 14 Tagen nach Erhalt der Ware.</p>
+        </div>
+      </div>
+
+      <h3>💰 Was wird erstattet?</h3>
+      <p>Bei einem wirksamen Widerruf erstatten wir Ihnen:</p>
+      <ul>
+        <li>✅ Den vollen Kaufpreis der Ware</li>
+        <li>✅ Die Versandkosten der Hinlieferung (Standardversand)</li>
+        <li>❌ <strong>Nicht:</strong> Zusätzliche Kosten für Expressversand (wenn Sie diese gewählt haben)</li>
+        <li>❌ <strong>Nicht:</strong> Die Rücksendekosten (diese tragen Sie)</li>
+      </ul>
+
+      <h3>⏱️ Fristen für die Erstattung</h3>
+      <div class="highlight-box">
+        <p><strong>Wir erstatten spätestens binnen 14 Tagen</strong> ab dem Tag, an dem die Mitteilung über Ihren Widerruf bei uns eingegangen ist.</p>
+        <p style="margin-bottom: 0;"><strong>Aber:</strong> Wir können die Erstattung verweigern, bis wir die Waren zurückerhalten haben oder bis Sie den Nachweis erbracht haben, dass Sie die Waren zurückgesandt haben (je nachdem, welches der frühere Zeitpunkt ist).</p>
+      </div>
+
+      <h3>💳 Rückzahlungsmethode</h3>
+      <p>Die Erstattung erfolgt über dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion verwendet haben, sofern nichts anderes vereinbart wurde. In keinem Fall werden Ihnen Gebühren für diese Erstattung berechnet.</p>
+    </section>
+
+    <!-- 5. Rücksendung -->
+    <section id="ruecksendung" class="legal-section">
+      <h2>5. Rücksendung der Waren</h2>
+      
+      <h3>📦 Wie senden Sie die Ware zurück?</h3>
+      
+      <p><strong>Rücksendeadresse:</strong></p>
+      <div style="background: white; padding: 1.5rem; border: 2px solid var(--gold); border-radius: var(--border-radius-sm); margin: 1.5rem 0;">
+        <p style="margin: 0; font-weight: 600; font-size: 1.1rem;">
+          Projecta S.à r.l.<br>
+          Retouren-Abteilung<br>
+          Rue de l'Exemple 123<br>
+          L-1234 Luxembourg<br>
+          <span style="color: var(--gold);">Vermerk: "Widerruf - Bestellung #[Ihre Bestellnummer]"</span>
+        </p>
+      </div>
+
+      <h3>⏰ Rücksendungsfrist</h3>
+      <p>Sie müssen die Waren <strong>unverzüglich und in jedem Fall spätestens binnen 14 Tagen</strong> ab dem Tag, an dem Sie uns über den Widerruf informiert haben, an uns zurücksenden. Die Frist ist gewahrt, wenn Sie die Waren vor Ablauf der 14-Tage-Frist absenden.</p>
+
+      <h3>💶 Kosten der Rücksendung</h3>
+      <div class="warning-box">
+        <p><strong>Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</strong></p>
+        <p style="margin-bottom: 0;">Die geschätzten Kosten belaufen sich auf maximal ca. 15 EUR (abhängig von Größe und Gewicht der Ware).</p>
+      </div>
+
+      <h3>📋 Tipps für die Rücksendung</h3>
+      <ul>
+        <li><strong>Originalverpackung:</strong> Verwenden Sie nach Möglichkeit die Originalverpackung</li>
+        <li><strong>Versicherter Versand:</strong> Senden Sie wertvolle Waren versichert zurück</li>
+        <li><strong>Sendungsnummer:</strong> Bewahren Sie die Sendungsverfolgungsnummer auf</li>
+        <li><strong>Vollständigkeit:</strong> Senden Sie alle Teile, Zubehör und Dokumentation zurück</li>
+        <li><strong>Zustand:</strong> Die Ware sollte unbenutzt und in einwandfreiem Zustand sein</li>
+      </ul>
+
+      <h3>📸 Zustand der Ware</h3>
+      <p>Sie müssen für einen etwaigen Wertverlust der Waren nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Waren nicht notwendigen Umgang mit ihnen zurückzuführen ist.</p>
+
+      <div class="info-box">
+        <p><strong>💡 Was bedeutet das?</strong></p>
+        <p style="margin-bottom: 0;">Sie dürfen die Ware so testen, wie Sie es im Ladengeschäft tun würden. Wenn die Ware darüber hinaus benutzt wurde, können wir Wertersatz verlangen.</p>
+      </div>
+    </section>
+
+    <!-- 6. Ausschluss -->
+    <section id="ausschluss" class="legal-section">
+      <h2>6. Ausschluss des Widerrufsrechts</h2>
+      
+      <p>Das Widerrufsrecht besteht <strong>nicht</strong> bei folgenden Verträgen:</p>
+
+      <h3>🚫 Ausgeschlossene Waren und Dienstleistungen</h3>
+
+      <div style="display: grid; gap: 1.5rem; margin: 2rem 0;">
+        
+        <div style="background: rgba(220, 38, 38, 0.05); padding: 1.5rem; border-left: 4px solid #dc2626; border-radius: var(--border-radius-sm);">
+          <h4 style="color: #dc2626; margin-bottom: 0.75rem;">1. Versiegelte Waren (Hygiene, Gesundheitsschutz)</h4>
+          <p style="margin-bottom: 0;">Waren, die aus Gründen des Gesundheitsschutzes oder der Hygiene nicht zur Rückgabe geeignet sind, wenn ihre Versiegelung nach der Lieferung entfernt wurde (z.B. Kosmetik, Unterwäsche, Ohrring-Stecker).</p>
+        </div>
+
+        <div style="background: rgba(220, 38, 38, 0.05); padding: 1.5rem; border-left: 4px solid #dc2626; border-radius: var(--border-radius-sm);">
+          <h4 style="color: #dc2626; margin-bottom: 0.75rem;">2. Nach Kundenspezifikation angefertigte Waren</h4>
+          <p style="margin-bottom: 0;">Waren, die eindeutig auf Ihre persönlichen Bedürfnisse zugeschnitten sind (z.B. Maßanfertigungen, personalisierte Produkte, Gravuren).</p>
+        </div>
+
+        <div style="background: rgba(220, 38, 38, 0.05); padding: 1.5rem; border-left: 4px solid #dc2626; border-radius: var(--border-radius-sm);">
+          <h4 style="color: #dc2626; margin-bottom: 0.75rem;">3. Schnell verderbliche Waren</h4>
+          <p style="margin-bottom: 0;">Waren, die schnell verderben können oder deren Verfallsdatum schnell überschritten würde (z.B. Lebensmittel, Blumen).</p>
+        </div>
+
+        <div style="background: rgba(220, 38, 38, 0.05); padding: 1.5rem; border-left: 4px solid #dc2626; border-radius: var(--border-radius-sm);">
+          <h4 style="color: #dc2626; margin-bottom: 0.75rem;">4. Versiegelte Audio- und Videoaufnahmen sowie Software</h4>
+          <p style="margin-bottom: 0;">Versiegelte Ton- oder Videoaufnahmen oder versiegelte Software, sofern die Versiegelung nach der Lieferung entfernt wurde.</p>
+        </div>
+
+        <div style="background: rgba(220, 38, 38, 0.05); padding: 1.5rem; border-left: 4px solid #dc2626; border-radius: var(--border-radius-sm);">
+          <h4 style="color: #dc2626; margin-bottom: 0.75rem;">5. Zeitungen, Zeitschriften, Illustrierte</h4>
+          <p style="margin-bottom: 0;">Lieferung von Zeitungen, Zeitschriften oder Illustrierten mit Ausnahme von Abonnement-Verträgen.</p>
+        </div>
+
+        <div style="background: rgba(220, 38, 38, 0.05); padding: 1.5rem; border-left: 4px solid #dc2626; border-radius: var(--border-radius-sm);">
+          <h4 style="color: #dc2626; margin-bottom: 0.75rem;">6. Waren in versiegelter Verpackung (untrennbare Vermischung)</h4>
+          <p style="margin-bottom: 0;">Waren, die nach der Lieferung aufgrund ihrer Beschaffenheit untrennbar mit anderen Gütern vermischt wurden.</p>
+        </div>
+
+        <div style="background: rgba(220, 38, 38, 0.05); padding: 1.5rem; border-left: 4px solid #dc2626; border-radius: var(--border-radius-sm);">
+          <h4 style="color: #dc2626; margin-bottom: 0.75rem;">7. Verträge zur Erbringung von Dienstleistungen</h4>
+          <p style="margin-bottom: 0;">Wenn die Dienstleistung vollständig erbracht wurde und Sie ausdrücklich zugestimmt haben, dass mit der Ausführung vor Ende der Widerrufsfrist begonnen wird.</p>
+        </div>
+
+      </div>
+
+      <div class="info-box">
+        <p><strong>💡 Wichtig:</strong> Wenn ein Ausschlussgrund vorliegt, werden wir Sie vor dem Kauf deutlich darauf hinweisen.</p>
+      </div>
+    </section>
+
+    <!-- 7. Muster-Widerrufsformular -->
+    <section id="muster" class="legal-section">
+      <h2>7. Muster-Widerrufsformular</h2>
+      
+      <p>Sie können das folgende Formular verwenden, um Ihren Widerruf zu erklären. Dies ist jedoch nicht verpflichtend.</p>
+
+      <div class="form-template">
+        <p>An:</p>
+        <p>Projecta S.à r.l.<br>
+        Rue de l'Exemple 123<br>
+        L-1234 Luxembourg<br>
+        E-Mail: widerruf@projecta.lu<br>
+        Fax: +352 12 34 56 788</p>
+
+        <p style="margin-top: 2rem;">Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über den Kauf der folgenden Waren (*)/die Erbringung der folgenden Dienstleistung (*):</p>
+
+        <p>_________________________________________________________________</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 1.5rem;">Bestellt am (*) / erhalten am (*):</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 1.5rem;">Bestellnummer:</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 1.5rem;">Name des/der Verbraucher(s):</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 1.5rem;">Anschrift des/der Verbraucher(s):</p>
+        <p>_________________________________________________________________</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 1.5rem;">E-Mail-Adresse:</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 1.5rem;">Telefonnummer:</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 2rem;">Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier):</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 1.5rem;">Datum:</p>
+        <p>_________________________________________________________________</p>
+
+        <p style="margin-top: 2rem; font-size: 0.85rem;">(*) Unzutreffendes streichen.</p>
+      </div>
+
+      <div style="text-align: center; margin: 2rem 0;">
+        <button onclick="downloadForm()" class="download-button">📥 Formular als PDF herunterladen</button>
+        <button onclick="printForm()" class="download-button" style="background: var(--accent-primary);">🖨️ Formular ausdrucken</button>
+      </div>
+    </section>
+
+    <!-- 8. Kosten und Wertersatz -->
+    <section id="kosten" class="legal-section">
+      <h2>8. Kosten und Wertersatz</h2>
+      
+      <h3>💰 Welche Kosten müssen Sie tragen?</h3>
+      
+      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+        <thead>
+          <tr style="background: var(--gold); color: white;">
+            <th style="padding: 1rem; text-align: left;">Kostenart</th>
+            <th style="padding: 1rem; text-align: left;">Träger</th>
+            <th style="padding: 1rem; text-align: left;">Höhe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: white;">
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Rücksendung der Ware</td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);"><strong>Sie (Kunde)</strong></td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Ca. 5-15 EUR</td>
+          </tr>
+          <tr style="background: rgba(207, 161, 90, 0.05);">
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Erstattung Kaufpreis</td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);"><strong>Wir (Projecta)</strong></td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Voller Kaufpreis</td>
+          </tr>
+          <tr style="background: white;">
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Hinversand (Standardversand)</td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);"><strong>Wir (Projecta)</strong></td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Wird erstattet</td>
+          </tr>
+          <tr style="background: rgba(207, 161, 90, 0.05);">
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Expressversand (wenn gewählt)</td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);"><strong>Sie (Kunde)</strong></td>
+            <td style="padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1);">Mehrkosten nicht erstattungsfähig</td>
+          </tr>
+          <tr style="background: white;">
+            <td style="padding: 1rem;">Wertverlust bei unsachgemäßer Prüfung</td>
+            <td style="padding: 1rem;"><strong>Sie (Kunde)</strong></td>
+            <td style="padding: 1rem;">Nach Warenwert</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>⚖️ Wertersatz bei Wertverlust</h3>
+      <p>Sie haften für einen Wertverlust der Ware nur, wenn dieser durch einen Umgang mit der Ware verursacht wurde, der zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise nicht notwendig war.</p>
+
+      <h4>Beispiele für zulässige Prüfung:</h4>
+      <ul>
+        <li>✅ Kleidung anprobieren (ohne Entfernung von Etiketten)</li>
+        <li>✅ Elektronikgerät einschalten und Grundfunktionen testen</li>
+        <li>✅ Möbelstück auspacken und aufbauen (wenn zum Test erforderlich)</li>
+        <li>✅ Buch durchblättern und einige Seiten lesen</li>
+      </ul>
+
+      <h4>Beispiele für nicht zulässige Nutzung:</h4>
+      <ul>
+        <li>❌ Kleidung mit entfernten Etiketten oder getragen außerhalb</li>
+        <li>❌ Elektronikgerät über mehrere Tage intensiv genutzt</li>
+        <li>❌ Möbelstück über Wochen vollständig genutzt</li>
+        <li>❌ Buch komplett gelesen mit Gebrauchsspuren</li>
+      </ul>
+
+      <div class="warning-box">
+        <p><strong>⚠️ Achtung:</strong> Wenn Sie die Ware über das normale Maß hinaus geprüft oder genutzt haben, können wir einen angemessenen Wertersatz von der Erstattung abziehen.</p>
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section class="legal-section" style="background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(212, 179, 115, 0.1) 100%);">
+      <h2>📞 Haben Sie Fragen zum Widerrufsrecht?</h2>
+      
+      <p>Unser Kundenservice hilft Ihnen gerne weiter:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+        
+        <div style="background: white; padding: 2rem; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+          <h3 style="color: var(--gold); margin-bottom: 1rem;">📧 E-Mail</h3>
+          <p><strong>Widerruf:</strong><br>
+          <a href="mailto:widerruf@projecta.lu" style="font-size: 1.1rem;">widerruf@projecta.lu</a></p>
+          <p style="margin-top: 1rem;"><strong>Kundenservice:</strong><br>
+          <a href="mailto:service@projecta.lu" style="font-size: 1.1rem;">service@projecta.lu</a></p>
+        </div>
+
+        <div style="background: white; padding: 2rem; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+          <h3 style="color: var(--gold); margin-bottom: 1rem;">📞 Telefon</h3>
+          <p><a href="tel:+352123456789" style="font-size: 1.2rem; font-weight: 600;">+352 12 34 56 789</a></p>
+          <p style="margin-top: 1rem; color: var(--accent-secondary);">Mo-Fr: 9:00 - 18:00 Uhr<br>Sa: 10:00 - 14:00 Uhr</p>
+        </div>
+
+        <div style="background: white; padding: 2rem; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+          <h3 style="color: var(--gold); margin-bottom: 1rem;">✉️ Postanschrift</h3>
+          <p>Projecta S.à r.l.<br>
+          Widerruf & Retouren<br>
+          Rue de l'Exemple 123<br>
+          L-1234 Luxembourg</p>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: var(--border-radius-sm); border-left: 4px solid var(--gold);">
+        <p><strong>💡 Weitere Informationen:</strong></p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li><a href="agb.html">Allgemeine Geschäftsbedingungen</a></li>
+          <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
+          <li><a href="versand.html">Versand & Lieferung</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="cookie-policy.html">Cookie-Policy</a>
+        <a href="streitschlichtung.html">Streitschlichtung</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Jahr setzen
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Formular herunterladen
+    function downloadForm() {
+      alert('📥 Das PDF-Formular wird heruntergeladen...\n\nHinweis: In der Produktionsversion würde hier ein echtes PDF generiert.');
+    }
+
+    // Formular drucken
+    function printForm() {
+      const formContent = document.querySelector('.form-template').innerHTML;
+      const printWindow = window.open('', '', 'height=600,width=800');
+      printWindow.document.write('<html><head><title>Widerrufsformular</title>');
+      printWindow.document.write('<style>body{font-family:Arial,sans-serif;padding:2rem;line-height:1.8;}</style>');
+      printWindow.document.write('</head><body>');
+      printWindow.document.write('<h1>Widerrufsformular</h1>');
+      printWindow.document.write(formContent);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+
+    // Smooth Scroll für Anker-Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
