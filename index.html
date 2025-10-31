@@ -1,0 +1,2050 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projecta — Sicherheitsschmuck</title>
+  <meta name="description" content="Elegantes Sicherheitsschmuck-Armband — Standort, Alarm, Akku-Überwachung" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables - Modern Design System (Xcode/iOS optimized) */
+    :root {
+      --bg-primary: #F9F7F3;
+      --bg-secondary: #EFE8DC;
+      --accent-primary: #670F0F;
+      --accent-secondary: #666666;
+      --gold: #CFA15A;
+      --gold-light: #D4B373;
+      --white: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --shadow-medium: rgba(0, 0, 0, 0.12);
+      --shadow-dark: rgba(0, 0, 0, 0.2);
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --container-width: 1200px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-secondary: 'Playfair Display', 'Times New Roman', Georgia, serif;
+      
+      /* iOS Safe Area Support */
+      --safe-area-inset-top: env(safe-area-inset-top, 0px);
+      --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-area-inset-left: env(safe-area-inset-left, 0px);
+      --safe-area-inset-right: env(safe-area-inset-right, 0px);
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px; /* Base font size for responsive scaling */
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--accent-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* iOS specific optimizations */
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+      /* Support for safe areas on iOS */
+      padding-left: var(--safe-area-inset-left);
+      padding-right: var(--safe-area-inset-right);
+    }
+
+    /* Focus Styles */
+    *:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+      border-radius: var(--border-radius-sm);
+    }
+
+    /* Typography - Responsive scaling */
+    h1, h2, h3, .heading, .section-title {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent-primary);
+      line-height: 1.1;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      margin: 0.5rem auto 1rem;
+      border-radius: 2px;
+    }
+
+    .lead {
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      color: var(--accent-secondary);
+      line-height: 1.7;
+    }
+
+    /* Layout - Responsive containers */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+    }
+
+    .spaced {
+      padding: clamp(3rem, 8vw, 5rem) 0;
+    }
+
+    /* Header - Enhanced responsive design */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: clamp(0.8rem, 2vw, 1rem) 0;
+      box-shadow: 0 4px 24px var(--shadow-light);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+      /* iOS safe area support */
+      padding-top: calc(clamp(0.8rem, 2vw, 1rem) + var(--safe-area-inset-top));
+      padding-left: var(--safe-area-inset-left);
+      padding-right: var(--safe-area-inset-right);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .brand:hover {
+      color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .logo {
+      height: clamp(40px, 8vw, 52px);
+      margin-right: clamp(0.4rem, 1.5vw, 0.6rem);
+      transition: var(--transition);
+    }
+
+    .brand-text {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: clamp(1.2rem, 4vw, 1.75rem);
+      letter-spacing: -0.02em;
+    }
+
+    /* Hamburger Menu Button - Touch optimized for all devices */
+    .burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: clamp(40px, 8vw, 44px);
+      height: clamp(40px, 8vw, 44px);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition);
+      position: relative;
+      z-index: 1001;
+      /* Touch optimization */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .burger:hover, .burger:focus {
+      background: rgba(207, 161, 90, 0.1);
+      transform: scale(1.05);
+    }
+
+    .burger span {
+      display: block;
+      width: clamp(20px, 5vw, 24px);
+      height: 3px;
+      background: var(--accent-primary);
+      border-radius: 2px;
+      transition: var(--transition);
+      transform-origin: center;
+      margin: 2px auto;
+    }
+
+    .burger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+      background: var(--gold);
+    }
+
+    .burger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .burger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+      background: var(--gold);
+    }
+
+    /* Sidebar Menu - Enhanced responsive design */
+    .sidebar-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: clamp(280px, 80vw, 320px);
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 247, 243, 0.98) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: -8px 0 32px var(--shadow-medium);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: calc(clamp(4rem, 12vw, 6rem) + var(--safe-area-inset-top)) clamp(1rem, 4vw, 2rem) calc(clamp(1.5rem, 4vw, 2rem) + var(--safe-area-inset-bottom));
+      z-index: 999;
+      border-left: 1px solid rgba(207, 161, 90, 0.1);
+      /* iOS scroll optimization */
+      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+    }
+
+    .sidebar-menu.active {
+      right: 0;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sidebar-nav a {
+      padding: clamp(1rem, 3vw, 1.25rem) 0;
+      text-decoration: none;
+      color: var(--accent-primary);
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      font-weight: 500;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+      transition: var(--transition);
+      position: relative;
+      border-radius: var(--border-radius-sm);
+      font-family: var(--font-secondary);
+      /* iOS touch optimization */
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: rgba(207, 161, 90, 0.2);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar-nav a:hover {
+      color: var(--gold);
+      padding-left: 1.5rem;
+      background: rgba(207, 161, 90, 0.05);
+      transform: translateY(-1px);
+    }
+
+    .sidebar-nav a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .sidebar-nav a:hover::before {
+      width: 1rem;
+    }
+
+    .admin-link {
+      color: var(--gold) !important;
+      background: rgba(207, 161, 90, 0.1) !important;
+      border-radius: var(--border-radius-sm);
+      margin-top: 1rem;
+      padding: 1rem !important;
+      font-weight: 600;
+    }
+
+    .admin-link:hover {
+      background: var(--gold) !important;
+      color: var(--white) !important;
+    }
+
+    /* Menu Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Hero Section - Enhanced responsive design */
+    .hero-fullscreen {
+      height: 100vh;
+      /* Account for iOS notch/safe area */
+      height: calc(100vh - var(--safe-area-inset-top));
+      margin-top: calc(clamp(70px, 15vw, 80px) + var(--safe-area-inset-top));
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249, 247, 243, 0.7) 0%, rgba(239, 232, 220, 0.7) 100%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: clamp(1rem, 4vw, 2rem);
+      max-width: clamp(600px, 90vw, 800px);
+    }
+
+    .hero-text .heading {
+      font-size: clamp(2rem, 8vw, 4rem);
+      color: var(--accent-primary);
+      margin-bottom: clamp(1rem, 3vw, 1.5rem);
+      text-shadow: 0 4px 16px var(--shadow-light);
+    }
+
+    .hero-text .lead {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--accent-secondary);
+      margin-bottom: clamp(2rem, 5vw, 2.5rem);
+      max-width: clamp(500px, 85vw, 600px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Product Section - Enhanced responsive grid */
+    .product-reveal {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-reveal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .product-fullscreen {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 6vw, 4rem);
+      align-items: center;
+      min-height: auto;
+      padding: clamp(2rem, 6vw, 4rem) 0;
+    }
+
+    .reveal-image {
+      position: relative;
+      max-width: clamp(300px, 80vw, 500px);
+      width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 20px 60px var(--shadow-medium);
+      transition: var(--transition);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+      margin: 0 auto;
+    }
+
+    .reveal-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: var(--border-radius);
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .reveal-image:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 80px var(--shadow-dark);
+    }
+
+    .reveal-text {
+      background: rgba(255, 255, 255, 0.9);
+      padding: clamp(2rem, 6vw, 3rem);
+      border-radius: var(--border-radius);
+      box-shadow: 0 16px 48px var(--shadow-light);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.4s;
+      max-width: 100%;
+    }
+
+    .reveal-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .reveal-text h2 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      margin-bottom: clamp(1rem, 3vw, 1.5rem);
+      color: var(--accent-primary);
+    }
+
+    .reveal-text p {
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      margin-bottom: clamp(1rem, 3vw, 1.5rem);
+      line-height: 1.7;
+      color: var(--accent-secondary);
+    }
+
+    .reveal-text ul {
+      padding-left: 0;
+      margin-bottom: clamp(1.5rem, 4vw, 2rem);
+      list-style: none;
+    }
+
+    .reveal-text li {
+      margin-bottom: clamp(0.6rem, 2vw, 0.8rem);
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      color: var(--accent-secondary);
+      position: relative;
+      padding-left: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .reveal-text li::before {
+      content: attr(data-icon);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+    }
+
+    /* Video Section - Responsive video container */
+    .reveal-video {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 20px 60px var(--shadow-medium);
+      transition: var(--transition);
+      aspect-ratio: 3 / 5;
+      max-width: clamp(280px, 70vw, 360px);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .reveal-video:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 80px var(--shadow-dark);
+    }
+
+    .reveal-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Buttons - Enhanced responsive design */
+    .btn {
+      display: inline-block;
+      padding: clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+      border-radius: var(--border-radius-sm);
+      border: none;
+      cursor: pointer;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      /* iOS touch optimization */
+      min-height: 44px;
+      min-width: 44px;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(207, 161, 90, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(207, 161, 90, 0.4);
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* Footer - Responsive design */
+    .site-footer {
+      background: var(--accent-primary);
+      color: var(--white);
+      padding: clamp(2rem, 6vw, 3rem) 0;
+      margin-top: clamp(3rem, 8vw, 5rem);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: clamp(1rem, 3vw, 2rem);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: clamp(1rem, 3vw, 2rem);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Cookie Banner - Enhanced responsive design */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(207, 161, 90, 0.2);
+      padding: clamp(1rem, 3vw, 1.5rem);
+      /* iOS safe area support */
+      padding-bottom: calc(clamp(1rem, 3vw, 1.5rem) + var(--safe-area-inset-bottom));
+      padding-left: calc(clamp(1rem, 3vw, 1.5rem) + var(--safe-area-inset-left));
+      padding-right: calc(clamp(1rem, 3vw, 1.5rem) + var(--safe-area-inset-right));
+      box-shadow: 0 -8px 32px var(--shadow-light);
+      z-index: 1000;
+      display: none;
+    }
+
+    .cookie-banner.show {
+      display: block;
+    }
+
+    .cookie-content {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.8rem, 2vw, 1rem);
+      color: var(--accent-primary);
+    }
+
+    .cookie-content p {
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      margin: 0;
+      text-align: center;
+    }
+
+    .cookie-buttons {
+      display: flex;
+      gap: clamp(0.8rem, 2vw, 1rem);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--accent-primary);
+      border: 1px solid rgba(207, 161, 90, 0.2);
+      padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+      cursor: pointer;
+      border-radius: var(--border-radius-sm);
+      font-weight: 500;
+      transition: var(--transition);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Large Desktop Screens (1200px and above) */
+    @media (min-width: 1200px) {
+      .product-fullscreen {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        min-height: 80vh;
+      }
+      
+      .reveal-image {
+        justify-self: end;
+      }
+      
+      .reveal-text {
+        justify-self: start;
+      }
+
+      .product-fullscreen.reverse {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .product-fullscreen.reverse .reveal-image {
+        justify-self: start;
+        order: 2;
+      }
+      
+      .product-fullscreen.reverse .reveal-text {
+        justify-self: end;
+        order: 1;
+      }
+      
+      .footer-inner {
+        text-align: left;
+      }
+    }
+
+    /* Desktop Screens (992px to 1199px) */
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .product-fullscreen {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .product-fullscreen.reverse {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .product-fullscreen.reverse .reveal-image {
+        order: 2;
+      }
+      
+      .product-fullscreen.reverse .reveal-text {
+        order: 1;
+      }
+    }
+
+    /* Tablet Landscape (768px to 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .product-fullscreen {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+      
+      .sidebar-menu {
+        width: 350px;
+        right: -350px;
+      }
+    }
+
+    /* Tablet Portrait and Mobile Landscape (481px to 767px) */
+    @media (min-width: 481px) and (max-width: 767px) {
+      .product-fullscreen {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+      
+      .sidebar-menu {
+        width: 300px;
+        right: -300px;
+      }
+      
+      .hero-fullscreen {
+        margin-top: calc(70px + var(--safe-area-inset-top));
+      }
+    }
+
+    /* Mobile Portrait (up to 480px) */
+    @media (max-width: 480px) {
+      .sidebar-menu {
+        width: 100vw;
+        right: -100vw;
+      }
+
+      .brand-text {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+      }
+      
+      .burger {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .product-fullscreen {
+        text-align: center;
+      }
+      
+      .cookie-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Very small screens (up to 320px) */
+    @media (max-width: 320px) {
+      .container {
+        padding: 0 0.8rem;
+      }
+      
+      .hero-content {
+        padding: 1rem;
+      }
+    }
+
+    /* iPhone X and newer - notch support */
+    @supports (padding: max(0px)) {
+      .site-header {
+        padding-top: max(clamp(0.8rem, 2vw, 1rem), env(safe-area-inset-top));
+      }
+      
+      .hero-fullscreen {
+        margin-top: max(clamp(70px, 15vw, 80px), calc(clamp(70px, 15vw, 80px) + env(safe-area-inset-top)));
+      }
+      
+      .sidebar-menu {
+        padding-top: max(clamp(4rem, 12vw, 6rem), calc(clamp(4rem, 12vw, 6rem) + env(safe-area-inset-top)));
+        padding-bottom: max(clamp(1.5rem, 4vw, 2rem), calc(clamp(1.5rem, 4vw, 2rem) + env(safe-area-inset-bottom)));
+      }
+      
+      .cookie-banner {
+        padding-bottom: max(clamp(1rem, 3vw, 1.5rem), calc(clamp(1rem, 3vw, 1.5rem) + env(safe-area-inset-bottom)));
+      }
+    }
+
+    /* High DPI/Retina displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .reveal-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+    }
+
+    /* Landscape orientation on mobile */
+    @media (orientation: landscape) and (max-height: 600px) {
+      .hero-fullscreen {
+        height: 100vh;
+        min-height: 500px;
+      }
+      
+      .hero-text .heading {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+      }
+      
+      .spaced {
+        padding: clamp(2rem, 5vw, 3rem) 0;
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      .site-header,
+      .burger,
+      .sidebar-menu,
+      .menu-overlay,
+      .cookie-banner {
+        display: none !important;
+      }
+      
+      .hero-fullscreen {
+        margin-top: 0;
+        height: auto;
+        page-break-inside: avoid;
+      }
+      
+      body {
+        background: white !important;
+        color: white !important;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* High contrast mode */
+    @media (prefers-contrast: high) {
+      :root {
+        --shadow-light: rgba(0, 0, 0, 0.3);
+        --shadow-medium: rgba(0, 0, 0, 0.5);
+        --shadow-dark: rgba(0, 0, 0, 0.7);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Zur Startseite">
+        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
+        <span class="brand-text">Projecta</span>
+      </a>
+
+      <button id="burger" class="burger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar Menu -->
+  <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+  <nav id="sidebar-menu" class="sidebar-menu" role="navigation" aria-label="Hauptnavigation">
+    <div class="sidebar-nav">
+      <a href="index.html">Home</a>
+      <a href="produkt-uebersicht.html">Produkt</a>
+      <a href="cart.html">Warenkorb</a>
+      <a href="about.html">Über Uns</a>
+      <a href="contact.html">Kontakt</a>
+      <a href="product-future.html">Zukünftige Produkte</a>
+      <a href="admin.html" class="admin-link">Admin</a>
+      <a href="login.html">Anmelden</a>
+      <a href="register.html">Registrieren</a>
+      
+    </div>
+  </nav>
+
+  <!-- Hauptinhalt -->
+  <main>
+
+    <!-- Hero-Bereich -->
+    <section class="hero hero-fullscreen" id="hero" role="region" aria-label="Einführung">
+      <div class="hero-bg" style="background-image:url('images/hero.jpg')" data-parallax></div>
+      <div class="hero-content container">
+        <div class="hero-text">
+          <h1 class="heading">Sicherheit, die du gerne trägst.</h1>
+          <p class="lead">Diskretes Armband mit Standortfunktion, Alarm & Akku-Benachrichtigung — entwickelt für Eltern & junge Menschen.</p>
+          <p><a href="product.html" class="btn btn-primary">Jetzt entdecken</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produktabschnitt: Projecta Premium -->
+    <section class="product-reveal container spaced" id="product-reveal" role="region" aria-label="Produktvorschau">
+      <div class="product-fullscreen">
+        <img src="images/produkt1.png" alt="Projecta Premium Armband" class="reveal-image">
+        <div class="reveal-text">
+          <h2>Safty-Band</h2>
+          <p>Das Safty-Band vereint stilvolles Design mit intelligenter Sicherheitstechnologie. Es wurde speziell für Menschen entwickelt, die sich diskret schützen möchten, ohne auf Ästhetik zu verzichten.</p>
+          <ul>
+            <li data-icon="🔒">Das Safty-Band bietet ihnen wieder ihre Sicherheit im alltag es ist nicht nur ein Elegantes schmuckstück es beschützt sie zu dem auch noch </li>
+            <li data-icon="📍">Mit der GPS ordung können sie zu jeder zeitihren Standort an ihren zuvor ausgewählten notfallkontakt senden. Durch das eingebaute E-sim modul ist eine verbindung zum Smartphone nicht nötig.</li>
+            <li data-icon="🔋">Den Akkustand des Armbandes können sie ganz einfach über usere App überwachen. Falls ihr Armband fast leer oder wieder Voll geladen ist bekommen sie eine Push-benarichtigung über ihr Smartphone.</li>
+            <li data-icon="🎨">Ihr Armband ist eben so Personalisierbar. Sie können die Form/Farbe der glasdiamanten wählen. Sie können die farbe des Armbandes wählen und sie können sich etwas auf das Armband hinauf Gravieren.</li>
+          </ul>
+          <p>Ob im Alltag, auf Reisen oder beim Sport – das Projecta Armband bietet ein beruhigendes Gefühl von Sicherheit, das man gerne trägt.</p>
+          <a href="product.html" class="btn btn-primary">Mehr erfahren</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zukünftige Produkte: Projecta Classic -->
+    <section class="product-reveal container spaced" id="future-products" role="region" aria-label="Zukünftige Produkte">
+      <div class="product-fullscreen reverse">
+        <!-- Text links -->
+        <div class="reveal-text">
+          <h2>App</h2>
+          <p>Die App hat ihre funktionalität dadrin dassman auf der App den Notfallkontakt erstellen kann so dass das Armband problemlos funktioniert.</p>
+          <ul>
+            <li data-icon="🔔">Notfallkontakt erstellen sodass sie sich wieder sicherfühlen können</li>
+            <li data-icon="📍">Sobald sie amArmband den Knop betätigt haben kann ihr Notfallkontakt ihren standort ebenfallsin der App sehen dort wird ihr Live-Standort angezeigt.</li>
+            <li data-icon="🔋">Die Appüberwacht zur jederzeit denakkustand des Armbandes falls dass Armband fast leer ist bekommt man eine benarichtigung aufdas Smartphone oder wenn das Armband wieder voll geladen ist bekommt man ebenfalls eine Benarichtigun.</li>
+            <li data-icon="🎨">Man kann ebenfalls bei der App einstellen wann man die benarichtigung bekommen möchte wenn das Armband fast leer ist. Eben so haben wir die Funktion eingebaut dass wenn die nutzer eine verbesserungs idee haben können sie uns ganz einfach über ein Formular ihre ideee schreiben und siesofort an uns senden.</li>
+          </ul>
+          <p>Eine zuverlässige App für ihre Projecta Produkte.</p>
+          <a href="product.html" class="btn btn-primary">Mehr erfahren</a>
+        </div>
+
+        <!-- Video rechts -->
+        <div class="reveal-video">
+          <video autoplay muted loop playsinline>
+            <source src="videos/App.mp4" type="video/mp4">
+            Dein Browser unterstützt das Video-Tag nicht.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zusätzlicher Produktabschnitt: Bild und Text -->
+    <section class="product-reveal container spaced" id="additional-product" role="region" aria-label="Zusätzliches Produkt">
+      <div class="product-fullscreen">
+        <img src="images/kette.png" alt="Projecta Classic Armband Produktbild" class="reveal-image">
+        <div class="reveal-text">
+          <h2>safty-Necklace</h2>
+          <p>Das Safty-Necklace ist eine Elegante halskette die eben falls die sicherheits funktionen enthält. Jedoch muss die Kette mit der App verbunden seinumsie Richtig nutzenzu können.</p>
+          <ul>
+            <li data-icon="💧">Noch nicht bekannt</li>
+            <li data-icon="⚡">Der Akkustand kann zur jeder zeit über die App überwacht werden. Wenn dernAkkustand ihre halskette zu niedrig ist wird eine automatiche benarichtigung an ihr Smartphone gesendet so dass sie die sofort laden können.</li>
+            <li data-icon="🔄">Auf der rückseite der Halskette ist der Knopf verbaut bei einmal betätigen des Knopfes wird ihr Standort an ihren Notfallkontakt gesendet.Bei einem doppel Klick wird der Arlarm der halskette abgespielt so dass sie die aufmerksamkeit auf sich richten können. Beim gedrückt halten des knopfes wird der Alarm wieder gestopt. </li>
+            <li data-icon="🛡️">Hier können sie ebenfalls ihr Produkt personalisieren auf die vorder seite der Halskette können sie etwas hinaufgravieren ob Bild oder Text.</li>
+          </ul>
+          <p>Vertrauen Sie auf bewährte Technologie und zeitloses Design – für Menschen jeden Alters geeignet.</p>
+          <a href="Necklace.html" class="btn btn-primary">Jetzt bestellen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Ersetze deinen aktuellen Footer-Bereich durch diesen kompletten Footer -->
+
+    <!-- Footer mit vollständigen rechtlichen Angaben -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        
+        <!-- Hauptbereich Footer mit 4 Spalten -->
+        <div class="footer-main">
+          
+          <!-- Spalte 1: Über Projecta -->
+          <div class="footer-column">
+            <h3>Projecta</h3>
+            <p>Sicherheit, die du gerne trägst. Diskreter Schmuck mit intelligenter Schutztechnologie für mehr Sicherheit im Alltag.</p>
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook"><svg width="24" height="24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg width="24" height="24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a>
+              <a href="#" aria-label="Twitter"><svg width="24" height="24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+              <a href="#" aria-label="LinkedIn"><svg width="24" height="24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            </div>
+          </div>
+          
+          <!-- Spalte 2: Navigation -->
+          <div class="footer-column">
+            <h3>Navigation</h3>
+            <ul class="footer-list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="produkt-uebersicht.html">Alle Produkte</a></li>
+              <li><a href="product.html">Safety-Band</a></li>
+              <li><a href="necklace.html">Safety-Necklace</a></li>
+              <li><a href="product-future.html">Zukünftige Produkte</a></li>
+              <li><a href="cart.html">Warenkorb</a></li>
+            </ul>
+          </div>
+          
+          <!-- Spalte 3: Informationen -->
+          <div class="footer-column">
+            <h3>Informationen</h3>
+            <ul class="footer-list">
+              <li><a href="about.html">Über Uns</a></li>
+              <li><a href="contact.html">Kontakt</a></li>
+              <li><a href="faq.html">FAQ / Häufige Fragen</a></li>
+              <li><a href="versand.html">Versand & Lieferung</a></li>
+              <li><a href="zahlung.html">Zahlungsarten</a></li>
+              <li><a href="garantie.html">Garantie & Service</a></li>
+            </ul>
+          </div>
+          
+          <!-- Spalte 4: Kontakt -->
+          <div class="footer-column">
+            <h3>Kontakt</h3>
+            <ul class="footer-list footer-contact">
+              <li>
+                <span class="footer-icon">📧</span>
+                <a href="mailto:info@projecta.lu">info@projecta.lu</a>
+              </li>
+              <li>
+                <span class="footer-icon">📧</span>
+                <a href="mailto:support@projecta.lu">support@projecta.lu</a>
+              </li>
+              <li>
+                <span class="footer-icon">📞</span>
+                <a href="tel:+352123456789">+352 12 34 56 789</a>
+              </li>
+              <li>
+                <span class="footer-icon">📍</span>
+                <span>Projecta S.à r.l.<br>
+                Rue Exemple 123<br>
+                L-1234 Luxembourg</span>
+              </li>
+              <li>
+                <span class="footer-icon">🕐</span>
+                <span>Mo-Fr: 09:00 - 18:00 Uhr<br>
+                Sa: 10:00 - 14:00 Uhr</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Trennlinie -->
+        <div class="footer-divider"></div>
+        
+        <!-- Rechtliche Pflichtangaben -->
+        <div class="footer-legal">
+          <h4 class="footer-legal-title">Rechtliche Informationen</h4>
+          <div class="footer-legal-grid">
+            <a href="impressum.html">
+              <strong>⚖️ Impressum</strong>
+              <span>Anbieterkennzeichnung</span>
+            </a>
+            <a href="datenschutz.html">
+              <strong>🔒 Datenschutzerklärung</strong>
+              <span>DSGVO-Informationen</span>
+            </a>
+            <a href="agb.html">
+              <strong>📋 AGB</strong>
+              <span>Allgemeine Geschäftsbedingungen</span>
+            </a>
+            <a href="widerruf.html">
+              <strong>↩️ Widerrufsbelehrung</strong>
+              <span>Widerrufsrecht & Muster</span>
+            </a>
+            <a href="versand-bedingungen.html">
+              <strong>📦 Versandbedingungen</strong>
+              <span>Lieferung & Kosten</span>
+            </a>
+            <a href="zahlung-sicherheit.html">
+              <strong>💳 Zahlung & Sicherheit</strong>
+              <span>Zahlungsarten & SSL</span>
+            </a>
+            <a href="cookie-policy.html">
+              <strong>🍪 Cookie-Richtlinie</strong>
+              <span>Cookie-Verwendung</span>
+            </a>
+            <a href="streitschlichtung.html">
+              <strong>⚔️ Streitschlichtung</strong>
+              <span>OS-Plattform & Verfahren</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Zusätzliche Links (einzeilig) -->
+        <div class="footer-legal-links">
+          <a href="impressum.html">Impressum</a>
+          <span class="separator">•</span>
+          <a href="datenschutz.html">Datenschutz</a>
+          <span class="separator">•</span>
+          <a href="agb.html">AGB</a>
+          <span class="separator">•</span>
+          <a href="widerruf.html">Widerruf</a>
+          <span class="separator">•</span>
+          <a href="cookie-policy.html">Cookies</a>
+          <span class="separator">•</span>
+          <a href="streitschlichtung.html">Streitschlichtung</a>
+          <span class="separator">•</span>
+          <a href="barrierefreiheit.html">Barrierefreiheit</a>
+          <span class="separator">•</span>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+        
+        <!-- Zahlungsarten & Sicherheit -->
+        <div class="footer-payment">
+          <div class="footer-payment-title">Sichere Zahlungsarten:</div>
+          <div class="footer-payment-icons">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23333' font-size='12' font-weight='600'%3EVisa%3C/text%3E%3C/svg%3E" alt="Visa" title="Visa">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ccircle cx='22' cy='20' r='10' fill='%23eb001b'/%3E%3Ccircle cx='38' cy='20' r='10' fill='%23f79e1b'/%3E%3C/svg%3E" alt="Mastercard" title="Mastercard">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23003087' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='10' font-weight='700'%3EPayPal%3C/text%3E%3C/svg%3E" alt="PayPal" title="PayPal">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23333' font-size='9' font-weight='600'%3EKlarna%3C/text%3E%3C/svg%3E" alt="Klarna" title="Klarna">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23333' font-size='8' font-weight='600'%3ESEPA%3C/text%3E%3C/svg%3E" alt="SEPA" title="SEPA Lastschrift">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%2300a862' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='11' font-weight='700'%3ESSL%3C/text%3E%3C/svg%3E" alt="SSL Verschlüsselt" title="SSL Verschlüsselt">
+          </div>
+        </div>
+        
+        <!-- Copyright & Hinweise -->
+        <div class="footer-copyright">
+          <div class="footer-copyright-text">
+            <p><strong>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</strong></p>
+            <p class="footer-small-text">
+              Alle Preise inkl. gesetzlicher MwSt. zzgl. <a href="versand.html">Versandkosten</a> •
+              Lieferung innerhalb Luxemburgs und EU •
+              Änderungen und Irrtümer vorbehalten •
+              Bildmaterial dient zur Illustration
+            </p>
+          </div>
+          
+          <!-- Gütesiegel & Zertifikate -->
+          <div class="footer-certificates">
+            <div class="footer-certificate">
+              <strong>✓ Geprüfte Sicherheit</strong>
+              <span>SSL-Verschlüsselung</span>
+            </div>
+            <div class="footer-certificate">
+              <strong>✓ Käuferschutz</strong>
+              <span>Trusted Shop</span>
+            </div>
+            <div class="footer-certificate">
+              <strong>✓ DSGVO-konform</strong>
+              <span>Datenschutz</span>
+            </div>
+            <div class="footer-certificate">
+              <strong>✓ Made in EU</strong>
+              <span>Qualitätsstandard</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rechtliche Hinweise Text -->
+        <div class="footer-legal-notice">
+          <p><strong>Hinweis zur Streitschlichtung:</strong> Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+          <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.
+          Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+          
+          <p><strong>Verbraucherinformation:</strong> Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+          
+          <p class="footer-vat-notice">
+            <strong>Umsatzsteuer-Identifikationsnummer:</strong> LU12345678 (Beispiel) •
+            <strong>Handelsregister:</strong> Luxembourg B123456 •
+            <strong>Geschäftsführer:</strong> Max Mustermann
+          </p>
+        </div>
+        
+      </div>
+    </footer>
+
+    <style>
+      /* ============================================
+         FOOTER HAUPTSTYLES
+         ============================================ */
+      .site-footer {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        color: var(--white);
+        padding: clamp(3rem, 8vw, 5rem) 0 clamp(1.5rem, 4vw, 2rem);
+        margin-top: clamp(3rem, 8vw, 5rem);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .site-footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      }
+
+      /* ============================================
+         FOOTER HAUPTBEREICH (4 Spalten)
+         ============================================ */
+      .footer-main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: clamp(2rem, 5vw, 3rem);
+        margin-bottom: clamp(2.5rem, 6vw, 4rem);
+        padding-bottom: clamp(2rem, 5vw, 3rem);
+      }
+
+      .footer-column h3 {
+        font-family: var(--font-secondary);
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        margin-bottom: 1.25rem;
+        color: var(--gold);
+        font-weight: 600;
+        position: relative;
+        padding-bottom: 0.75rem;
+      }
+
+      .footer-column h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), transparent);
+      }
+
+      .footer-column p {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1.5rem;
+      }
+
+      /* ============================================
+         FOOTER LISTE
+         ============================================ */
+      .footer-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-list li {
+        margin-bottom: 0.85rem;
+        transition: var(--transition);
+      }
+
+      .footer-list a {
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+        transition: var(--transition);
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        display: inline-block;
+        position: relative;
+      }
+
+      .footer-list a::before {
+        content: '›';
+        position: absolute;
+        left: -15px;
+        opacity: 0;
+        transition: var(--transition);
+        color: var(--gold);
+      }
+
+      .footer-list a:hover {
+        color: var(--gold);
+        transform: translateX(5px);
+      }
+
+      .footer-list a:hover::before {
+        opacity: 1;
+        left: -20px;
+      }
+
+      /* ============================================
+         KONTAKT LISTE MIT ICONS
+         ============================================ */
+      .footer-contact li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-icon {
+        font-size: 1.2rem;
+        min-width: 24px;
+        flex-shrink: 0;
+      }
+
+      /* ============================================
+         SOCIAL MEDIA ICONS
+         ============================================ */
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .footer-social a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.8);
+        transition: var(--transition);
+      }
+
+      .footer-social a:hover {
+        background: var(--gold);
+        color: var(--white);
+        transform: translateY(-3px);
+      }
+
+      /* ============================================
+         TRENNLINIE
+         ============================================ */
+      .footer-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        margin: clamp(2rem, 5vw, 3rem) 0;
+      }
+
+      /* ============================================
+         RECHTLICHE LINKS GRID
+         ============================================ */
+      .footer-legal {
+        margin-bottom: clamp(2rem, 5vw, 3rem);
+      }
+
+      .footer-legal-title {
+        font-family: var(--font-secondary);
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        color: var(--gold);
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 700;
+      }
+
+      .footer-legal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-legal-grid a {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: var(--border-radius-sm);
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.9);
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-legal-grid a strong {
+        font-size: clamp(0.95rem, 2vw, 1.05rem);
+        color: var(--white);
+        display: block;
+      }
+
+      .footer-legal-grid a span {
+        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .footer-legal-grid a:hover {
+        background: rgba(207, 161, 90, 0.1);
+        border-color: var(--gold);
+        transform: translateY(-3px);
+      }
+
+      /* ============================================
+         RECHTLICHE LINKS (EINZEILIG)
+         ============================================ */
+      .footer-legal-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: clamp(0.5rem, 2vw, 1rem);
+        margin-bottom: 2rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-legal-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: var(--transition);
+        font-size: clamp(0.85rem, 2vw, 0.95rem);
+        font-weight: 500;
+      }
+
+      .footer-legal-links a:hover {
+        color: var(--gold);
+        text-decoration: underline;
+      }
+
+      .footer-legal-links .separator {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: clamp(0.85rem, 2vw, 0.95rem);
+      }
+
+      /* ============================================
+         ZAHLUNGSARTEN
+         ============================================ */
+      .footer-payment {
+        text-align: center;
+        margin: 2.5rem 0;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: var(--border-radius);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .footer-payment-title {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-payment-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-payment-icons img {
+        height: 40px;
+        width: auto;
+        filter: brightness(0.95);
+        transition: var(--transition);
+        border-radius: 4px;
+      }
+
+      .footer-payment-icons img:hover {
+        filter: brightness(1.1);
+        transform: scale(1.05);
+      }
+
+      /* ============================================
+         ZERTIFIKATE & GÜTESIEGEL
+         ============================================ */
+      .footer-certificates {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .footer-certificate {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--border-radius-sm);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: var(--transition);
+      }
+
+      .footer-certificate:hover {
+        background: rgba(207, 161, 90, 0.1);
+        border-color: var(--gold);
+        transform: translateY(-2px);
+      }
+
+      .footer-certificate strong {
+        display: block;
+        font-size: clamp(0.85rem, 2vw, 0.95rem);
+        color: var(--gold);
+        margin-bottom: 0.25rem;
+      }
+
+      .footer-certificate span {
+        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* ============================================
+         COPYRIGHT BEREICH
+         ============================================ */
+      .footer-copyright {
+        text-align: center;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-copyright-text p {
+        margin: 0.75rem 0;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .footer-copyright-text strong {
+        color: var(--white);
+      }
+
+      .footer-small-text {
+        font-size: clamp(0.8rem, 1.8vw, 0.9rem) !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+        line-height: 1.6;
+      }
+
+      .footer-small-text a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: underline;
+        transition: var(--transition);
+      }
+
+      .footer-small-text a:hover {
+        color: var(--gold);
+      }
+
+      /* ============================================
+         RECHTLICHE HINWEISE
+         ============================================ */
+      .footer-legal-notice {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        margin-top: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .footer-legal-notice p {
+        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 1rem;
+      }
+
+      .footer-legal-notice p:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer-legal-notice strong {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      .footer-legal-notice a {
+        color: var(--gold-light);
+        text-decoration: underline;
+        transition: var(--transition);
+      }
+
+      .footer-legal-notice a:hover {
+        color: var(--gold);
+      }
+
+      .footer-vat-notice {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: clamp(0.75rem, 1.6vw, 0.85rem) !important;
+      }
+
+      /* ============================================
+         RESPONSIVE DESIGN
+         ============================================ */
+      
+      /* Tablets */
+      @media (max-width: 992px) {
+        .footer-main {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-legal-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .footer-main {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-column h3::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .footer-list a:hover {
+          transform: none;
+        }
+
+        .footer-list a::before {
+          display: none;
+        }
+
+        .footer-contact li {
+          justify-content: center;
+          text-align: left;
+        }
+
+        .footer-social {
+          justify-content: center;
+        }
+
+        .footer-legal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-legal-links {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .footer-legal-links .separator {
+          display: none;
+        }
+
+        .footer-certificates {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-payment-icons {
+          gap: 0.75rem;
+        }
+
+        .footer-payment-icons img {
+          height: 35px;
+        }
+      }
+
+      /* Small Mobile */
+      @media (max-width: 480px) {
+        .site-footer {
+          padding: 2rem 0 1rem;
+        }
+
+        .footer-main {
+          gap: 2rem;
+          padding-bottom: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+          font-size: 1.1rem;
+        }
+
+        .footer-legal-notice {
+          padding: 1.5rem;
+        }
+
+        .footer-certificates {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============================================
+         PRINT STYLES
+         ============================================ */
+      @media print {
+        .site-footer {
+          background: white;
+          color: black;
+          border-top: 2px solid black;
+          page-break-inside: avoid;
+        }
+
+        .footer-social,
+        .footer-payment-icons,
+        .cookie-banner {
+          display: none;
+        }
+
+        .footer-legal-links a,
+        .footer-list a,
+        .footer-copyright-text a {
+          color: black;
+          text-decoration: underline;
+        }
+      }
+
+      /* ============================================
+         ACCESSIBILITY
+         ============================================ */
+      @media (prefers-reduced-motion: reduce) {
+        .footer-list a,
+        .footer-social a,
+        .footer-legal-grid a,
+        .footer-certificate {
+          transition: none !important;
+        }
+      }
+
+      /* High Contrast Mode */
+      @media (prefers-contrast: high) {
+        .site-footer {
+          border-top: 3px solid var(--gold);
+        }
+
+        .footer-legal-grid a,
+        .footer-certificate {
+          border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+      }
+
+      /* Dark Mode Support (optional) */
+      @media (prefers-color-scheme: light) {
+        .site-footer {
+          background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+          color: var(--accent-primary);
+        }
+
+        .footer-column h3,
+        .footer-legal-title {
+          color: var(--gold);
+        }
+
+        .footer-list a,
+        .footer-copyright-text {
+          color: var(--accent-secondary);
+        }
+      }
+    </style>
+
+    <script>
+      // Jahr automatisch aktualisieren
+      document.addEventListener('DOMContentLoaded', function() {
+        const yearElement = document.getElementById('year');
+        if (yearElement) {
+          yearElement.textContent = new Date().getFullYear();
+        }
+
+        // Smooth scroll für Footer-Links
+        const footerLinks = document.querySelectorAll('.footer-list a, .footer-legal-links a');
+        footerLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            // Nur für Anker-Links
+            if (this.getAttribute('href').startsWith('#')) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute('href'));
+              if (target) {
+                target.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+
+  <!-- Cookie-Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen">
+    <div class="cookie-content">
+      <p>Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern. Sie können wählen, ob Sie alle Cookies akzeptieren oder nur notwendige zulassen.</p>
+      <div class="cookie-buttons">
+        <button id="accept-cookies" class="btn btn-primary">Alle akzeptieren</button>
+        <button id="reject-cookies" class="btn btn-outline">Nur notwendige</button>
+        <button id="customize-cookies" class="btn btn-secondary">Einstellungen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Warten bis DOM geladen ist
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Dynamisches Jahr im Footer
+      const yearElement = document.getElementById("year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+
+      // Menu Toggle Funktionalität
+      const burger = document.getElementById('burger');
+      const sidebarMenu = document.getElementById('sidebar-menu');
+      const menuOverlay = document.getElementById('menu-overlay');
+      
+      // Prüfen ob alle Elemente vorhanden sind
+      if (!burger || !sidebarMenu || !menuOverlay) {
+        console.error('Menu elements not found');
+        return;
+      }
+
+      function toggleMenu() {
+        const isOpen = sidebarMenu.classList.contains('active');
+        
+        burger.classList.toggle('active');
+        sidebarMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        
+        // Update ARIA attributes
+        burger.setAttribute('aria-expanded', !isOpen);
+        menuOverlay.setAttribute('aria-hidden', isOpen);
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+      }
+
+      function closeMenu() {
+        burger.classList.remove('active');
+        sidebarMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        
+        // Reset ARIA attributes
+        burger.setAttribute('aria-expanded', 'false');
+        menuOverlay.setAttribute('aria-hidden', 'true');
+        
+        // Restore body scroll
+        document.body.style.overflow = '';
+      }
+
+      // Event Listeners
+      burger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      menuOverlay.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeMenu();
+      });
+
+      // Close menu when clicking on a link
+      const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          closeMenu();
+        });
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidebarMenu.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+
+      // Cookie Banner Logic
+      const cookieBanner = document.getElementById('cookie-banner');
+      const acceptCookies = document.getElementById('accept-cookies');
+      const rejectCookies = document.getElementById('reject-cookies');
+      const customizeCookies = document.getElementById('customize-cookies');
+
+      if (cookieBanner && acceptCookies && rejectCookies && customizeCookies) {
+        // Show cookie banner (using in-memory storage for demo)
+        let cookiesAccepted = false;
+        if (!cookiesAccepted) {
+          setTimeout(() => {
+            cookieBanner.classList.add('show');
+          }, 2000);
+        }
+
+        acceptCookies.addEventListener('click', function() {
+          cookiesAccepted = true;
+          cookieBanner.classList.remove('show');
+        });
+
+        rejectCookies.addEventListener('click', function() {
+          cookiesAccepted = true;
+          cookieBanner.classList.remove('show');
+        });
+
+        customizeCookies.addEventListener('click', function() {
+          alert('Cookie-Einstellungen werden in einem separaten Modal geöffnet.');
+        });
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            closeMenu(); // Close menu before scrolling
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Parallax effect for hero background (iOS optimized)
+      let ticking = false;
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const parallaxElement = document.querySelector('[data-parallax]');
+        if (parallaxElement) {
+          const speed = 0.3;
+          parallaxElement.style.transform = `translateY(${scrolled * speed}px)`;
+        }
+        ticking = false;
+      }
+
+      function requestParallaxUpdate() {
+        if (!ticking && !window.DeviceMotionEvent) { // Disable on mobile for performance
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+
+      // Only enable parallax on non-touch devices
+      if (!('ontouchstart' in window)) {
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+      }
+
+      // Add loading animation for images
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        img.addEventListener('load', () => {
+          img.style.opacity = '1';
+        });
+        if (!img.complete) {
+          img.style.opacity = '0';
+          img.style.transition = 'opacity 0.3s ease';
+        }
+      });
+
+      // Responsive video handling
+      function handleVideoPlayback() {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+          // Pause videos on small screens to save bandwidth
+          if (window.innerWidth < 768) {
+            video.pause();
+          } else {
+            video.play();
+          }
+        });
+      }
+
+      // Initial call and resize listener
+      handleVideoPlayback();
+      window.addEventListener('resize', handleVideoPlayback, { passive: true });
+
+      // Intersection Observer for animations
+      if ('IntersectionObserver' in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -100px 0px',
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+            }
+          });
+        }, observerOptions);
+
+        // Observe elements with animations
+        const animatedElements = document.querySelectorAll('.reveal-image, .reveal-text');
+        animatedElements.forEach(el => {
+          el.style.animationPlayState = 'paused';
+          observer.observe(el);
+        });
+      }
+
+      // Handle orientation changes
+      window.addEventListener('orientationchange', function() {
+        // Close menu on orientation change
+        closeMenu();
+        
+        // Recalculate heights after orientation change
+        setTimeout(() => {
+          const heroElement = document.querySelector('.hero-fullscreen');
+          if (heroElement) {
+            heroElement.style.height = window.innerHeight + 'px';
+          }
+        }, 500);
+      });
+
+      // Performance optimization: Debounce resize events
+      let resizeTimeout;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          // Trigger any necessary recalculations here
+          handleVideoPlayback();
+        }, 250);
+      }, { passive: true });
+
+    });
+  </script>
+</body>
+</html>
