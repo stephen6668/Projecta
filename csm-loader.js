@@ -13,9 +13,9 @@
   
   const APPWRITE_CONFIG = {
     endpoint: 'https://cloud.appwrite.io/v1',
-    projectId: 'IHR_PROJECT_ID',        // ← ÄNDERN SIE DIES!
-    databaseId: 'IHR_DATABASE_ID',      // ← ÄNDERN SIE DIES!
-    tableId: 'IHR_TABLE_ID'             // ← ÄNDERN SIE DIES!
+    projectId: '68ee68b300144140da1c',        // ← ÄNDERN SIE DIES!
+    databaseId: '68ee68c2001481512a67',      // ← ÄNDERN SIE DIES!
+    tableId: '8425229r23i32'             // ← ÄNDERN SIE DIES!
   };
 
   // Debug-Modus (auf false setzen für Produktion)
