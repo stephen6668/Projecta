@@ -621,11 +621,9 @@
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       
-
       <!-- Hauptbereich Footer mit 4 Spalten -->
       <div class="footer-main">
         
-
         <!-- Spalte 1: Über Projecta -->
         <div class="footer-column">
           <h3>Projecta</h3>
@@ -638,7 +636,6 @@
           </div>
         </div>
         
-
         <!-- Spalte 2: Navigation -->
         <div class="footer-column">
           <h3>Navigation</h3>
@@ -652,7 +649,6 @@
           </ul>
         </div>
         
-
         <!-- Spalte 3: Informationen -->
         <div class="footer-column">
           <h3>Informationen</h3>
@@ -666,7 +662,6 @@
           </ul>
         </div>
         
-
         <!-- Spalte 4: Kontakt -->
         <div class="footer-column">
           <h3>Kontakt</h3>
@@ -698,11 +693,9 @@
         </div>
       </div>
       
-
       <!-- Trennlinie -->
       <div class="footer-divider"></div>
       
-
       <!-- Rechtliche Pflichtangaben -->
       <div class="footer-legal">
         <h4 class="footer-legal-title">Rechtliche Informationen</h4>
@@ -742,7 +735,6 @@
         </div>
       </div>
       
-
       <!-- Zusätzliche Links (einzeilig) -->
       <div class="footer-legal-links">
         <a href="impressum.html">Impressum</a>
@@ -762,7 +754,6 @@
         <a href="sitemap.html">Sitemap</a>
       </div>
       
-
       <!-- Zahlungsarten & Sicherheit -->
       <div class="footer-payment">
         <div class="footer-payment-title">Sichere Zahlungsarten:</div>
@@ -776,7 +767,6 @@
         </div>
       </div>
       
-
       <!-- Copyright & Hinweise -->
       <div class="footer-copyright">
         <div class="footer-copyright-text">
@@ -789,7 +779,6 @@
           </p>
         </div>
         
-
         <!-- Gütesiegel & Zertifikate -->
         <div class="footer-certificates">
           <div class="footer-certificate">
@@ -811,17 +800,14 @@
         </div>
       </div>
       
-
       <!-- Rechtliche Hinweise Text -->
       <div class="footer-legal-notice">
         <p><strong>Hinweis zur Streitschlichtung:</strong> Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
         <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.
         Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
         
-
         <p><strong>Verbraucherinformation:</strong> Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
         
-
         <p class="footer-vat-notice">
           <strong>Umsatzsteuer-Identifikationsnummer:</strong> LU12345678 (Beispiel) •
           <strong>Handelsregister:</strong> Luxembourg B123456 •
@@ -829,7 +815,6 @@
         </p>
       </div>
       
-
     </div>
   </footer>
 
@@ -1235,7 +1220,6 @@
        RESPONSIVE DESIGN
        ============================================ */
     
-
     /* Tablets */
     @media (max-width: 992px) {
       .footer-main {
@@ -1438,7 +1422,6 @@
     // Warten bis DOM geladen ist
     document.addEventListener('DOMContentLoaded', function() {
       
-
       // Dynamisches Jahr im Footer
       const yearElement = document.getElementById("year");
       if (yearElement) {
@@ -1450,7 +1433,6 @@
       const sidebarMenu = document.getElementById('sidebar-menu');
       const menuOverlay = document.getElementById('menu-overlay');
       
-
       // Prüfen ob alle Elemente vorhanden sind
       if (!burger || !sidebarMenu || !menuOverlay) {
         console.error('Menu elements not found');
@@ -1460,17 +1442,14 @@
       function toggleMenu() {
         const isOpen = sidebarMenu.classList.contains('active');
         
-
         burger.classList.toggle('active');
         sidebarMenu.classList.toggle('active');
         menuOverlay.classList.toggle('active');
         
-
         // Update ARIA attributes
         burger.setAttribute('aria-expanded', !isOpen);
         menuOverlay.setAttribute('aria-hidden', isOpen);
         
-
         // Prevent body scroll when menu is open
         document.body.style.overflow = isOpen ? '' : 'hidden';
       }
@@ -1480,12 +1459,10 @@
         sidebarMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
         
-
         // Reset ARIA attributes
         burger.setAttribute('aria-expanded', 'false');
         menuOverlay.setAttribute('aria-hidden', 'true');
         
-
         // Restore body scroll
         document.body.style.overflow = '';
       }
