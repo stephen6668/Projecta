@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projecta – Admin CMS</title>
+  <style>
+    :root{
+      --brand-bg:#f4efe8;
+      --brand-fg:#111;
+      --border: #e6e2db;
+      --focus: #1f6feb;
+      --warn:#d98324;
+      --ok:#13a10e;
+      --err:#c62828;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,sans-serif;background:var(--brand-bg);color:var(--brand-fg)}
+    
+    .login-overlay{
+      position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.5);z-index:9999;
+    }
+    .login-card{
+      background:#fff;padding:30px;border-radius:12px;max-width:450px;width:90%;
+      box-shadow:0 20px 60px rgba(0,0,0,.2)
+    }
+    .login-card h2{margin:0 0 20px;color:var(--brand-fg)}
+    .login-card input{
+      width:100%;padding:12px;margin-bottom:12px;border:1px solid var(--border);
+      border-radius:6px;font-size:14px
+    }
+    .login-card button{
+      width:100%;padding:12px;background:var(--brand-fg);color:#fff;border:none;
+      border-radius:6px;cursor:pointer;font-size:14px;font-weight:600
+    }
+    .login-card button:hover{opacity:0.9}
+    .login-card button:disabled{opacity:0.5;cursor:not-allowed}
+    .login-msg{color:var(--err);font-size:13px;margin:10px 0}
+    .setup-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
+    .setup-section h4{margin:0 0 10px;font-size:14px;color:#666}
+    .info-text{font-size:12px;color:#666;margin-top:5px}
+
+    .admin-container{display:none;min-height:100vh}
+    .admin-header{
+      background:#fff;padding:15px 20px;border-bottom:2px solid var(--border);
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px
+    }
+    .admin-header h1{margin:0;font-size:20px}
+    .admin-header select{
+      padding:8px 12px;border:1px solid var(--border);border-radius:6px;
+      background:#fff;cursor:pointer;font-size:14px
+    }
+    .logout-btn{
+      padding:8px 16px;background:var(--err);color:#fff;border:none;
+      border-radius:6px;cursor:pointer;font-weight:600
+    }
+    
+    .admin-main{display:flex;gap:20px;padding:20px;max-width:1400px;margin:0 auto}
+    
+    .admin-sidebar{
+      width:300px;background:#fff;border-radius:12px;padding:20px;
+      height:fit-content;box-shadow:var(--shadow);border:1px solid var(--border)
+    }
+    .admin-sidebar h3{margin:0 0 15px;font-size:16px}
+    .admin-sidebar button{
+      width:100%;padding:10px;margin-bottom:10px;border:1px solid var(--border);
+      background:#fff;cursor:pointer;border-radius:6px;font-size:14px;text-align:left
+    }
+    .admin-sidebar button:hover{background:var(--brand-bg)}
+    .admin-sidebar button.active{background:var(--focus);color:#fff;border-color:var(--focus)}
+    
+    .editor-panel{
+      flex:1;background:#fff;border-radius:12px;padding:25px;
+      box-shadow:var(--shadow);border:1px solid var(--border)
+    }
+    .editor-panel h3{margin:0 0 20px;color:var(--brand-fg)}
+    .editor-empty{color:#666;text-align:center;padding:40px 20px}
+    
+    .edit-field{margin-bottom:20px}
+    .edit-field label{
+      display:block;font-weight:600;margin-bottom:6px;font-size:14px;color:#333
+    }
+    .edit-field input, .edit-field textarea{
+      width:100%;padding:10px;border:1px solid var(--border);border-radius:6px;
+      font-size:14px;font-family:inherit
+    }
+    .edit-field textarea{min-height:100px;resize:vertical}
+    .edit-field input:focus, .edit-field textarea:focus{
+      outline:none;border-color:var(--focus);box-shadow:0 0 0 3px rgba(31,111,235,0.1)
+    }
+    
+    .btn-save{
+      padding:12px 24px;background:var(--ok);color:#fff;border:none;
+      border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;margin-right:10px
+    }
+    .btn-save:hover{opacity:0.9}
+    .btn-save:disabled{opacity:0.5;cursor:not-allowed}
+    
+    .save-status{
+      display:inline-block;padding:8px 16px;border-radius:6px;margin-left:10px;
+      font-size:13px;font-weight:600
+    }
+    .save-status.success{background:#e8f5e9;color:var(--ok)}
+    .save-status.error{background:#ffebee;color:var(--err)}
+    .save-status.loading{background:#e3f2fd;color:#1976d2}
+
+    .loading{text-align:center;padding:20px;color:#666}
+    .setup-help{background:#f0f7ff;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
+    .setup-help strong{color:#1976d2}
+
+    @media(max-width:768px){
+      .admin-main{flex-direction:column}
+      .admin-sidebar{width:100%}
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-overlay" id="loginScreen">
+  <div class="login-card">
+    <h2>🔐 Projecta Admin</h2>
+    
+    <div class="setup-section">
+      <h4>⚙️ Appwrite Konfiguration</h4>
+      <input type="text" id="appwriteEndpoint" placeholder="Endpoint (z.B. https://cloud.appwrite.io/v1)" value="https://cloud.appwrite.io/v1">
+      <input type="text" id="appwriteProject" placeholder="Project ID">
+      <input type="text" id="appwriteDatabase" placeholder="Database ID">
+      <input type="text" id="appwriteTable" placeholder="Table ID (früher Collection ID)">
+      
+      <div class="setup-help">
+        <strong>📌 Hinweis:</strong> Ihre Appwrite-Konfiguration wird nur für diese Sitzung gespeichert und beim Schließen des Browsers gelöscht.
+      </div>
+    </div>
+    
+    <div class="setup-section">
+      <h4>🔑 Login-Daten</h4>
+      <input type="email" id="adminEmail" placeholder="E-Mail" value="admin@projecta.lu">
+      <input type="password" id="adminPass" placeholder="Passwort">
+    </div>
+    
+    <button id="loginBtn">Anmelden</button>
+    <div class="login-msg" id="loginMsg"></div>
+  </div>
+</div>
+
+<div class="admin-container" id="adminInterface">
+  <div class="admin-header">
+    <h1>📝 Projecta Content Management</h1>
+    <div>
+      <select id="pageSelect">
+        <option value="index">Home (index.html)</option>
+        <option value="product">Produkt (product.html)</option>
+        <option value="product-future">Zukünftige Produkte (product-future.html)</option>
+        <option value="necklace">Halskette (Necklace.html)</option>
+      </select>
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="admin-main">
+    <div class="admin-sidebar">
+      <h3>Bearbeitbare Bereiche</h3>
+      <div id="elementList"></div>
+    </div>
+
+    <div class="editor-panel">
+      <div class="editor-empty" id="editorEmpty">
+        ← Wählen Sie einen Bereich zum Bearbeiten
+      </div>
+      <div id="editorContent" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+<script>
+// In-Memory Storage (wird beim Schließen gelöscht)
+let appwriteConfig = {
+  endpoint: '',
+  projectId: '',
+  databaseId: '',
+  tableId: ''
+};
+
+let appwrite = null;
+let databases = null;
+let account = null;
+let currentPage = "index";
+let currentElement = null;
+let currentDocumentId = null;
+let pageDocuments = {};
+
+const loginScreen = document.getElementById("loginScreen");
+const adminInterface = document.getElementById("adminInterface");
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const pageSelect = document.getElementById("pageSelect");
+const elementList = document.getElementById("elementList");
+const editorEmpty = document.getElementById("editorEmpty");
+const editorContent = document.getElementById("editorContent");
+const loginMsg = document.getElementById("loginMsg");
+
+function initAppwrite() {
+  appwriteConfig.endpoint = document.getElementById('appwriteEndpoint').value.trim();
+  appwriteConfig.projectId = document.getElementById('appwriteProject').value.trim();
+  appwriteConfig.databaseId = document.getElementById('appwriteDatabase').value.trim();
+  appwriteConfig.tableId = document.getElementById('appwriteTable').value.trim();
+
+  if (!appwriteConfig.endpoint || !appwriteConfig.projectId || 
+      !appwriteConfig.databaseId || !appwriteConfig.tableId) {
+    return false;
+  }
+
+  try {
+    const { Client, Databases, Account } = Appwrite;
+    appwrite = new Client()
+      .setEndpoint(appwriteConfig.endpoint)
+      .setProject(appwriteConfig.projectId);
+    
+    databases = new Databases(appwrite);
+    account = new Account(appwrite);
+    
+    return true;
+  } catch (error) {
+    console.error('Appwrite Init Error:', error);
+    return false;
+  }
+}
+
+loginBtn.addEventListener("click", async () => {
+  loginBtn.disabled = true;
+  loginMsg.textContent = "⏳ Verbinde mit Appwrite...";
+  loginMsg.style.color = "#1976d2";
+  
+  if (!initAppwrite()) {
+    loginMsg.textContent = "❌ Bitte alle Appwrite-Felder ausfüllen!";
+    loginMsg.style.color = "var(--err)";
+    loginBtn.disabled = false;
+    return;
+  }
+
+  const email = document.getElementById("adminEmail").value.trim();
+  const pass = document.getElementById("adminPass").value;
+  
+  if (!email || !pass) {
+    loginMsg.textContent = "❌ Bitte E-Mail und Passwort eingeben!";
+    loginMsg.style.color = "var(--err)";
+    loginBtn.disabled = false;
+    return;
+  }
+
+  try {
+    await account.createEmailPasswordSession(email, pass);
+    
+    loginScreen.style.display = "none";
+    adminInterface.style.display = "block";
+    await loadPage(currentPage);
+  } catch (error) {
+    console.error('Login Error:', error);
+    loginMsg.textContent = "❌ Login fehlgeschlagen: " + (error.message || 'Unbekannter Fehler');
+    loginMsg.style.color = "var(--err)";
+  } finally {
+    loginBtn.disabled = false;
+  }
+});
+
+logoutBtn.addEventListener("click", async () => {
+  if(confirm("Wirklich abmelden? Ungespeicherte Änderungen gehen verloren.")){
+    try {
+      await account.deleteSession('current');
+    } catch (e) {
+      console.error('Logout Error:', e);
+    }
+    
+    // Clear in-memory config
+    appwriteConfig = { endpoint: '', projectId: '', databaseId: '', tableId: '' };
+    pageDocuments = {};
+    
+    loginScreen.style.display = "flex";
+    adminInterface.style.display = "none";
+    loginMsg.textContent = "";
+  }
+});
+
+pageSelect.addEventListener("change", (e) => {
+  loadPage(e.target.value);
+});
+
+async function loadPage(pageId) {
+  currentPage = pageId;
+  currentElement = null;
+  
+  elementList.innerHTML = '<div class="loading">⏳ Lade Daten von Appwrite...</div>';
+  editorContent.style.display = "none";
+  editorEmpty.style.display = "block";
+  
+  try {
+    const response = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.tableId,
+      [
+        Appwrite.Query.equal('pageId', pageId),
+        Appwrite.Query.limit(1)
+      ]
+    );
+    
+    if (response.documents.length > 0) {
+      const doc = response.documents[0];
+      pageDocuments[pageId] = doc;
+      currentDocumentId = doc.$id;
+      
+      const content = JSON.parse(doc.content || '[]');
+      
+      elementList.innerHTML = "";
+      
+      if (content.length === 0) {
+        elementList.innerHTML = '<div style="padding:10px;color:#666;font-size:13px;">⚠️ Keine Elemente vorhanden.<br><br>Erstellen Sie in Appwrite ein Dokument mit:<br>• pageId: "' + pageId + '"<br>• content: siehe Anleitung</div>';
+      } else {
+        content.forEach((el, idx) => {
+          const btn = document.createElement("button");
+          btn.textContent = el.label || `Element ${idx + 1}`;
+          btn.addEventListener("click", () => selectElement(idx, content));
+          elementList.appendChild(btn);
+        });
+      }
+    } else {
+      elementList.innerHTML = `<div style="padding:15px;color:#666;font-size:13px;line-height:1.6;">
+        <strong>📄 Seite nicht gefunden</strong><br><br>
+        Erstellen Sie in Appwrite ein Dokument:<br>
+        • <strong>pageId:</strong> "${pageId}"<br>
+        • <strong>content:</strong> JSON-Array mit Elementen<br><br>
+        <em>Beispiel für index.html:</em><br>
+        <code style="display:block;background:#f5f5f5;padding:10px;border-radius:4px;margin-top:8px;font-size:11px;">
+[{"id":"hero-title","type":"text","label":"Hauptüberschrift","value":"Sicherheit, die du trägst"}]
+        </code>
+      </div>`;
+    }
+  } catch (error) {
+    console.error('Load Error:', error);
+    elementList.innerHTML = '<div style="padding:10px;color:var(--err);font-size:13px;">❌ Fehler: ' + (error.message || 'Unbekannter Fehler') + '</div>';
+  }
+}
+
+function selectElement(index, content) {
+  currentElement = { index, data: content[index] };
+  
+  const buttons = elementList.querySelectorAll("button");
+  buttons.forEach((btn, idx) => {
+    btn.classList.toggle("active", idx === index);
+  });
+  
+  editorEmpty.style.display = "none";
+  editorContent.style.display = "block";
+  
+  const el = currentElement.data;
+  let html = `<h3>✏️ ${el.label || 'Element'} bearbeiten</h3>`;
+  
+  if (el.type === "text") {
+    html += `
+      <div class="edit-field">
+        <label>Text</label>
+        <input type="text" id="editValue" value="${escapeHtml(el.value || '')}">
+      </div>
+    `;
+  } else if (el.type === "textarea") {
+    html += `
+      <div class="edit-field">
+        <label>Text</label>
+        <textarea id="editValue">${escapeHtml(el.value || '')}</textarea>
+      </div>
+    `;
+  } else if (el.type === "image") {
+    html += `
+      <div class="edit-field">
+        <label>Bild-URL</label>
+        <input type="url" id="editValue" value="${escapeHtml(el.value || '')}">
+        <div class="info-text">Geben Sie eine vollständige URL ein (z.B. https://...)</div>
+      </div>
+      <div class="edit-field">
+        <label>Vorschau</label>
+        <img src="${escapeHtml(el.value)}" style="max-width:100%;border-radius:8px;margin-top:10px;max-height:400px;object-fit:contain;" id="imgPreview" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div style="display:none;color:#999;padding:20px;text-align:center;border:2px dashed #ddd;border-radius:8px;margin-top:10px;">Bild kann nicht geladen werden</div>
+      </div>
+    `;
+  }
+  
+  html += `
+    <button class="btn-save" id="saveBtn">💾 Speichern</button>
+    <span class="save-status" id="saveStatus" style="display:none"></span>
+  `;
+  
+  editorContent.innerHTML = html;
+  
+  const saveBtn = document.getElementById("saveBtn");
+  const editValue = document.getElementById("editValue");
+  
+  if (el.type === "image") {
+    editValue.addEventListener("input", (e) => {
+      const img = document.getElementById("imgPreview");
+      const errorDiv = img.nextElementSibling;
+      img.src = e.target.value;
+      img.style.display = 'block';
+      errorDiv.style.display = 'none';
+    });
+  }
+  
+  saveBtn.addEventListener("click", async () => {
+    await saveToAppwrite(editValue.value);
+  });
+}
+
+async function saveToAppwrite(newValue) {
+  const saveBtn = document.getElementById("saveBtn");
+  const status = document.getElementById("saveStatus");
+  
+  saveBtn.disabled = true;
+  status.style.display = "inline-block";
+  status.className = "save-status loading";
+  status.textContent = "⏳ Speichert...";
+  
+  try {
+    const doc = pageDocuments[currentPage];
+    const content = JSON.parse(doc.content || '[]');
+    
+    content[currentElement.index].value = newValue;
+    
+    await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.tableId,
+      currentDocumentId,
+      {
+        content: JSON.stringify(content)
+      }
+    );
+    
+    pageDocuments[currentPage].content = JSON.stringify(content);
+    
+    status.className = "save-status success";
+    status.textContent = "✓ Gespeichert!";
+    
+    setTimeout(() => {
+      status.style.display = "none";
+    }, 3000);
+  } catch (error) {
+    console.error('Save Error:', error);
+    status.className = "save-status error";
+    status.textContent = "✗ Fehler: " + (error.message || 'Unbekannter Fehler');
+  } finally {
+    saveBtn.disabled = false;
+  }
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+</script>
+</body>
+</html>
