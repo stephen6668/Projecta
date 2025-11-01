@@ -3,16 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cookie-Richtlinie – Projecta</title>
-  <meta name="description" content="Informationen zur Verwendung von Cookies auf der Website von Projecta S.à r.l." />
+  <title>Zahlungssicherheit – Projecta</title>
+  <meta name="description" content="Sichere Zahlungsabwicklung bei Projecta S.à r.l. - DSGVO-konform und PCI-DSS zertifiziert" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   
-
   <style>
     :root {
       --bg-primary: #F9F7F3;
       --bg-secondary: #EFE8DC;
-      --accent-primary: #670F0F;
+      --accent-primary: #333333;
       --accent-secondary: #666666;
       --gold: #CFA15A;
       --gold-light: #D4B373;
@@ -27,7 +26,6 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-
     body {
       font-family: var(--font-primary);
       font-size: 1rem;
@@ -112,41 +110,6 @@
     .legal-header .subtitle {
       color: var(--accent-secondary);
       font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .toc {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 8px 32px var(--shadow-light);
-      border: 1px solid rgba(207, 161, 90, 0.1);
-    }
-
-    .toc h2 {
-      font-size: 1.3rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .toc ol {
-      margin-left: 1.5rem;
-    }
-
-    .toc li {
-      margin-bottom: 0.5rem;
-    }
-
-    .toc a {
-      color: var(--accent-primary);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .toc a:hover {
-      color: var(--gold);
-      text-decoration: underline;
     }
 
     .legal-section {
@@ -156,7 +119,6 @@
       border-radius: var(--border-radius);
       box-shadow: 0 8px 32px var(--shadow-light);
       border: 1px solid rgba(207, 161, 90, 0.1);
-      scroll-margin-top: 100px;
     }
 
     .legal-section h2 {
@@ -180,16 +142,6 @@
       line-height: 1.8;
     }
 
-    .legal-section ul, .legal-section ol {
-      margin-left: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .legal-section li {
-      margin-bottom: 0.5rem;
-      line-height: 1.7;
-    }
-
     .legal-section strong {
       color: var(--accent-primary);
       font-weight: 600;
@@ -207,6 +159,15 @@
       border-bottom-color: var(--accent-primary);
     }
 
+    .legal-section ul {
+      margin-left: 2rem;
+      margin-top: 1rem;
+    }
+
+    .legal-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
     .info-box {
       background: rgba(207, 161, 90, 0.1);
       border-left: 4px solid var(--gold);
@@ -219,98 +180,58 @@
       margin-bottom: 0;
     }
 
-    .warning-box {
-      background: rgba(220, 38, 38, 0.1);
-      border-left: 4px solid #dc2626;
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .security-item {
       padding: 1.5rem;
-      margin: 1.5rem 0;
+      background: rgba(249, 247, 243, 0.5);
       border-radius: var(--border-radius-sm);
-    }
-
-    .cookie-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      background: white;
-      border-radius: var(--border-radius-sm);
-      overflow: hidden;
-      box-shadow: 0 4px 16px var(--shadow-light);
-    }
-
-    .cookie-table th {
-      background: var(--gold);
-      color: white;
-      padding: 1rem;
-      text-align: left;
-      font-weight: 600;
-    }
-
-    .cookie-table td {
-      padding: 1rem;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      vertical-align: top;
-    }
-
-    .cookie-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .cookie-table tr:hover {
-      background: rgba(207, 161, 90, 0.05);
-    }
-
-    .cookie-type {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-right: 0.5rem;
-    }
-
-    .cookie-essential {
-      background: rgba(34, 197, 94, 0.1);
-      color: #16a34a;
-      border: 1px solid #16a34a;
-    }
-
-    .cookie-functional {
-      background: rgba(59, 130, 246, 0.1);
-      color: #2563eb;
-      border: 1px solid #2563eb;
-    }
-
-    .cookie-analytics {
-      background: rgba(168, 85, 247, 0.1);
-      color: #7c3aed;
-      border: 1px solid #7c3aed;
-    }
-
-    .cookie-marketing {
-      background: rgba(239, 68, 68, 0.1);
-      color: #dc2626;
-      border: 1px solid #dc2626;
-    }
-
-    .settings-button {
-      display: inline-block;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: white;
-      border: none;
-      border-radius: var(--border-radius-sm);
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
+      border: 1px solid rgba(207, 161, 90, 0.1);
+      text-align: center;
       transition: var(--transition);
-      box-shadow: 0 4px 16px rgba(207, 161, 90, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
 
-    .settings-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(207, 161, 90, 0.4);
+    .security-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px var(--shadow-light);
+    }
+
+    .security-item strong {
+      display: block;
+      color: var(--gold);
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .security-item .icon {
+      font-size: 2.5rem;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .payment-badge {
+      padding: 0.75rem 1.5rem;
+      background: rgba(249, 247, 243, 0.5);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid rgba(207, 161, 90, 0.2);
+      font-weight: 500;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .payment-badge:hover {
+      background: rgba(207, 161, 90, 0.1);
+      border-color: var(--gold);
     }
 
     .site-footer {
@@ -350,17 +271,16 @@
         padding: 6rem 1rem 2rem;
       }
       
-
       .legal-section {
         padding: 1.5rem;
       }
 
-      .cookie-table {
-        font-size: 0.9rem;
+      .security-grid {
+        grid-template-columns: 1fr;
       }
 
-      .cookie-table th, .cookie-table td {
-        padding: 0.75rem;
+      .payment-methods {
+        justify-content: center;
       }
     }
   </style>
@@ -381,564 +301,257 @@
   <!-- Hauptinhalt -->
   <main class="legal-content">
     
-
     <div class="legal-header">
-      <h1>🍪 Cookie-Richtlinie</h1>
-      <p class="subtitle">Informationen zur Verwendung von Cookies und ähnlichen Technologien auf unserer Website</p>
+      <h1>🔒 Zahlungssicherheit</h1>
+      <p class="subtitle">Ihre Sicherheit bei der Zahlung ist unsere oberste Priorität</p>
     </div>
 
-    <!-- Inhaltsverzeichnis -->
-    <div class="toc">
-      <h2>📑 Inhaltsverzeichnis</h2>
-      <ol>
-        <li><a href="#was-sind-cookies">Was sind Cookies?</a></li>
-        <li><a href="#welche-cookies">Welche Cookies verwenden wir?</a></li>
-        <li><a href="#zweck">Zweck der Cookie-Nutzung</a></li>
-        <li><a href="#cookie-liste">Detaillierte Cookie-Liste</a></li>
-        <li><a href="#verwaltung">Cookie-Verwaltung & Einstellungen</a></li>
-        <li><a href="#rechtsgrundlage">Rechtsgrundlage</a></li>
-        <li><a href="#drittanbieter">Drittanbieter-Cookies</a></li>
-        <li><a href="#ablehnung">Folgen der Ablehnung von Cookies</a></li>
-        <li><a href="#aenderungen">Änderungen dieser Cookie-Richtlinie</a></li>
-      </ol>
-    </div>
-
-    <!-- 1. Was sind Cookies -->
-    <section id="was-sind-cookies" class="legal-section">
-      <h2>1. Was sind Cookies?</h2>
+    <!-- Sichere Zahlungsabwicklung -->
+    <section class="legal-section">
+      <h2>Sichere Zahlungsabwicklung</h2>
       
+      <p>Wir nehmen den Schutz Ihrer Zahlungsdaten sehr ernst. Alle Transaktionen auf unserer Website werden über sichere, verschlüsselte Verbindungen abgewickelt. Ihre sensiblen Daten wie Kreditkartennummern werden niemals auf unseren Servern gespeichert, sondern ausschließlich über zertifizierte Zahlungsdienstleister verarbeitet.</p>
 
-      <p>Cookies sind kleine Textdateien, die beim Besuch einer Website auf Ihrem Computer, Tablet oder Smartphone gespeichert werden. Sie werden von fast allen Websites verwendet, um Ihnen eine bessere Online-Erfahrung zu bieten.</p>
+      <div class="security-grid">
+        <div class="security-item">
+          <div class="icon">🔐</div>
+          <strong>SSL/TLS Verschlüsselung</strong>
+          <p style="font-size: 0.9rem; color: var(--accent-secondary); margin-top: 0.5rem;">256-Bit Verschlüsselung für alle Datenübertragungen</p>
+        </div>
+        <div class="security-item">
+          <div class="icon">✓</div>
+          <strong>PCI-DSS Zertifiziert</strong>
+          <p style="font-size: 0.9rem; color: var(--accent-secondary); margin-top: 0.5rem;">Höchste Sicherheitsstandards für Kartenzahlungen</p>
+        </div>
+        <div class="security-item">
+          <div class="icon">🛡️</div>
+          <strong>3D Secure</strong>
+          <p style="font-size: 0.9rem; color: var(--accent-secondary); margin-top: 0.5rem;">Zusätzliche Authentifizierung für Ihre Sicherheit</p>
+        </div>
+        <div class="security-item">
+          <div class="icon">👁️</div>
+          <strong>Betrugsschutz</strong>
+          <p style="font-size: 0.9rem; color: var(--accent-secondary); margin-top: 0.5rem;">Automatische Erkennung verdächtiger Aktivitäten</p>
+        </div>
+      </div>
+    </section>
 
-      <h3>Wie funktionieren Cookies?</h3>
-      <p>Wenn Sie unsere Website besuchen, sendet Ihr Browser eine Anfrage an unseren Server. Dieser kann dann ein Cookie auf Ihrem Gerät speichern. Bei jedem weiteren Besuch sendet Ihr Browser dieses Cookie zurück an den Server, sodass die Website Sie "wiedererkennen" kann.</p>
+    <!-- Akzeptierte Zahlungsmethoden -->
+    <section class="legal-section">
+      <h2>Akzeptierte Zahlungsmethoden</h2>
+      
+      <p>Wir bieten Ihnen verschiedene sichere Zahlungsmöglichkeiten für Ihre Bestellung:</p>
 
-      <h3>Arten von Cookies nach Lebensdauer:</h3>
+      <div class="payment-methods">
+        <div class="payment-badge">💳 Kreditkarte (Visa, Mastercard)</div>
+        <div class="payment-badge">🅿️ PayPal</div>
+        <div class="payment-badge">⚡ Sofortüberweisung</div>
+        <div class="payment-badge">🔷 Klarna</div>
+        <div class="payment-badge">🏦 SEPA-Lastschrift</div>
+        <div class="payment-badge">🍎 Apple Pay</div>
+        <div class="payment-badge">🤖 Google Pay</div>
+      </div>
+
+      <p style="margin-top: 1.5rem;">Alle Zahlungsmethoden unterliegen höchsten Sicherheitsstandards und werden über zertifizierte Zahlungsdienstleister abgewickelt.</p>
+    </section>
+
+    <!-- DSGVO-Konformität -->
+    <section class="legal-section">
+      <h2>Datenschutz & DSGVO-Konformität</h2>
+      
+      <h3>Rechtsgrundlage der Verarbeitung</h3>
+      <p>Wir verarbeiten Ihre Zahlungsdaten ausschließlich im Rahmen der Datenschutz-Grundverordnung (DSGVO). Die Rechtsgrundlage für die Verarbeitung Ihrer Zahlungsdaten ist Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).</p>
+
+      <h3>Datenspeicherung und Aufbewahrungsfristen</h3>
+      <p>Zahlungsdaten werden nur so lange gespeichert, wie es für die Abwicklung der Zahlung und die Erfüllung steuerrechtlicher sowie handelsrechtlicher Aufbewahrungspflichten erforderlich ist. Die gesetzlichen Aufbewahrungsfristen betragen in der Regel 10 Jahre gemäß § 147 AO (Abgabenordnung) und 6 Jahre gemäß § 257 HGB (Handelsgesetzbuch).</p>
+
+      <div class="info-box">
+        <p><strong>Wichtig:</strong> Kreditkartendaten werden nicht auf unseren Servern gespeichert. Diese werden ausschließlich durch unsere zertifizierten Zahlungsdienstleister verarbeitet und gespeichert, die über entsprechende PCI-DSS Level 1 Zertifizierungen verfügen.</p>
+      </div>
+
+      <h3>Ihre Rechte nach der DSGVO</h3>
+      <p>Sie haben bezüglich Ihrer Zahlungsdaten folgende Rechte:</p>
       <ul>
-        <li><strong>Session-Cookies:</strong> Temporäre Cookies, die nach dem Schließen des Browsers automatisch gelöscht werden</li>
-        <li><strong>Persistente Cookies:</strong> Cookies, die für eine festgelegte Zeitdauer auf Ihrem Gerät gespeichert bleiben</li>
+        <li><strong>Recht auf Auskunft</strong> (Art. 15 DSGVO) – Sie können Auskunft über Ihre gespeicherten personenbezogenen Daten verlangen</li>
+        <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO) – Sie können die Berichtigung unrichtiger Daten verlangen</li>
+        <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO) – Sie können die Löschung Ihrer Daten verlangen, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen</li>
+        <li><strong>Recht auf Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
+        <li><strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+        <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO)</li>
+        <li><strong>Recht auf Beschwerde</strong> bei einer Aufsichtsbehörde (Art. 77 DSGVO)</li>
+      </ul>
+    </section>
+
+    <!-- Zahlungsdienstleister -->
+    <section class="legal-section">
+      <h2>Unsere Zahlungsdienstleister</h2>
+      
+      <p>Wir arbeiten ausschließlich mit lizenzierten und zertifizierten Zahlungsdienstleistern zusammen, die höchste Sicherheitsstandards erfüllen:</p>
+
+      <h3>Stripe Payments Europe, Ltd.</h3>
+      <p><strong>Adresse:</strong> 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, D02 H210, Irland</p>
+      <p><strong>Zertifizierung:</strong> PCI Service Provider Level 1 – die höchste Sicherheitsstufe in der Zahlungskartenindustrie</p>
+      <p><strong>Datenschutz:</strong> <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">https://stripe.com/privacy</a></p>
+
+      <h3>PayPal (Europe) S.à r.l. et Cie, S.C.A.</h3>
+      <p><strong>Adresse:</strong> 22-24 Boulevard Royal, L-2449 Luxembourg</p>
+      <p><strong>Lizenz:</strong> Luxemburgische Banklizenz und Aufsicht durch die Commission de Surveillance du Secteur Financier (CSSF)</p>
+      <p><strong>Datenschutz:</strong> <a href="https://www.paypal.com/privacy" target="_blank" rel="noopener noreferrer">https://www.paypal.com/privacy</a></p>
+
+      <h3>Klarna Bank AB</h3>
+      <p><strong>Adresse:</strong> Sveavägen 46, 111 34 Stockholm, Schweden</p>
+      <p><strong>Lizenz:</strong> Schwedische Banklizenz, beaufsichtigt durch die schwedische Finanzaufsichtsbehörde (Finansinspektionen)</p>
+      <p><strong>Datenschutz:</strong> <a href="https://www.klarna.com/privacy" target="_blank" rel="noopener noreferrer">https://www.klarna.com/privacy</a></p>
+
+      <div class="info-box">
+        <p><strong>Hinweis zur Datenübermittlung:</strong> Bei Verwendung dieser Zahlungsmethoden werden Ihre Daten direkt an den jeweiligen Zahlungsdienstleister übermittelt. Diese Übermittlung erfolgt verschlüsselt und ist für die Durchführung der Zahlung erforderlich.</p>
+      </div>
+    </section>
+
+    <!-- PSD2 und Strong Customer Authentication -->
+    <section class="legal-section">
+      <h2>Strong Customer Authentication (SCA)</h2>
+      
+      <p>Gemäß der Payment Services Directive 2 (PSD2) der Europäischen Union sind wir verpflichtet, Strong Customer Authentication (SCA) bei elektronischen Zahlungen einzusetzen. Dies dient Ihrer Sicherheit und dem Schutz vor Zahlungsbetrug.</p>
+
+      <h3>Was ist SCA?</h3>
+      <p>Strong Customer Authentication bedeutet, dass bei einer Zahlung mindestens zwei der folgenden drei Authentifizierungsfaktoren erforderlich sind:</p>
+      <ul>
+        <li><strong>Wissen:</strong> Etwas, das nur Sie wissen (z.B. Passwort, PIN, Sicherheitsfrage)</li>
+        <li><strong>Besitz:</strong> Etwas, das nur Sie besitzen (z.B. Smartphone, Karte, Hardware-Token)</li>
+        <li><strong>Inhärenz:</strong> Etwas, das Sie sind (z.B. Fingerabdruck, Gesichtserkennung, Iris-Scan)</li>
       </ul>
 
-      <h3>Arten von Cookies nach Herkunft:</h3>
+      <h3>Wie funktioniert SCA in der Praxis?</h3>
+      <p>Bei Ihrer Zahlung werden Sie durch den Zahlungsdienstleister aufgefordert, sich zusätzlich zu authentifizieren, zum Beispiel durch:</p>
       <ul>
-        <li><strong>First-Party-Cookies:</strong> Von unserer Website direkt gesetzte Cookies</li>
-        <li><strong>Third-Party-Cookies:</strong> Von Drittanbietern gesetzte Cookies (z.B. Google Analytics, Social Media)</li>
+        <li>Eingabe einer TAN, die Sie per SMS erhalten</li>
+        <li>Bestätigung der Zahlung in Ihrer Banking-App</li>
+        <li>Verwendung biometrischer Merkmale (Fingerabdruck, Face ID)</li>
+        <li>Eingabe eines One-Time-Passworts (OTP) aus einer Authentifizierungs-App</li>
       </ul>
 
       <div class="info-box">
-        <p><strong>Gut zu wissen:</strong> Cookies können keine Programme ausführen oder Viren übertragen. Sie sind einfache Textdateien, die Informationen speichern.</p>
+        <p><strong>Wichtig:</strong> Diese zusätzliche Authentifizierung ist gesetzlich vorgeschrieben und dient Ihrem Schutz. Ohne erfolgreiche Authentifizierung kann die Zahlung nicht durchgeführt werden.</p>
       </div>
     </section>
 
-    <!-- 2. Welche Cookies verwenden wir -->
-    <section id="welche-cookies" class="legal-section">
-      <h2>2. Welche Cookies verwenden wir?</h2>
+    <!-- Sicherheit von Kreditkartendaten -->
+    <section class="legal-section">
+      <h2>PCI-DSS Compliance</h2>
       
+      <p>Der Payment Card Industry Data Security Standard (PCI-DSS) ist ein internationaler Sicherheitsstandard für Organisationen, die Kreditkartendaten verarbeiten, speichern oder übertragen.</p>
 
-      <p>Wir verwenden verschiedene Arten von Cookies auf unserer Website:</p>
-
-      <h3><span class="cookie-type cookie-essential">Notwendig</span> Technisch notwendige Cookies</h3>
-      <p>Diese Cookies sind für den Betrieb der Website zwingend erforderlich und können nicht deaktiviert werden. Sie werden nur als Reaktion auf Ihre Aktionen gesetzt.</p>
+      <h3>Unsere PCI-DSS Maßnahmen</h3>
       <ul>
-        <li>Session-Verwaltung (Login-Status)</li>
-        <li>Warenkorb-Funktionalität</li>
-        <li>Sicherheits-Cookies (CSRF-Schutz)</li>
-        <li>Cookie-Einwilligungsstatus</li>
-      </ul>
-      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse)</p>
-
-      <h3><span class="cookie-type cookie-functional">Funktional</span> Funktionale Cookies</h3>
-      <p>Diese Cookies ermöglichen erweiterte Funktionen und Personalisierung:</p>
-      <ul>
-        <li>Spracheinstellungen</li>
-        <li>Regionale Einstellungen</li>
-        <li>Layout-Präferenzen</li>
-        <li>Favoriten/Merkzettel</li>
-      </ul>
-      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
-
-      <h3><span class="cookie-type cookie-analytics">Analyse</span> Analyse- & Performance-Cookies</h3>
-      <p>Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren:</p>
-      <ul>
-        <li>Besucherzahlen und Traffic-Quellen</li>
-        <li>Meistbesuchte Seiten</li>
-        <li>Verweildauer und Absprungrate</li>
-        <li>Geräteinformationen und Browser-Typ</li>
-      </ul>
-      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
-
-      <h3><span class="cookie-type cookie-marketing">Marketing</span> Marketing- & Targeting-Cookies</h3>
-      <p>Diese Cookies werden verwendet, um Werbung relevanter für Sie zu machen:</p>
-      <ul>
-        <li>Personalisierte Werbung</li>
-        <li>Retargeting</li>
-        <li>Social Media Integration</li>
-        <li>Werbe-Performance-Messung</li>
-      </ul>
-      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
-    </section>
-
-    <!-- 3. Zweck -->
-    <section id="zweck" class="legal-section">
-      <h2>3. Zweck der Cookie-Nutzung</h2>
-      
-
-      <p>Wir verwenden Cookies zu folgenden Zwecken:</p>
-
-      <h3>🔒 Sicherheit & Authentifizierung</h3>
-      <ul>
-        <li>Schutz vor Cross-Site-Request-Forgery (CSRF)-Angriffen</li>
-        <li>Verwaltung von Login-Sessions</li>
-        <li>Erkennung verdächtiger Aktivitäten</li>
-      </ul>
-
-      <h3>🛒 E-Commerce-Funktionalität</h3>
-      <ul>
-        <li>Speicherung des Warenkorb-Inhalts</li>
-        <li>Verarbeitung von Bestellungen</li>
-        <li>Verwaltung von Kundenpräferenzen</li>
-      </ul>
-
-      <h3>📊 Website-Optimierung</h3>
-      <ul>
-        <li>Analyse des Nutzerverhaltens</li>
-        <li>A/B-Tests für bessere Benutzererfahrung</li>
-        <li>Performance-Monitoring</li>
-      </ul>
-
-      <h3>🎯 Personalisierung</h3>
-      <ul>
-        <li>Anzeige relevanter Inhalte</li>
-        <li>Spracheinstellungen</li>
-        <li>Produktempfehlungen</li>
-      </ul>
-
-      <h3>📱 Marketing & Kommunikation</h3>
-      <ul>
-        <li>Auslieferung zielgerichteter Werbung</li>
-        <li>Messung von Werbekampagnen</li>
-        <li>Social Media Integration</li>
+        <li><strong>Keine Speicherung sensibler Kartendaten:</strong> Wir speichern keine Kreditkartennummern, CVV-Codes oder ähnliche sensible Daten auf unseren Servern</li>
+        <li><strong>Tokenisierung:</strong> Kartendaten werden durch sichere Tokens ersetzt</li>
+        <li><strong>Verschlüsselte Übertragung:</strong> Alle Kartendaten werden ausschließlich über SSL/TLS-verschlüsselte Verbindungen übertragen</li>
+        <li><strong>Zertifizierte Partner:</strong> Alle Zahlungsdienstleister sind PCI-DSS Level 1 zertifiziert</li>
+        <li><strong>Regelmäßige Sicherheitsaudits:</strong> Unsere Systeme werden regelmäßig auf Sicherheitslücken überprüft</li>
+        <li><strong>Zugriffskontrolle:</strong> Strenge Zugriffsbeschränkungen und Authentifizierung für alle Systeme</li>
       </ul>
     </section>
 
-    <!-- 4. Cookie-Liste -->
-    <section id="cookie-liste" class="legal-section">
-      <h2>4. Detaillierte Cookie-Liste</h2>
+    <!-- Betrugsprävention -->
+    <section class="legal-section">
+      <h2>Betrugsprävention & Risikomanagement</h2>
       
+      <p>Zum Schutz vor betrügerischen Transaktionen setzen wir moderne Betrugserkennungssysteme ein:</p>
 
-      <p>Hier finden Sie eine Übersicht aller Cookies, die wir auf unserer Website verwenden:</p>
+      <h3>Automatische Betrugserkennnung</h3>
+      <ul>
+        <li>Echtzeit-Analyse von Transaktionsmustern</li>
+        <li>Prüfung von IP-Adressen und Geolocation</li>
+        <li>Abgleich mit internationalen Betrugsdatenbanken</li>
+        <li>Erkennung ungewöhnlicher Bestellmuster</li>
+        <li>Device-Fingerprinting zur Identifikation verdächtiger Geräte</li>
+      </ul>
 
-      <h3>Technisch notwendige Cookies</h3>
-      <table class="cookie-table">
-        <thead>
-          <tr>
-            <th>Cookie-Name</th>
-            <th>Zweck</th>
-            <th>Laufzeit</th>
-            <th>Anbieter</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>projecta_session</strong></td>
-            <td>Session-Management und Login-Status</td>
-            <td>Session</td>
-            <td>Projecta</td>
-          </tr>
-          <tr>
-            <td><strong>projecta_cart</strong></td>
-            <td>Speicherung des Warenkorb-Inhalts</td>
-            <td>7 Tage</td>
-            <td>Projecta</td>
-          </tr>
-          <tr>
-            <td><strong>csrf_token</strong></td>
-            <td>Schutz vor CSRF-Angriffen</td>
-            <td>Session</td>
-            <td>Projecta</td>
-          </tr>
-          <tr>
-            <td><strong>cookie_consent</strong></td>
-            <td>Speicherung Ihrer Cookie-Einwilligung</td>
-            <td>12 Monate</td>
-            <td>Projecta</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>Funktionale Cookies</h3>
-      <table class="cookie-table">
-        <thead>
-          <tr>
-            <th>Cookie-Name</th>
-            <th>Zweck</th>
-            <th>Laufzeit</th>
-            <th>Anbieter</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>lang_preference</strong></td>
-            <td>Speicherung der Spracheinstellung</td>
-            <td>12 Monate</td>
-            <td>Projecta</td>
-          </tr>
-          <tr>
-            <td><strong>region</strong></td>
-            <td>Regionale Einstellungen (Währung, Versand)</td>
-            <td>30 Tage</td>
-            <td>Projecta</td>
-          </tr>
-          <tr>
-            <td><strong>wishlist</strong></td>
-            <td>Speicherung der Wunschliste</td>
-            <td>30 Tage</td>
-            <td>Projecta</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>Analyse-Cookies (nur mit Einwilligung)</h3>
-      <table class="cookie-table">
-        <thead>
-          <tr>
-            <th>Cookie-Name</th>
-            <th>Zweck</th>
-            <th>Laufzeit</th>
-            <th>Anbieter</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>_ga</strong></td>
-            <td>Google Analytics - Unterscheidung von Nutzern</td>
-            <td>24 Monate</td>
-            <td>Google</td>
-          </tr>
-          <tr>
-            <td><strong>_ga_*</strong></td>
-            <td>Google Analytics 4 - Session-Daten</td>
-            <td>24 Monate</td>
-            <td>Google</td>
-          </tr>
-          <tr>
-            <td><strong>_gid</strong></td>
-            <td>Google Analytics - Unterscheidung von Nutzern</td>
-            <td>24 Stunden</td>
-            <td>Google</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>Marketing-Cookies (nur mit Einwilligung)</h3>
-      <table class="cookie-table">
-        <thead>
-          <tr>
-            <th>Cookie-Name</th>
-            <th>Zweck</th>
-            <th>Laufzeit</th>
-            <th>Anbieter</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>_fbp</strong></td>
-            <td>Facebook Pixel - Tracking für Werbezwecke</td>
-            <td>90 Tage</td>
-            <td>Facebook</td>
-          </tr>
-          <tr>
-            <td><strong>fr</strong></td>
-            <td>Facebook - Werbe-Targeting</td>
-            <td>90 Tage</td>
-            <td>Facebook</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3>Manuelle Überprüfung</h3>
+      <p>Bei Auffälligkeiten behalten wir uns vor, zusätzliche Informationen zur Verifizierung Ihrer Identität anzufordern. Dies kann umfassen:</p>
+      <ul>
+        <li>Telefonische Rückfrage</li>
+        <li>Zusätzliche Identifikationsdokumente</li>
+        <li>Bestätigung der Lieferadresse</li>
+      </ul>
 
       <div class="info-box">
-        <p><strong>Hinweis:</strong> Die Liste wird regelmäßig aktualisiert. Letzte Aktualisierung: <span id="update-date"></span></p>
+        <p><strong>Hinweis:</strong> Diese Maßnahmen dienen Ihrem Schutz und dem Schutz anderer Kunden. Wir bitten um Ihr Verständnis, falls wir in Einzelfällen zusätzliche Informationen benötigen.</p>
       </div>
     </section>
 
-    <!-- 5. Verwaltung -->
-    <section id="verwaltung" class="legal-section">
-      <h2>5. Cookie-Verwaltung & Einstellungen</h2>
+    <!-- Wichtige Sicherheitshinweise -->
+    <section class="legal-section">
+      <h2>Wichtige Sicherheitshinweise für Sie</h2>
       
-
-      <p>Sie haben jederzeit die Möglichkeit, Ihre Cookie-Einstellungen anzupassen:</p>
-
-      <h3>Auf unserer Website</h3>
-      <div style="text-align: center; margin: 2rem 0;">
-        <button class="settings-button" onclick="openCookieSettings()">
-          🍪 Cookie-Einstellungen ändern
-        </button>
+      <div class="info-box" style="background: rgba(255, 200, 87, 0.1); border-left-color: #FFC857;">
+        <p><strong>⚠️ Wir werden Sie niemals nach Folgendem fragen:</strong></p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Vollständige Kreditkartennummer per E-Mail oder Telefon</li>
+          <li>CVV/CVC-Sicherheitscode Ihrer Karte</li>
+          <li>PIN-Codes oder Passwörter</li>
+          <li>TAN-Codes außerhalb des Zahlungsvorgangs</li>
+        </ul>
       </div>
 
-      <h3>In Ihrem Browser</h3>
-      <p>Sie können Cookies auch direkt in Ihrem Browser verwalten und löschen:</p>
-
-      <h4>Google Chrome</h4>
-      <ol>
-        <li>Klicken Sie auf das Menü-Symbol (drei Punkte) oben rechts</li>
-        <li>Wählen Sie "Einstellungen" → "Datenschutz und Sicherheit"</li>
-        <li>Klicken Sie auf "Cookies und andere Website-Daten"</li>
-        <li>Verwalten Sie Ihre Cookie-Einstellungen</li>
-      </ol>
-      <p><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">→ Detaillierte Anleitung für Chrome</a></p>
-
-      <h4>Mozilla Firefox</h4>
-      <ol>
-        <li>Klicken Sie auf das Menü-Symbol (drei Balken) oben rechts</li>
-        <li>Wählen Sie "Einstellungen" → "Datenschutz & Sicherheit"</li>
-        <li>Scrollen Sie zu "Cookies und Website-Daten"</li>
-        <li>Passen Sie Ihre Einstellungen an</li>
-      </ol>
-      <p><a href="https://support.mozilla.org/de/kb/cookies-loeschen-daten-von-websites-entfernen" target="_blank" rel="noopener">→ Detaillierte Anleitung für Firefox</a></p>
-
-      <h4>Safari (Mac)</h4>
-      <ol>
-        <li>Öffnen Sie Safari → "Einstellungen"</li>
-        <li>Wählen Sie den Tab "Datenschutz"</li>
-        <li>Verwalten Sie Cookies und Website-Daten</li>
-      </ol>
-      <p><a href="https://support.apple.com/de-de/guide/safari/sfri11471/mac" target="_blank" rel="noopener">→ Detaillierte Anleitung für Safari</a></p>
-
-      <h4>Microsoft Edge</h4>
-      <ol>
-        <li>Klicken Sie auf das Menü-Symbol (drei Punkte) oben rechts</li>
-        <li>Wählen Sie "Einstellungen" → "Datenschutz, Suche und Dienste"</li>
-        <li>Unter "Cookies und Websitedaten" Einstellungen anpassen</li>
-      </ol>
-      <p><a href="https://support.microsoft.com/de-de/microsoft-edge/cookies-in-microsoft-edge-l%C3%B6schen-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">→ Detaillierte Anleitung für Edge</a></p>
-
-      <h3>Browser-Add-ons & Tools</h3>
-      <p>Zusätzliche Tools zur Cookie-Verwaltung:</p>
+      <h3>Sicherheitstipps für sichere Online-Zahlungen</h3>
       <ul>
-        <li><strong>Google Analytics Opt-out:</strong> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Browser-Add-on</a></li>
-        <li><strong>Privacy Badger:</strong> Automatisches Blocking von Tracking-Cookies</li>
-        <li><strong>uBlock Origin:</strong> Werbeblocker mit Cookie-Schutz</li>
+        <li><strong>SSL-Verschlüsselung prüfen:</strong> Achten Sie auf das Schloss-Symbol in der Adressleiste Ihres Browsers und darauf, dass die URL mit "https://" beginnt</li>
+        <li><strong>Sichere Passwörter verwenden:</strong> Nutzen Sie komplexe, einzigartige Passwörter und ändern Sie diese regelmäßig</li>
+        <li><strong>Zwei-Faktor-Authentifizierung aktivieren:</strong> Nutzen Sie, wo verfügbar, zusätzliche Sicherheitsebenen</li>
+        <li><strong>Kontoauszüge prüfen:</strong> Überprüfen Sie regelmäßig Ihre Kreditkarten- und Bankauszüge auf unbekannte Transaktionen</li>
+        <li><strong>Sichere Netzwerke nutzen:</strong> Führen Sie Zahlungen nicht über öffentliche WLAN-Netzwerke durch</li>
+        <li><strong>Software aktuell halten:</strong> Halten Sie Ihr Betriebssystem, Browser und Antivirenprogramm auf dem neuesten Stand</li>
+        <li><strong>Phishing-Schutz:</strong> Seien Sie vorsichtig bei verdächtigen E-Mails und klicken Sie nicht auf unbekannte Links</li>
       </ul>
-
-      <div class="warning-box">
-        <p><strong>⚠️ Wichtig:</strong> Wenn Sie Cookies deaktivieren, können bestimmte Funktionen unserer Website möglicherweise nicht mehr richtig funktionieren (z.B. Warenkorb, Login).</p>
-      </div>
     </section>
 
-    <!-- 6. Rechtsgrundlage -->
-    <section id="rechtsgrundlage" class="legal-section">
-      <h2>6. Rechtsgrundlage</h2>
+    <!-- Rückerstattungen und Stornierungen -->
+    <section class="legal-section">
+      <h2>Rückerstattungen & Stornierungen</h2>
       
+      <p>Rückerstattungen werden über dieselbe Zahlungsmethode abgewickelt, die Sie für Ihren Kauf verwendet haben:</p>
 
-      <p>Die Verarbeitung personenbezogener Daten mittels Cookies erfolgt auf folgenden Rechtsgrundlagen:</p>
-
-      <h3>Technisch notwendige Cookies</h3>
-      <p><strong>Art. 6 Abs. 1 lit. f DSGVO (Berechtigte Interessen)</strong></p>
-      <p>Unser berechtigtes Interesse liegt in der Gewährleistung der Funktionalität unserer Website und der Verbesserung der Nutzererfahrung. Diese Cookies sind für den Betrieb der Website erforderlich.</p>
-
-      <h3>Funktionale, Analyse- und Marketing-Cookies</h3>
-      <p><strong>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</strong></p>
-      <p>Diese Cookies werden nur gesetzt, wenn Sie Ihre ausdrückliche Einwilligung erteilt haben. Sie können diese Einwilligung jederzeit für die Zukunft widerrufen.</p>
-
-      <div class="info-box">
-        <p><strong>Cookie-Banner:</strong> Beim ersten Besuch unserer Website werden Sie durch einen Cookie-Banner über die Verwendung von Cookies informiert und können Ihre Einwilligung erteilen oder ablehnen.</p>
-      </div>
-    </section>
-
-    <!-- 7. Drittanbieter -->
-    <section id="drittanbieter" class="legal-section">
-      <h2>7. Drittanbieter-Cookies</h2>
-      
-
-      <p>Einige Cookies auf unserer Website werden von Drittanbietern gesetzt. Hier erfahren Sie mehr über diese Anbieter:</p>
-
-      <h3>Google Analytics</h3>
-      <p><strong>Anbieter:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland</p>
-      <p><strong>Zweck:</strong> Webanalyse und Statistik</p>
-      <p><strong>Cookies:</strong> _ga, _gid, _ga_*, _gat</p>
-      <p><strong>Laufzeit:</strong> Bis zu 24 Monate</p>
-      <p><strong>Datenschutzerklärung:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></p>
-      <p><strong>Opt-out:</strong> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Browser-Add-on</a></p>
-
-      <h3>Google Tag Manager</h3>
-      <p><strong>Anbieter:</strong> Google Ireland Limited</p>
-      <p><strong>Zweck:</strong> Verwaltung von Website-Tags und Tracking-Codes</p>
-      <p><strong>Datenschutzerklärung:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></p>
-
-      <h3>Facebook Pixel</h3>
-      <p><strong>Anbieter:</strong> Meta Platforms Ireland Limited, 4 Grand Canal Square, Dublin 2, Irland</p>
-      <p><strong>Zweck:</strong> Konversionsmessung und Retargeting</p>
-      <p><strong>Cookies:</strong> _fbp, fr</p>
-      <p><strong>Laufzeit:</strong> Bis zu 90 Tage</p>
-      <p><strong>Datenschutzerklärung:</strong> <a href="https://www.facebook.com/privacy/explanation" target="_blank" rel="noopener">https://www.facebook.com/privacy/explanation</a></p>
-
-      <h3>PayPal</h3>
-      <p><strong>Anbieter:</strong> PayPal (Europe) S.à r.l. et Cie, S.C.A., 22-24 Boulevard Royal, L-2449 Luxembourg</p>
-      <p><strong>Zweck:</strong> Zahlungsabwicklung und Betrugsschutz</p>
-      <p><strong>Datenschutzerklärung:</strong> <a href="https://www.paypal.com/de/webapps/mpp/ua/privacy-full" target="_blank" rel="noopener">https://www.paypal.com/de/webapps/mpp/ua/privacy-full</a></p>
-
-      <div class="info-box">
-        <p><strong>Datenübermittlung in Drittländer:</strong> Einige Drittanbieter (z.B. Google, Facebook) können Daten in die USA übertragen. Diese Übermittlung erfolgt auf Basis von EU-Standardvertragsklauseln und Ihrer Einwilligung.</p>
-      </div>
-    </section>
-
-    <!-- 8. Ablehnung -->
-    <section id="ablehnung" class="legal-section">
-      <h2>8. Folgen der Ablehnung von Cookies</h2>
-      
-
-      <p>Sie können Cookies jederzeit ablehnen oder löschen. Dies kann jedoch Auswirkungen auf die Funktionalität unserer Website haben:</p>
-
-      <h3>Bei Ablehnung technisch notwendiger Cookies:</h3>
       <ul>
-        <li>❌ Warenkorb funktioniert nicht mehr</li>
-        <li>❌ Login nicht möglich</li>
-        <li>❌ Einstellungen werden nicht gespeichert</li>
-        <li>❌ Sicherheitsfunktionen eingeschränkt</li>
+        <li><strong>Kreditkarte:</strong> Rückerstattung erfolgt innerhalb von 5-10 Werktagen auf Ihre Karte</li>
+        <li><strong>PayPal:</strong> Sofortige Gutschrift auf Ihr PayPal-Konto</li>
+        <li><strong>Lastschrift:</strong> Überweisung innerhalb von 5-7 Werktagen</li>
+        <li><strong>Klarna:</strong> Automatische Anpassung Ihrer offenen Forderungen</li>
       </ul>
 
-      <h3>Bei Ablehnung funktionaler Cookies:</h3>
-      <ul>
-        <li>⚠️ Spracheinstellungen gehen verloren</li>
-        <li>⚠️ Präferenzen müssen neu eingestellt werden</li>
-        <li>⚠️ Wunschliste nicht verfügbar</li>
-      </ul>
-
-      <h3>Bei Ablehnung von Analyse-Cookies:</h3>
-      <ul>
-        <li>✅ Keine Auswirkungen auf die Nutzung</li>
-        <li>ℹ️ Wir können die Website weniger gut optimieren</li>
-      </ul>
-
-      <h3>Bei Ablehnung von Marketing-Cookies:</h3>
-      <ul>
-        <li>✅ Keine Auswirkungen auf die Nutzung</li>
-        <li>ℹ️ Weniger relevante Werbung</li>
-        <li>ℹ️ Keine personalisierten Produktempfehlungen</li>
-      </ul>
-
-      <div class="warning-box">
-        <p><strong>Empfehlung:</strong> Wir empfehlen, mindestens technisch notwendige Cookies zu akzeptieren, um die volle Funktionalität unserer Website nutzen zu können.</p>
-      </div>
-    </section>
-
-    <!-- 9. Änderungen -->
-    <section id="aenderungen" class="legal-section">
-      <h2>9. Änderungen dieser Cookie-Richtlinie</h2>
-      
-
-      <p>Wir behalten uns vor, diese Cookie-Richtlinie jederzeit zu aktualisieren, um Änderungen unserer Cookie-Nutzung oder rechtliche Anforderungen zu berücksichtigen.</p>
-
-      <p><strong>Bei wesentlichen Änderungen:</strong></p>
-      <ul>
-        <li>Werden Sie beim nächsten Besuch durch einen Cookie-Banner informiert</li>
-        <li>Sie werden gebeten, Ihre Einwilligung erneut zu erteilen</li>
-        <li>Die aktuelle Version finden Sie stets unter dieser URL</li>
-      </ul>
-
-      <p><strong>Empfehlung:</strong> Besuchen Sie diese Seite regelmäßig, um über Änderungen informiert zu bleiben.</p>
-
-      <div class="info-box">
-        <p><strong>Stand dieser Cookie-Richtlinie:</strong> Januar 2025</p>
-        <p><strong>Letzte Aktualisierung:</strong> <span id="last-update"></span></p>
-        <p><strong>Version:</strong> 1.0</p>
-      </div>
-    </section>
-
-    <!-- Cookie-Einstellungen -->
-    <section class="legal-section" style="background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(212, 179, 115, 0.1) 100%);">
-      <h2>⚙️ Ihre Cookie-Einstellungen</h2>
-      
-
-      <p>Verwalten Sie hier Ihre Cookie-Präferenzen. Änderungen werden sofort wirksam.</p>
-
-      <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
-        
-
-        <div style="margin-bottom: 2rem; padding: 1.5rem; border: 2px solid #22c55e; border-radius: var(--border-radius-sm); background: rgba(34, 197, 94, 0.05);">
-          <h3 style="color: #16a34a; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-            <span class="cookie-type cookie-essential">Notwendig</span>
-            Technisch notwendige Cookies
-          </h3>
-          <p style="margin-bottom: 1rem; color: var(--accent-secondary);">Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.</p>
-          <label style="display: flex; align-items: center; gap: 0.75rem; cursor: not-allowed;">
-            <input type="checkbox" checked disabled style="width: 20px; height: 20px;">
-            <span><strong>Immer aktiv</strong> - Erforderlich für Warenkorb, Login und Sicherheit</span>
-          </label>
-        </div>
-
-        <div style="margin-bottom: 2rem; padding: 1.5rem; border: 2px solid rgba(59, 130, 246, 0.3); border-radius: var(--border-radius-sm);">
-          <h3 style="color: #2563eb; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-            <span class="cookie-type cookie-functional">Funktional</span>
-            Funktionale Cookies
-          </h3>
-          <p style="margin-bottom: 1rem; color: var(--accent-secondary);">Diese Cookies ermöglichen erweiterte Funktionen und Personalisierung.</p>
-          <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
-            <input type="checkbox" id="functional-cookies" style="width: 20px; height: 20px;">
-            <span>Spracheinstellungen, Präferenzen und Wunschliste speichern</span>
-          </label>
-        </div>
-
-        <div style="margin-bottom: 2rem; padding: 1.5rem; border: 2px solid rgba(168, 85, 247, 0.3); border-radius: var(--border-radius-sm);">
-          <h3 style="color: #7c3aed; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-            <span class="cookie-type cookie-analytics">Analyse</span>
-            Analyse-Cookies
-          </h3>
-          <p style="margin-bottom: 1rem; color: var(--accent-secondary);">Diese Cookies helfen uns, die Website zu verbessern.</p>
-          <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
-            <input type="checkbox" id="analytics-cookies" style="width: 20px; height: 20px;">
-            <span>Google Analytics zur Optimierung der Benutzererfahrung</span>
-          </label>
-        </div>
-
-        <div style="margin-bottom: 2rem; padding: 1.5rem; border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--border-radius-sm);">
-          <h3 style="color: #dc2626; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-            <span class="cookie-type cookie-marketing">Marketing</span>
-            Marketing-Cookies
-          </h3>
-          <p style="margin-bottom: 1rem; color: var(--accent-secondary);">Diese Cookies werden für personalisierte Werbung verwendet.</p>
-          <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
-            <input type="checkbox" id="marketing-cookies" style="width: 20px; height: 20px;">
-            <span>Personalisierte Werbung und Produktempfehlungen</span>
-          </label>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-          <button onclick="savePreferences()" class="settings-button">💾 Einstellungen speichern</button>
-          <button onclick="acceptAll()" class="settings-button">✅ Alle akzeptieren</button>
-          <button onclick="rejectAll()" class="settings-button" style="background: #dc2626;">❌ Alle ablehnen</button>
-        </div>
-      </div>
+      <p>Detaillierte Informationen zu Rückgaberecht und Widerruf finden Sie in unseren <a href="agb.html">AGB</a> und unserer <a href="widerruf.html">Widerrufsbelehrung</a>.</p>
     </section>
 
     <!-- Kontakt -->
     <section class="legal-section">
-      <h2>📞 Fragen zu Cookies?</h2>
+      <h2>Fragen zur Zahlungssicherheit?</h2>
       
+      <p>Bei Fragen zur Zahlungssicherheit, zu Transaktionen oder zum Datenschutz stehen wir Ihnen gerne zur Verfügung:</p>
 
-      <p>Bei Fragen zur Verwendung von Cookies auf unserer Website kontaktieren Sie uns gerne:</p>
+      <p style="margin-top: 1.5rem;">
+        <strong>📧 E-Mail:</strong> <a href="mailto:projecta.kontakt@gmail.com">projecta.kontakt@gmail.com</a><br>
+        <strong>📞 Telefon:</strong> <a href="tel:+352123456789">+352 12 34 56 789</a><br>
+        <strong>🏢 Adresse:</strong> Projecta S.à r.l., Rue de l'Exemple 123, L-1234 Luxembourg
+      </p>
 
-      <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
-        <p><strong>📧 E-Mail:</strong><br>
-        <a href="mailto:datenschutz@projecta.lu" style="font-size: 1.2rem; font-weight: 600;">datenschutz@projecta.lu</a></p>
+      <p style="margin-top: 1.5rem;"><strong>Datenschutzbeauftragter:</strong><br>
+      E-Mail: <a href="mailto:datenschutz@projecta.lu">datenschutz@projecta.lu</a></p>
 
-        <p style="margin-top: 1rem;"><strong>📞 Telefon:</strong><br>
-        <a href="tel:+352123456789" style="font-size: 1.2rem; font-weight: 600;">+352 12 34 56 789</a></p>
-
-        <p style="margin-top: 1rem;"><strong>✉️ Postanschrift:</strong><br>
-        Projecta S.à r.l.<br>
-        Datenschutzbeauftragter<br>
-        Rue de l'Exemple 123<br>
-        L-1234 Luxembourg</p>
+      <div class="info-box">
+        <p><strong>Verdacht auf Betrug oder unbefugte Transaktionen?</strong><br>
+        Kontaktieren Sie uns umgehend unter der oben genannten Telefonnummer. Wir werden den Fall sofort prüfen und alle notwendigen Schritte einleiten.</p>
       </div>
+    </section>
 
-      <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(207, 161, 90, 0.1); border-radius: var(--border-radius-sm); border-left: 4px solid var(--gold);">
-        <p><strong>💡 Siehe auch:</strong></p>
-        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-          <li><a href="datenschutz.html">Vollständige Datenschutzerklärung</a></li>
-          <li><a href="impressum.html">Impressum</a></li>
-          <li><a href="agb.html">Allgemeine Geschäftsbedingungen</a></li>
-        </ul>
+    <!-- Stand -->
+    <section class="legal-section">
+      <h2>Stand der Informationen</h2>
+      
+      <p><strong>Letzte Aktualisierung:</strong> Januar 2025</p>
+      
+      <div class="info-box">
+        <p><strong>Hinweis:</strong> Wir behalten uns vor, diese Informationen jederzeit ohne vorherige Ankündigung zu ändern oder zu ergänzen, um neuen rechtlichen Anforderungen oder technischen Entwicklungen Rechnung zu tragen. Die jeweils aktuelle Version finden Sie stets auf dieser Seite.</p>
       </div>
     </section>
 
@@ -947,109 +560,8 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <p>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</p>
-      <div class="footer-links">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="agb.html">AGB</a>
-        <a href="widerruf.html">Widerruf</a>
-        <a href="cookie-policy.html">Cookie-Policy</a>
-        <a href="streitschlichtung.html">Streitschlichtung</a>
-        <a href="contact.html">Kontakt</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Jahr und Datum setzen
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('update-date').textContent = new Date().toLocaleDateString('de-DE', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    document.getElementById('last-update').textContent = new Date().toLocaleDateString('de-DE', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-
-    // Cookie-Einstellungen laden
-    function loadCookieSettings() {
-      const functional = localStorage.getItem('cookies_functional') === 'true';
-      const analytics = localStorage.getItem('cookies_analytics') === 'true';
-      const marketing = localStorage.getItem('cookies_marketing') === 'true';
-
-      document.getElementById('functional-cookies').checked = functional;
-      document.getElementById('analytics-cookies').checked = analytics;
-      document.getElementById('marketing-cookies').checked = marketing;
-    }
-
-    // Cookie-Einstellungen beim Laden
-    loadCookieSettings();
-
-    // Cookie-Einstellungen öffnen
-    function openCookieSettings() {
-      window.scrollTo({
-        top: document.querySelector('#verwaltung').offsetTop - 100,
-        behavior: 'smooth'
-      });
-    }
-
-    // Einstellungen speichern
-    function savePreferences() {
-      const functional = document.getElementById('functional-cookies').checked;
-      const analytics = document.getElementById('analytics-cookies').checked;
-      const marketing = document.getElementById('marketing-cookies').checked;
-
-      localStorage.setItem('cookies_functional', functional);
-      localStorage.setItem('cookies_analytics', analytics);
-      localStorage.setItem('cookies_marketing', marketing);
-      localStorage.setItem('cookies_consent', 'true');
-      localStorage.setItem('cookies_consent_date', new Date().toISOString());
-
-      alert('✅ Ihre Cookie-Einstellungen wurden gespeichert!\n\n' +
-            'Funktionale Cookies: ' + (functional ? 'Aktiviert' : 'Deaktiviert') + '\n' +
-            'Analyse-Cookies: ' + (analytics ? 'Aktiviert' : 'Deaktiviert') + '\n' +
-            'Marketing-Cookies: ' + (marketing ? 'Aktiviert' : 'Deaktiviert'));
-    }
-
-    // Alle akzeptieren
-    function acceptAll() {
-      document.getElementById('functional-cookies').checked = true;
-      document.getElementById('analytics-cookies').checked = true;
-      document.getElementById('marketing-cookies').checked = true;
-      savePreferences();
-    }
-
-    // Alle ablehnen
-    function rejectAll() {
-      document.getElementById('functional-cookies').checked = false;
-      document.getElementById('analytics-cookies').checked = false;
-      document.getElementById('marketing-cookies').checked = false;
-      savePreferences();
-    }
-
-    // Smooth Scroll für Anker-Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Cookie-Status anzeigen (Debug)
-    console.log('🍪 Cookie-Einstellungen:');
-    console.log('Funktionale Cookies:', localStorage.getItem('cookies_functional'));
-    console.log('Analyse-Cookies:', localStorage.getItem('cookies_analytics'));
-    console.log('Marketing-Cookies:', localStorage.getItem('cookies_marketing'));
-  </script>
-
-</body>
+      <p>© <span id="year"></span> Projecta S.à r.l  Alle Rechte vorbehalten.</p> <div class="footer-links"> <a href="impressum.html">Impressum</a> <a href="datenschutz.html">Datenschutz</a> <a href="agb.html">AGB</a> <a href="widerruf.html">Widerruf</a> <a href="zahlungssicherheit.html">Zahlungssicherheit</a> <a href="contact.html">Kontakt</a> </div> </div>
+ </Fußzeile> <Drehbuch>
+ document.getElementById('Jahr').textContent = new Date().getFullYear();
+ </Drehbuch> </Text>
 </html>
