@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appwrite Setup - Dokumente erstellen</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .setup-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .info {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border-left: 4px solid #2196f3;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .log {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      font-family: monospace;
+      font-size: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+    }
+    .log.show {
+      display: block;
+    }
+    .log-item {
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .success {
+      color: #4CAF50;
+    }
+    .error {
+      color: #f44336;
+    }
+    .warning {
+      color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+  <div class="setup-card">
+    <h1>🚀 Appwrite Setup Tool</h1>
+    <p>Dieses Tool erstellt automatisch alle benötigten Dokumente in Ihrer Appwrite Table.</p>
+
+    <div class="info">
+      <strong>ℹ️ Hinweis:</strong> Sie benötigen Ihre Appwrite-Zugangsdaten aus dem Admin-CMS.
+    </div>
+
+    <h3>Appwrite Konfiguration</h3>
+    <input type="text" id="endpoint" placeholder="Endpoint (z.B. https://cloud.appwrite.io/v1)" value="https://cloud.appwrite.io/v1">
+    <input type="text" id="projectId" placeholder="Project ID">
+    <input type="text" id="databaseId" placeholder="Database ID">
+    <input type="text" id="tableId" placeholder="Table ID">
+
+    <h3>Login-Daten</h3>
+    <input type="email" id="email" placeholder="Admin E-Mail" value="admin@projecta.lu">
+    <input type="password" id="password" placeholder="Admin Passwort">
+
+    <button id="setupBtn">Dokumente erstellen</button>
+
+    <div id="log" class="log"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+  <script>
+    const logContainer = document.getElementById('log');
+    const setupBtn = document.getElementById('setupBtn');
+
+    function log(message, type = 'info') {
+      logContainer.classList.add('show');
+      const item = document.createElement('div');
+      item.className = `log-item ${type}`;
+      item.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      logContainer.appendChild(item);
+      logContainer.scrollTop = logContainer.scrollHeight;
+    }
+
+    const documents = [
+      {
+        pageId: 'index',
+        content: '[{"id":"hero-title","type":"text","label":"Hero Überschrift","value":"Sicherheit, die du gerne trägst."},{"id":"hero-desc","type":"text","label":"Hero Beschreibung","value":"Diskretes Armband mit Standortfunktion, Alarm & Akku-Benachrichtigung"},{"id":"hero-img","type":"image","label":"Hero Hintergrundbild","value":"images/hero.jpg"},{"id":"product1-title","type":"text","label":"Safty-Band Titel","value":"Safty-Band"},{"id":"product1-desc","type":"textarea","label":"Safty-Band Beschreibung","value":"Das Safty-Band vereint stilvolles Design mit intelligenter Sicherheitstechnologie."},{"id":"product1-img","type":"image","label":"Safty-Band Bild","value":"images/produkt1.png"},{"id":"app-title","type":"text","label":"App Titel","value":"App"},{"id":"app-desc","type":"textarea","label":"App Beschreibung","value":"Die App hat ihre funktionalität dadrin dassman auf der App den Notfallkontakt erstellen kann."},{"id":"product2-title","type":"text","label":"Safty-Necklace Titel","value":"safty-Necklace"},{"id":"product2-desc","type":"textarea","label":"Safty-Necklace Beschreibung","value":"Das Safty-Necklace ist eine Elegante halskette die eben falls die sicherheits funktionen enthält."},{"id":"product2-img","type":"image","label":"Safty-Necklace Bild","value":"images/kette.png"},{"id":"footer-year","type":"text","label":"Footer Copyright","value":"2025 Projecta S.à r.l."}]'
+      },
+      {
+        pageId: 'product',
+        content: '[{"id":"product-title","type":"text","label":"Produktname","value":"Safety-Band"},{"id":"product-price","type":"price","label":"Preis","value":"€135.00"},{"id":"product-desc","type":"textarea","label":"Produktbeschreibung","value":"Stylisch, leicht und einfach zu bedienen: Mit nur einem Knopfdruck sendet das Armband deinen Standort an festgelegte Kontakte."},{"id":"product-main-img","type":"image","label":"Hauptbild","value":"images/produkt1.png"},{"id":"product-thumb1","type":"image","label":"Thumbnail 1","value":"images/produkt1.png"},{"id":"product-thumb2","type":"image","label":"Thumbnail 2","value":"images/produkt2.png"},{"id":"product-thumb3","type":"image","label":"Thumbnail 3","value":"images/produkt3.jpg"}]'
+      },
+      {
+        pageId: 'necklace',
+        content: '[{"id":"necklace-title","type":"text","label":"Produktname","value":"Safety-Halskette"},{"id":"necklace-price","type":"price","label":"Preis","value":"€95.00"},{"id":"necklace-desc","type":"textarea","label":"Produktbeschreibung","value":"Elegant, diskret und lebensrettend: Unsere Premium Sicherheitshalskette kombiniert zeitloses Design mit modernster Notfalltechnologie."},{"id":"necklace-main-img","type":"image","label":"Hauptbild","value":"images/halskette1.png"},{"id":"necklace-thumb1","type":"image","label":"Thumbnail 1","value":"images/Kette.png"},{"id":"necklace-thumb2","type":"image","label":"Thumbnail 2","value":"images/halskette2.png"},{"id":"necklace-thumb3","type":"image","label":"Thumbnail 3","value":"images/halskette3.jpg"}]'
+      },
+      {
+        pageId: 'product-future',
+        content: '[{"id":"future-title","type":"text","label":"Produktname","value":"Safty-Necklace"},{"id":"future-price","type":"price","label":"Preis","value":"€94,00"},{"id":"future-desc","type":"textarea","label":"Produktbeschreibung","value":"safty-Necklace – Mehr als nur Schmuck. Diese Halskette ist dein stiller Beschützer."},{"id":"future-img","type":"image","label":"Produktbild","value":"images/Kette.png"}]'
+      }
+    ];
+
+    setupBtn.addEventListener('click', async () => {
+      logContainer.innerHTML = '';
+      setupBtn.disabled = true;
+
+      const config = {
+        endpoint: document.getElementById('endpoint').value.trim(),
+        projectId: document.getElementById('projectId').value.trim(),
+        databaseId: document.getElementById('databaseId').value.trim(),
+        tableId: document.getElementById('tableId').value.trim()
+      };
+
+      const credentials = {
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value
+      };
+
+      if (!config.endpoint || !config.projectId || !config.databaseId || !config.tableId) {
+        log('❌ Bitte alle Appwrite-Felder ausfüllen!', 'error');
+        setupBtn.disabled = false;
+        return;
+      }
+
+      if (!credentials.email || !credentials.password) {
+        log('❌ Bitte E-Mail und Passwort eingeben!', 'error');
+        setupBtn.disabled = false;
+        return;
+      }
+
+      try {
+        log('🔄 Initialisiere Appwrite...', 'info');
+        const { Client, Databases, Account } = Appwrite;
+        
+        const client = new Client()
+          .setEndpoint(config.endpoint)
+          .setProject(config.projectId);
+        
+        const databases = new Databases(client);
+        const account = new Account(client);
+
+        log('🔑 Versuche Login...', 'info');
+        try {
+          await account.createEmailPasswordSession(credentials.email, credentials.password);
+          log('✅ Login erfolgreich!', 'success');
+        } catch (e) {
+          log('❌ Login fehlgeschlagen: ' + e.message, 'error');
+          setupBtn.disabled = false;
+          return;
+        }
+
+        log('📝 Erstelle Dokumente...', 'info');
+
+        for (const doc of documents) {
+          try {
+            // Prüfe ob Dokument bereits existiert
+            const existing = await databases.listDocuments(
+              config.databaseId,
+              config.tableId,
+              [
+                Appwrite.Query.equal('pageId', doc.pageId),
+                Appwrite.Query.limit(1)
+              ]
+            );
+
+            if (existing.documents.length > 0) {
+              log(`⚠️ Dokument "${doc.pageId}" existiert bereits - überspringe`, 'warning');
+              continue;
+            }
+
+            // Erstelle neues Dokument
+            await databases.createDocument(
+              config.databaseId,
+              config.tableId,
+              'unique()',
+              {
+                pageId: doc.pageId,
+                content: doc.content
+              }
+            );
+
+            log(`✅ Dokument "${doc.pageId}" erfolgreich erstellt`, 'success');
+          } catch (e) {
+            log(`❌ Fehler bei "${doc.pageId}": ${e.message}`, 'error');
+          }
+        }
+
+        log('🎉 Setup abgeschlossen!', 'success');
+        log('➡️ Gehen Sie zurück zum Admin-CMS und laden Sie die Seite neu', 'info');
+
+      } catch (error) {
+        log('❌ Fehler: ' + error.message, 'error');
+      } finally {
+        setupBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
