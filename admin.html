@@ -24,7 +24,7 @@
     }
     .login-card{
       background:#fff;padding:30px;border-radius:12px;max-width:450px;width:90%;
-      box-shadow:0 20px 60px rgba(0,0,0,.2)
+      box-shadow:0 20px 60px rgba(0,0,0,.2);max-height:90vh;overflow-y:auto
     }
     .login-card h2{margin:0 0 20px;color:var(--brand-fg)}
     .login-card input{
@@ -65,7 +65,8 @@
     
     .admin-sidebar{
       width:300px;background:#fff;border-radius:12px;padding:20px;
-      height:fit-content;box-shadow:var(--shadow);border:1px solid var(--border)
+      max-height:calc(100vh - 140px);overflow-y:auto;
+      box-shadow:var(--shadow);border:1px solid var(--border)
     }
     .admin-sidebar h3{margin:0 0 15px;font-size:16px}
     .admin-sidebar button{
@@ -77,6 +78,7 @@
     
     .editor-panel{
       flex:1;background:#fff;border-radius:12px;padding:25px;
+      max-height:calc(100vh - 140px);overflow-y:auto;
       box-shadow:var(--shadow);border:1px solid var(--border)
     }
     .editor-panel h3{margin:0 0 20px;color:var(--brand-fg)}
@@ -114,7 +116,8 @@
 
     @media(max-width:768px){
       .admin-main{flex-direction:column}
-      .admin-sidebar{width:100%}
+      .admin-sidebar{width:100%;max-height:300px}
+      .editor-panel{max-height:calc(100vh - 480px)}
     }
   </style>
 </head>
