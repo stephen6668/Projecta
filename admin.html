@@ -41,6 +41,10 @@
     .setup-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
     .setup-section h4{margin:0 0 10px;font-size:14px;color:#666}
     .info-text{font-size:12px;color:#666;margin-top:5px}
+    .setup-help{background:#f0f7ff;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
+    .setup-help strong{color:#1976d2}
+    .cors-warning{background:#fff3cd;border:1px solid #ffc107;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
+    .cors-warning strong{color:#856404}
 
     .admin-container{display:none;min-height:100vh}
     .admin-header{
@@ -107,8 +111,6 @@
     .save-status.loading{background:#e3f2fd;color:#1976d2}
 
     .loading{text-align:center;padding:20px;color:#666}
-    .setup-help{background:#f0f7ff;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
-    .setup-help strong{color:#1976d2}
 
     @media(max-width:768px){
       .admin-main{flex-direction:column}
@@ -122,15 +124,24 @@
   <div class="login-card">
     <h2>🔐 Projecta Admin</h2>
     
+    <div class="cors-warning">
+      <strong>⚠️ CORS-Problem?</strong><br>
+      Falls Login nicht funktioniert:<br>
+      1. Appwrite Console öffnen<br>
+      2. Settings → Platforms → Add Platform<br>
+      3. Web App: <code>stephen6668.github.io</code> (ohne https://)<br>
+      4. Speichern & 2 Minuten warten
+    </div>
+    
     <div class="setup-section">
       <h4>⚙️ Appwrite Konfiguration</h4>
       <input type="text" id="appwriteEndpoint" placeholder="Endpoint (z.B. https://cloud.appwrite.io/v1)" value="https://cloud.appwrite.io/v1">
       <input type="text" id="appwriteProject" placeholder="Project ID">
       <input type="text" id="appwriteDatabase" placeholder="Database ID">
-      <input type="text" id="appwriteTable" placeholder="Table ID (früher Collection ID)">
+      <input type="text" id="appwriteTable" placeholder="Table ID">
       
       <div class="setup-help">
-        <strong>📌 Hinweis:</strong> Ihre Appwrite-Konfiguration wird nur für diese Sitzung gespeichert und beim Schließen des Browsers gelöscht.
+        <strong>📌 Hinweis:</strong> Konfiguration wird nur für diese Sitzung gespeichert.
       </div>
     </div>
     
@@ -176,7 +187,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
 <script>
-// In-Memory Storage (wird beim Schließen gelöscht)
 let appwriteConfig = {
   endpoint: '',
   projectId: '',
@@ -215,6 +225,7 @@ function initAppwrite() {
 
   try {
     const { Client, Databases, Account } = Appwrite;
+    
     appwrite = new Client()
       .setEndpoint(appwriteConfig.endpoint)
       .setProject(appwriteConfig.projectId);
@@ -252,14 +263,36 @@ loginBtn.addEventListener("click", async () => {
   }
 
   try {
-    await account.createEmailPasswordSession(email, pass);
+    // Prüfe zuerst ob bereits eine Session existiert
+    try {
+      const session = await account.get();
+      console.log('Bereits eingeloggt:', session);
+    } catch (e) {
+      // Keine Session, versuche Login
+      console.log('Versuche Login...');
+      await account.createEmailPasswordSession(email, pass);
+    }
     
     loginScreen.style.display = "none";
     adminInterface.style.display = "block";
     await loadPage(currentPage);
+    
   } catch (error) {
     console.error('Login Error:', error);
-    loginMsg.textContent = "❌ Login fehlgeschlagen: " + (error.message || 'Unbekannter Fehler');
+    
+    let errorMsg = "❌ Login fehlgeschlagen: ";
+    
+    if (error.message && error.message.includes('Load failed')) {
+      errorMsg += "CORS-Problem! Bitte Domain in Appwrite freigeben (siehe Warnung oben)";
+    } else if (error.code === 401) {
+      errorMsg += "Falsche E-Mail oder Passwort";
+    } else if (error.message) {
+      errorMsg += error.message;
+    } else {
+      errorMsg += "Unbekannter Fehler";
+    }
+    
+    loginMsg.textContent = errorMsg;
     loginMsg.style.color = "var(--err)";
   } finally {
     loginBtn.disabled = false;
@@ -274,7 +307,6 @@ logoutBtn.addEventListener("click", async () => {
       console.error('Logout Error:', e);
     }
     
-    // Clear in-memory config
     appwriteConfig = { endpoint: '', projectId: '', databaseId: '', tableId: '' };
     pageDocuments = {};
     
@@ -330,11 +362,7 @@ async function loadPage(pageId) {
         <strong>📄 Seite nicht gefunden</strong><br><br>
         Erstellen Sie in Appwrite ein Dokument:<br>
         • <strong>pageId:</strong> "${pageId}"<br>
-        • <strong>content:</strong> JSON-Array mit Elementen<br><br>
-        <em>Beispiel für index.html:</em><br>
-        <code style="display:block;background:#f5f5f5;padding:10px;border-radius:4px;margin-top:8px;font-size:11px;">
-[{"id":"hero-title","type":"text","label":"Hauptüberschrift","value":"Sicherheit, die du trägst"}]
-        </code>
+        • <strong>content:</strong> JSON-Array mit Elementen
       </div>`;
     }
   } catch (error) {
@@ -357,7 +385,7 @@ function selectElement(index, content) {
   const el = currentElement.data;
   let html = `<h3>✏️ ${el.label || 'Element'} bearbeiten</h3>`;
   
-  if (el.type === "text") {
+  if (el.type === "text" || el.type === "price") {
     html += `
       <div class="edit-field">
         <label>Text</label>
