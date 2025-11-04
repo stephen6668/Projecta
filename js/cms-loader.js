@@ -7,9 +7,9 @@
   // Appwrite Konfiguration
   const APPWRITE_CONFIG = {
     endpoint: 'https://cloud.appwrite.io/v1',
-    projectId: '68ee68b300144140da1c', // ÄNDERN SIE DIES!
-    databaseId: '68ee68c2001481512a67', // ÄNDERN SIE DIES!
-    tableId: '8425229r23i32' // ÄNDERN SIE DIES!
+    projectId: '68ee68b300144140da1c',
+    databaseId: '68ee68c2001481512a67',
+    tableId: '8425229r23i32'
   };
 
   // Aktuelle Seite ermitteln
@@ -21,6 +21,7 @@
     if (filename === 'product.html') return 'product';
     if (filename === 'necklace.html' || filename === 'Necklace.html') return 'necklace';
     if (filename === 'product-future.html') return 'product-future';
+    if (filename === 'produkt-uebersicht.html') return 'produkt-uebersicht';
     
     return null;
   }
@@ -50,6 +51,8 @@
       return;
     }
 
+    console.log('🔍 Lade CMS-Daten für Seite:', currentPage);
+
     // Prüfen ob Appwrite konfiguriert ist
     if (APPWRITE_CONFIG.projectId === 'IHR_PROJECT_ID') {
       console.warn('⚠️ Appwrite ist noch nicht konfiguriert. Bitte cms-loader.js anpassen!');
@@ -73,26 +76,55 @@
         ]
       );
 
+      console.log('📦 Appwrite Response:', response);
+
       if (response.documents.length === 0) {
         console.warn(`Keine CMS-Daten für Seite "${currentPage}" gefunden`);
         return;
       }
 
       const doc = response.documents[0];
-      const content = JSON.parse(doc.content || '[]');
+      
+      // Prüfen ob content ein String ist (JSON) oder bereits ein Objekt/Array
+      let content;
+      if (typeof doc.content === 'string') {
+        try {
+          content = JSON.parse(doc.content);
+        } catch (e) {
+          console.error('Fehler beim Parsen von content:', e);
+          return;
+        }
+      } else {
+        content = doc.content;
+      }
 
       console.log(`✅ CMS-Daten geladen für: ${currentPage}`, content);
 
-      // Inhalte in die Seite einfügen
-      updatePageContent(content);
+      // Unterschiedliche Update-Methode je nach Seite
+      if (currentPage === 'produkt-uebersicht' || currentPage === 'product-future') {
+        // Für Übersichtsseiten: Direktes Dokument-Mapping
+        updatePageContentDirect(doc);
+      } else {
+        // Für andere Seiten: Array-basiertes Content-Mapping
+        updatePageContent(content);
+      }
 
     } catch (error) {
-      console.error('Fehler beim Laden der CMS-Daten:', error);
+      console.error('❌ Fehler beim Laden der CMS-Daten:', error);
+      if (error.message) {
+        console.error('Fehlermeldung:', error.message);
+      }
     }
   }
 
-  // Seiteninhalte aktualisieren
+  // Seiteninhalte aktualisieren (Array-Methode für product.html, etc.)
   function updatePageContent(content) {
+    if (!Array.isArray(content)) {
+      console.warn('⚠️ Content ist kein Array, versuche direktes Mapping');
+      updatePageContentDirect(content);
+      return;
+    }
+
     content.forEach(item => {
       const elements = document.querySelectorAll(`[data-cms-id="${item.id}"]`);
       
@@ -123,7 +155,6 @@
               element.src = item.value || '';
               if (item.alt) element.alt = item.alt;
             } else if (element.style) {
-              // Für div mit background-image
               element.style.backgroundImage = `url('${item.value}')`;
             }
             break;
@@ -138,7 +169,65 @@
       });
     });
 
-    console.log('✅ Seiteninhalte aktualisiert');
+    console.log('✅ Seiteninhalte aktualisiert (Array-Methode)');
+  }
+
+  // Seiteninhalte aktualisieren (Direktes Mapping für produkt-uebersicht.html)
+  function updatePageContentDirect(doc) {
+    console.log('🎨 Wende direktes Content-Mapping an:', doc);
+
+    // Alle Elemente mit data-cms-id finden
+    const elements = document.querySelectorAll('[data-cms-id]');
+    
+    console.log('🔎 Gefundene CMS-Elemente:', elements.length);
+
+    let updatedCount = 0;
+
+    elements.forEach(element => {
+      const cmsId = element.getAttribute('data-cms-id');
+      const cmsType = element.getAttribute('data-cms-type');
+      
+      // Wert aus dem Dokument holen (direkt als Eigenschaft)
+      const value = doc[cmsId];
+
+      // Wenn kein Wert gefunden wurde, überspringen
+      if (value === undefined || value === null) {
+        console.log(`⏭️ Kein Wert für ${cmsId}`);
+        return;
+      }
+
+      console.log(`✏️ Update ${cmsId} (${cmsType}):`, value);
+      updatedCount++;
+
+      // Je nach Typ unterschiedlich behandeln
+      switch (cmsType) {
+        case 'image':
+          if (element.tagName === 'IMG') {
+            element.src = value;
+          } else {
+            element.style.backgroundImage = `url(${value})`;
+          }
+          break;
+
+        case 'textarea':
+        case 'text':
+          element.textContent = value;
+          break;
+
+        case 'price':
+          element.textContent = value;
+          break;
+
+        case 'html':
+          element.innerHTML = value;
+          break;
+
+        default:
+          element.textContent = value;
+      }
+    });
+
+    console.log(`✅ Seiteninhalte aktualisiert (Direkt-Methode): ${updatedCount} Elemente`);
   }
 
   // Beim Laden der Seite ausführen
