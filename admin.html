@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projecta – Admin CMS (Debug)</title>
+  <title>Projecta – Admin CMS</title>
   <style>
     :root{
       --brand-bg:#f4efe8;
@@ -41,7 +40,11 @@
     .login-msg{color:var(--err);font-size:13px;margin:10px 0}
     .setup-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
     .setup-section h4{margin:0 0 10px;font-size:14px;color:#666}
+    .info-text{font-size:12px;color:#666;margin-top:5px}
+    .setup-help{background:#f0f7ff;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
+    .setup-help strong{color:#1976d2}
     .cors-warning{background:#fff3cd;border:1px solid #ffc107;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
+    .cors-warning strong{color:#856404}
 
     .admin-container{display:none;min-height:100vh}
     .admin-header{
@@ -72,12 +75,6 @@
     }
     .admin-sidebar button:hover{background:var(--brand-bg)}
     .admin-sidebar button.active{background:var(--focus);color:#fff;border-color:var(--focus)}
-    
-    .group-header{
-      font-weight:600;font-size:12px;color:#666;margin:15px 0 8px;
-      padding-top:10px;border-top:1px solid #eee
-    }
-    .group-header:first-child{border-top:none;padding-top:0}
     
     .editor-panel{
       flex:1;background:#fff;border-radius:12px;padding:25px;
@@ -116,14 +113,6 @@
     .save-status.loading{background:#e3f2fd;color:#1976d2}
 
     .loading{text-align:center;padding:20px;color:#666}
-    
-    .debug-box{
-      background:#f0f7ff;border:1px solid #2196f3;padding:15px;
-      border-radius:8px;margin:20px 0;font-size:12px;line-height:1.6;
-      font-family:monospace;white-space:pre-wrap;word-break:break-all;
-      max-height:300px;overflow-y:auto
-    }
-    .debug-title{font-weight:700;color:#1976d2;margin-bottom:10px;font-size:14px}
 
     @media(max-width:768px){
       .admin-main{flex-direction:column}
@@ -136,22 +125,27 @@
 
 <div class="login-overlay" id="loginScreen">
   <div class="login-card">
-    <h2>🔐 Projecta Admin (Debug Mode)</h2>
+    <h2>🔐 Projecta Admin</h2>
     
     <div class="cors-warning">
       <strong>⚠️ CORS-Problem?</strong><br>
-      1. Appwrite Console → Settings → Platforms<br>
-      2. Add Platform → Web App<br>
-      3. Hostname: <code>stephen6668.github.io</code><br>
-      4. Speichern & 2 Min warten
+      Falls Login nicht funktioniert:<br>
+      1. Appwrite Console öffnen<br>
+      2. Settings → Platforms → Add Platform<br>
+      3. Web App: <code>stephen6668.github.io</code> (ohne https://)<br>
+      4. Speichern & 2 Minuten warten
     </div>
     
     <div class="setup-section">
       <h4>⚙️ Appwrite Konfiguration</h4>
-      <input type="text" id="appwriteEndpoint" placeholder="Endpoint" value="https://cloud.appwrite.io/v1">
-      <input type="text" id="appwriteProject" placeholder="Project ID" value="68ee68b300144140da1c">
-      <input type="text" id="appwriteDatabase" placeholder="Database ID" value="68ee68c2001481512a67">
-      <input type="text" id="appwriteTable" placeholder="Table ID" value="8425229r23i32">
+      <input type="text" id="appwriteEndpoint" placeholder="Endpoint (z.B. https://cloud.appwrite.io/v1)" value="https://cloud.appwrite.io/v1">
+      <input type="text" id="appwriteProject" placeholder="Project ID">
+      <input type="text" id="appwriteDatabase" placeholder="Database ID">
+      <input type="text" id="appwriteTable" placeholder="Table ID">
+      
+      <div class="setup-help">
+        <strong>📌 Hinweis:</strong> Konfiguration wird nur für diese Sitzung gespeichert.
+      </div>
     </div>
     
     <div class="setup-section">
@@ -167,14 +161,14 @@
 
 <div class="admin-container" id="adminInterface">
   <div class="admin-header">
-    <h1>📝 Projecta CMS (Debug Mode)</h1>
+    <h1>📝 Projecta Content Management</h1>
     <div>
       <select id="pageSelect">
         <option value="index">Home (index.html)</option>
         <option value="product">Produkt (product.html)</option>
-        <option value="product-future">Zukünftige Produkte</option>
+        <option value="product-future">Zukünftige Produkte (product-future.html)</option>
         <option value="necklace">Halskette (Necklace.html)</option>
-        <option value="produkt-uebersicht">Produktübersicht</option>
+        <option value="produkt-uebersicht">Übersicht (produkt-uebersicht.html)</option>
       </select>
       <button class="logout-btn" id="logoutBtn">Logout</button>
     </div>
@@ -183,7 +177,6 @@
   <div class="admin-main">
     <div class="admin-sidebar">
       <h3>Bearbeitbare Bereiche</h3>
-      <div id="debugInfo"></div>
       <div id="elementList"></div>
     </div>
 
@@ -219,18 +212,9 @@ const loginBtn = document.getElementById("loginBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const pageSelect = document.getElementById("pageSelect");
 const elementList = document.getElementById("elementList");
-const debugInfo = document.getElementById("debugInfo");
 const editorEmpty = document.getElementById("editorEmpty");
 const editorContent = document.getElementById("editorContent");
 const loginMsg = document.getElementById("loginMsg");
-
-function log(msg, data) {
-  console.log(msg, data);
-  if (debugInfo) {
-    const time = new Date().toLocaleTimeString();
-    debugInfo.innerHTML = `<div class="debug-box"><div class="debug-title">[${time}] ${msg}</div>${data ? JSON.stringify(data, null, 2) : ''}</div>` + debugInfo.innerHTML;
-  }
-}
 
 function initAppwrite() {
   appwriteConfig.endpoint = document.getElementById('appwriteEndpoint').value.trim();
@@ -253,21 +237,20 @@ function initAppwrite() {
     databases = new Databases(appwrite);
     account = new Account(appwrite);
     
-    log('✅ Appwrite initialisiert', appwriteConfig);
     return true;
   } catch (error) {
-    log('❌ Appwrite Init Error', error);
+    console.error('Appwrite Init Error:', error);
     return false;
   }
 }
 
 loginBtn.addEventListener("click", async () => {
   loginBtn.disabled = true;
-  loginMsg.textContent = "⏳ Verbinde...";
+  loginMsg.textContent = "⏳ Verbinde mit Appwrite...";
   loginMsg.style.color = "#1976d2";
   
   if (!initAppwrite()) {
-    loginMsg.textContent = "❌ Bitte alle Felder ausfüllen!";
+    loginMsg.textContent = "❌ Bitte alle Appwrite-Felder ausfüllen!";
     loginMsg.style.color = "var(--err)";
     loginBtn.disabled = false;
     return;
@@ -277,20 +260,21 @@ loginBtn.addEventListener("click", async () => {
   const pass = document.getElementById("adminPass").value;
   
   if (!email || !pass) {
-    loginMsg.textContent = "❌ E-Mail und Passwort erforderlich!";
+    loginMsg.textContent = "❌ Bitte E-Mail und Passwort eingeben!";
     loginMsg.style.color = "var(--err)";
     loginBtn.disabled = false;
     return;
   }
 
   try {
+    // Prüfe zuerst ob bereits eine Session existiert
     try {
       const session = await account.get();
-      log('✅ Bereits eingeloggt', session);
+      console.log('Bereits eingeloggt:', session);
     } catch (e) {
-      log('🔑 Erstelle neue Session...');
+      // Keine Session, versuche Login
+      console.log('Versuche Login...');
       await account.createEmailPasswordSession(email, pass);
-      log('✅ Login erfolgreich');
     }
     
     loginScreen.style.display = "none";
@@ -298,15 +282,20 @@ loginBtn.addEventListener("click", async () => {
     await loadPage(currentPage);
     
   } catch (error) {
-    log('❌ Login Error', error);
+    console.error('Login Error:', error);
+    
     let errorMsg = "❌ Login fehlgeschlagen: ";
+    
     if (error.message && error.message.includes('Load failed')) {
-      errorMsg += "CORS-Problem! Domain freigeben.";
+      errorMsg += "CORS-Problem! Bitte Domain in Appwrite freigeben (siehe Warnung oben)";
     } else if (error.code === 401) {
-      errorMsg += "Falsche E-Mail/Passwort";
+      errorMsg += "Falsche E-Mail oder Passwort";
+    } else if (error.message) {
+      errorMsg += error.message;
     } else {
-      errorMsg += error.message || "Unbekannter Fehler";
+      errorMsg += "Unbekannter Fehler";
     }
+    
     loginMsg.textContent = errorMsg;
     loginMsg.style.color = "var(--err)";
   } finally {
@@ -315,12 +304,19 @@ loginBtn.addEventListener("click", async () => {
 });
 
 logoutBtn.addEventListener("click", async () => {
-  if(confirm("Abmelden?")){
+  if(confirm("Wirklich abmelden? Ungespeicherte Änderungen gehen verloren.")){
     try {
       await account.deleteSession('current');
-    } catch (e) {}
+    } catch (e) {
+      console.error('Logout Error:', e);
+    }
+    
+    appwriteConfig = { endpoint: '', projectId: '', databaseId: '', tableId: '' };
+    pageDocuments = {};
+    
     loginScreen.style.display = "flex";
     adminInterface.style.display = "none";
+    loginMsg.textContent = "";
   }
 });
 
@@ -332,15 +328,11 @@ async function loadPage(pageId) {
   currentPage = pageId;
   currentElement = null;
   
-  log('🔍 Lade Seite:', pageId);
-  
-  elementList.innerHTML = '<div class="loading">⏳ Lade...</div>';
+  elementList.innerHTML = '<div class="loading">⏳ Lade Daten von Appwrite...</div>';
   editorContent.style.display = "none";
   editorEmpty.style.display = "block";
   
   try {
-    log('📡 Query Appwrite...', { pageId });
-    
     const response = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.tableId,
@@ -350,294 +342,112 @@ async function loadPage(pageId) {
       ]
     );
     
-    log('📦 Appwrite Response', {
-      total: response.total,
-      documents: response.documents
-    });
-    
-    if (response.documents.length === 0) {
-      log('⚠️ Keine Dokumente gefunden für:', pageId);
-      elementList.innerHTML = `<div style="padding:15px;color:#666;font-size:13px;line-height:1.8;">
-        <strong>📄 Keine Daten gefunden</strong><br><br>
-        Erstelle in Appwrite ein Dokument mit:<br>
-        <strong>pageId:</strong> "${pageId}"<br><br>
-        <strong>Siehe Debug-Box oben für Details!</strong>
+    if (response.documents.length > 0) {
+      const doc = response.documents[0];
+      pageDocuments[pageId] = doc;
+      currentDocumentId = doc.$id;
+      
+      const content = JSON.parse(doc.content || '[]');
+      
+      elementList.innerHTML = "";
+      
+      if (content.length === 0) {
+        elementList.innerHTML = '<div style="padding:10px;color:#666;font-size:13px;">⚠️ Keine Elemente vorhanden.<br><br>Erstellen Sie in Appwrite ein Dokument mit:<br>• pageId: "' + pageId + '"<br>• content: siehe Anleitung</div>';
+      } else {
+        content.forEach((el, idx) => {
+          const btn = document.createElement("button");
+          btn.textContent = el.label || `Element ${idx + 1}`;
+          btn.addEventListener("click", () => selectElement(idx, content));
+          elementList.appendChild(btn);
+        });
+      }
+    } else {
+      elementList.innerHTML = `<div style="padding:15px;color:#666;font-size:13px;line-height:1.6;">
+        <strong>📄 Seite nicht gefunden</strong><br><br>
+        Erstellen Sie in Appwrite ein Dokument:<br>
+        • <strong>pageId:</strong> "${pageId}"<br>
+        • <strong>content:</strong> JSON-Array mit Elementen
       </div>`;
-      return;
     }
-    
-    const doc = response.documents[0];
-    pageDocuments[pageId] = doc;
-    currentDocumentId = doc.$id;
-    
-    log('📋 Dokument geladen', {
-      id: doc.$id,
-      keys: Object.keys(doc),
-      hasContent: !!doc.content,
-      contentType: typeof doc.content
-    });
-    
-    // Zeige alle Felder im Dokument
-    const allFields = Object.keys(doc).filter(k => !k.startsWith('$'));
-    log('🔑 Verfügbare Felder im Dokument', allFields);
-    
-    if (pageId === 'produkt-uebersicht') {
-      renderProduktUebersicht(doc);
-    } else if (doc.content) {
-      renderContentField(doc);
-    } else {
-      log('❌ Keine bekannte Struktur');
-      elementList.innerHTML = '<div style="padding:15px;color:var(--err);">❌ Unbekannte Dokumentstruktur</div>';
-    }
-    
   } catch (error) {
-    log('❌ Load Error', error);
-    elementList.innerHTML = '<div style="padding:10px;color:var(--err);">❌ ' + error.message + '</div>';
+    console.error('Load Error:', error);
+    elementList.innerHTML = '<div style="padding:10px;color:var(--err);font-size:13px;">❌ Fehler: ' + (error.message || 'Unbekannter Fehler') + '</div>';
   }
 }
 
-function renderProduktUebersicht(doc) {
-  log('🎨 Render produkt-uebersicht', doc);
-  
-  const fields = [
-    { id: 'overview-title', label: 'Seiten-Titel', type: 'text', group: 'Seite' },
-    { id: 'overview-subtitle', label: 'Untertitel', type: 'textarea', group: 'Seite' },
-    { id: 'product1-status', label: 'Status', type: 'text', group: 'Produkt 1' },
-    { id: 'product1-img', label: 'Bild', type: 'image', group: 'Produkt 1' },
-    { id: 'product1-title', label: 'Titel', type: 'text', group: 'Produkt 1' },
-    { id: 'product1-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 1' },
-    { id: 'product1-price', label: 'Preis', type: 'text', group: 'Produkt 1' },
-    { id: 'product1-btn', label: 'Button', type: 'text', group: 'Produkt 1' },
-    { id: 'product2-status', label: 'Status', type: 'text', group: 'Produkt 2' },
-    { id: 'product2-img', label: 'Bild', type: 'image', group: 'Produkt 2' },
-    { id: 'product2-title', label: 'Titel', type: 'text', group: 'Produkt 2' },
-    { id: 'product2-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 2' },
-    { id: 'product2-price', label: 'Preis', type: 'text', group: 'Produkt 2' },
-    { id: 'product2-btn', label: 'Button', type: 'text', group: 'Produkt 2' },
-    { id: 'product3-status', label: 'Status', type: 'text', group: 'Produkt 3' },
-    { id: 'product3-img', label: 'Bild', type: 'image', group: 'Produkt 3' },
-    { id: 'product3-title', label: 'Titel', type: 'text', group: 'Produkt 3' },
-    { id: 'product3-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 3' },
-    { id: 'product3-price', label: 'Preis', type: 'text', group: 'Produkt 3' },
-    { id: 'product3-btn', label: 'Button', type: 'text', group: 'Produkt 3' },
-    { id: 'product4-status', label: 'Status', type: 'text', group: 'Produkt 4' },
-    { id: 'product4-img', label: 'Bild', type: 'image', group: 'Produkt 4' },
-    { id: 'product4-title', label: 'Titel', type: 'text', group: 'Produkt 4' },
-    { id: 'product4-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 4' },
-    { id: 'product4-price', label: 'Preis', type: 'text', group: 'Produkt 4' },
-    { id: 'product4-btn', label: 'Button', type: 'text', group: 'Produkt 4' }
-  ];
-  
-  elementList.innerHTML = "";
-  let lastGroup = null;
-  let foundFields = 0;
-  
-  fields.forEach((field) => {
-    const value = doc[field.id];
-    const exists = value !== undefined && value !== null;
-    
-    if (exists) foundFields++;
-    
-    log(`🔍 Feld ${field.id}`, { exists, value });
-    
-    if (field.group !== lastGroup) {
-      const header = document.createElement("div");
-      header.className = "group-header";
-      header.textContent = field.group;
-      elementList.appendChild(header);
-      lastGroup = field.group;
-    }
-    
-    const btn = document.createElement("button");
-    btn.textContent = field.label + (exists ? ' ✓' : ' ⚠️');
-    btn.style.opacity = exists ? '1' : '0.5';
-    btn.onclick = () => editField(field, doc);
-    elementList.appendChild(btn);
-  });
-  
-  log(`✅ ${foundFields} von ${fields.length} Feldern gefunden`);
-  
-  if (foundFields === 0) {
-    elementList.innerHTML = `<div style="padding:15px;color:var(--err);line-height:1.8;">
-      <strong>❌ KEINE Felder gefunden!</strong><br><br>
-      Dein Dokument hat NICHT die richtige Struktur.<br><br>
-      <strong>Lösung:</strong><br>
-      Erstelle die Felder als direkte Properties im Dokument:<br>
-      • overview-title<br>
-      • product1-title<br>
-      • etc.<br><br>
-      Siehe Debug-Box oben!
-    </div>`;
-  }
-}
-
-function renderContentField(doc) {
-  log('📝 Render content-Feld');
-  try {
-    const content = JSON.parse(doc.content || '[]');
-    log('✅ Content geparst', content);
-    
-    elementList.innerHTML = "";
-    
-    if (Array.isArray(content) && content.length > 0) {
-      content.forEach((el, idx) => {
-        const btn = document.createElement("button");
-        btn.textContent = el.label || `Element ${idx + 1}`;
-        btn.onclick = () => editContentItem(idx, content);
-        elementList.appendChild(btn);
-      });
-    } else {
-      elementList.innerHTML = '<div style="padding:10px;color:#666;">⚠️ Content-Array ist leer</div>';
-    }
-  } catch (e) {
-    log('❌ Content Parse Error', e);
-    elementList.innerHTML = '<div style="padding:10px;color:var(--err);">❌ Content ist kein gültiges JSON</div>';
-  }
-}
-
-function editField(field, doc) {
-  currentElement = { type: 'direct', field };
+function selectElement(index, content) {
+  currentElement = { index, data: content[index] };
   
   const buttons = elementList.querySelectorAll("button");
-  buttons.forEach(btn => btn.classList.remove("active"));
-  event.target.classList.add("active");
+  buttons.forEach((btn, idx) => {
+    btn.classList.toggle("active", idx === index);
+  });
   
   editorEmpty.style.display = "none";
   editorContent.style.display = "block";
   
-  const value = doc[field.id] || '';
-  log(`✏️ Edit: ${field.id}`, value);
+  const el = currentElement.data;
+  let html = `<h3>✏️ ${el.label || 'Element'} bearbeiten</h3>`;
   
-  let html = `<h3>✏️ ${field.label}</h3>`;
-  
-  if (field.type === 'text') {
-    html += `<div class="edit-field">
-      <label>${field.label}</label>
-      <input type="text" id="editValue" value="${escapeHtml(value)}">
-    </div>`;
-  } else if (field.type === 'textarea') {
-    html += `<div class="edit-field">
-      <label>${field.label}</label>
-      <textarea id="editValue" rows="6">${escapeHtml(value)}</textarea>
-    </div>`;
-  } else if (field.type === 'image') {
-    html += `<div class="edit-field">
-      <label>Bild-URL</label>
-      <input type="url" id="editValue" value="${escapeHtml(value)}">
-    </div>
-    <div class="edit-field">
-      <label>Vorschau</label>
-      <img src="${escapeHtml(value)}" id="imgPreview" style="max-width:100%;border-radius:8px;max-height:300px;" onerror="this.style.display='none';">
-    </div>`;
+  if (el.type === "text" || el.type === "price") {
+    html += `
+      <div class="edit-field">
+        <label>Text</label>
+        <input type="text" id="editValue" value="${escapeHtml(el.value || '')}">
+      </div>
+    `;
+  } else if (el.type === "textarea") {
+    html += `
+      <div class="edit-field">
+        <label>Text</label>
+        <textarea id="editValue">${escapeHtml(el.value || '')}</textarea>
+      </div>
+    `;
+  } else if (el.type === "image") {
+    html += `
+      <div class="edit-field">
+        <label>Bild-URL</label>
+        <input type="url" id="editValue" value="${escapeHtml(el.value || '')}">
+        <div class="info-text">Geben Sie eine vollständige URL ein (z.B. https://...)</div>
+      </div>
+      <div class="edit-field">
+        <label>Vorschau</label>
+        <img src="${escapeHtml(el.value)}" style="max-width:100%;border-radius:8px;margin-top:10px;max-height:400px;object-fit:contain;" id="imgPreview" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div style="display:none;color:#999;padding:20px;text-align:center;border:2px dashed #ddd;border-radius:8px;margin-top:10px;">Bild kann nicht geladen werden</div>
+      </div>
+    `;
   }
   
-  html += `<button class="btn-save" id="saveBtn">💾 Speichern</button>
-           <span class="save-status" id="saveStatus" style="display:none"></span>`;
+  html += `
+    <button class="btn-save" id="saveBtn">💾 Speichern</button>
+    <span class="save-status" id="saveStatus" style="display:none"></span>
+  `;
   
   editorContent.innerHTML = html;
   
   const saveBtn = document.getElementById("saveBtn");
   const editValue = document.getElementById("editValue");
   
-  if (field.type === 'image') {
-    editValue.oninput = (e) => {
+  if (el.type === "image") {
+    editValue.addEventListener("input", (e) => {
       const img = document.getElementById("imgPreview");
+      const errorDiv = img.nextElementSibling;
       img.src = e.target.value;
       img.style.display = 'block';
-    };
+      errorDiv.style.display = 'none';
+    });
   }
   
-  saveBtn.onclick = async () => {
-    await saveField(field.id, editValue.value);
-  };
+  saveBtn.addEventListener("click", async () => {
+    await saveToAppwrite(editValue.value);
+  });
 }
 
-function editContentItem(index, content) {
-  currentElement = { type: 'content', index, content };
-  
-  const buttons = elementList.querySelectorAll("button");
-  buttons.forEach((btn, i) => btn.classList.toggle("active", i === index));
-  
-  editorEmpty.style.display = "none";
-  editorContent.style.display = "block";
-  
-  const el = content[index];
-  let html = `<h3>✏️ ${el.label || 'Element'}</h3>`;
-  
-  if (el.type === 'text' || el.type === 'price') {
-    html += `<div class="edit-field"><label>Text</label>
-             <input type="text" id="editValue" value="${escapeHtml(el.value || '')}"></div>`;
-  } else if (el.type === 'textarea') {
-    html += `<div class="edit-field"><label>Text</label>
-             <textarea id="editValue">${escapeHtml(el.value || '')}</textarea></div>`;
-  } else if (el.type === 'image') {
-    html += `<div class="edit-field"><label>Bild-URL</label>
-             <input type="url" id="editValue" value="${escapeHtml(el.value || '')}"></div>
-             <div class="edit-field"><label>Vorschau</label>
-             <img src="${escapeHtml(el.value)}" id="imgPreview" style="max-width:100%;border-radius:8px;" onerror="this.style.display='none';"></div>`;
-  }
-  
-  html += `<button class="btn-save" id="saveBtn">💾 Speichern</button>
-           <span class="save-status" id="saveStatus" style="display:none"></span>`;
-  
-  editorContent.innerHTML = html;
-  
-  document.getElementById("saveBtn").onclick = async () => {
-    await saveContentItem(document.getElementById("editValue").value);
-  };
-  
-  if (el.type === 'image') {
-    document.getElementById("editValue").oninput = (e) => {
-      document.getElementById("imgPreview").src = e.target.value;
-    };
-  }
-}
-
-async function saveField(fieldId, value) {
-  const btn = document.getElementById("saveBtn");
+async function saveToAppwrite(newValue) {
+  const saveBtn = document.getElementById("saveBtn");
   const status = document.getElementById("saveStatus");
   
-  btn.disabled = true;
-  status.style.display = "inline-block";
-  status.className = "save-status loading";
-  status.textContent = "⏳ Speichert...";
-  
-  log(`💾 Save ${fieldId}`, value);
-  
-  try {
-    const updateData = {};
-    updateData[fieldId] = value;
-    
-    log('📤 Update Data', updateData);
-    
-    await databases.updateDocument(
-      appwriteConfig.databaseId,
-      appwriteConfig.tableId,
-      currentDocumentId,
-      updateData
-    );
-    
-    pageDocuments[currentPage][fieldId] = value;
-    
-    log('✅ Gespeichert!');
-    
-    status.className = "save-status success";
-    status.textContent = "✓ Gespeichert!";
-    setTimeout(() => status.style.display = "none", 3000);
-  } catch (error) {
-    log('❌ Save Error', error);
-    status.className = "save-status error";
-    status.textContent = "✗ Fehler: " + error.message;
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-async function saveContentItem(value) {
-  const btn = document.getElementById("saveBtn");
-  const status = document.getElementById("saveStatus");
-  
-  btn.disabled = true;
+  saveBtn.disabled = true;
   status.style.display = "inline-block";
   status.className = "save-status loading";
   status.textContent = "⏳ Speichert...";
@@ -645,30 +455,32 @@ async function saveContentItem(value) {
   try {
     const doc = pageDocuments[currentPage];
     const content = JSON.parse(doc.content || '[]');
-    content[currentElement.index].value = value;
     
-    log('💾 Save Content', { index: currentElement.index, value });
+    content[currentElement.index].value = newValue;
     
     await databases.updateDocument(
       appwriteConfig.databaseId,
       appwriteConfig.tableId,
       currentDocumentId,
-      { content: JSON.stringify(content) }
+      {
+        content: JSON.stringify(content)
+      }
     );
     
     pageDocuments[currentPage].content = JSON.stringify(content);
     
-    log('✅ Gespeichert!');
-    
     status.className = "save-status success";
     status.textContent = "✓ Gespeichert!";
-    setTimeout(() => status.style.display = "none", 3000);
+    
+    setTimeout(() => {
+      status.style.display = "none";
+    }, 3000);
   } catch (error) {
-    log('❌ Save Error', error);
+    console.error('Save Error:', error);
     status.className = "save-status error";
-    status.textContent = "✗ Fehler: " + error.message;
+    status.textContent = "✗ Fehler: " + (error.message || 'Unbekannter Fehler');
   } finally {
-    btn.disabled = false;
+    saveBtn.disabled = false;
   }
 }
 
