@@ -40,11 +40,7 @@
     .login-msg{color:var(--err);font-size:13px;margin:10px 0}
     .setup-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
     .setup-section h4{margin:0 0 10px;font-size:14px;color:#666}
-    .info-text{font-size:12px;color:#666;margin-top:5px}
-    .setup-help{background:#f0f7ff;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
-    .setup-help strong{color:#1976d2}
     .cors-warning{background:#fff3cd;border:1px solid #ffc107;padding:15px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.6}
-    .cors-warning strong{color:#856404}
 
     .admin-container{display:none;min-height:100vh}
     .admin-header{
@@ -75,6 +71,12 @@
     }
     .admin-sidebar button:hover{background:var(--brand-bg)}
     .admin-sidebar button.active{background:var(--focus);color:#fff;border-color:var(--focus)}
+    
+    .group-header{
+      font-weight:600;font-size:12px;color:#666;margin:15px 0 8px;
+      padding-top:10px;border-top:1px solid #eee
+    }
+    .group-header:first-child{border-top:none;padding-top:0}
     
     .editor-panel{
       flex:1;background:#fff;border-radius:12px;padding:25px;
@@ -113,12 +115,6 @@
     .save-status.loading{background:#e3f2fd;color:#1976d2}
 
     .loading{text-align:center;padding:20px;color:#666}
-    
-    .field-group{
-      background:#f8f9fa;padding:15px;border-radius:8px;margin-bottom:15px;
-      border-left:4px solid var(--focus)
-    }
-    .field-group-title{font-weight:600;margin-bottom:10px;color:#333}
 
     @media(max-width:768px){
       .admin-main{flex-direction:column}
@@ -135,11 +131,10 @@
     
     <div class="cors-warning">
       <strong>⚠️ CORS-Problem?</strong><br>
-      Falls Login nicht funktioniert:<br>
-      1. Appwrite Console öffnen<br>
-      2. Settings → Platforms → Add Platform<br>
-      3. Web App: <code>stephen6668.github.io</code> (ohne https://)<br>
-      4. Speichern & 2 Minuten warten
+      1. Appwrite Console → Settings → Platforms<br>
+      2. Add Platform → Web App<br>
+      3. Hostname: <code>stephen6668.github.io</code><br>
+      4. Speichern & 2 Min warten
     </div>
     
     <div class="setup-section">
@@ -208,43 +203,44 @@ let currentElement = null;
 let currentDocumentId = null;
 let pageDocuments = {};
 
-// Definitionen für neue Seitenstruktur
-const DIRECT_STRUCTURE_PAGES = ['produkt-uebersicht', 'product-future'];
+// Seiten mit direkter Struktur (nicht Array-basiert)
+const DIRECT_PAGES = ['produkt-uebersicht', 'product-future'];
 
+// Feld-Definitionen für direkte Seiten
 const PAGE_FIELDS = {
   'produkt-uebersicht': [
     { id: 'overview-title', label: 'Seiten-Titel', type: 'text', group: 'Seite' },
     { id: 'overview-subtitle', label: 'Untertitel', type: 'textarea', group: 'Seite' },
-    { id: 'product1-status', label: 'Produkt 1: Status', type: 'text', group: 'Produkt 1' },
-    { id: 'product1-img', label: 'Produkt 1: Bild URL', type: 'image', group: 'Produkt 1' },
-    { id: 'product1-title', label: 'Produkt 1: Titel', type: 'text', group: 'Produkt 1' },
-    { id: 'product1-desc', label: 'Produkt 1: Beschreibung', type: 'textarea', group: 'Produkt 1' },
-    { id: 'product1-price', label: 'Produkt 1: Preis', type: 'price', group: 'Produkt 1' },
-    { id: 'product1-btn', label: 'Produkt 1: Button-Text', type: 'text', group: 'Produkt 1' },
-    { id: 'product2-status', label: 'Produkt 2: Status', type: 'text', group: 'Produkt 2' },
-    { id: 'product2-img', label: 'Produkt 2: Bild URL', type: 'image', group: 'Produkt 2' },
-    { id: 'product2-title', label: 'Produkt 2: Titel', type: 'text', group: 'Produkt 2' },
-    { id: 'product2-desc', label: 'Produkt 2: Beschreibung', type: 'textarea', group: 'Produkt 2' },
-    { id: 'product2-price', label: 'Produkt 2: Preis', type: 'price', group: 'Produkt 2' },
-    { id: 'product2-btn', label: 'Produkt 2: Button-Text', type: 'text', group: 'Produkt 2' },
-    { id: 'product3-status', label: 'Produkt 3: Status', type: 'text', group: 'Produkt 3' },
-    { id: 'product3-img', label: 'Produkt 3: Bild URL', type: 'image', group: 'Produkt 3' },
-    { id: 'product3-title', label: 'Produkt 3: Titel', type: 'text', group: 'Produkt 3' },
-    { id: 'product3-desc', label: 'Produkt 3: Beschreibung', type: 'textarea', group: 'Produkt 3' },
-    { id: 'product3-price', label: 'Produkt 3: Preis', type: 'price', group: 'Produkt 3' },
-    { id: 'product3-btn', label: 'Produkt 3: Button-Text', type: 'text', group: 'Produkt 3' },
-    { id: 'product4-status', label: 'Produkt 4: Status', type: 'text', group: 'Produkt 4' },
-    { id: 'product4-img', label: 'Produkt 4: Bild URL', type: 'image', group: 'Produkt 4' },
-    { id: 'product4-title', label: 'Produkt 4: Titel', type: 'text', group: 'Produkt 4' },
-    { id: 'product4-desc', label: 'Produkt 4: Beschreibung', type: 'textarea', group: 'Produkt 4' },
-    { id: 'product4-price', label: 'Produkt 4: Preis', type: 'price', group: 'Produkt 4' },
-    { id: 'product4-btn', label: 'Produkt 4: Button-Text', type: 'text', group: 'Produkt 4' }
+    { id: 'product1-status', label: 'Status', type: 'text', group: 'Produkt 1' },
+    { id: 'product1-img', label: 'Bild-URL', type: 'image', group: 'Produkt 1' },
+    { id: 'product1-title', label: 'Titel', type: 'text', group: 'Produkt 1' },
+    { id: 'product1-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 1' },
+    { id: 'product1-price', label: 'Preis', type: 'price', group: 'Produkt 1' },
+    { id: 'product1-btn', label: 'Button-Text', type: 'text', group: 'Produkt 1' },
+    { id: 'product2-status', label: 'Status', type: 'text', group: 'Produkt 2' },
+    { id: 'product2-img', label: 'Bild-URL', type: 'image', group: 'Produkt 2' },
+    { id: 'product2-title', label: 'Titel', type: 'text', group: 'Produkt 2' },
+    { id: 'product2-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 2' },
+    { id: 'product2-price', label: 'Preis', type: 'price', group: 'Produkt 2' },
+    { id: 'product2-btn', label: 'Button-Text', type: 'text', group: 'Produkt 2' },
+    { id: 'product3-status', label: 'Status', type: 'text', group: 'Produkt 3' },
+    { id: 'product3-img', label: 'Bild-URL', type: 'image', group: 'Produkt 3' },
+    { id: 'product3-title', label: 'Titel', type: 'text', group: 'Produkt 3' },
+    { id: 'product3-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 3' },
+    { id: 'product3-price', label: 'Preis', type: 'price', group: 'Produkt 3' },
+    { id: 'product3-btn', label: 'Button-Text', type: 'text', group: 'Produkt 3' },
+    { id: 'product4-status', label: 'Status', type: 'text', group: 'Produkt 4' },
+    { id: 'product4-img', label: 'Bild-URL', type: 'image', group: 'Produkt 4' },
+    { id: 'product4-title', label: 'Titel', type: 'text', group: 'Produkt 4' },
+    { id: 'product4-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt 4' },
+    { id: 'product4-price', label: 'Preis', type: 'price', group: 'Produkt 4' },
+    { id: 'product4-btn', label: 'Button-Text', type: 'text', group: 'Produkt 4' }
   ],
   'product-future': [
     { id: 'future-title', label: 'Produkttitel', type: 'text', group: 'Produkt' },
     { id: 'future-desc', label: 'Beschreibung', type: 'textarea', group: 'Produkt' },
     { id: 'future-price', label: 'Preis', type: 'price', group: 'Produkt' },
-    { id: 'future-img', label: 'Produktbild URL', type: 'image', group: 'Produkt' }
+    { id: 'future-img', label: 'Produktbild', type: 'image', group: 'Produkt' }
   ]
 };
 
@@ -288,11 +284,11 @@ function initAppwrite() {
 
 loginBtn.addEventListener("click", async () => {
   loginBtn.disabled = true;
-  loginMsg.textContent = "⏳ Verbinde mit Appwrite...";
+  loginMsg.textContent = "⏳ Verbinde...";
   loginMsg.style.color = "#1976d2";
   
   if (!initAppwrite()) {
-    loginMsg.textContent = "❌ Bitte alle Appwrite-Felder ausfüllen!";
+    loginMsg.textContent = "❌ Bitte alle Felder ausfüllen!";
     loginMsg.style.color = "var(--err)";
     loginBtn.disabled = false;
     return;
@@ -302,7 +298,7 @@ loginBtn.addEventListener("click", async () => {
   const pass = document.getElementById("adminPass").value;
   
   if (!email || !pass) {
-    loginMsg.textContent = "❌ Bitte E-Mail und Passwort eingeben!";
+    loginMsg.textContent = "❌ E-Mail und Passwort erforderlich!";
     loginMsg.style.color = "var(--err)";
     loginBtn.disabled = false;
     return;
@@ -321,19 +317,14 @@ loginBtn.addEventListener("click", async () => {
     
   } catch (error) {
     console.error('Login Error:', error);
-    
     let errorMsg = "❌ Login fehlgeschlagen: ";
-    
     if (error.message && error.message.includes('Load failed')) {
-      errorMsg += "CORS-Problem! Domain in Appwrite freigeben";
+      errorMsg += "CORS-Problem! Domain freigeben.";
     } else if (error.code === 401) {
-      errorMsg += "Falsche E-Mail oder Passwort";
-    } else if (error.message) {
-      errorMsg += error.message;
+      errorMsg += "Falsche E-Mail/Passwort";
     } else {
-      errorMsg += "Unbekannter Fehler";
+      errorMsg += error.message || "Unbekannter Fehler";
     }
-    
     loginMsg.textContent = errorMsg;
     loginMsg.style.color = "var(--err)";
   } finally {
@@ -342,14 +333,12 @@ loginBtn.addEventListener("click", async () => {
 });
 
 logoutBtn.addEventListener("click", async () => {
-  if(confirm("Wirklich abmelden?")){
+  if(confirm("Abmelden? Ungespeicherte Änderungen gehen verloren.")){
     try {
       await account.deleteSession('current');
     } catch (e) {}
-    
     loginScreen.style.display = "flex";
     adminInterface.style.display = "none";
-    loginMsg.textContent = "";
   }
 });
 
@@ -361,7 +350,7 @@ async function loadPage(pageId) {
   currentPage = pageId;
   currentElement = null;
   
-  elementList.innerHTML = '<div class="loading">⏳ Lade Daten...</div>';
+  elementList.innerHTML = '<div class="loading">⏳ Lade...</div>';
   editorContent.style.display = "none";
   editorEmpty.style.display = "block";
   
@@ -380,69 +369,71 @@ async function loadPage(pageId) {
       pageDocuments[pageId] = doc;
       currentDocumentId = doc.$id;
       
-      // Prüfe ob diese Seite eine neue Struktur verwendet
-      if (DIRECT_STRUCTURE_PAGES.includes(pageId)) {
-        renderDirectStructure(pageId, doc);
+      if (DIRECT_PAGES.includes(pageId)) {
+        renderDirectFields(pageId, doc);
       } else {
-        renderArrayStructure(doc);
+        renderArrayFields(doc);
       }
     } else {
-      showCreateInstructions(pageId);
+      elementList.innerHTML = `<div style="padding:15px;color:#666;font-size:13px;">
+        <strong>📄 Keine Daten</strong><br><br>
+        Erstelle in Appwrite ein Dokument mit:<br>
+        <strong>pageId:</strong> "${pageId}"
+      </div>`;
     }
   } catch (error) {
     console.error('Load Error:', error);
-    elementList.innerHTML = '<div style="padding:10px;color:var(--err);">❌ ' + (error.message || 'Fehler') + '</div>';
+    elementList.innerHTML = '<div style="padding:10px;color:var(--err);">❌ ' + error.message + '</div>';
   }
 }
 
-function renderDirectStructure(pageId, doc) {
+function renderDirectFields(pageId, doc) {
   const fields = PAGE_FIELDS[pageId];
   if (!fields) {
-    elementList.innerHTML = '<div style="padding:10px;color:#666;">❌ Keine Felder definiert</div>';
+    elementList.innerHTML = '<div style="padding:10px;">❌ Keine Felder</div>';
     return;
   }
   
   elementList.innerHTML = "";
-  let currentGroup = null;
+  let lastGroup = null;
   
-  fields.forEach((field, idx) => {
-    if (field.group !== currentGroup) {
-      currentGroup = field.group;
-      const groupHeader = document.createElement("div");
-      groupHeader.style.cssText = "font-weight:600;font-size:12px;color:#666;margin:15px 0 8px;padding-top:10px;border-top:1px solid #eee";
-      groupHeader.textContent = currentGroup;
-      if (idx === 0) groupHeader.style.borderTop = "none";
-      elementList.appendChild(groupHeader);
+  fields.forEach((field) => {
+    if (field.group !== lastGroup) {
+      const header = document.createElement("div");
+      header.className = "group-header";
+      header.textContent = field.group;
+      elementList.appendChild(header);
+      lastGroup = field.group;
     }
     
     const btn = document.createElement("button");
     btn.textContent = field.label;
-    btn.addEventListener("click", () => selectDirectField(field, doc));
+    btn.onclick = () => editDirectField(field, doc);
     elementList.appendChild(btn);
   });
 }
 
-function renderArrayStructure(doc) {
+function renderArrayFields(doc) {
   const content = JSON.parse(doc.content || '[]');
   elementList.innerHTML = "";
   
   if (content.length === 0) {
-    elementList.innerHTML = '<div style="padding:10px;color:#666;">⚠️ Keine Elemente</div>';
+    elementList.innerHTML = '<div style="padding:10px;color:#666;">⚠️ Leer</div>';
   } else {
     content.forEach((el, idx) => {
       const btn = document.createElement("button");
       btn.textContent = el.label || `Element ${idx + 1}`;
-      btn.addEventListener("click", () => selectElement(idx, content));
+      btn.onclick = () => editArrayField(idx, content);
       elementList.appendChild(btn);
     });
   }
 }
 
-function selectDirectField(field, doc) {
-  currentElement = { field, doc };
+function editDirectField(field, doc) {
+  currentElement = { type: 'direct', field };
   
   const buttons = elementList.querySelectorAll("button");
-  buttons.forEach((btn) => {
+  buttons.forEach(btn => {
     btn.classList.toggle("active", btn.textContent === field.label);
   });
   
@@ -452,31 +443,25 @@ function selectDirectField(field, doc) {
   const value = doc[field.id] || '';
   let html = `<h3>✏️ ${field.label}</h3>`;
   
-  if (field.type === "text" || field.type === "price") {
-    html += `
-      <div class="edit-field">
-        <label>${field.label}</label>
-        <input type="text" id="editValue" value="${escapeHtml(value)}">
-      </div>
-    `;
-  } else if (field.type === "textarea") {
-    html += `
-      <div class="edit-field">
-        <label>${field.label}</label>
-        <textarea id="editValue" rows="6">${escapeHtml(value)}</textarea>
-      </div>
-    `;
-  } else if (field.type === "image") {
-    html += `
-      <div class="edit-field">
-        <label>Bild-URL</label>
-        <input type="url" id="editValue" value="${escapeHtml(value)}">
-      </div>
-      <div class="edit-field">
-        <label>Vorschau</label>
-        <img src="${escapeHtml(value)}" style="max-width:100%;border-radius:8px;margin-top:10px;max-height:300px;" id="imgPreview" onerror="this.style.display='none';">
-      </div>
-    `;
+  if (field.type === 'text' || field.type === 'price') {
+    html += `<div class="edit-field">
+      <label>${field.label}</label>
+      <input type="text" id="editValue" value="${escapeHtml(value)}">
+    </div>`;
+  } else if (field.type === 'textarea') {
+    html += `<div class="edit-field">
+      <label>${field.label}</label>
+      <textarea id="editValue" rows="6">${escapeHtml(value)}</textarea>
+    </div>`;
+  } else if (field.type === 'image') {
+    html += `<div class="edit-field">
+      <label>Bild-URL</label>
+      <input type="url" id="editValue" value="${escapeHtml(value)}">
+    </div>
+    <div class="edit-field">
+      <label>Vorschau</label>
+      <img src="${escapeHtml(value)}" id="imgPreview" style="max-width:100%;border-radius:8px;max-height:300px;" onerror="this.style.display='none';">
+    </div>`;
   }
   
   html += `<button class="btn-save" id="saveBtn">💾 Speichern</button>
@@ -487,31 +472,85 @@ function selectDirectField(field, doc) {
   const saveBtn = document.getElementById("saveBtn");
   const editValue = document.getElementById("editValue");
   
-  if (field.type === "image") {
-    editValue.addEventListener("input", (e) => {
+  if (field.type === 'image') {
+    editValue.oninput = (e) => {
       const img = document.getElementById("imgPreview");
       img.src = e.target.value;
       img.style.display = 'block';
-    });
+    };
   }
   
-  saveBtn.addEventListener("click", async () => {
+  saveBtn.onclick = async () => {
     await saveDirectField(field.id, editValue.value);
-  });
+  };
 }
 
-async function saveDirectField(fieldId, newValue) {
+function editArrayField(index, content) {
+  currentElement = { type: 'array', index, content };
+  
+  const buttons = elementList.querySelectorAll("button");
+  buttons.forEach((btn, i) => btn.classList.toggle("active", i === index));
+  
+  editorEmpty.style.display = "none";
+  editorContent.style.display = "block";
+  
+  const el = content[index];
+  let html = `<h3>✏️ ${el.label || 'Element'}</h3>`;
+  
+  if (el.type === 'text' || el.type === 'price') {
+    html += `<div class="edit-field">
+      <label>Text</label>
+      <input type="text" id="editValue" value="${escapeHtml(el.value || '')}">
+    </div>`;
+  } else if (el.type === 'textarea') {
+    html += `<div class="edit-field">
+      <label>Text</label>
+      <textarea id="editValue">${escapeHtml(el.value || '')}</textarea>
+    </div>`;
+  } else if (el.type === 'image') {
+    html += `<div class="edit-field">
+      <label>Bild-URL</label>
+      <input type="url" id="editValue" value="${escapeHtml(el.value || '')}">
+    </div>
+    <div class="edit-field">
+      <label>Vorschau</label>
+      <img src="${escapeHtml(el.value)}" id="imgPreview" style="max-width:100%;border-radius:8px;max-height:300px;" onerror="this.style.display='none';">
+    </div>`;
+  }
+  
+  html += `<button class="btn-save" id="saveBtn">💾 Speichern</button>
+           <span class="save-status" id="saveStatus" style="display:none"></span>`;
+  
+  editorContent.innerHTML = html;
+  
   const saveBtn = document.getElementById("saveBtn");
+  const editValue = document.getElementById("editValue");
+  
+  if (el.type === 'image') {
+    editValue.oninput = (e) => {
+      const img = document.getElementById("imgPreview");
+      img.src = e.target.value;
+      img.style.display = 'block';
+    };
+  }
+  
+  saveBtn.onclick = async () => {
+    await saveArrayField(editValue.value);
+  };
+}
+
+async function saveDirectField(fieldId, value) {
+  const btn = document.getElementById("saveBtn");
   const status = document.getElementById("saveStatus");
   
-  saveBtn.disabled = true;
+  btn.disabled = true;
   status.style.display = "inline-block";
   status.className = "save-status loading";
   status.textContent = "⏳ Speichert...";
   
   try {
     const updateData = {};
-    updateData[fieldId] = newValue;
+    updateData[fieldId] = value;
     
     await databases.updateDocument(
       appwriteConfig.databaseId,
@@ -520,93 +559,25 @@ async function saveDirectField(fieldId, newValue) {
       updateData
     );
     
-    pageDocuments[currentPage][fieldId] = newValue;
+    pageDocuments[currentPage][fieldId] = value;
     
     status.className = "save-status success";
     status.textContent = "✓ Gespeichert!";
-    
     setTimeout(() => status.style.display = "none", 3000);
   } catch (error) {
     console.error('Save Error:', error);
     status.className = "save-status error";
-    status.textContent = "✗ Fehler: " + (error.message || 'Unbekannt');
+    status.textContent = "✗ Fehler: " + error.message;
   } finally {
-    saveBtn.disabled = false;
+    btn.disabled = false;
   }
 }
 
-function showCreateInstructions(pageId) {
-  const isDirect = DIRECT_STRUCTURE_PAGES.includes(pageId);
-  
-  elementList.innerHTML = `<div style="padding:15px;color:#666;font-size:13px;line-height:1.6;">
-    <strong>📄 Seite nicht gefunden</strong><br><br>
-    Erstellen Sie in Appwrite ein Dokument mit:<br>
-    • <strong>pageId:</strong> "${pageId}"<br>
-    ${isDirect ? '• Felder direkt als Eigenschaften (siehe Beispiel)' : '• <strong>content:</strong> JSON-Array'}
-  </div>`;
-}
-
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
-</script>
-</body>
-</html>:', error);
-    status.className = "save-status error";
-    status.textContent = "✗ Fehler: " + (error.message || 'Unbekannt');
-  } finally {
-    saveBtn.disabled = false;
-  }
-}
-
-function selectElement(index, content) {
-  currentElement = { index, data: content[index] };
-  
-  const buttons = elementList.querySelectorAll("button");
-  buttons.forEach((btn, idx) => btn.classList.toggle("active", idx === index));
-  
-  editorEmpty.style.display = "none";
-  editorContent.style.display = "block";
-  
-  const el = currentElement.data;
-  let html = `<h3>✏️ ${el.label || 'Element'}</h3>`;
-  
-  if (el.type === "text" || el.type === "price") {
-    html += `<div class="edit-field"><label>Text</label>
-             <input type="text" id="editValue" value="${escapeHtml(el.value || '')}"></div>`;
-  } else if (el.type === "textarea") {
-    html += `<div class="edit-field"><label>Text</label>
-             <textarea id="editValue">${escapeHtml(el.value || '')}</textarea></div>`;
-  } else if (el.type === "image") {
-    html += `<div class="edit-field"><label>Bild-URL</label>
-             <input type="url" id="editValue" value="${escapeHtml(el.value || '')}"></div>
-             <div class="edit-field"><label>Vorschau</label>
-             <img src="${escapeHtml(el.value)}" style="max-width:100%;border-radius:8px;margin-top:10px;" id="imgPreview" onerror="this.style.display='none';"></div>`;
-  }
-  
-  html += `<button class="btn-save" id="saveBtn">💾 Speichern</button>
-           <span class="save-status" id="saveStatus" style="display:none"></span>`;
-  
-  editorContent.innerHTML = html;
-  
-  document.getElementById("saveBtn").addEventListener("click", async () => {
-    await saveToAppwrite(document.getElementById("editValue").value);
-  });
-  
-  if (el.type === "image") {
-    document.getElementById("editValue").addEventListener("input", (e) => {
-      document.getElementById("imgPreview").src = e.target.value;
-    });
-  }
-}
-
-async function saveToAppwrite(newValue) {
-  const saveBtn = document.getElementById("saveBtn");
+async function saveArrayField(value) {
+  const btn = document.getElementById("saveBtn");
   const status = document.getElementById("saveStatus");
   
-  saveBtn.disabled = true;
+  btn.disabled = true;
   status.style.display = "inline-block";
   status.className = "save-status loading";
   status.textContent = "⏳ Speichert...";
@@ -614,7 +585,7 @@ async function saveToAppwrite(newValue) {
   try {
     const doc = pageDocuments[currentPage];
     const content = JSON.parse(doc.content || '[]');
-    content[currentElement.index].value = newValue;
+    content[currentElement.index].value = value;
     
     await databases.updateDocument(
       appwriteConfig.databaseId,
@@ -629,4 +600,19 @@ async function saveToAppwrite(newValue) {
     status.textContent = "✓ Gespeichert!";
     setTimeout(() => status.style.display = "none", 3000);
   } catch (error) {
-    console.error('Save Error
+    console.error('Save Error:', error);
+    status.className = "save-status error";
+    status.textContent = "✗ Fehler: " + error.message;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+</script>
+</body>
+</html>
