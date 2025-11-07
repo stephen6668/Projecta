@@ -23,6 +23,7 @@
     .login-box button { width: 100%; padding: 12px; background: var(--fg); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
     .login-box button:disabled { opacity: 0.5; cursor: not-allowed; }
     .msg { margin-top: 10px; font-size: 13px; color: var(--err); }
+    .info { background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 13px; line-height: 1.6; }
     
     .admin { display: none; min-height: 100vh; }
     .header { background: #fff; padding: 15px 20px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -71,10 +72,16 @@
 <div class="login" id="login">
   <div class="login-box">
     <h2>🔐 Projecta Admin</h2>
+    
+    <div class="info">
+      <strong>ℹ️ Appwrite 1.8.0</strong><br>
+      Nutzt jetzt "Rows" statt "Documents"
+    </div>
+    
     <input type="text" id="endpoint" placeholder="Endpoint" value="https://cloud.appwrite.io/v1">
     <input type="text" id="project" placeholder="Project ID" value="68ee68b300144140da1c">
     <input type="text" id="database" placeholder="Database ID" value="68ee68c2001481512a67">
-    <input type="text" id="collection" placeholder="Collection ID" value="8425229r23i32">
+    <input type="text" id="table" placeholder="Table/Collection ID" value="8425229r23i32">
     <input type="email" id="email" placeholder="E-Mail" value="admin@projecta.lu">
     <input type="password" id="password" placeholder="Passwort">
     <button id="loginBtn">Anmelden</button>
@@ -110,10 +117,10 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
 <script>
 const cfg = {};
-let db, acc, currentPage, currentDoc, pageData = {};
+let db, acc, currentPage, currentRowId, pageData = {};
 
 const els = {
   login: document.getElementById('login'),
@@ -170,11 +177,11 @@ document.getElementById('loginBtn').onclick = async () => {
   cfg.endpoint = document.getElementById('endpoint').value.trim();
   cfg.project = document.getElementById('project').value.trim();
   cfg.database = document.getElementById('database').value.trim();
-  cfg.collection = document.getElementById('collection').value.trim();
+  cfg.table = document.getElementById('table').value.trim();
   const email = document.getElementById('email').value.trim();
   const pass = document.getElementById('password').value;
   
-  if (!cfg.endpoint || !cfg.project || !cfg.database || !cfg.collection || !email || !pass) {
+  if (!cfg.endpoint || !cfg.project || !cfg.database || !cfg.table || !email || !pass) {
     els.msg.textContent = '❌ Alle Felder ausfüllen!';
     btn.disabled = false;
     return;
@@ -187,14 +194,17 @@ document.getElementById('loginBtn').onclick = async () => {
     
     try {
       await acc.get();
+      console.log('✅ Bereits eingeloggt');
     } catch {
       await acc.createEmailPasswordSession(email, pass);
+      console.log('✅ Login erfolgreich');
     }
     
     els.login.style.display = 'none';
     els.admin.style.display = 'block';
-    loadPage('index');
+    loadPage('produkt-uebersicht');
   } catch (err) {
+    console.error('Login Error:', err);
     els.msg.textContent = '❌ ' + (err.message || 'Fehler');
     btn.disabled = false;
   }
@@ -215,36 +225,49 @@ async function loadPage(page) {
   els.edit.style.display = 'none';
   els.empty.style.display = 'block';
   
+  console.log('🔍 Lade Seite:', page);
+  
   try {
-    const res = await db.listDocuments(cfg.database, cfg.collection, [
+    // Appwrite 1.8.0 nutzt listDocuments (auch für Rows)
+    const res = await db.listDocuments(cfg.database, cfg.table, [
       Appwrite.Query.equal('pageId', page),
       Appwrite.Query.limit(1)
     ]);
     
+    console.log('📦 Response:', res);
+    
     if (res.documents.length === 0) {
-      els.list.innerHTML = '<div style="padding:15px;color:#666;">❌ Keine Daten für "' + page + '"</div>';
+      els.list.innerHTML = `<div style="padding:15px;color:#666;line-height:1.8;">
+        <strong>❌ Keine Daten</strong><br><br>
+        Erstelle in Appwrite eine Row mit:<br>
+        <strong>pageId:</strong> "${page}"<br><br>
+        Dann füge alle Felder hinzu!
+      </div>`;
       return;
     }
     
-    const doc = res.documents[0];
-    pageData[page] = doc;
-    currentDoc = doc.$id;
+    const row = res.documents[0];
+    pageData[page] = row;
+    currentRowId = row.$id;
+    
+    console.log('✅ Row geladen:', row);
     
     if (fields[page]) {
-      renderDirect(page, doc);
-    } else if (doc.content) {
-      renderContent(doc);
+      renderDirect(page, row);
     } else {
-      els.list.innerHTML = '<div style="padding:15px;color:#666;">❌ Unbekannte Struktur</div>';
+      els.list.innerHTML = '<div style="padding:15px;color:#666;">❌ Unbekannte Seite</div>';
     }
   } catch (err) {
+    console.error('Load Error:', err);
     els.list.innerHTML = '<div style="padding:15px;color:red;">❌ ' + err.message + '</div>';
   }
 }
 
-function renderDirect(page, doc) {
+function renderDirect(page, row) {
   els.list.innerHTML = '';
   let lastGroup = null;
+  
+  console.log('🎨 Render Felder für:', page);
   
   fields[page].forEach(f => {
     if (f.group !== lastGroup) {
@@ -256,41 +279,24 @@ function renderDirect(page, doc) {
     }
     
     const btn = document.createElement('button');
-    btn.textContent = f.label;
-    btn.onclick = () => editDirect(f, doc);
+    const hasValue = row[f.id] !== undefined && row[f.id] !== null;
+    btn.textContent = f.label + (hasValue ? ' ✓' : ' ⚠️');
+    btn.style.opacity = hasValue ? '1' : '0.5';
+    btn.onclick = () => editDirect(f, row);
     els.list.appendChild(btn);
+    
+    console.log(`  ${f.id}: ${hasValue ? '✓' : '❌'} = ${row[f.id]}`);
   });
 }
 
-function renderContent(doc) {
-  try {
-    const content = JSON.parse(doc.content || '[]');
-    els.list.innerHTML = '';
-    
-    if (content.length === 0) {
-      els.list.innerHTML = '<div style="padding:10px;color:#666;">Leer</div>';
-      return;
-    }
-    
-    content.forEach((item, i) => {
-      const btn = document.createElement('button');
-      btn.textContent = item.label || 'Element ' + (i+1);
-      btn.onclick = () => editContent(i, content);
-      els.list.appendChild(btn);
-    });
-  } catch {
-    els.list.innerHTML = '<div style="padding:10px;color:red;">❌ Ungültiges JSON</div>';
-  }
-}
-
-function editDirect(field, doc) {
+function editDirect(field, row) {
   els.list.querySelectorAll('button').forEach(b => b.classList.remove('active'));
   event.target.classList.add('active');
   
   els.empty.style.display = 'none';
   els.edit.style.display = 'block';
   
-  const val = doc[field.id] || '';
+  const val = row[field.id] || '';
   let html = '<h3>✏️ ' + field.label + '</h3>';
   
   if (field.type === 'text') {
@@ -315,36 +321,6 @@ function editDirect(field, doc) {
   document.getElementById('save').onclick = () => saveDirect(field.id);
 }
 
-function editContent(idx, content) {
-  els.list.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', i === idx));
-  
-  els.empty.style.display = 'none';
-  els.edit.style.display = 'block';
-  
-  const item = content[idx];
-  let html = '<h3>✏️ ' + (item.label || 'Element') + '</h3>';
-  
-  if (item.type === 'text' || item.type === 'price') {
-    html += '<div class="field"><label>Text</label><input type="text" id="val" value="' + esc(item.value || '') + '"></div>';
-  } else if (item.type === 'textarea') {
-    html += '<div class="field"><label>Text</label><textarea id="val">' + esc(item.value || '') + '</textarea></div>';
-  } else if (item.type === 'image') {
-    html += '<div class="field"><label>Bild-URL</label><input type="url" id="val" value="' + esc(item.value || '') + '"></div>';
-    html += '<div class="field"><label>Vorschau</label><img src="' + esc(item.value) + '" id="prev" style="max-width:100%;border-radius:8px;" onerror="this.style.display=\'none\'"></div>';
-  }
-  
-  html += '<button class="save" id="save">💾 Speichern</button><span class="status" id="status" style="display:none"></span>';
-  els.edit.innerHTML = html;
-  
-  if (item.type === 'image') {
-    document.getElementById('val').oninput = (e) => {
-      document.getElementById('prev').src = e.target.value;
-    };
-  }
-  
-  document.getElementById('save').onclick = () => saveContent(idx, content);
-}
-
 async function saveDirect(fieldId) {
   const btn = document.getElementById('save');
   const stat = document.getElementById('status');
@@ -355,45 +331,22 @@ async function saveDirect(fieldId) {
   stat.className = 'status wait';
   stat.textContent = '⏳ Speichert...';
   
+  console.log('💾 Speichere:', fieldId, '=', val);
+  
   try {
     const upd = {};
     upd[fieldId] = val;
     
-    await db.updateDocument(cfg.database, cfg.collection, currentDoc, upd);
+    await db.updateDocument(cfg.database, cfg.table, currentRowId, upd);
     pageData[currentPage][fieldId] = val;
     
-    stat.className = 'status ok';
-    stat.textContent = '✓ Gespeichert';
-    setTimeout(() => stat.style.display = 'none', 3000);
-  } catch (err) {
-    stat.className = 'status err';
-    stat.textContent = '✗ ' + err.message;
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-async function saveContent(idx, content) {
-  const btn = document.getElementById('save');
-  const stat = document.getElementById('status');
-  const val = document.getElementById('val').value;
-  
-  btn.disabled = true;
-  stat.style.display = 'inline-block';
-  stat.className = 'status wait';
-  stat.textContent = '⏳ Speichert...';
-  
-  try {
-    content[idx].value = val;
-    await db.updateDocument(cfg.database, cfg.collection, currentDoc, {
-      content: JSON.stringify(content)
-    });
-    pageData[currentPage].content = JSON.stringify(content);
+    console.log('✅ Gespeichert!');
     
     stat.className = 'status ok';
     stat.textContent = '✓ Gespeichert';
     setTimeout(() => stat.style.display = 'none', 3000);
   } catch (err) {
+    console.error('Save Error:', err);
     stat.className = 'status err';
     stat.textContent = '✗ ' + err.message;
   } finally {
