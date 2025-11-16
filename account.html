@@ -239,34 +239,6 @@
       letter-spacing: 0.2rem;
     }
 
-    .edit-btn {
-      background: var(--gold);
-      color: white;
-      border: none;
-      padding: 0.5rem 1.5rem;
-      border-radius: var(--border-radius-sm);
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: var(--font-primary);
-      font-size: 0.9rem;
-    }
-
-    .edit-btn:hover {
-      background: var(--accent-primary);
-      transform: translateY(-2px);
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .btn-group .edit-btn {
-      flex: 1;
-    }
-
     .status-badge {
       display: inline-block;
       padding: 0.25rem 0.75rem;
@@ -283,6 +255,133 @@
     .status-badge.inactive {
       background: rgba(244, 67, 54, 0.1);
       color: #F44336;
+    }
+
+    .status-badge.pending {
+      background: rgba(255, 152, 0, 0.1);
+      color: #FF9800;
+    }
+
+    .status-badge.processing {
+      background: rgba(33, 150, 243, 0.1);
+      color: #2196F3;
+    }
+
+    .status-badge.shipped {
+      background: rgba(156, 39, 176, 0.1);
+      color: #9C27B0;
+    }
+
+    /* Orders Section */
+    .orders-section {
+      grid-column: 1 / -1;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-light);
+      border: 1px solid rgba(207, 161, 90, 0.1);
+    }
+
+    .order-card {
+      background: var(--bg-primary);
+      border: 2px solid rgba(207, 161, 90, 0.2);
+      border-radius: var(--border-radius-sm);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .order-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 4px 16px var(--shadow-light);
+    }
+
+    .order-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .order-number {
+      font-weight: 700;
+      color: var(--accent-primary);
+      font-size: 1.1rem;
+    }
+
+    .order-date {
+      color: var(--accent-secondary);
+      font-size: 0.9rem;
+    }
+
+    .order-items {
+      margin: 1rem 0;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-details {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: var(--accent-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .item-meta {
+      font-size: 0.85rem;
+      color: var(--accent-secondary);
+    }
+
+    .item-price {
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid rgba(207, 161, 90, 0.3);
+    }
+
+    .order-total {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    .empty-orders {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--accent-secondary);
+    }
+
+    .empty-orders-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
     }
 
     .loading {
@@ -365,6 +464,23 @@
         flex-direction: column;
         gap: 0.5rem;
       }
+
+      .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .order-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
     }
   </style>
 </head>
@@ -390,7 +506,7 @@
     <p>Lade Kontodaten...</p>
   </div>
 
-  <!-- Main Content (Hidden until loaded) -->
+  <!-- Main Content -->
   <main class="account-content" id="mainContent" style="display: none;">
     
     <div class="account-header">
@@ -404,6 +520,20 @@
       <div class="user-info">
         <h2 id="welcomeName">Willkommen zurück!</h2>
         <p id="userMemberInfo">Lädt...</p>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="orders-section">
+      <div class="section-header">
+        <span class="section-icon">📦</span>
+        <h3>Meine Bestellungen</h3>
+      </div>
+      <div id="ordersContainer">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>Lade Bestellungen...</p>
+        </div>
       </div>
     </div>
 
@@ -557,12 +687,21 @@
 
     const DATABASE_ID = '68ee68c2001481512a67';
     const COLLECTION_ID = '20122005';
+    const ORDERS_COLLECTION_ID = 'orders'; // Passen Sie dies an Ihre Collection-ID an
 
     // Format date
     function formatDate(dateString) {
       if (!dateString) return '-';
       const date = new Date(dateString);
       return date.toLocaleDateString('de-DE', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    }
+
+    // Format currency
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR'
+      }).format(amount);
     }
 
     // Get gender label
@@ -573,6 +712,106 @@
         'other': 'Divers'
       };
       return labels[gender] || '-';
+    }
+
+    // Get status label
+    function getOrderStatusLabel(status) {
+      const labels = {
+        'pending': 'Ausstehend',
+        'processing': 'In Bearbeitung',
+        'shipped': 'Versendet',
+        'delivered': 'Zugestellt',
+        'cancelled': 'Storniert'
+      };
+      return labels[status] || status;
+    }
+
+    // Get status badge class
+    function getStatusBadgeClass(status) {
+      const classes = {
+        'pending': 'pending',
+        'processing': 'processing',
+        'shipped': 'shipped',
+        'delivered': 'active',
+        'cancelled': 'inactive'
+      };
+      return classes[status] || 'inactive';
+    }
+
+    // Load Orders
+    async function loadOrders(userId) {
+      try {
+        // Query orders for this user
+        const response = await databases.listDocuments(
+          DATABASE_ID,
+          ORDERS_COLLECTION_ID,
+          [
+            Appwrite.Query.equal('userId', userId),
+            Appwrite.Query.orderDesc('$createdAt'),
+            Appwrite.Query.limit(100)
+          ]
+        );
+
+        const ordersContainer = document.getElementById('ordersContainer');
+
+        if (response.documents.length === 0) {
+          ordersContainer.innerHTML = `
+            <div class="empty-orders">
+              <div class="empty-orders-icon">📦</div>
+              <h3>Noch keine Bestellungen</h3>
+              <p>Sie haben bisher noch keine Bestellungen aufgegeben.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Build orders HTML
+        let ordersHTML = '';
+        response.documents.forEach(order => {
+          const items = order.items || [];
+          const itemsHTML = items.map(item => `
+            <div class="order-item">
+              <div class="item-details">
+                <div class="item-name">${item.name || 'Produkt'}</div>
+                <div class="item-meta">Menge: ${item.quantity || 1} × ${formatCurrency(item.price || 0)}</div>
+              </div>
+              <div class="item-price">${formatCurrency((item.price || 0) * (item.quantity || 1))}</div>
+            </div>
+          `).join('');
+
+          ordersHTML += `
+            <div class="order-card">
+              <div class="order-header">
+                <div>
+                  <div class="order-number">Bestellung #${order.orderNumber || order.$id.substring(0, 8)}</div>
+                  <div class="order-date">${formatDate(order.$createdAt)}</div>
+                </div>
+                <span class="status-badge ${getStatusBadgeClass(order.status)}">
+                  ${getOrderStatusLabel(order.status)}
+                </span>
+              </div>
+              <div class="order-items">
+                ${itemsHTML}
+              </div>
+              <div class="order-footer">
+                <span class="order-total">Gesamt: ${formatCurrency(order.total || 0)}</span>
+              </div>
+            </div>
+          `;
+        });
+
+        ordersContainer.innerHTML = ordersHTML;
+
+      } catch (error) {
+        console.error('Error loading orders:', error);
+        document.getElementById('ordersContainer').innerHTML = `
+          <div class="empty-orders">
+            <div class="empty-orders-icon">⚠️</div>
+            <h3>Bestellungen konnten nicht geladen werden</h3>
+            <p>Bitte versuchen Sie es später erneut.</p>
+          </div>
+        `;
+      }
     }
 
     // Load User Data
@@ -595,6 +834,9 @@
         document.getElementById('registrationDate').textContent = formatDate(user.$createdAt);
         document.getElementById('userMemberInfo').textContent =
           `Mitglied seit ${regDate.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}`;
+
+        // Load orders
+        await loadOrders(user.$id);
 
         // Try to load profile data
         try {
