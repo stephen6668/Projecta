@@ -218,41 +218,58 @@
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
       border-radius: var(--border-radius);z-index: -1;opacity: 0.1;
     }
-    .reveal-image:hover {transform: translateY(-8px);box-shadow: 0 32px 80px var(--shadow-dark);}
     .reveal-text {
-      background: rgba(255, 255, 255, 0.9);
-      padding: clamp(2rem, 6vw, 3rem);border-radius: var(--border-radius);
-      box-shadow: 0 16px 48px var(--shadow-light);
-      backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      position: relative;overflow: hidden;opacity: 0;
-      animation: fadeInUp 0.8s ease-out forwards;
-      animation-delay: 0.4s;max-width: 100%;
-    }
-    .reveal-text::before {
-      content: '';position: absolute;top: 0;left: 0;right: 0;height: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    }
-    .reveal-text h2 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      margin-bottom: clamp(1rem, 3vw, 1.5rem);color: var(--accent-primary);
-    }
-    .reveal-text p {
-      font-size: clamp(1rem, 2.5vw, 1.125rem);
-      margin-bottom: clamp(1rem, 3vw, 1.5rem);
-      line-height: 1.7;color: var(--accent-secondary);
-    }
-    .reveal-text ul {padding-left: 0;margin-bottom: clamp(1.5rem, 4vw, 2rem);list-style: none;}
-    .reveal-text li {
-      margin-bottom: clamp(0.6rem, 2vw, 0.8rem);
-      font-size: clamp(1rem, 2.5vw, 1.1rem);
-      color: var(--accent-secondary);position: relative;
-      padding-left: clamp(1.5rem, 4vw, 2rem);
-    }
-    .reveal-text li::before {
-      content: attr(data-icon);position: absolute;left: 0;top: 0;
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-    }
+  background: rgba(0, 0, 0, 0.9);  /* ← NEU: schwarz statt weiß */
+  padding: clamp(2rem, 6vw, 3rem);
+  border-radius: var(--border-radius);
+  box-shadow: 0 16px 48px var(--shadow-dark);  /* ← NEU: dunklerer Schatten */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(207, 161, 90, 0.3);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.4s;
+  max-width: 100%;
+}
+
+.reveal-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+
+.reveal-text h2 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  color: var(--white);  /* ← NEU: weiß statt dunkel */
+}
+
+.reveal-text p {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);  /* ← NEU: weiß statt dunkel */
+}
+
+.reveal-text ul {
+  padding-left: 0;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+  list-style: none;
+}
+
+.reveal-text li {
+  margin-bottom: clamp(0.6rem, 2vw, 0.8rem);
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.85);  /* ← NEU: weiß statt dunkel */
+  position: relative;
+  padding-left: clamp(1.5rem, 4vw, 2rem);
+}
 
     /* Video Section */
     .reveal-video {
