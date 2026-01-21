@@ -61,28 +61,54 @@
     .spaced {padding: clamp(3rem, 8vw, 5rem) 0;}
 
     /* Header */
-    .site-header {
-      position: fixed;top: 0;left: 0;right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px);
-      z-index: 1000;padding: clamp(0.8rem, 2vw, 1rem) 0;
-      box-shadow: 0 4px 24px var(--shadow-light);
-      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
-      padding-top: calc(clamp(0.8rem, 2vw, 1rem) + var(--safe-area-inset-top));
-      padding-left: var(--safe-area-inset-left);
-      padding-right: var(--safe-area-inset-right);
-    }
-    .header-inner {display: flex;align-items: center;justify-content: space-between;}
-    .brand {
-      display: flex;align-items: center;text-decoration: none;
-      color: var(--accent-primary);transition: var(--transition);
-    }
-    .brand:hover {color: var(--gold);transform: translateY(-1px);}
-    .logo {height: clamp(40px, 8vw, 52px);margin-right: clamp(0.4rem, 1.5vw, 0.6rem);transition: var(--transition);}
-    .brand-text {
-      font-family: var(--font-secondary);font-weight: 700;
-      font-size: clamp(1.2rem, 4vw, 1.75rem);letter-spacing: -0.02em;
-    }
+   .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(13, 9, 7, 0.98);  /* ← GEÄNDERT: schwarz statt weiß */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  padding: clamp(0.8rem, 2vw, 1rem) 0;
+  box-shadow: 0 4px 24px var(--shadow-dark);  /* ← GEÄNDERT: dunklerer Schatten */
+  border-bottom: 1px solid rgba(207, 161, 90, 0.3);  /* ← GEÄNDERT: stärkerer goldener Border */
+  padding-top: calc(clamp(0.8rem, 2vw, 1rem) + var(--safe-area-inset-top));
+  padding-left: var(--safe-area-inset-left);
+  padding-right: var(--safe-area-inset-right);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white);  /* ← GEÄNDERT: weiß statt accent-primary */
+  transition: var(--transition);
+}
+
+.brand:hover {
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.logo {
+  height: clamp(40px, 8vw, 52px);
+  margin-right: clamp(0.4rem, 1.5vw, 0.6rem);
+  transition: var(--transition);
+}
+
+.brand-text {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 4vw, 1.75rem);
+  letter-spacing: -0.02em;
+}
 
     /* Hamburger Menu */
     .burger {
