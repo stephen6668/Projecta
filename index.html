@@ -111,24 +111,55 @@
 }
 
     /* Hamburger Menu */
-    .burger {
-      display: flex;flex-direction: column;justify-content: space-around;
-      width: clamp(40px, 8vw, 44px);height: clamp(40px, 8vw, 44px);
-      cursor: pointer;background: none;border: none;padding: 8px;
-      border-radius: var(--border-radius-sm);transition: var(--transition);
-      position: relative;z-index: 1001;-webkit-touch-callout: none;
-      -webkit-user-select: none;user-select: none;
-    }
-    .burger:hover, .burger:focus {background: rgba(207, 161, 90, 0.1);transform: scale(1.05);}
-    .burger span {
-      display: block;width: clamp(20px, 5vw, 24px);height: 3px;
-      background: var(--accent-primary);border-radius: 2px;
-      transition: var(--transition);transform-origin: center;margin: 2px auto;
-    }
-    .burger.active span:nth-child(1) {transform: rotate(45deg) translate(6px, 6px);background: var(--gold);}
-    .burger.active span:nth-child(2) {opacity: 0;transform: scaleX(0);}
-    .burger.active span:nth-child(3) {transform: rotate(-45deg) translate(6px, -6px);background: var(--gold);}
+   .burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: clamp(40px, 8vw, 44px);
+  height: clamp(40px, 8vw, 44px);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+  position: relative;
+  z-index: 1001;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
 
+.burger:hover, .burger:focus {
+  background: rgba(207, 161, 90, 0.2);  /* ← stärkerer Gold-Hintergrund beim Hover */
+  transform: scale(1.05);
+}
+
+.burger span {
+  display: block;
+  width: clamp(20px, 5vw, 24px);
+  height: 3px;
+  background: var(--gold);  /* ← GEÄNDERT: gold */
+  border-radius: 2px;
+  transition: var(--transition);
+  transform-origin: center;
+  margin: 2px auto;
+}
+
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+  background: var(--gold-light);  /* ← helleres Gold wenn aktiv */
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+  background: var(--gold-light);  /* ← helleres Gold wenn aktiv */
+}
     /* Sidebar Menu */
     .sidebar-menu {
       position: fixed;top: 0;right: -100%;
