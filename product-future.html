@@ -55,17 +55,17 @@
       margin: 0 auto;
       padding: 0 2rem;
     }
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      z-index: 1000;
-      padding: 1rem 0;
-      box-shadow: 0 4px 24px var(--shadow-light);
-    }
+   .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #0A0A0A; /* Schwarz statt Weiß */
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 4px 24px var(--shadow-light);
+}
     .header-inner {
       display: flex;
       align-items: center;
@@ -209,12 +209,13 @@
       transform: translateY(-8px);
     }
     .product-info {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 3rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 16px 48px var(--shadow-light);
-      position: relative;
-    }
+  background: #0A0A0A; /* tiefes Schwarz */
+  padding: 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 16px 48px var(--shadow-light);
+  position: relative;
+  color: var(--white); /* Schriftfarbe weiß */
+}
     .product-info::before {
       content: '';
       position: absolute;
@@ -225,9 +226,10 @@
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
     }
     .product-info h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 1.5rem;
-    }
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+  color: var(--gold); /* bleibt Gold */
+}
     .product-info p {
       font-size: 1.125rem;
       line-height: 1.7;
