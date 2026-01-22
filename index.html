@@ -161,47 +161,91 @@
   background: var(--gold-light);  /* ← helleres Gold wenn aktiv */
 }
     /* Sidebar Menu */
-    .sidebar-menu {
-      position: fixed;top: 0;right: -100%;
-      width: clamp(280px, 80vw, 320px);height: 100vh;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 247, 243, 0.98) 100%);
-      backdrop-filter: blur(24px);-webkit-backdrop-filter: blur(24px);
-      box-shadow: -8px 0 32px var(--shadow-medium);
-      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;flex-direction: column;
-      padding: calc(clamp(4rem, 12vw, 6rem) + var(--safe-area-inset-top)) clamp(1rem, 4vw, 2rem) calc(clamp(1.5rem, 4vw, 2rem) + var(--safe-area-inset-bottom));
-      z-index: 999;border-left: 1px solid rgba(207, 161, 90, 0.1);
-      -webkit-overflow-scrolling: touch;overflow-y: auto;
-    }
-    .sidebar-menu.active {right: 0;}
-    .sidebar-nav {display: flex;flex-direction: column;gap: 0;}
-    .sidebar-nav a {
-      padding: clamp(1rem, 3vw, 1.25rem) 0;text-decoration: none;
-      color: var(--accent-primary);font-size: clamp(1rem, 2.5vw, 1.1rem);
-      font-weight: 500;border-bottom: 1px solid rgba(51, 51, 51, 0.08);
-      transition: var(--transition);position: relative;
-      border-radius: var(--border-radius-sm);font-family: var(--font-secondary);
-      -webkit-touch-callout: none;
-      -webkit-tap-highlight-color: rgba(207, 161, 90, 0.2);
-      min-height: 44px;display: flex;align-items: center;
-    }
-    .sidebar-nav a:hover {
-      color: var(--gold);padding-left: 1.5rem;
-      background: rgba(207, 161, 90, 0.05);transform: translateY(-1px);
-    }
-    .sidebar-nav a::before {
-      content: '';position: absolute;left: 0;top: 50%;
-      transform: translateY(-50%);width: 0;height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      transition: var(--transition);border-radius: 2px;
-    }
-    .sidebar-nav a:hover::before {width: 1rem;}
-    .admin-link {
-      color: var(--gold) !important;background: rgba(207, 161, 90, 0.1) !important;
-      border-radius: var(--border-radius-sm);margin-top: 1rem;
-      padding: 1rem !important;font-weight: 600;
-    }
-    .admin-link:hover {background: var(--gold) !important;color: var(--white) !important;}
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: clamp(280px, 80vw, 320px);
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(13, 9, 7, 0.98) 0%, rgba(26, 22, 20, 0.98) 100%);  /* ← GEÄNDERT: schwarz */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: -8px 0 32px var(--shadow-intense);  /* ← GEÄNDERT: stärkerer Schatten */
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  padding: calc(clamp(4rem, 12vw, 6rem) + var(--safe-area-inset-top)) clamp(1rem, 4vw, 2rem) calc(clamp(1.5rem, 4vw, 2rem) + var(--safe-area-inset-bottom));
+  z-index: 999;
+  border-left: 1px solid rgba(207, 161, 90, 0.3);  /* ← GEÄNDERT: stärkerer goldener Border */
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+.sidebar-menu.active {
+  right: 0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sidebar-nav a {
+  padding: clamp(1rem, 3vw, 1.25rem) 0;
+  text-decoration: none;
+  color: var(--white);  /* ← GEÄNDERT: weiß statt accent-primary */
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* ← GEÄNDERT: weiße Border */
+  transition: var(--transition);
+  position: relative;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-secondary);
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(207, 161, 90, 0.2);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-nav a:hover {
+  color: var(--gold);
+  padding-left: 1.5rem;
+  background: rgba(207, 161, 90, 0.15);  /* ← GEÄNDERT: stärkerer Hover-Effekt */
+  transform: translateY(-1px);
+}
+
+.sidebar-nav a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.sidebar-nav a:hover::before {
+  width: 1rem;
+}
+
+.admin-link {
+  color: var(--gold) !important;
+  background: rgba(207, 161, 90, 0.2) !important;  /* ← GEÄNDERT: stärkerer Hintergrund */
+  border-radius: var(--border-radius-sm);
+  margin-top: 1rem;
+  padding: 1rem !important;
+  font-weight: 600;
+}
+
+.admin-link:hover {
+  background: var(--gold) !important;
+  color: var(--white) !important;
+}
 
     /* Menu Overlay */
     .menu-overlay {
