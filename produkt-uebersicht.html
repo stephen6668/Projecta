@@ -10,10 +10,10 @@
   
   <style>
     :root {
-      --bg-primary: #F9F7F3;
-      --bg-secondary: #EFE8DC;
-      --accent-primary: #670F0F;
-      --accent-secondary: #666666;
+      --bg-primary:#0D0907;
+      --bg-secondary: #f7f5f5;
+      --accent-primary: #f7f5f5;
+      --accent-secondary: #f7f5f5;
       --gold: #CFA15A;
       --gold-light: #D4B373;
       --white: #FFFFFF;
@@ -58,11 +58,11 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(13, 9, 7, 0.98);
       backdrop-filter: blur(20px);
       z-index: 1000;
       padding: 1rem 0;
-      box-shadow: 0 4px 24px var(--shadow-light);
+      box-shadow: 0 4px 24px var(--shadow-dark);
     }
 
     .header-inner {
@@ -144,7 +144,7 @@
       right: -320px;
       width: 320px;
       height: 100vh;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(249, 247, 243, 0.98));
+      background: linear-gradient(135deg, rgba(13, 9, 7, 0.98) 0%, rgba(26, 22, 20, 0.98) 100%);
       backdrop-filter: blur(24px);
       box-shadow: -8px 0 32px var(--shadow-medium);
       transition: right 0.4s;
@@ -225,9 +225,9 @@
     }
 
     .product-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: var(--border-radius);
-      box-shadow: 0 16px 48px var(--shadow-light);
+      box-shadow: 0 16px 48px var(--shadow-dark);
       backdrop-filter: blur(20px);
       padding: 2rem;
       width: 100%;
@@ -284,7 +284,7 @@
       object-fit: cover;
       border-radius: var(--border-radius-sm);
       margin-bottom: 1.5rem;
-      box-shadow: 0 8px 24px var(--shadow-light);
+      box-shadow: 0 8px 24px var(--shadow-dark);
     }
 
     .product-card h2 {
