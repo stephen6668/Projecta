@@ -14,9 +14,9 @@
     /* CSS Variables - Matching product page design */
     :root {
      --bg-primary:#0D0907;
-      --bg-secondary: #26282A;
-      --accent-primary: #0D0907;
-      --accent-secondary: #26282A;
+      --bg-secondary: #f7f5f5;
+      --accent-primary: #f7f5f5;
+      --accent-secondary: #f7f5f5;
       --gold: #CFA15A;
       --gold-light: #D4B373;
       --white: #FFFFFF;
@@ -147,6 +147,27 @@
     }
 
     /* Sidebar Navigation */
+
+    .sidebar-menu {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 320px;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(249, 247, 243, 0.1) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: -8px 0 32px var(--shadow-dark);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: calc(6rem + var(--safe-area-inset-top)) 2rem calc(2rem + var(--safe-area-inset-bottom));
+      z-index: 999;
+      border-left: 1px solid rgba(207, 161, 90, 0.1);
+      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+    }
+    
     .nav {
       position: fixed;
       top: 0;
@@ -232,7 +253,7 @@
       margin-top: 80px;
       min-height: calc(100vh - 80px);
       padding: 4rem 2rem 6rem;
-      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
     }
 
     /* Content Container */
@@ -242,7 +263,7 @@
        background: rgba(0, 0, 0, 0.9);
       padding: 4rem 3rem;
       border-radius: var(--border-radius);
-      box-shadow: 0 16px 48px var(--shadow-light);
+      box-shadow: 0 16px 48px var(--shadow-dark);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.3);
@@ -333,7 +354,7 @@
 
     /* Mission Statement Styling */
     .mission-highlight {
-      background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(51, 51, 51, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(51, 51, 51, 0.01) 100%);
       padding: 2.5rem;
       border-radius: var(--border-radius);
       border-left: 4px solid var(--gold);
@@ -395,15 +416,15 @@
     .stat-item {
       text-align: center;
       padding: 2rem;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: var(--border-radius);
-      box-shadow: 0 8px 24px var(--shadow-light);
+      box-shadow: 0 8px 24px var(--shadow-dark);
       transition: var(--transition);
     }
 
     .stat-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 32px var(--shadow-medium);
+      box-shadow: 0 12px 32px var(--shadow-dark);
     }
 
     .stat-number {
