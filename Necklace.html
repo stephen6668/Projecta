@@ -193,7 +193,7 @@
     }
 
     /* Sidebar Menu - SCHWARZ */
-    .sidebar-menu {
+    .nav {
   position: fixed;
   top: 0;
   right: -320px;
@@ -218,6 +218,7 @@
   align-items: center;
   text-align: center;
 
+  /* Schrift etwas weiter nach unten */
   padding: calc(7rem + var(--safe-area-inset-top)) 2rem
            calc(2rem + var(--safe-area-inset-bottom));
   gap: 1.5rem;
@@ -228,53 +229,30 @@
   overflow-y: auto;
 }
 
-    .sidebar-menu.active {
-      right: 0;
-    }
 
-    .sidebar-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
+    .nav.active {right: 0;}
 
-    .sidebar-nav a {
-      padding: clamp(1rem, 3vw, 1.25rem) 0;
-      text-decoration: none;
-      color: var(--white);
-      font-size: clamp(1rem, 2.5vw, 1.1rem);
-      font-weight: 500;
+    .nav a {
+      padding: 1.25rem 0;text-decoration: none;color: var(--white);
+      font-size: 1.1rem;font-weight: 500;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: var(--transition);
-      position: relative;
-      font-family: var(--font-secondary);
-      min-height: 44px;
-      display: flex;
-      align-items: center;
+      transition: var(--transition);position: relative;
+      border-radius: var(--border-radius-sm);font-family: var(--font-secondary);
     }
 
-    .sidebar-nav a:hover {
-      color: var(--gold);
-      padding-left: 1.5rem;
-      background: rgba(207, 161, 90, 0.15);
+    .nav a:hover {
+      color: var(--gold);padding-left: 1.5rem;
+      background: rgba(207, 161, 90, 0.15);transform: translateY(-1px);
     }
 
-    .sidebar-nav a::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 3px;
+    .nav a::before {
+      content: '';position: absolute;left: 0;top: 50%;
+      transform: translateY(-50%);width: 0;height: 3px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      transition: var(--transition);
-      border-radius: 2px;
+      transition: var(--transition);border-radius: 2px;
     }
 
-    .sidebar-nav a:hover::before {
-      width: 1rem;
-    }
+    .nav a:hover::before {width: 1rem;}
 
     .admin-link {
       color: var(--gold) !important;
