@@ -591,190 +591,6 @@
       transform: translateX(0);
     }
 
-    .site-footer {
-      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-      color: var(--white);
-      padding: 3rem 0;
-      border-top: 1px solid rgba(207, 161, 90, 0.3);
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .footer-links a {
-      color: var(--white);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: var(--gold);
-    }
-
-    @media (max-width: 1024px) {
-      .product-detail {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .product-gallery {
-        position: static;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar-menu {
-        width: 350px;
-        right: -350px;
-      }
-
-      .container {
-        padding: 0 1rem;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .sidebar-menu {
-        width: 100vw;
-        right: -100vw;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand">
-        <img src="images/Logo.png" alt="Projecta Logo" class="logo">
-        <span class="brand-text">Projecta</span>
-      </a>
-
-      <div style="position: relative;">
-        <span id="cart-badge-header" class="cart-badge"></span>
-        <button id="burger" class="burger" aria-label="Menü öffnen">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Sidebar Menu -->
-  <div id="menu-overlay" class="menu-overlay"></div>
-  <nav id="sidebar-menu" class="sidebar-menu">
-    <div class="sidebar-nav">
-      <a href="index.html">Home</a>
-      <a href="product.html">Safety-Band</a>
-      <a href="necklace.html">Safety-Necklace</a>
-      <a href="cart.html">Warenkorb</a>
-      <a href="about.html">Über Uns</a>
-      <a href="contact.html">Kontakt</a>
-      <a href="product-future.html">Zukünftige Produkte</a>
-      <a href="admin.html" class="admin-link">Admin</a>
-    </div>
-  </nav>
-
-  <!-- Hauptinhalt -->
-  <main>
-    <section class="product-section">
-      <div class="container">
-        <div class="product-detail">
-         
-          <!-- Product Gallery -->
-          <div class="product-gallery">
-            <div class="main-image">
-              <img id="zoom-image" src="images/kette.png" alt="Projecta Halskette" />
-            </div>
-            <div class="thumbs">
-              <img src="images/kette.png" data-full="images/kette.png" alt="Ansicht 1" class="active">
-              <img src="images/halskette2.png" data-full="images/halskette2.png" alt="Ansicht 2">
-              <img src="images/halskette3.jpg" data-full="images/halskette3.jpg" alt="Ansicht 3">
-            </div>
-          </div>
-
-          <!-- Product Info -->
-          <div class="product-info">
-            <div class="product-box">
-              <h1 id="product-title">Safety-Necklace</h1>
-              <p class="price" id="product-price">€94.00</p>
-              <div class="product-description">
-                Ihre elegante Halskette, die außerdem die Standort-Sendefunktion und die Alarmfunktion enthält. Wenn Sie sich in einer Gefahrensituation wiederfinden, betätigen Sie den Knopf auf der Rückseite und Ihr Standort wird automatisch an Ihren Notfallkontakt gesendet. Bei zweimaligem Betätigen des Knopfes wird ein lauter Alarm abgespielt, sodass Sie die Aufmerksamkeit auf sich ziehen können. Bei gedrückt halten des Knopfes wird der Alarm wieder abgestellt.
-              </div>
-
-              <div class="product-options">
-                <div class="option-group">
-                  <label for="quantity">Menge</label>
-                  <input id="quantity" type="number" min="1" max="10" value="1">
-                </div>
-
-                <div class="option-group">
-                  <label for="chain-length">Kettenlänge</label>
-                  <select id="chain-length">
-                    <option value="40cm">40 cm - Kurz</option>
-                    <option value="45cm" selected>45 cm - Standard</option>
-                    <option value="50cm">50 cm - Lang</option>
-                    <option value="55cm">55 cm - Extra Lang</option>
-                  </select>
-                </div>
-
-                <div class="option-group">
-                  <label for="chain-color">Kettenfarbe</label>
-                  <select id="chain-color">
-                    <option value="silber">Silber</option>
-                    <option value="gold">Gold</option>
-                    <option value="rosegold">Roségold</option>
-                    <option value="schwarz">Schwarz</option>
-                  </select>
-                </div>
-
-                <div class="option-group">
-                  <label for="engraving">Textgravur (optional)</label>
-                  <input type="text" id="engraving" placeholder="Dein Text (max. 30 Zeichen)" maxlength="30" />
-                </div>
-
-                <div class="option-group">
-                  <label for="image-upload">Bildgravur (PDF, JPG, PNG - max. 5MB)</label>
-                  <div class="file-upload-container">
-                    <input type="file" id="image-upload" class="file-upload" accept=".pdf,.jpg,.jpeg,.png" />
-                    <label for="image-upload" class="file-upload-label" id="file-upload-label">
-                      <span>📁 Datei für Gravur auswählen</span>
-                    </label>
-                    <div id="file-info" class="file-info"></div>
-                    <div id="file-error" class="file-error"></div>
-                  </div>
-                  <small style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem; display: block;">
-                    💡 Tipp: Hochauflösende Bilder (min. 300 DPI) sorgen für beste Gravur-Qualität
-                  </small>
-                </div>
-
-                <div class="btn-group">
-                  <button id="add-to-cart" class="btn btn-primary">In den Warenkorb</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
     /* ============================================
          FOOTER HAUPTSTYLES
          ============================================ */
@@ -786,7 +602,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .site-footer::before {
         content: '';
         position: absolute;
@@ -796,7 +611,6 @@
         height: 4px;
         background: linear-gradient(90deg, var(--gold), var(--gold-light));
       }
-
       /* ============================================
          FOOTER HAUPTBEREICH (4 Spalten)
          ============================================ */
@@ -807,7 +621,6 @@
         margin-bottom: clamp(2.5rem, 6vw, 4rem);
         padding-bottom: clamp(2rem, 5vw, 3rem);
       }
-
       .footer-column h3 {
         font-family: var(--font-secondary);
         font-size: clamp(1.1rem, 2.5vw, 1.4rem);
@@ -817,7 +630,6 @@
         position: relative;
         padding-bottom: 0.75rem;
       }
-
       .footer-column h3::after {
         content: '';
         position: absolute;
@@ -827,14 +639,12 @@
         height: 2px;
         background: linear-gradient(90deg, var(--gold), transparent);
       }
-
       .footer-column p {
         font-size: clamp(0.9rem, 2vw, 1rem);
         line-height: 1.7;
         color: rgba(255, 255, 255, 0.8);
         margin-bottom: 1.5rem;
       }
-
       /* ============================================
          FOOTER LISTE
          ============================================ */
@@ -843,12 +653,10 @@
         padding: 0;
         margin: 0;
       }
-
       .footer-list li {
         margin-bottom: 0.85rem;
         transition: var(--transition);
       }
-
       .footer-list a {
         color: rgba(255, 255, 255, 0.75);
         text-decoration: none;
@@ -857,7 +665,6 @@
         display: inline-block;
         position: relative;
       }
-
       .footer-list a::before {
         content: '›';
         position: absolute;
@@ -866,17 +673,14 @@
         transition: var(--transition);
         color: var(--gold);
       }
-
       .footer-list a:hover {
         color: var(--gold);
         transform: translateX(5px);
       }
-
       .footer-list a:hover::before {
         opacity: 1;
         left: -20px;
       }
-
       /* ============================================
          KONTAKT LISTE MIT ICONS
          ============================================ */
@@ -886,13 +690,11 @@
         gap: 0.75rem;
         margin-bottom: 1rem;
       }
-
       .footer-icon {
         font-size: 1.2rem;
         min-width: 24px;
         flex-shrink: 0;
       }
-
       /* ============================================
          SOCIAL MEDIA ICONS
          ============================================ */
@@ -901,7 +703,6 @@
         gap: 1rem;
         margin-top: 1.5rem;
       }
-
       .footer-social a {
         width: 40px;
         height: 40px;
@@ -913,13 +714,11 @@
         color: rgba(255, 255, 255, 0.8);
         transition: var(--transition);
       }
-
       .footer-social a:hover {
         background: var(--gold);
         color: var(--white);
         transform: translateY(-3px);
       }
-
       /* ============================================
          TRENNLINIE
          ============================================ */
@@ -928,14 +727,12 @@
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
         margin: clamp(2rem, 5vw, 3rem) 0;
       }
-
       /* ============================================
          RECHTLICHE LINKS GRID
          ============================================ */
       .footer-legal {
         margin-bottom: clamp(2rem, 5vw, 3rem);
       }
-
       .footer-legal-title {
         font-family: var(--font-secondary);
         font-size: clamp(1.2rem, 3vw, 1.5rem);
@@ -944,14 +741,12 @@
         margin-bottom: 2rem;
         font-weight: 700;
       }
-
       .footer-legal-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
         margin-bottom: 2rem;
       }
-
       .footer-legal-grid a {
         background: rgba(255, 255, 255, 0.05);
         padding: 1.5rem;
@@ -964,24 +759,20 @@
         flex-direction: column;
         gap: 0.5rem;
       }
-
       .footer-legal-grid a strong {
         font-size: clamp(0.95rem, 2vw, 1.05rem);
         color: var(--white);
         display: block;
       }
-
       .footer-legal-grid a span {
         font-size: clamp(0.8rem, 1.8vw, 0.9rem);
         color: rgba(255, 255, 255, 0.6);
       }
-
       .footer-legal-grid a:hover {
         background: rgba(207, 161, 90, 0.1);
         border-color: var(--gold);
         transform: translateY(-3px);
       }
-
       /* ============================================
          RECHTLICHE LINKS (EINZEILIG)
          ============================================ */
@@ -996,7 +787,6 @@
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-
       .footer-legal-links a {
         color: rgba(255, 255, 255, 0.7);
         text-decoration: none;
@@ -1004,17 +794,14 @@
         font-size: clamp(0.85rem, 2vw, 0.95rem);
         font-weight: 500;
       }
-
       .footer-legal-links a:hover {
         color: var(--gold);
         text-decoration: underline;
       }
-
       .footer-legal-links .separator {
         color: rgba(255, 255, 255, 0.3);
         font-size: clamp(0.85rem, 2vw, 0.95rem);
       }
-
       /* ============================================
          ZAHLUNGSARTEN
          ============================================ */
@@ -1026,14 +813,12 @@
         border-radius: var(--border-radius);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
-
       .footer-payment-title {
         font-size: clamp(0.95rem, 2vw, 1.1rem);
         font-weight: 600;
         color: rgba(255, 255, 255, 0.9);
         margin-bottom: 1.5rem;
       }
-
       .footer-payment-icons {
         display: flex;
         justify-content: center;
@@ -1041,7 +826,6 @@
         gap: 1rem;
         flex-wrap: wrap;
       }
-
       .footer-payment-icons img {
         height: 40px;
         width: auto;
@@ -1049,12 +833,10 @@
         transition: var(--transition);
         border-radius: 4px;
       }
-
       .footer-payment-icons img:hover {
         filter: brightness(1.1);
         transform: scale(1.05);
       }
-
       /* ============================================
          ZERTIFIKATE & GÜTESIEGEL
          ============================================ */
@@ -1064,7 +846,6 @@
         gap: 1rem;
         margin-top: 2rem;
       }
-
       .footer-certificate {
         text-align: center;
         padding: 1rem;
@@ -1073,325 +854,11 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
         transition: var(--transition);
       }
-
       .footer-certificate:hover {
         background: rgba(207, 161, 90, 0.1);
         border-color: var(--gold);
         transform: translateY(-2px);
       }
-
       .footer-certificate strong {
         display: block;
-        font-size: clamp(0.85rem, 2vw, 0.95rem);
-        color: var(--gold);
-        margin-bottom: 0.25rem;
-      }
-
-      .footer-certificate span {
-        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      /* ============================================
-         COPYRIGHT BEREICH
-         ============================================ */
-      .footer-copyright {
-        text-align: center;
-        margin-top: 2.5rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .footer-copyright-text p {
-        margin: 0.75rem 0;
-        font-size: clamp(0.9rem, 2vw, 1rem);
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      .footer-copyright-text strong {
-        color: var(--white);
-      }
-
-      .footer-small-text {
-        font-size: clamp(0.8rem, 1.8vw, 0.9rem) !important;
-        color: rgba(255, 255, 255, 0.5) !important;
-        line-height: 1.6;
-      }
-
-      .footer-small-text a {
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: underline;
-        transition: var(--transition);
-      }
-
-      .footer-small-text a:hover {
-        color: var(--gold);
-      }
-
-      /* ============================================
-         RECHTLICHE HINWEISE
-         ============================================ */
-      .footer-legal-notice {
-        background: rgba(0, 0, 0, 0.3);
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        margin-top: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .footer-legal-notice p {
-        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-        line-height: 1.7;
-        color: rgba(255, 255, 255, 0.7);
-        margin-bottom: 1rem;
-      }
-
-      .footer-legal-notice p:last-child {
-        margin-bottom: 0;
-      }
-
-      .footer-legal-notice strong {
-        color: var(--gold);
-        font-weight: 600;
-      }
-
-      .footer-legal-notice a {
-        color: var(--gold-light);
-        text-decoration: underline;
-        transition: var(--transition);
-      }
-
-      .footer-legal-notice a:hover {
-        color: var(--gold);
-      }
-
-      .footer-vat-notice {
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: clamp(0.75rem, 1.6vw, 0.85rem) !important;
-      }
-
-      /* ============================================
-         RESPONSIVE DESIGN
-         ============================================ */
-      
-
-      /* Tablets */
-      @media (max-width: 992px) {
-        .footer-main {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .footer-legal-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      /* Mobile */
-      @media (max-width: 768px) {
-        .footer-main {
-          grid-template-columns: 1fr;
-          text-align: center;
-        }
-
-        .footer-column h3::after {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .footer-list a:hover {
-          transform: none;
-        }
-
-        .footer-list a::before {
-          display: none;
-        }
-
-        .footer-contact li {
-          justify-content: center;
-          text-align: left;
-        }
-
-        .footer-social {
-          justify-content: center;
-        }
-
-        .footer-legal-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-legal-links {
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        .footer-legal-links .separator {
-          display: none;
-        }
-
-        .footer-certificates {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .footer-payment-icons {
-          gap: 0.75rem;
-        }
-
-        .footer-payment-icons img {
-          height: 35px;
-        }
-      }
-
-      /* Small Mobile */
-      @media (max-width: 480px) {
-        .site-footer {
-          padding: 2rem 0 1rem;
-        }
-
-        .footer-main {
-          gap: 2rem;
-          padding-bottom: 2rem;
-          margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-          font-size: 1.1rem;
-        }
-
-        .footer-legal-notice {
-          padding: 1.5rem;
-        }
-
-        .footer-certificates {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* ============================================
-         PRINT STYLES
-         ============================================ */
-      @media print {
-        .site-footer {
-          background: black;
-          color: black;
-          border-top: 2px solid black;
-          page-break-inside: avoid;
-        }
-
-        .footer-social,
-        .footer-payment-icons,
-        .cookie-banner {
-          display: none;
-        }
-
-        .footer-legal-links a,
-        .footer-list a,
-        .footer-copyright-text a {
-          color: black;
-          text-decoration: underline;
-        }
-      }
-
-      /* ============================================
-         ACCESSIBILITY
-         ============================================ */
-      @media (prefers-reduced-motion: reduce) {
-        .footer-list a,
-        .footer-social a,
-        .footer-legal-grid a,
-        .footer-certificate {
-          transition: none !important;
-        }
-      }
-
-      /* High Contrast Mode */
-      @media (prefers-contrast: high) {
-        .site-footer {
-          border-top: 3px solid var(--gold);
-        }
-
-        .footer-legal-grid a,
-        .footer-certificate {
-          border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-      }
-    </style>
-
-    <script>
-      // Jahr automatisch aktualisieren
-      document.addEventListener('DOMContentLoaded', function() {
-        const yearElement = document.getElementById('year');
-        if (yearElement) {
-          yearElement.textContent = new Date().getFullYear();
-        }
-
-        // Smooth scroll für Footer-Links
-        const footerLinks = document.querySelectorAll('.footer-list a, .footer-legal-links a');
-        footerLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            // Nur für Anker-Links
-            if (this.getAttribute('href').startsWith('#')) {
-              e.preventDefault();
-              const target = document.querySelector(this.getAttribute('href'));
-              if (target) {
-                target.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }
-          });
-        });
-      });
-    </script>
-
-  </main>
-
-
-  <!-- Cart Notification -->
-  <div id="cart-notification" class="cart-notification">
-    ✅ Produkt wurde erfolgreich zum Warenkorb hinzugefügt!
-  </div>
-
-  <!-- Scripts -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-     
-      // Jahr im Footer
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      // ===== MENU FUNKTIONALITÄT =====
-      const burger = document.getElementById('burger');
-      const sidebarMenu = document.getElementById('sidebar-menu');
-      const menuOverlay = document.getElementById('menu-overlay');
-
-      function toggleMenu() {
-        burger.classList.toggle('active');
-        sidebarMenu.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-        document.body.style.overflow = sidebarMenu.classList.contains('active') ? 'hidden' : '';
-      }
-
-      function closeMenu() {
-        burger.classList.remove('active');
-        sidebarMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      burger.addEventListener('click', toggleMenu);
-      menuOverlay.addEventListener('click', closeMenu);
-
-      document.querySelectorAll('.sidebar-nav a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-
-      // ===== THUMBNAIL GALLERY =====
-      document.querySelectorAll('.thumbs img').forEach(thumb => {
-        thumb.addEventListener('click', function() {
-          document.querySelectorAll('.thumbs img').forEach(img => img.classList.remove
+        font-size: clamp(0.85rem, 2
