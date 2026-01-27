@@ -10,10 +10,10 @@
   
   <style>
     :root {
-      --bg-primary: #F9F7F3;
-      --bg-secondary: #EFE8DC;
-      --accent-primary: #670F0F;
-      --accent-secondary: #666666;
+      --bg-primary:#0D0907;
+      --bg-secondary: #26282A;
+      --accent-primary: #ffffff;
+      --accent-secondary: #26282A;
       --gold: #CFA15A;
       --gold-light: #D4B373;
       --white: #FFFFFF;
@@ -44,11 +44,11 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
       z-index: 1000;
       padding: 1rem 0;
-      box-shadow: 0 4px 24px var(--shadow-light);
+      box-shadow: 0 4px 24px var(--shadow-dark);
       border-bottom: 1px solid rgba(207, 161, 90, 0.1);
     }
 
@@ -100,10 +100,10 @@
     }
 
     .auth-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.1);
       padding: 3rem;
       border-radius: var(--border-radius);
-      box-shadow: 0 8px 32px var(--shadow-light);
+      box-shadow: 0 8px 32px var(--shadow-dark);
       border: 1px solid rgba(207, 161, 90, 0.1);
       max-width: 600px;
       width: 100%;
@@ -231,7 +231,7 @@
     .btn-primary:hover {
       background: var(--accent-primary);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--shadow-light);
+      box-shadow: 0 8px 24px var(--shadow-dark);
     }
 
     .btn-primary:disabled {
