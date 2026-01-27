@@ -5,81 +5,80 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Produkt — Projecta Halskette</title>
   <meta name="description" content="Elegant, sicher und personalisierbar - Premium Sicherheitshalsketten von Projecta" />
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS Variables - Modern Design System */
     :root {
       --bg-primary: #0D0907;
       --bg-secondary: #1a1614;
-      --bg-tertiary: #26282A;
       --accent-primary: #0D0907;
-      --accent-secondary: #26282A;
       --gold: #CFA15A;
       --gold-light: #D4B373;
-      --gold-dark: #B8904D;
       --white: #FFFFFF;
-      --white-soft: #F9F7F3;
-      --shadow-light: rgba(0, 0, 0, 0.08);
-      --shadow-medium: rgba(0, 0, 0, 0.12);
       --shadow-dark: rgba(0, 0, 0, 0.25);
       --shadow-intense: rgba(0, 0, 0, 0.4);
       --border-radius: 16px;
       --border-radius-sm: 8px;
-      --border-radius-lg: 24px;
       --container-width: 1200px;
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-secondary: 'Playfair Display', Georgia, serif;
-      --safe-area-inset-top: env(safe-area-inset-top, 0px);
-      --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-      --safe-area-inset-left: env(safe-area-inset-left, 0px);
-      --safe-area-inset-right: env(safe-area-inset-right, 0px);
     }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-primary);
-      font-size: 1rem;
-      line-height: 1.6;
       color: var(--white);
       background: var(--bg-primary);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
-
-    *:focus {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
+    .container { max-width: var(--container-width); margin: 0 auto; padding: 0 2rem; }
+    
+    /* Stock Banner Styles */
+    .stock-banner {
+      padding: 1rem 1.5rem;
       border-radius: var(--border-radius-sm);
+      margin: 1.5rem 0;
+      font-weight: 600;
+      text-align: center;
+      animation: slideIn 0.3s ease-out;
+      border: 2px solid;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .stock-banner-in-stock {
+      background: rgba(76, 175, 80, 0.15);
+      border-color: #4CAF50;
+      color: #4CAF50;
+    }
+    .stock-banner-low-stock {
+      background: rgba(255, 152, 0, 0.15);
+      border-color: #FF9800;
+      color: #FF9800;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .stock-banner-out-of-stock {
+      background: rgba(244, 67, 54, 0.15);
+      border-color: #F44336;
+      color: #F44336;
+    }
+    .stock-banner-pre-order {
+      background: rgba(33, 150, 243, 0.15);
+      border-color: #2196F3;
+      color: #2196F3;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .btn-primary:disabled {
+      background: #666 !important;
+      cursor: not-allowed !important;
+      transform: none !important;
+      opacity: 0.5 !important;
     }
 
-    h1, h2, h3 {
-      font-family: var(--font-secondary);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-    }
-
-    .container {
-      max-width: var(--container-width);
-      margin: 0 auto;
-      padding: 0 clamp(1rem, 4vw, 2rem);
-    }
-
-    /* Header - SCHWARZ */
+    /* Rest of your existing styles... */
     .site-header {
       position: fixed;
       top: 0;
@@ -87,20 +86,16 @@
       right: 0;
       background: rgba(13, 9, 7, 0.98);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       z-index: 1000;
-      padding: clamp(0.8rem, 2vw, 1rem) 0;
+      padding: 1rem 0;
       box-shadow: 0 4px 24px var(--shadow-dark);
       border-bottom: 1px solid rgba(207, 161, 90, 0.3);
-      padding-top: calc(clamp(0.8rem, 2vw, 1rem) + var(--safe-area-inset-top));
     }
-
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-
     .brand {
       display: flex;
       align-items: center;
@@ -108,32 +103,18 @@
       color: var(--white);
       transition: var(--transition);
     }
-
-    .brand:hover {
-      color: var(--gold);
-      transform: translateY(-1px);
-    }
-
-    .logo {
-      height: clamp(40px, 8vw, 52px);
-      margin-right: clamp(0.4rem, 1.5vw, 0.6rem);
-      transition: var(--transition);
-    }
-
+    .logo { height: 48px; margin-right: 0.6rem; }
     .brand-text {
       font-family: var(--font-secondary);
       font-weight: 700;
-      font-size: clamp(1.2rem, 4vw, 1.75rem);
-      letter-spacing: -0.02em;
+      font-size: 1.75rem;
     }
-
-    /* Hamburger Menu - WEIß */
     .burger {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      width: clamp(40px, 8vw, 44px);
-      height: clamp(40px, 8vw, 44px);
+      width: 44px;
+      height: 44px;
       cursor: pointer;
       background: none;
       border: none;
@@ -143,184 +124,59 @@
       position: relative;
       z-index: 1001;
     }
-
-    .burger:hover {
-      background: rgba(207, 161, 90, 0.1);
-      transform: scale(1.05);
-    }
-
     .burger span {
       display: block;
-      width: clamp(20px, 5vw, 24px);
+      width: 24px;
       height: 3px;
       background: var(--white);
       border-radius: 2px;
       transition: var(--transition);
       margin: 2px auto;
     }
-
-    .burger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-      background: var(--gold);
-    }
-
-    .burger.active span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-
-    .burger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-      background: var(--gold);
-    }
-
-    /* Cart Badge */
-    .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: 50px;
-      background: #ff4444;
-      color: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      font-size: 12px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      z-index: 2;
-    }
-
-    /* Sidebar Menu */
-.sidebar-menu {
-  position: fixed;
-  top: 0;
-  right: -320px;
-  width: 320px;
-  height: 100vh;
-  /* Grauer Glas-Look - noch durchsichtiger */
-  background: linear-gradient(
-    135deg,
-    rgba(180, 180, 180, 0.08) 0%,
-    rgba(120, 120, 120, 0.08) 100%
-  );
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  /* Shadow + Border wie .nav */
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;     /* Schrift horizontal mittig */
-  text-align: center;      /* Text mittig ausgerichtet */
-  padding: calc(6rem + var(--safe-area-inset-top)) 2rem calc(2rem + var(--safe-area-inset-bottom));
-  z-index: 999;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
-}
-
-.sidebar-menu.active {
-  right: 0;
-}
-
-.sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.sidebar-nav a {
-  padding: 1.25rem 0;
-  text-decoration: none;
-  color: var(--white);
-  font-size: 1.1rem;
-  font-weight: 500;
-  border-bottom: 1px solid rgba(51, 51, 51, 0.08);
-  transition: var(--transition);
-  position: relative;
-  border-radius: var(--border-radius-sm);
-  font-family: var(--font-secondary);
-}
-
-.sidebar-nav a:hover {
-  color: var(--gold);
-  padding-left: 1.5rem;
-  background: rgba(207, 161, 90, 0.15);
-  transform: translateY(-1px);
-}
-
-.sidebar-nav a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  transition: var(--transition);
-  border-radius: 2px;
-}
-
-.sidebar-nav a:hover::before {
-  width: 1rem;
-}
-
-    .admin-link {
-      color: var(--gold) !important;
-      background: rgba(207, 161, 90, 0.2) !important;
-      border-radius: var(--border-radius-sm);
-      margin-top: 1rem;
-      padding: 1rem !important;
-      font-weight: 600;
-    }
-
-    .admin-link:hover {
-      background: var(--gold) !important;
-      color: var(--white) !important;
-    }
-
-    /* Menu Overlay */
-    .menu-overlay {
+    .burger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); background: var(--gold); }
+    .burger.active span:nth-child(2) { opacity: 0; }
+    .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); background: var(--gold); }
+    
+    .sidebar-menu {
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
-      z-index: 998;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      right: -320px;
+      width: 320px;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(180, 180, 180, 0.08) 0%, rgba(120, 120, 120, 0.08) 100%);
+      backdrop-filter: blur(24px);
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 6rem 2rem 2rem;
+      z-index: 999;
+      overflow-y: auto;
     }
-
-    .menu-overlay.active {
-      opacity: 1;
-      visibility: visible;
+    .sidebar-menu.active { right: 0; }
+    .sidebar-nav { display: flex; flex-direction: column; }
+    .sidebar-nav a {
+      padding: 1.25rem 0;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+      transition: var(--transition);
+      font-family: var(--font-secondary);
     }
-
-    /* Product Section */
+    .sidebar-nav a:hover { color: var(--gold); background: rgba(207, 161, 90, 0.15); }
+    
     .product-section {
       background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-      padding: calc(3rem + 80px + var(--safe-area-inset-top)) 0 3rem;
+      padding: calc(3rem + 80px) 0 3rem;
       min-height: 100vh;
     }
-
     .product-detail {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: start;
     }
-
-    .product-gallery {
-      position: sticky;
-      top: calc(6rem + var(--safe-area-inset-top));
-    }
-
+    .product-gallery { position: sticky; top: 6rem; }
     .main-image {
       background: rgba(0, 0, 0, 0.95);
       border-radius: var(--border-radius);
@@ -330,7 +186,6 @@
       margin-bottom: 2rem;
       position: relative;
     }
-
     .main-image::before {
       content: '';
       position: absolute;
@@ -340,55 +195,25 @@
       height: 4px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
     }
-
     .main-image img {
       width: 100%;
       max-width: 400px;
-      height: auto;
       display: block;
       margin: 0 auto;
       border-radius: var(--border-radius-sm);
-      transition: var(--transition);
     }
-
-    .main-image img:hover {
-      transform: scale(1.05);
-    }
-
-    .thumbs {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
+    .thumbs { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .thumbs img {
       width: 80px;
       height: 80px;
       object-fit: cover;
       cursor: pointer;
       border-radius: var(--border-radius-sm);
-      transition: var(--transition);
       border: 2px solid transparent;
-      box-shadow: 0 4px 12px var(--shadow-light);
+      transition: var(--transition);
     }
-
-    .thumbs img:hover {
-      transform: scale(1.1);
-      border-color: var(--gold);
-    }
-
-    .thumbs img.active {
-      border-color: var(--gold);
-      transform: scale(1.05);
-    }
-
-    .product-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
+    .thumbs img.active { border-color: var(--gold); }
+    
     .product-box {
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 22, 20, 0.95) 100%);
       border-radius: var(--border-radius);
@@ -397,7 +222,6 @@
       padding: 2.5rem;
       position: relative;
     }
-
     .product-box::before {
       content: '';
       position: absolute;
@@ -407,13 +231,12 @@
       height: 4px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
     }
-
     .product-box h1 {
       font-size: clamp(2rem, 5vw, 2.8rem);
-      margin: 0 0 1rem 0;
+      font-family: var(--font-secondary);
       color: var(--white);
+      margin-bottom: 1rem;
     }
-
     .price {
       font-size: 2rem;
       font-weight: 700;
@@ -421,38 +244,28 @@
       margin-bottom: 1.5rem;
       font-family: var(--font-secondary);
     }
-
     .product-description {
       font-size: 1.1rem;
       line-height: 1.7;
       color: rgba(255, 255, 255, 0.9);
       margin-bottom: 2rem;
     }
-
     .product-options {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
       margin-top: 2rem;
     }
-
-    .option-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
+    .option-group { display: flex; flex-direction: column; gap: 0.5rem; }
     .option-group label {
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--white);
       font-family: var(--font-secondary);
     }
-
     .option-group select,
     .option-group input[type="text"],
     .option-group input[type="number"] {
-      font-size: 1rem;
       padding: 1rem;
       border-radius: var(--border-radius-sm);
       border: 1px solid rgba(207, 161, 90, 0.3);
@@ -461,22 +274,14 @@
       width: 100%;
       transition: var(--transition);
     }
-
-    .option-group select:focus,
-    .option-group input:focus {
+    .option-group input:focus,
+    .option-group select:focus {
       border-color: var(--gold);
       box-shadow: 0 0 0 3px rgba(207, 161, 90, 0.2);
     }
-
-    .file-upload-container {
-      position: relative;
-      margin-top: 1rem;
-    }
-
-    .file-upload {
-      display: none;
-    }
-
+    
+    .file-upload-container { position: relative; margin-top: 1rem; }
+    .file-upload { display: none; }
     .file-upload-label {
       display: flex;
       align-items: center;
@@ -488,50 +293,22 @@
       background: rgba(0, 0, 0, 0.5);
       cursor: pointer;
       transition: var(--transition);
-      font-weight: 500;
       color: rgba(255, 255, 255, 0.7);
-      min-height: 60px;
     }
-
-    .file-upload-label:hover {
-      border-color: var(--gold);
-      background: rgba(207, 161, 90, 0.1);
-    }
-
-    .file-upload-label.has-file {
-      border-color: var(--gold);
-      background: rgba(207, 161, 90, 0.2);
-      color: var(--white);
-    }
-
-    .file-info {
+    .file-upload-label:hover { border-color: var(--gold); background: rgba(207, 161, 90, 0.1); }
+    .file-upload-label.has-file { border-color: var(--gold); background: rgba(207, 161, 90, 0.2); color: var(--white); }
+    
+    .file-info, .file-error {
       margin-top: 0.5rem;
       padding: 0.5rem;
-      background: rgba(76, 175, 80, 0.2);
       border-radius: var(--border-radius-sm);
       font-size: 0.9rem;
-      color: #4caf50;
       display: none;
     }
-
-    .file-info.show {
-      display: block;
-    }
-
-    .file-error {
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background: rgba(244, 67, 54, 0.2);
-      border-radius: var(--border-radius-sm);
-      font-size: 0.9rem;
-      color: #ff5252;
-      display: none;
-    }
-
-    .file-error.show {
-      display: block;
-    }
-
+    .file-info { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+    .file-error { background: rgba(244, 67, 54, 0.2); color: #ff5252; }
+    .file-info.show, .file-error.show { display: block; }
+    
     .btn {
       display: inline-block;
       padding: 1rem 2rem;
@@ -540,144 +317,64 @@
       cursor: pointer;
       font-size: 1.1rem;
       font-weight: 600;
-      text-decoration: none;
       text-align: center;
       transition: var(--transition);
-      letter-spacing: 0.05em;
       text-transform: uppercase;
-      min-height: 44px;
       font-family: var(--font-secondary);
     }
-
-    .btn:active {
-      transform: scale(0.98);
-    }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
       color: var(--white);
       box-shadow: 0 8px 24px rgba(207, 161, 90, 0.3);
     }
-
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 32px rgba(207, 161, 90, 0.5);
     }
-
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
+    .btn-group { display: flex; gap: 1rem; margin-top: 2rem; }
+    
     .cart-notification {
       position: fixed;
-      top: calc(4rem + var(--safe-area-inset-top));
-      right: calc(2rem + var(--safe-area-inset-right));
+      top: 4rem;
+      right: 2rem;
       background: rgba(76, 175, 80, 0.95);
       backdrop-filter: blur(20px);
       color: white;
       padding: 1.5rem 2rem;
       border-radius: var(--border-radius);
-      box-shadow: 0 16px 48px var(--shadow-medium);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
       z-index: 1000;
       font-weight: 600;
       transform: translateX(400px);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.4s ease;
       max-width: 320px;
     }
-
-    .cart-notification.show {
-      transform: translateX(0);
-    }
-
-    .site-footer {
-      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-      color: var(--white);
-      padding: 3rem 0;
-      border-top: 1px solid rgba(207, 161, 90, 0.3);
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .footer-links a {
-      color: var(--white);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: var(--gold);
-    }
-
+    .cart-notification.show { transform: translateX(0); }
+    
     @media (max-width: 1024px) {
-      .product-detail {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .product-gallery {
-        position: static;
-      }
+      .product-detail { grid-template-columns: 1fr; gap: 3rem; }
+      .product-gallery { position: static; }
     }
-
     @media (max-width: 768px) {
-      .sidebar-menu {
-        width: 350px;
-        right: -350px;
-      }
-
-      .container {
-        padding: 0 1rem;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .sidebar-menu {
-        width: 100vw;
-        right: -100vw;
-      }
+      .sidebar-menu { width: 100vw; right: -100vw; }
+      .container { padding: 0 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand">
         <img src="images/Logo.png" alt="Projecta Logo" class="logo">
         <span class="brand-text">Projecta</span>
       </a>
-
-      <div style="position: relative;">
-        <span id="cart-badge-header" class="cart-badge"></span>
-        <button id="burger" class="burger" aria-label="Menü öffnen">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <button id="burger" class="burger">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <!-- Sidebar Menu -->
-  <div id="menu-overlay" class="menu-overlay"></div>
   <nav id="sidebar-menu" class="sidebar-menu">
     <div class="sidebar-nav">
       <a href="index.html">Home</a>
@@ -686,18 +383,14 @@
       <a href="cart.html">Warenkorb</a>
       <a href="about.html">Über Uns</a>
       <a href="contact.html">Kontakt</a>
-      <a href="product-future.html">Zukünftige Produkte</a>
-      <a href="admin.html" class="admin-link">Admin</a>
+      <a href="admin.html">Admin</a>
     </div>
   </nav>
 
-  <!-- Hauptinhalt -->
   <main>
     <section class="product-section">
       <div class="container">
         <div class="product-detail">
-         
-          <!-- Product Gallery -->
           <div class="product-gallery">
             <div class="main-image">
               <img id="zoom-image" src="images/kette.png" alt="Projecta Halskette" />
@@ -709,13 +402,12 @@
             </div>
           </div>
 
-          <!-- Product Info -->
           <div class="product-info">
             <div class="product-box">
               <h1 id="product-title">Safety-Necklace</h1>
               <p class="price" id="product-price">€94.00</p>
               <div class="product-description">
-                Ihre elegante Halskette, die außerdem die Standort-Sendefunktion und die Alarmfunktion enthält. Wenn Sie sich in einer Gefahrensituation wiederfinden, betätigen Sie den Knopf auf der Rückseite und Ihr Standort wird automatisch an Ihren Notfallkontakt gesendet. Bei zweimaligem Betätigen des Knopfes wird ein lauter Alarm abgespielt, sodass Sie die Aufmerksamkeit auf sich ziehen können. Bei gedrückt halten des Knopfes wird der Alarm wieder abgestellt.
+                Ihre elegante Halskette, die außerdem die Standort-Sendefunktion und die Alarmfunktion enthält. Wenn Sie sich in einer Gefahrensituation wiederfinden, betätigen Sie den Knopf auf der Rückseite und Ihr Standort wird automatisch an Ihren Notfallkontakt gesendet.
               </div>
 
               <div class="product-options">
@@ -723,7 +415,6 @@
                   <label for="quantity">Menge</label>
                   <input id="quantity" type="number" min="1" max="10" value="1">
                 </div>
-
                 <div class="option-group">
                   <label for="chain-length">Kettenlänge</label>
                   <select id="chain-length">
@@ -733,7 +424,6 @@
                     <option value="55cm">55 cm - Extra Lang</option>
                   </select>
                 </div>
-
                 <div class="option-group">
                   <label for="chain-color">Kettenfarbe</label>
                   <select id="chain-color">
@@ -743,12 +433,10 @@
                     <option value="schwarz">Schwarz</option>
                   </select>
                 </div>
-
                 <div class="option-group">
                   <label for="engraving">Textgravur (optional)</label>
                   <input type="text" id="engraving" placeholder="Dein Text (max. 30 Zeichen)" maxlength="30" />
                 </div>
-
                 <div class="option-group">
                   <label for="image-upload">Bildgravur (PDF, JPG, PNG - max. 5MB)</label>
                   <div class="file-upload-container">
@@ -759,876 +447,134 @@
                     <div id="file-info" class="file-info"></div>
                     <div id="file-error" class="file-error"></div>
                   </div>
-                  <small style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.5rem; display: block;">
-                    💡 Tipp: Hochauflösende Bilder (min. 300 DPI) sorgen für beste Gravur-Qualität
-                  </small>
                 </div>
-
                 <div class="btn-group">
                   <button id="add-to-cart" class="btn btn-primary">In den Warenkorb</button>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
   </main>
 
-   <!-- Footer mit vollständigen rechtlichen Angaben -->
-    <footer class="site-footer" role="contentinfo">
-      <div class="container">
-        
-
-        <!-- Hauptbereich Footer mit 4 Spalten -->
-        <div class="footer-main">
-          
-
-          <!-- Spalte 1: Über Projecta -->
-          <div class="footer-column">
-            <h3>Projecta</h3>
-            <p>Sicherheit, die du gerne trägst. Diskreter Schmuck mit intelligenter Schutztechnologie für mehr Sicherheit im Alltag.</p>
-            <div class="footer-social">
-              <a href="#" aria-label="Facebook"><svg width="24" height="24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg width="24" height="24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a>
-              <a href="#" aria-label="Twitter"><svg width="24" height="24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
-              <a href="#" aria-label="LinkedIn"><svg width="24" height="24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            </div>
-          </div>
-          
-
-          <!-- Spalte 2: Navigation -->
-          <div class="footer-column">
-            <h3>Navigation</h3>
-            <ul class="footer-list">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="produkt-uebersicht.html">Alle Produkte</a></li>
-              <li><a href="product.html">Safety-Band</a></li>
-              <li><a href="necklace.html">Safety-Necklace</a></li>
-              <li><a href="product-future.html">Zukünftige Produkte</a></li>
-              <li><a href="cart.html">Warenkorb</a></li>
-              <li><a href="setup.html">Home</a></li>
-            </ul>
-          </div>
-          
-
-          <!-- Spalte 3: Informationen -->
-          <div class="footer-column">
-            <h3>Informationen</h3>
-            <ul class="footer-list">
-              <li><a href="about.html">Über Uns</a></li>
-              <li><a href="contact.html">Kontakt</a></li>
-              <li><a href="faq.html">FAQ / Häufige Fragen</a></li>
-              <li><a href="versand.html">Versand & Lieferung</a></li>
-              <li><a href="zahlung.html">Zahlungsarten</a></li>
-              <li><a href="garantie.html">Garantie & Service</a></li>
-            </ul>
-          </div>
-          
-
-          <!-- Spalte 4: Kontakt -->
-          <div class="footer-column">
-            <h3>Kontakt</h3>
-            <ul class="footer-list footer-contact">
-              <li>
-                <span class="footer-icon">📧</span>
-                <a href="mailto:info@projecta.lu">info@projecta.lu</a>
-              </li>
-              <li>
-                <span class="footer-icon">📧</span>
-                <a href="mailto:support@projecta.lu">support@projecta.lu</a>
-              </li>
-              <li>
-                <span class="footer-icon">📞</span>
-                <a href="tel:+352123456789">+352 12 34 56 789</a>
-              </li>
-              <li>
-                <span class="footer-icon">📍</span>
-                <span>Projecta S.à r.l.<br>
-                Rue Exemple 123<br>
-                L-1234 Luxembourg</span>
-              </li>
-              <li>
-                <span class="footer-icon">🕐</span>
-                <span>Mo-Fr: 09:00 - 18:00 Uhr<br>
-                Sa: 10:00 - 14:00 Uhr</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-
-        <!-- Trennlinie -->
-        <div class="footer-divider"></div>
-        
-
-        <!-- Rechtliche Pflichtangaben -->
-        <div class="footer-legal">
-          <h4 class="footer-legal-title">Rechtliche Informationen</h4>
-          <div class="footer-legal-grid">
-            <a href="impressum.html">
-              <strong>⚖️ Impressum</strong>
-              <span>Anbieterkennzeichnung</span>
-            </a>
-            <a href="datenschutz.html">
-              <strong>🔒 Datenschutzerklärung</strong>
-              <span>DSGVO-Informationen</span>
-            </a>
-            <a href="agb.html">
-              <strong>📋 AGB</strong>
-              <span>Allgemeine Geschäftsbedingungen</span>
-            </a>
-            <a href="widerruf.html">
-              <strong>↩️ Widerrufsbelehrung</strong>
-              <span>Widerrufsrecht & Muster</span>
-            </a>
-            <a href="versand-bedingungen.html">
-              <strong>📦 Versandbedingungen</strong>
-              <span>Lieferung & Kosten</span>
-            </a>
-            <a href="zahlung-sicherheit.html">
-              <strong>💳 Zahlung & Sicherheit</strong>
-              <span>Zahlungsarten & SSL</span>
-            </a>
-            <a href="cookie-policy.html">
-              <strong>🍪 Cookie-Richtlinie</strong>
-              <span>Cookie-Verwendung</span>
-            </a>
-            <a href="streitschlichtung.html">
-              <strong>⚔️ Streitschlichtung</strong>
-              <span>OS-Plattform & Verfahren</span>
-            </a>
-          </div>
-        </div>
-        
-
-        <!-- Zusätzliche Links (einzeilig) -->
-        <div class="footer-legal-links">
-          <a href="impressum.html">Impressum</a>
-          <span class="separator">•</span>
-          <a href="datenschutz.html">Datenschutz</a>
-          <span class="separator">•</span>
-          <a href="agb.html">AGB</a>
-          <span class="separator">•</span>
-          <a href="widerruf.html">Widerruf</a>
-          <span class="separator">•</span>
-          <a href="cookie-policy.html">Cookies</a>
-          <span class="separator">•</span>
-          <a href="streitschlichtung.html">Streitschlichtung</a>
-          <span class="separator">•</span>
-          <a href="barrierefreiheit.html">Barrierefreiheit</a>
-          <span class="separator">•</span>
-          <a href="sitemap.html">Sitemap</a>
-        </div>
-        
-
-        <!-- Zahlungsarten & Sicherheit -->
-        <div class="footer-payment">
-          <div class="footer-payment-title">Sichere Zahlungsarten:</div>
-          <div class="footer-payment-icons">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23333' font-size='12' font-weight='600'%3EVisa%3C/text%3E%3C/svg%3E" alt="Visa" title="Visa">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ccircle cx='22' cy='20' r='10' fill='%23eb001b'/%3E%3Ccircle cx='38' cy='20' r='10' fill='%23f79e1b'/%3E%3C/svg%3E" alt="Mastercard" title="Mastercard">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23003087' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='10' font-weight='700'%3EPayPal%3C/text%3E%3C/svg%3E" alt="PayPal" title="PayPal">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23333' font-size='9' font-weight='600'%3EKlarna%3C/text%3E%3C/svg%3E" alt="Klarna" title="Klarna">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%23f9f7f3' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23333' font-size='8' font-weight='600'%3ESEPA%3C/text%3E%3C/svg%3E" alt="SEPA" title="SEPA Lastschrift">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40' viewBox='0 0 60 40'%3E%3Crect fill='%2300a862' width='60' height='40' rx='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='11' font-weight='700'%3ESSL%3C/text%3E%3C/svg%3E" alt="SSL Verschlüsselt" title="SSL Verschlüsselt">
-          </div>
-        </div>
-        
-
-        <!-- Copyright & Hinweise -->
-        <div class="footer-copyright">
-          <div class="footer-copyright-text">
-            <p><strong>© <span id="year"></span> Projecta S.à r.l. — Alle Rechte vorbehalten.</strong></p>
-            <p class="footer-small-text">
-              Alle Preise inkl. gesetzlicher MwSt. zzgl. <a href="versand.html">Versandkosten</a> •
-              Lieferung innerhalb Luxemburgs und EU •
-              Änderungen und Irrtümer vorbehalten •
-              Bildmaterial dient zur Illustration
-            </p>
-          </div>
-          
-
-          <!-- Gütesiegel & Zertifikate -->
-          <div class="footer-certificates">
-            <div class="footer-certificate">
-              <strong>✓ Geprüfte Sicherheit</strong>
-              <span>SSL-Verschlüsselung</span>
-            </div>
-            <div class="footer-certificate">
-              <strong>✓ Käuferschutz</strong>
-              <span>Trusted Shop</span>
-            </div>
-            <div class="footer-certificate">
-              <strong>✓ DSGVO-konform</strong>
-              <span>Datenschutz</span>
-            </div>
-            <div class="footer-certificate">
-              <strong>✓ Made in EU</strong>
-              <span>Qualitätsstandard</span>
-            </div>
-          </div>
-        </div>
-        
-
-        <!-- Rechtliche Hinweise Text -->
-        <div class="footer-legal-notice">
-          <p><strong>Hinweis zur Streitschlichtung:</strong> Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-          <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.
-          Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
-          
-
-          <p><strong>Verbraucherinformation:</strong> Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-          
-
-          <p class="footer-vat-notice">
-            <strong>Umsatzsteuer-Identifikationsnummer:</strong> LU12345678 (Beispiel) •
-            <strong>Handelsregister:</strong> Luxembourg B123456 •
-            <strong>Geschäftsführer:</strong> Max Mustermann
-          </p>
-        </div>
-        
-
-      </div>
-    </footer>
-
-    <style>
-      /* ============================================
-         FOOTER HAUPTSTYLES
-         ============================================ */
-      .site-footer {
-        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-        color: var(--white);
-        padding: clamp(3rem, 8vw, 5rem) 0 clamp(1.5rem, 4vw, 2rem);
-        margin-top: clamp(3rem, 8vw, 5rem);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .site-footer::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      }
-
-      /* ============================================
-         FOOTER HAUPTBEREICH (4 Spalten)
-         ============================================ */
-      .footer-main {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: clamp(2rem, 5vw, 3rem);
-        margin-bottom: clamp(2.5rem, 6vw, 4rem);
-        padding-bottom: clamp(2rem, 5vw, 3rem);
-      }
-
-      .footer-column h3 {
-        font-family: var(--font-secondary);
-        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-        margin-bottom: 1.25rem;
-        color: var(--gold);
-        font-weight: 600;
-        position: relative;
-        padding-bottom: 0.75rem;
-      }
-
-      .footer-column h3::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--gold), transparent);
-      }
-
-      .footer-column p {
-        font-size: clamp(0.9rem, 2vw, 1rem);
-        line-height: 1.7;
-        color: rgba(255, 255, 255, 0.8);
-        margin-bottom: 1.5rem;
-      }
-
-      /* ============================================
-         FOOTER LISTE
-         ============================================ */
-      .footer-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .footer-list li {
-        margin-bottom: 0.85rem;
-        transition: var(--transition);
-      }
-
-      .footer-list a {
-        color: rgba(255, 255, 255, 0.75);
-        text-decoration: none;
-        transition: var(--transition);
-        font-size: clamp(0.9rem, 2vw, 1rem);
-        display: inline-block;
-        position: relative;
-      }
-
-      .footer-list a::before {
-        content: '›';
-        position: absolute;
-        left: -15px;
-        opacity: 0;
-        transition: var(--transition);
-        color: var(--gold);
-      }
-
-      .footer-list a:hover {
-        color: var(--gold);
-        transform: translateX(5px);
-      }
-
-      .footer-list a:hover::before {
-        opacity: 1;
-        left: -20px;
-      }
-
-      /* ============================================
-         KONTAKT LISTE MIT ICONS
-         ============================================ */
-      .footer-contact li {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-      }
-
-      .footer-icon {
-        font-size: 1.2rem;
-        min-width: 24px;
-        flex-shrink: 0;
-      }
-
-      /* ============================================
-         SOCIAL MEDIA ICONS
-         ============================================ */
-      .footer-social {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-
-      .footer-social a {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        color: rgba(255, 255, 255, 0.8);
-        transition: var(--transition);
-      }
-
-      .footer-social a:hover {
-        background: var(--gold);
-        color: var(--white);
-        transform: translateY(-3px);
-      }
-
-      /* ============================================
-         TRENNLINIE
-         ============================================ */
-      .footer-divider {
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        margin: clamp(2rem, 5vw, 3rem) 0;
-      }
-
-      /* ============================================
-         RECHTLICHE LINKS GRID
-         ============================================ */
-      .footer-legal {
-        margin-bottom: clamp(2rem, 5vw, 3rem);
-      }
-
-      .footer-legal-title {
-        font-family: var(--font-secondary);
-        font-size: clamp(1.2rem, 3vw, 1.5rem);
-        color: var(--gold);
-        text-align: center;
-        margin-bottom: 2rem;
-        font-weight: 700;
-      }
-
-      .footer-legal-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-      }
-
-      .footer-legal-grid a {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1.5rem;
-        border-radius: var(--border-radius-sm);
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.9);
-        transition: var(--transition);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .footer-legal-grid a strong {
-        font-size: clamp(0.95rem, 2vw, 1.05rem);
-        color: var(--white);
-        display: block;
-      }
-
-      .footer-legal-grid a span {
-        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      .footer-legal-grid a:hover {
-        background: rgba(207, 161, 90, 0.1);
-        border-color: var(--gold);
-        transform: translateY(-3px);
-      }
-
-      /* ============================================
-         RECHTLICHE LINKS (EINZEILIG)
-         ============================================ */
-      .footer-legal-links {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: clamp(0.5rem, 2vw, 1rem);
-        margin-bottom: 2rem;
-        padding: 1.5rem 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .footer-legal-links a {
-        color: rgba(255, 255, 255, 0.7);
-        text-decoration: none;
-        transition: var(--transition);
-        font-size: clamp(0.85rem, 2vw, 0.95rem);
-        font-weight: 500;
-      }
-
-      .footer-legal-links a:hover {
-        color: var(--gold);
-        text-decoration: underline;
-      }
-
-      .footer-legal-links .separator {
-        color: rgba(255, 255, 255, 0.3);
-        font-size: clamp(0.85rem, 2vw, 0.95rem);
-      }
-
-      /* ============================================
-         ZAHLUNGSARTEN
-         ============================================ */
-      .footer-payment {
-        text-align: center;
-        margin: 2.5rem 0;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: var(--border-radius);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .footer-payment-title {
-        font-size: clamp(0.95rem, 2vw, 1.1rem);
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 1.5rem;
-      }
-
-      .footer-payment-icons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      .footer-payment-icons img {
-        height: 40px;
-        width: auto;
-        filter: brightness(0.95);
-        transition: var(--transition);
-        border-radius: 4px;
-      }
-
-      .footer-payment-icons img:hover {
-        filter: brightness(1.1);
-        transform: scale(1.05);
-      }
-
-      /* ============================================
-         ZERTIFIKATE & GÜTESIEGEL
-         ============================================ */
-      .footer-certificates {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 1rem;
-        margin-top: 2rem;
-      }
-
-      .footer-certificate {
-        text-align: center;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: var(--border-radius-sm);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: var(--transition);
-      }
-
-      .footer-certificate:hover {
-        background: rgba(207, 161, 90, 0.1);
-        border-color: var(--gold);
-        transform: translateY(-2px);
-      }
-
-      .footer-certificate strong {
-        display: block;
-        font-size: clamp(0.85rem, 2vw, 0.95rem);
-        color: var(--gold);
-        margin-bottom: 0.25rem;
-      }
-
-      .footer-certificate span {
-        font-size: clamp(0.75rem, 1.8vw, 0.85rem);
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      /* ============================================
-         COPYRIGHT BEREICH
-         ============================================ */
-      .footer-copyright {
-        text-align: center;
-        margin-top: 2.5rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .footer-copyright-text p {
-        margin: 0.75rem 0;
-        font-size: clamp(0.9rem, 2vw, 1rem);
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      .footer-copyright-text strong {
-        color: var(--white);
-      }
-
-      .footer-small-text {
-        font-size: clamp(0.8rem, 1.8vw, 0.9rem) !important;
-        color: rgba(255, 255, 255, 0.5) !important;
-        line-height: 1.6;
-      }
-
-      .footer-small-text a {
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: underline;
-        transition: var(--transition);
-      }
-
-      .footer-small-text a:hover {
-        color: var(--gold);
-      }
-
-      /* ============================================
-         RECHTLICHE HINWEISE
-         ============================================ */
-      .footer-legal-notice {
-        background: rgba(0, 0, 0, 0.3);
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        margin-top: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .footer-legal-notice p {
-        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-        line-height: 1.7;
-        color: rgba(255, 255, 255, 0.7);
-        margin-bottom: 1rem;
-      }
-
-      .footer-legal-notice p:last-child {
-        margin-bottom: 0;
-      }
-
-      .footer-legal-notice strong {
-        color: var(--gold);
-        font-weight: 600;
-      }
-
-      .footer-legal-notice a {
-        color: var(--gold-light);
-        text-decoration: underline;
-        transition: var(--transition);
-      }
-
-      .footer-legal-notice a:hover {
-        color: var(--gold);
-      }
-
-      .footer-vat-notice {
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: clamp(0.75rem, 1.6vw, 0.85rem) !important;
-      }
-
-      /* ============================================
-         RESPONSIVE DESIGN
-         ============================================ */
-      
-
-      /* Tablets */
-      @media (max-width: 992px) {
-        .footer-main {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .footer-legal-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      /* Mobile */
-      @media (max-width: 768px) {
-        .footer-main {
-          grid-template-columns: 1fr;
-          text-align: center;
-        }
-
-        .footer-column h3::after {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .footer-list a:hover {
-          transform: none;
-        }
-
-        .footer-list a::before {
-          display: none;
-        }
-
-        .footer-contact li {
-          justify-content: center;
-          text-align: left;
-        }
-
-        .footer-social {
-          justify-content: center;
-        }
-
-        .footer-legal-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-legal-links {
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        .footer-legal-links .separator {
-          display: none;
-        }
-
-        .footer-certificates {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .footer-payment-icons {
-          gap: 0.75rem;
-        }
-
-        .footer-payment-icons img {
-          height: 35px;
-        }
-      }
-
-      /* Small Mobile */
-      @media (max-width: 480px) {
-        .site-footer {
-          padding: 2rem 0 1rem;
-        }
-
-        .footer-main {
-          gap: 2rem;
-          padding-bottom: 2rem;
-          margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-          font-size: 1.1rem;
-        }
-
-        .footer-legal-notice {
-          padding: 1.5rem;
-        }
-
-        .footer-certificates {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* ============================================
-         PRINT STYLES
-         ============================================ */
-      @media print {
-        .site-footer {
-          background: black;
-          color: black;
-          border-top: 2px solid black;
-          page-break-inside: avoid;
-        }
-
-        .footer-social,
-        .footer-payment-icons,
-        .cookie-banner {
-          display: none;
-        }
-
-        .footer-legal-links a,
-        .footer-list a,
-        .footer-copyright-text a {
-          color: black;
-          text-decoration: underline;
-        }
-      }
-
-      /* ============================================
-         ACCESSIBILITY
-         ============================================ */
-      @media (prefers-reduced-motion: reduce) {
-        .footer-list a,
-        .footer-social a,
-        .footer-legal-grid a,
-        .footer-certificate {
-          transition: none !important;
-        }
-      }
-
-      /* High Contrast Mode */
-      @media (prefers-contrast: high) {
-        .site-footer {
-          border-top: 3px solid var(--gold);
-        }
-
-        .footer-legal-grid a,
-        .footer-certificate {
-          border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-      }
-    </style>
-
-    <script>
-      // Jahr automatisch aktualisieren
-      document.addEventListener('DOMContentLoaded', function() {
-        const yearElement = document.getElementById('year');
-        if (yearElement) {
-          yearElement.textContent = new Date().getFullYear();
-        }
-
-        // Smooth scroll für Footer-Links
-        const footerLinks = document.querySelectorAll('.footer-list a, .footer-legal-links a');
-        footerLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            // Nur für Anker-Links
-            if (this.getAttribute('href').startsWith('#')) {
-              e.preventDefault();
-              const target = document.querySelector(this.getAttribute('href'));
-              if (target) {
-                target.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }
-          });
-        });
-      });
-    </script>
-
-  </main>
-
- <!-- Cart Notification -->
   <div id="cart-notification" class="cart-notification">
     ✅ Produkt wurde erfolgreich zum Warenkorb hinzugefügt!
   </div>
 
-  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+  
+  <!-- Inventory Manager -->
+  <script>
+    const InventoryManager = {
+      client: null,
+      databases: null,
+      DATABASE_ID: '68ee68c2001481512a67',
+      INVENTORY_COLLECTION_ID: 'inventory',
+      
+      init() {
+        this.client = new Appwrite.Client()
+          .setEndpoint('https://fra.cloud.appwrite.io/v1')
+          .setProject('68ee68b300144140da1c');
+        this.databases = new Appwrite.Databases(this.client);
+      },
+      
+      async getInventory(productId) {
+        try {
+          const doc = await this.databases.getDocument(
+            this.DATABASE_ID,
+            this.INVENTORY_COLLECTION_ID,
+            productId
+          );
+          return {
+            stock: doc.stock || 0,
+            preorderEnabled: doc.preorderEnabled || false,
+            available: true
+          };
+        } catch (error) {
+          console.error('Error fetching inventory:', error);
+          return { stock: 999, preorderEnabled: false, available: true };
+        }
+      },
+      
+      async updateInventory(productId, quantity) {
+        try {
+          const current = await this.getInventory(productId);
+          const newStock = Math.max(0, current.stock - quantity);
+          await this.databases.updateDocument(
+            this.DATABASE_ID,
+            this.INVENTORY_COLLECTION_ID,
+            productId,
+            { stock: newStock }
+          );
+          return { success: true, newStock };
+        } catch (error) {
+          console.error('Error updating inventory:', error);
+          return { success: false, error: error.message };
+        }
+      },
+      
+      updateUI(inventory, addToCartBtn) {
+        const { stock, preorderEnabled } = inventory;
+        if (stock === 0 && !preorderEnabled) {
+          addToCartBtn.textContent = '❌ Ausverkauft';
+          addToCartBtn.disabled = true;
+          this.showStockBanner('out-of-stock', 'Dieses Produkt ist derzeit ausverkauft');
+        } else if (stock === 0 && preorderEnabled) {
+          addToCartBtn.textContent = '📅 Vorbestellen';
+          addToCartBtn.disabled = false;
+          this.showStockBanner('pre-order', 'Dieses Produkt kann vorbestellt werden. Lieferzeit: 2-3 Wochen');
+        } else if (stock <= 5) {
+          addToCartBtn.textContent = 'In den Warenkorb';
+          addToCartBtn.disabled = false;
+          this.showStockBanner('low-stock', `Nur noch ${stock} Stück verfügbar!`);
+        } else {
+          addToCartBtn.textContent = 'In den Warenkorb';
+          addToCartBtn.disabled = false;
+          this.showStockBanner('in-stock', `✓ Auf Lager - ${stock} Stück verfügbar`);
+        }
+      },
+      
+      showStockBanner(type, message) {
+        const oldBanner = document.getElementById('stock-banner');
+        if (oldBanner) oldBanner.remove();
+        const banner = document.createElement('div');
+        banner.id = 'stock-banner';
+        banner.className = `stock-banner stock-banner-${type}`;
+        banner.textContent = message;
+        const priceElement = document.getElementById('product-price');
+        if (priceElement && priceElement.parentNode) {
+          priceElement.parentNode.insertBefore(banner, priceElement.nextSibling);
+        }
+      }
+    };
+
+    if (typeof Appwrite !== 'undefined') {
+      InventoryManager.init();
+    }
+  </script>
+
   <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Jahr im Footer
-    const yearElement = document.getElementById("year");
-    if (yearElement) yearElement.textContent = new Date().getFullYear();
-
-    // Menü-Button
+    // Menu
     const burger = document.getElementById('burger');
     const sidebarMenu = document.getElementById('sidebar-menu');
-    const menuOverlay = document.getElementById('menu-overlay');
-
-    function toggleMenu() {
-      const isOpen = sidebarMenu.classList.contains('active');
+    burger.addEventListener('click', () => {
       burger.classList.toggle('active');
       sidebarMenu.classList.toggle('active');
-      menuOverlay.classList.toggle('active');
-      burger.setAttribute('aria-expanded', !isOpen);
-      menuOverlay.setAttribute('aria-hidden', isOpen);
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    }
+    });
 
-    function closeMenu() {
-      burger.classList.remove('active');
-      sidebarMenu.classList.remove('active');
-      menuOverlay.classList.remove('active');
-      burger.setAttribute('aria-expanded', 'false');
-      menuOverlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    burger.addEventListener('click', toggleMenu);
-    menuOverlay.addEventListener('click', closeMenu);
-    document.querySelectorAll('.sidebar-nav a').forEach(link => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-
-    // Thumbnail-Galerie
-    document.querySelectorAll('#thumbs img').forEach(thumb => {
+    // Thumbnail Gallery
+    document.querySelectorAll('.thumbs img').forEach(thumb => {
       thumb.addEventListener('click', function () {
-        document.querySelectorAll('#thumbs img').forEach(img => img.classList.remove('active'));
+        document.querySelectorAll('.thumbs img').forEach(img => img.classList.remove('active'));
         this.classList.add('active');
         document.getElementById('zoom-image').src = this.dataset.full;
       });
     });
 
-    // Gravur-Zähler
-    const engravingInput = document.getElementById('engraving');
-    if (engravingInput) {
-      engravingInput.addEventListener('input', function () {
-        const remaining = 30 - this.value.length;
-        const label = document.querySelector('label[for="engraving"]');
-        label.textContent = `Textgravur (noch ${remaining} Zeichen)`;
-        this.style.borderColor = remaining < 5 ? '#f59e0b' : '';
-      });
-    }
-
-    // Bild-Upload
+    // File Upload
     const fileUpload = document.getElementById('image-upload');
     const fileUploadLabel = document.getElementById('file-upload-label');
     const fileInfo = document.getElementById('file-info');
@@ -1665,36 +611,19 @@
       uploadedFile = file;
       fileUploadLabel.classList.add('has-file');
       fileUploadLabel.innerHTML = `<span>✅ ${file.name}</span>`;
-      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
-      fileInfo.textContent = `📋 Datei bereit: ${file.name} (${fileSizeMB} MB)`;
+      fileInfo.textContent = `📋 Datei bereit: ${file.name}`;
       fileInfo.classList.add('show');
     });
 
-    // Warenkorb - Lade bestehenden Warenkorb
+    // Cart
     let cart = [];
     try {
       const cartData = localStorage.getItem('projecta-cart');
-      if (cartData) {
-        cart = JSON.parse(cartData);
-        console.log('Bestehender Warenkorb geladen:', cart);
-      }
+      if (cartData) cart = JSON.parse(cartData);
     } catch (e) {
-      console.error("Fehler beim Laden des Warenkorbs:", e);
       cart = [];
     }
 
-    // Warenkorb Badge aktualisieren
-    function updateCartBadge() {
-      const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
-      const badge = document.getElementById('cart-badge');
-      if (badge) {
-        badge.textContent = totalItems > 99 ? '99+' : totalItems;
-        badge.style.display = totalItems > 0 ? 'flex' : 'none';
-      }
-      console.log('Cart Badge aktualisiert:', totalItems);
-    }
-
-    // Benachrichtigung anzeigen
     function showNotification(message) {
       const notification = document.getElementById('cart-notification');
       if (notification) {
@@ -1704,32 +633,47 @@
       }
     }
 
-    // In den Warenkorb Button
-    document.getElementById("add-to-cart").addEventListener("click", function () {
+    // Check Stock on Load
+    (async function checkStock() {
+      const addToCartBtn = document.getElementById("add-to-cart");
+      if (typeof InventoryManager !== 'undefined') {
+        const inventory = await InventoryManager.getInventory('necklace');
+        InventoryManager.updateUI(inventory, addToCartBtn);
+      }
+    })();
+
+    // Add to Cart with Inventory Check
+    document.getElementById("add-to-cart").addEventListener("click", async function () {
       const productTitle = document.getElementById("product-title").textContent.trim();
       const productPriceText = document.getElementById("product-price").textContent;
       const price = parseFloat(productPriceText.replace('€', '').replace(',', '.').trim());
       const quantity = parseInt(document.getElementById("quantity").value);
       const chainLength = document.getElementById("chain-length").value;
       const chainColor = document.getElementById("chain-color").value;
-      const engraving = engravingInput.value.trim();
+      const engraving = document.getElementById("engraving").value.trim();
       const imageSrc = document.getElementById("zoom-image").src;
 
-      // Validierung
       if (quantity < 1 || isNaN(quantity)) {
         alert("Bitte gültige Menge wählen.");
         return;
       }
-      if (engraving.length > 30) {
-        alert("Gravur max. 30 Zeichen.");
-        return;
+
+      // Check Inventory
+      if (typeof InventoryManager !== 'undefined') {
+        const inventory = await InventoryManager.getInventory('necklace');
+        if (inventory.stock === 0 && !inventory.preorderEnabled) {
+          alert("❌ Dieses Produkt ist leider ausverkauft.");
+          return;
+        }
+        if (quantity > inventory.stock && !inventory.preorderEnabled) {
+          alert(`❌ Nur noch ${inventory.stock} Stück verfügbar.`);
+          return;
+        }
       }
 
-      // Erstelle Produkt-Objekt mit allen Details
       const product = {
-        id: 'necklace-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+        id: 'necklace-' + Date.now(),
         productId: 'necklace',
-        type: 'necklace',
         name: productTitle,
         price: price,
         quantity: quantity,
@@ -1739,64 +683,36 @@
         hasImageUpload: !!uploadedFile,
         imageFileName: uploadedFile ? uploadedFile.name : '',
         image: imageSrc,
-        description: 'Sicherheitshalskette mit GPS und Alarm',
-        addedAt: new Date().toISOString()
+        isPreorder: false
       };
 
-      console.log('Produkt wird hinzugefügt:', product);
-
-      // Prüfe ob identisches Produkt bereits existiert
-      const existingIndex = cart.findIndex(item =>
-        item.productId === product.productId &&
-        item.chainLength === product.chainLength &&
-        item.chainColor === product.chainColor &&
-        item.engraving === product.engraving &&
-        item.imageFileName === product.imageFileName
-      );
-
-      if (existingIndex > -1) {
-        // Erhöhe Menge bei bestehendem Produkt
-        cart[existingIndex].quantity += product.quantity;
-        console.log('Menge erhöht für existierendes Produkt:', cart[existingIndex]);
-      } else {
-        // Füge neues Produkt hinzu
-        cart.push(product);
-        console.log('Neues Produkt hinzugefügt');
+      if (typeof InventoryManager !== 'undefined') {
+        const inventory = await InventoryManager.getInventory('necklace');
+        product.isPreorder = inventory.stock === 0 && inventory.preorderEnabled;
       }
 
-      // Speichere im localStorage
-      try {
-        localStorage.setItem('projecta-cart', JSON.stringify(cart));
-        console.log('Warenkorb gespeichert. Gesamtanzahl Produkte:', cart.length);
-        console.log('Kompletter Warenkorb:', cart);
-      } catch (e) {
-        console.error('Fehler beim Speichern:', e);
-        alert('Fehler beim Speichern im Warenkorb. Bitte versuchen Sie es erneut.');
-        return;
+      cart.push(product);
+      localStorage.setItem('projecta-cart', JSON.stringify(cart));
+
+      // Update Inventory
+      if (typeof InventoryManager !== 'undefined') {
+        await InventoryManager.updateInventory('necklace', product.quantity);
+        const addToCartBtn = document.getElementById("add-to-cart");
+        const inventory = await InventoryManager.getInventory('necklace');
+        InventoryManager.updateUI(inventory, addToCartBtn);
       }
 
-      // Update Badge und zeige Benachrichtigung
-      updateCartBadge();
-      showNotification(`✅ "${product.name}" wurde zum Warenkorb hinzugefügt!`);
-
-      // Button-Feedback
+      showNotification(`✅ "${product.name}" wurde hinzugefügt!${product.isPreorder ? ' (Vorbestellung)' : ''}`);
+      
       const button = this;
-      const originalText = button.textContent;
       button.textContent = "✓ Hinzugefügt";
       button.disabled = true;
-      button.style.opacity = '0.7';
-      
       setTimeout(() => {
-        button.textContent = originalText;
+        button.textContent = "In den Warenkorb";
         button.disabled = false;
-        button.style.opacity = '1';
       }, 2000);
     });
-
-    // Initiale Badge-Aktualisierung
-    updateCartBadge();
   });
   </script>
-
 </body>
 </html>
