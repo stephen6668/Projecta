@@ -9,9 +9,10 @@
   
   <style>
     :root {
-      --bg-primary: #F9F7F3;
-      --accent-primary: #670F0F;
-      --accent-secondary: #666666;
+      --bg-primary:#0D0907;
+      --bg-secondary: #26282A;
+      --accent-primary: #ffffff;
+      --accent-secondary: #26282A;
       --gold: #CFA15A;
       --gold-light: #D4B373;
       --white: #FFFFFF;
@@ -39,11 +40,11 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
       z-index: 1000;
       padding: 1rem 0;
-      box-shadow: 0 4px 24px var(--shadow-light);
+      box-shadow: 0 4px 24px var(--shadow-dark);
       border-bottom: 1px solid rgba(207, 161, 90, 0.1);
     }
 
@@ -99,11 +100,11 @@
     }
 
     .legal-section {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.1);
       padding: 2.5rem;
       margin-bottom: 2rem;
       border-radius: var(--border-radius);
-      box-shadow: 0 8px 32px var(--shadow-light);
+      box-shadow: 0 8px 32px var(--shadow-dark);
       border: 1px solid rgba(207, 161, 90, 0.1);
     }
 
@@ -134,7 +135,7 @@
       background: white;
       border-radius: var(--border-radius-sm);
       overflow: hidden;
-      box-shadow: 0 4px 16px var(--shadow-light);
+      box-shadow: 0 4px 16px var(--shadow-dark);
     }
 
     .price-table th {
@@ -170,7 +171,7 @@
     }
 
     .site-footer {
-      background: var(--accent-primary);
+      background: var(--bg-primary);
       color: var(--white);
       padding: 2rem 0;
       margin-top: 4rem;
@@ -417,7 +418,7 @@
     <section class="legal-section" style="background: linear-gradient(135deg, rgba(207, 161, 90, 0.1) 0%, rgba(212, 179, 115, 0.1) 100%);">
       <h2>📞 Fragen zum Versand?</h2>
       
-      <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-light);">
+      <div style="margin-top: 2rem; padding: 2rem; background: --bg-primary; border-radius: var(--border-radius-sm); box-shadow: 0 4px 16px var(--shadow-dark);">
         <p><strong>📧 E-Mail:</strong> <a href="mailto:service@projecta.lu" style="font-size: 1.2rem; color: var(--gold);">service@projecta.lu</a></p>
         <p style="margin-top: 1rem;"><strong>📞 Telefon:</strong> <a href="tel:+352123456789" style="font-size: 1.2rem; color: var(--gold);">+352 12 34 56 789</a></p>
         <p style="margin-top: 1rem;"><strong>🕐 Erreichbarkeit:</strong> Mo-Fr: 09:00 - 18:00 Uhr | Sa: 10:00 - 14:00 Uhr</p>
