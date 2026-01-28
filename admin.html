@@ -10,7 +10,6 @@
       --bg-primary: #0D0907;
       --bg-secondary: #26282A;
       --accent-primary: #ffffff;
-      --accent-secondary: #FFFFFF;
       --gold: #CFA15A;
       --gold-light: #D4B373;
       --white: #FFFFFF;
@@ -21,23 +20,13 @@
       --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-secondary: 'Playfair Display', Georgia, serif;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font-primary);
-      font-size: 1rem;
-      line-height: 1.6;
       color: var(--accent-primary);
       background: var(--bg-primary);
       -webkit-font-smoothing: antialiased;
     }
-
-    /* Header */
     .site-header {
       position: fixed;
       top: 0;
@@ -50,7 +39,6 @@
       box-shadow: 0 4px 24px var(--shadow-dark);
       border-bottom: 1px solid rgba(207, 161, 90, 0.1);
     }
-
     .header-inner {
       max-width: 1400px;
       margin: 0 auto;
@@ -59,46 +47,28 @@
       align-items: center;
       justify-content: space-between;
     }
-
     .brand {
       display: flex;
       align-items: center;
       text-decoration: none;
       color: var(--accent-primary);
-      transition: var(--transition);
     }
-
-    .logo {
-      height: 48px;
-      margin-right: 0.6rem;
-    }
-
+    .logo { height: 48px; margin-right: 0.6rem; }
     .brand-text {
       font-family: var(--font-secondary);
       font-weight: 700;
       font-size: 1.75rem;
     }
-
-    .header-nav {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
+    .header-nav { display: flex; gap: 1rem; align-items: center; }
     .nav-link {
-      color: var(--accent-secondary);
+      color: var(--white);
       text-decoration: none;
       font-weight: 600;
-      transition: var(--transition);
       padding: 0.5rem 1rem;
       border-radius: var(--border-radius-sm);
+      transition: var(--transition);
     }
-
-    .nav-link:hover {
-      color: var(--gold);
-      background: rgba(207, 161, 90, 0.1);
-    }
-
+    .nav-link:hover { color: var(--gold); background: rgba(207, 161, 90, 0.1); }
     .logout-btn {
       background: var(--gold);
       color: white;
@@ -108,13 +78,9 @@
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
-      font-family: var(--font-primary);
     }
-
-    .logout-btn:hover {
-      background: var(--gold-light);
-    }
-
+    .logout-btn:hover { background: var(--gold-light); }
+    
     /* Login Screen */
     .login-overlay {
       position: fixed;
@@ -126,7 +92,6 @@
       z-index: 9999;
       backdrop-filter: blur(10px);
     }
-
     .login-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
@@ -137,7 +102,6 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(207, 161, 90, 0.3);
     }
-
     .login-card h2 {
       margin: 0 0 2rem;
       color: var(--accent-primary);
@@ -145,18 +109,15 @@
       font-size: 2rem;
       text-align: center;
     }
-
     .login-card input {
       width: 100%;
       padding: 1rem;
       margin-bottom: 1rem;
       border: 1px solid rgba(207, 161, 90, 0.3);
       border-radius: var(--border-radius-sm);
-      font-size: 1rem;
       background: rgba(255, 255, 255, 0.9);
       color: var(--bg-primary);
     }
-
     .login-card button {
       width: 100%;
       padding: 1rem;
@@ -165,44 +126,30 @@
       border: none;
       border-radius: var(--border-radius-sm);
       cursor: pointer;
-      font-size: 1rem;
       font-weight: 600;
       transition: var(--transition);
     }
-
-    .login-card button:hover {
-      background: var(--gold-light);
-    }
-
-    .login-card button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
+    .login-card button:hover { background: var(--gold-light); }
+    .login-card button:disabled { opacity: 0.5; cursor: not-allowed; }
     .login-msg {
       color: #ff4444;
       font-size: 0.9rem;
       margin-top: 1rem;
       text-align: center;
     }
-
-    .login-msg.success {
-      color: #4CAF50;
-    }
-
-    /* Main Admin Container */
+    .login-msg.success { color: #4CAF50; }
+    
+    /* Admin Container */
     .admin-container {
       display: none;
       min-height: 100vh;
       padding-top: 80px;
     }
-
     .admin-main {
       max-width: 1400px;
       margin: 0 auto;
       padding: 2rem;
     }
-
     .admin-title {
       font-family: var(--font-secondary);
       font-size: 2.5rem;
@@ -210,7 +157,7 @@
       margin-bottom: 2rem;
       text-align: center;
     }
-
+    
     /* Tab Navigation */
     .tab-nav {
       display: flex;
@@ -219,7 +166,6 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-
     .tab-btn {
       padding: 1rem 2rem;
       background: rgba(255, 255, 255, 0.1);
@@ -229,35 +175,22 @@
       border-radius: var(--border-radius-sm);
       font-weight: 600;
       transition: var(--transition);
-      font-family: var(--font-primary);
     }
-
-    .tab-btn:hover {
-      background: rgba(207, 161, 90, 0.2);
-    }
-
+    .tab-btn:hover { background: rgba(207, 161, 90, 0.2); }
     .tab-btn.active {
       background: var(--gold);
       color: white;
       border-color: var(--gold);
     }
-
-    /* Tab Content */
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    
     /* Product Grid */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 2rem;
     }
-
     .product-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
@@ -266,52 +199,101 @@
       border: 1px solid rgba(207, 161, 90, 0.3);
       transition: var(--transition);
     }
-
     .product-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 40px var(--shadow-dark);
     }
-
     .product-card h3 {
       font-family: var(--font-secondary);
       font-size: 1.5rem;
       color: var(--gold);
       margin-bottom: 1rem;
     }
-
-    .product-card img {
+    
+    /* Image Gallery Section */
+    .image-gallery {
+      margin-bottom: 1.5rem;
+    }
+    .main-product-image {
       width: 100%;
       height: 200px;
       object-fit: cover;
       border-radius: var(--border-radius-sm);
       margin-bottom: 1rem;
+      border: 2px solid rgba(207, 161, 90, 0.3);
     }
-
+    .image-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .image-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+      flex: 1;
+      min-width: 100px;
+    }
+    .image-btn-upload {
+      background: #4CAF50;
+      color: white;
+    }
+    .image-btn-upload:hover { background: #45a049; }
+    .image-btn-delete {
+      background: #F44336;
+      color: white;
+    }
+    .image-btn-delete:hover { background: #da190b; }
+    .image-btn-url {
+      background: #2196F3;
+      color: white;
+    }
+    .image-btn-url:hover { background: #0b7dda; }
+    
+    .image-url-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid rgba(207, 161, 90, 0.3);
+      border-radius: var(--border-radius-sm);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--bg-primary);
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .image-url-input.show { display: block; }
+    
+    .file-input {
+      display: none;
+    }
+    
+    /* Product Info */
     .product-info {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
       margin-bottom: 1rem;
     }
-
     .info-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 0.5rem 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .info-label {
       font-weight: 600;
       color: rgba(255, 255, 255, 0.7);
     }
-
     .info-value {
       color: var(--accent-primary);
       font-weight: 500;
     }
-
+    
+    /* Stock Badges */
     .stock-badge {
       display: inline-block;
       padding: 0.25rem 0.75rem;
@@ -319,33 +301,29 @@
       font-size: 0.85rem;
       font-weight: 600;
     }
-
     .stock-badge.in-stock {
       background: rgba(76, 175, 80, 0.2);
       color: #4CAF50;
     }
-
     .stock-badge.low-stock {
       background: rgba(255, 152, 0, 0.2);
       color: #FF9800;
     }
-
     .stock-badge.out-of-stock {
       background: rgba(244, 67, 54, 0.2);
       color: #F44336;
     }
-
     .stock-badge.pre-order {
       background: rgba(33, 150, 243, 0.2);
       color: #2196F3;
     }
-
+    
+    /* Stock Input */
     .stock-input {
       display: flex;
       gap: 0.5rem;
       margin-top: 1rem;
     }
-
     .stock-input input {
       flex: 1;
       padding: 0.75rem;
@@ -354,7 +332,6 @@
       background: rgba(255, 255, 255, 0.9);
       color: var(--bg-primary);
     }
-
     .stock-input button {
       padding: 0.75rem 1.5rem;
       background: var(--gold);
@@ -365,11 +342,9 @@
       font-weight: 600;
       transition: var(--transition);
     }
-
-    .stock-input button:hover {
-      background: var(--gold-light);
-    }
-
+    .stock-input button:hover { background: var(--gold-light); }
+    
+    /* Preorder Toggle */
     .preorder-toggle {
       display: flex;
       align-items: center;
@@ -380,66 +355,22 @@
       border-radius: var(--border-radius-sm);
       cursor: pointer;
     }
-
     .preorder-toggle input[type="checkbox"] {
       width: 20px;
       height: 20px;
       cursor: pointer;
     }
-
     .preorder-toggle label {
       cursor: pointer;
       font-weight: 500;
     }
-
-    /* Orders Section */
-    .orders-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .order-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      border: 1px solid rgba(207, 161, 90, 0.3);
-    }
-
-    .order-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid rgba(207, 161, 90, 0.3);
-    }
-
-    .order-number {
-      font-weight: 700;
-      color: var(--gold);
-      font-size: 1.2rem;
-    }
-
-    .order-items {
-      margin: 1rem 0;
-    }
-
-    .order-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
+    
     /* Loading */
     .loading {
       text-align: center;
       padding: 4rem 2rem;
-      color: var(--accent-secondary);
+      color: var(--accent-primary);
     }
-
     .loading-spinner {
       width: 50px;
       height: 50px;
@@ -449,11 +380,8 @@
       animation: spin 1s linear infinite;
       margin: 0 auto 1rem;
     }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
     /* Alert */
     .alert {
       padding: 1rem;
@@ -461,59 +389,40 @@
       margin-bottom: 1.5rem;
       text-align: center;
     }
-
     .alert-success {
       background: rgba(76, 175, 80, 0.2);
       border: 1px solid #4CAF50;
       color: #4CAF50;
     }
-
     .alert-error {
       background: rgba(244, 67, 54, 0.2);
       border: 1px solid #F44336;
       color: #F44336;
     }
-
     .alert-info {
       background: rgba(33, 150, 243, 0.2);
       border: 1px solid #2196F3;
       color: #2196F3;
     }
-
+    
     /* Responsive */
     @media (max-width: 768px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .admin-main {
-        padding: 1rem;
-      }
-
-      .tab-nav {
-        flex-direction: column;
-      }
-
-      .header-nav {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
+      .product-grid { grid-template-columns: 1fr; }
+      .admin-main { padding: 1rem; }
+      .tab-nav { flex-direction: column; }
+      .header-nav { flex-direction: column; gap: 0.5rem; }
     }
   </style>
 </head>
 <body>
-
   <!-- Login Screen -->
   <div class="login-overlay" id="loginScreen">
     <div class="login-card">
       <h2>🔐 Projecta Admin</h2>
-      
       <input type="email" id="adminEmail" placeholder="Admin E-Mail" value="">
       <input type="password" id="adminPass" placeholder="Passwort" value="">
-      
       <button id="loginBtn">Anmelden</button>
       <div class="login-msg" id="loginMsg"></div>
-      
       <p style="text-align: center; margin-top: 1.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
         Noch kein Account? 
         <a href="admin-register.html" style="color: var(--gold); text-decoration: none; font-weight: 600;">
@@ -525,7 +434,6 @@
 
   <!-- Admin Interface -->
   <div class="admin-container" id="adminInterface">
-    <!-- Header -->
     <header class="site-header">
       <div class="header-inner">
         <a href="index.html" class="brand">
@@ -539,33 +447,19 @@
       </div>
     </header>
 
-    <!-- Main Content -->
     <div class="admin-main">
-      <h1 class="admin-title">📊 Lagerverwaltung & Bestellungen</h1>
-
-      <!-- Tab Navigation -->
+      <h1 class="admin-title">📊 Lagerverwaltung & Produktbilder</h1>
+      
       <div class="tab-nav">
         <button class="tab-btn active" data-tab="inventory">📦 Lagerbestand</button>
-        <button class="tab-btn" data-tab="orders">🛒 Bestellungen</button>
       </div>
 
-      <!-- Inventory Tab -->
       <div class="tab-content active" id="inventory-tab">
         <div id="alert-container"></div>
         <div class="product-grid" id="productGrid">
           <div class="loading">
             <div class="loading-spinner"></div>
             <p>Lade Produkte...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Orders Tab -->
-      <div class="tab-content" id="orders-tab">
-        <div class="orders-list" id="ordersList">
-          <div class="loading">
-            <div class="loading-spinner"></div>
-            <p>Lade Bestellungen...</p>
           </div>
         </div>
       </div>
@@ -581,10 +475,11 @@
 
     const account = new Appwrite.Account(client);
     const databases = new Appwrite.Databases(client);
+    const storage = new Appwrite.Storage(client);
 
     const DATABASE_ID = '68ee68c2001481512a67';
-    const INVENTORY_COLLECTION_ID = 'inventory'; // Neue Collection für Lagerbestand
-    const ORDERS_COLLECTION_ID = 'orders'; // Collection für Bestellungen
+    const INVENTORY_COLLECTION_ID = 'inventory';
+    const BUCKET_ID = 'product-images'; // Storage Bucket für Bilder
 
     // Product Data
     const PRODUCTS = [
@@ -592,19 +487,16 @@
         id: 'safety-band',
         name: 'Safety-Band',
         price: 135.00,
-        image: 'images/produkt1.png',
-        page: 'product.html'
+        defaultImage: 'images/produkt1.png'
       },
       {
         id: 'necklace',
         name: 'Safety-Necklace',
         price: 94.00,
-        image: 'images/kette.png',
-        page: 'necklace.html'
+        defaultImage: 'images/kette.png'
       }
     ];
 
-    // State
     let currentUser = null;
     let inventoryData = {};
 
@@ -630,7 +522,6 @@
       loginMsg.className = 'login-msg';
 
       try {
-        // Try to login
         try {
           await account.get();
         } catch (e) {
@@ -638,17 +529,13 @@
         }
         
         currentUser = await account.get();
-        
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('adminInterface').style.display = 'block';
-        
         await loadInventory();
-        await loadOrders();
         
       } catch (error) {
         console.error('Login Error:', error);
         loginMsg.textContent = '❌ Login fehlgeschlagen: ' + (error.message || 'Unbekannter Fehler');
-        loginMsg.className = 'login-msg';
       } finally {
         loginBtn.disabled = false;
       }
@@ -666,28 +553,12 @@
       }
     });
 
-    // Tab Switching
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tab = btn.dataset.tab;
-        
-        // Update buttons
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // Update content
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        document.getElementById(`${tab}-tab`).classList.add('active');
-      });
-    });
-
     // Load Inventory
     async function loadInventory() {
       try {
         const productGrid = document.getElementById('productGrid');
         productGrid.innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>Lade Produkte...</p></div>';
 
-        // Load inventory data from Appwrite
         for (const product of PRODUCTS) {
           try {
             const doc = await databases.getDocument(
@@ -697,10 +568,10 @@
             );
             inventoryData[product.id] = {
               stock: doc.stock || 0,
-              preorderEnabled: doc.preorderEnabled || false
+              preorderEnabled: doc.preorderEnabled || false,
+              imageUrl: doc.imageUrl || product.defaultImage
             };
           } catch (error) {
-            // Create inventory document if doesn't exist
             try {
               await databases.createDocument(
                 DATABASE_ID,
@@ -709,29 +580,36 @@
                 {
                   productId: product.id,
                   productName: product.name,
-                  stock: 10, // Default stock
-                  preorderEnabled: false
+                  stock: 10,
+                  preorderEnabled: false,
+                  imageUrl: product.defaultImage
                 }
               );
-              inventoryData[product.id] = { stock: 10, preorderEnabled: false };
+              inventoryData[product.id] = { 
+                stock: 10, 
+                preorderEnabled: false,
+                imageUrl: product.defaultImage
+              };
             } catch (createError) {
-              console.error('Error creating inventory:', createError);
-              inventoryData[product.id] = { stock: 0, preorderEnabled: false };
+              inventoryData[product.id] = { 
+                stock: 0, 
+                preorderEnabled: false,
+                imageUrl: product.defaultImage
+              };
             }
           }
         }
 
-        // Render products
         productGrid.innerHTML = '';
         PRODUCTS.forEach(product => {
-          const inventory = inventoryData[product.id] || { stock: 0, preorderEnabled: false };
+          const inventory = inventoryData[product.id];
           const card = createProductCard(product, inventory);
           productGrid.appendChild(card);
         });
 
       } catch (error) {
         console.error('Error loading inventory:', error);
-        document.getElementById('productGrid').innerHTML = '<div class="alert alert-error">Fehler beim Laden der Produkte</div>';
+        document.getElementById('productGrid').innerHTML = '<div class="alert alert-error">Fehler beim Laden</div>';
       }
     }
 
@@ -753,8 +631,39 @@
 
       card.innerHTML = `
         <h3>${product.name}</h3>
-        <img src="${product.image}" alt="${product.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'200\\' height=\\'200\\'%3E%3Crect fill=\\'%23ddd\\' width=\\'200\\' height=\\'200\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%23999\\'%3EKein Bild%3C/text%3E%3C/svg%3E'">
         
+        <div class="image-gallery">
+          <img src="${inventory.imageUrl}" 
+               alt="${product.name}" 
+               class="main-product-image"
+               id="img-${product.id}"
+               onerror="this.src='${product.defaultImage}'">
+          
+          <div class="image-actions">
+            <button class="image-btn image-btn-upload" onclick="uploadImage('${product.id}')">
+              📤 Bild hochladen
+            </button>
+            <button class="image-btn image-btn-url" onclick="toggleUrlInput('${product.id}')">
+              🔗 URL eingeben
+            </button>
+            <button class="image-btn image-btn-delete" onclick="resetImage('${product.id}')">
+              🗑️ Zurücksetzen
+            </button>
+          </div>
+          
+          <input type="file" 
+                 id="file-${product.id}" 
+                 class="file-input" 
+                 accept="image/*"
+                 onchange="handleFileUpload('${product.id}', this.files[0])">
+          
+          <input type="text" 
+                 id="url-${product.id}" 
+                 class="image-url-input" 
+                 placeholder="Bild-URL eingeben und Enter drücken"
+                 onkeypress="if(event.key==='Enter') updateImageUrl('${product.id}', this.value)">
+        </div>
+
         <div class="product-info">
           <div class="info-row">
             <span class="info-label">Preis</span>
@@ -791,6 +700,83 @@
       return card;
     }
 
+    // Upload Image
+    window.uploadImage = function(productId) {
+      document.getElementById(`file-${productId}`).click();
+    };
+
+    // Toggle URL Input
+    window.toggleUrlInput = function(productId) {
+      const input = document.getElementById(`url-${productId}`);
+      input.classList.toggle('show');
+      if (input.classList.contains('show')) {
+        input.focus();
+      }
+    };
+
+    // Handle File Upload
+    window.handleFileUpload = async function(productId, file) {
+      if (!file) return;
+      
+      if (!file.type.startsWith('image/')) {
+        showAlert('❌ Bitte nur Bilddateien hochladen', 'error');
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        showAlert('❌ Datei zu groß (max. 5MB)', 'error');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const imageUrl = e.target.result;
+        await updateProductImage(productId, imageUrl);
+      };
+      reader.readAsDataURL(file);
+    };
+
+    // Update Image URL
+    window.updateImageUrl = async function(productId, url) {
+      if (!url || !url.trim()) {
+        showAlert('❌ Bitte gültige URL eingeben', 'error');
+        return;
+      }
+      await updateProductImage(productId, url.trim());
+      document.getElementById(`url-${productId}`).value = '';
+      document.getElementById(`url-${productId}`).classList.remove('show');
+    };
+
+    // Update Product Image
+    async function updateProductImage(productId, imageUrl) {
+      try {
+        await databases.updateDocument(
+          DATABASE_ID,
+          INVENTORY_COLLECTION_ID,
+          productId,
+          { imageUrl: imageUrl }
+        );
+        
+        inventoryData[productId].imageUrl = imageUrl;
+        document.getElementById(`img-${productId}`).src = imageUrl;
+        showAlert('✅ Bild erfolgreich aktualisiert', 'success');
+        
+      } catch (error) {
+        console.error('Error updating image:', error);
+        showAlert('❌ Fehler beim Aktualisieren des Bildes', 'error');
+      }
+    }
+
+    // Reset Image
+    window.resetImage = async function(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+
+      if (confirm('Bild wirklich auf Standard zurücksetzen?')) {
+        await updateProductImage(productId, product.defaultImage);
+      }
+    };
+
     // Update Stock
     window.updateStock = async function(productId) {
       const input = document.getElementById(`stock-${productId}`);
@@ -803,12 +789,10 @@
           productId,
           { stock: newStock }
         );
-
         inventoryData[productId].stock = newStock;
         showAlert('✅ Lagerbestand aktualisiert', 'success');
         await loadInventory();
       } catch (error) {
-        console.error('Error updating stock:', error);
         showAlert('❌ Fehler beim Aktualisieren', 'error');
       }
     };
@@ -825,120 +809,14 @@
           productId,
           { preorderEnabled: preorderEnabled }
         );
-
         inventoryData[productId].preorderEnabled = preorderEnabled;
         showAlert(`✅ Vorbestellung ${preorderEnabled ? 'aktiviert' : 'deaktiviert'}`, 'success');
         await loadInventory();
       } catch (error) {
-        console.error('Error toggling preorder:', error);
         showAlert('❌ Fehler beim Aktualisieren', 'error');
         checkbox.checked = !preorderEnabled;
       }
     };
-
-    // Load Orders
-    async function loadOrders() {
-      try {
-        const ordersList = document.getElementById('ordersList');
-        ordersList.innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>Lade Bestellungen...</p></div>';
-
-        const response = await databases.listDocuments(
-          DATABASE_ID,
-          ORDERS_COLLECTION_ID,
-          [
-            Appwrite.Query.orderDesc('$createdAt'),
-            Appwrite.Query.limit(50)
-          ]
-        );
-
-        if (response.documents.length === 0) {
-          ordersList.innerHTML = '<div class="alert alert-info">Keine Bestellungen vorhanden</div>';
-          return;
-        }
-
-        ordersList.innerHTML = '';
-        response.documents.forEach(order => {
-          const card = createOrderCard(order);
-          ordersList.appendChild(card);
-        });
-
-      } catch (error) {
-        console.error('Error loading orders:', error);
-        document.getElementById('ordersList').innerHTML = '<div class="alert alert-error">Fehler beim Laden der Bestellungen</div>';
-      }
-    }
-
-    // Create Order Card
-    function createOrderCard(order) {
-      const card = document.createElement('div');
-      card.className = 'order-card';
-      
-      const items = order.items || [];
-      const itemsHTML = items.map(item => `
-        <div class="order-item">
-          <span>${item.name} (${item.quantity}x)</span>
-          <span>€${((item.price || 0) * (item.quantity || 1)).toFixed(2)}</span>
-        </div>
-      `).join('');
-
-      card.innerHTML = `
-        <div class="order-header">
-          <div>
-            <div class="order-number">Bestellung #${order.orderNumber || order.$id.substring(0, 8)}</div>
-            <div style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
-              ${new Date(order.$createdAt).toLocaleDateString('de-DE')} 
-              ${new Date(order.$createdAt).toLocaleTimeString('de-DE')}
-            </div>
-          </div>
-          <span class="stock-badge ${getStatusClass(order.status)}">
-            ${getStatusLabel(order.status)}
-          </span>
-        </div>
-        <div class="order-items">
-          ${itemsHTML}
-        </div>
-        <div class="info-row">
-          <span class="info-label" style="font-size: 1.1rem;">Gesamt</span>
-          <span class="info-value" style="font-size: 1.2rem; color: var(--gold);">€${(order.total || 0).toFixed(2)}</span>
-        </div>
-      `;
-
-      return card;
-    }
-
-    function getStatusClass(status) {
-      const classes = {
-        'pending': 'pre-order',
-        'processing': 'low-stock',
-        'shipped': 'in-stock',
-        'delivered': 'in-stock',
-        'cancelled': 'out-of-stock'
-      };
-      return classes[status] || 'pre-order';
-    }
-
-    function getStatusLabel(status) {
-      const labels = {
-        'pending': 'Ausstehend',
-        'processing': 'In Bearbeitung',
-        'shipped': 'Versendet',
-        'delivered': 'Zugestellt',
-        'cancelled': 'Storniert'
-      };
-      return labels[status] || status;
-    }
-
-    // Auto-refresh every 30 seconds
-    setInterval(() => {
-      if (document.getElementById('adminInterface').style.display === 'block') {
-        const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
-        if (activeTab === 'inventory') {
-          loadInventory();
-        } else {
-          loadOrders();
-        }
-      }
-    }, 30000);
 
     // Check if already logged in
     (async () => {
@@ -947,12 +825,10 @@
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('adminInterface').style.display = 'block';
         await loadInventory();
-        await loadOrders();
       } catch (error) {
         // Not logged in
       }
     })();
   </script>
-
 </body>
 </html>
