@@ -463,11 +463,12 @@
           return {
             stock: doc.stock || 0,
             preorderEnabled: doc.preorderEnabled || false,
+            imageUrl: doc.imageUrl || null,
             available: true
           };
         } catch (error) {
           console.error('Error fetching inventory:', error);
-          return { stock: 999, preorderEnabled: false, available: true };
+          return { stock: 999, preorderEnabled: false, imageUrl: null, available: true };
         }
       },
       
@@ -489,7 +490,23 @@
       },
       
       updateUI(inventory, addToCartBtn) {
-        const { stock, preorderEnabled } = inventory;
+        const { stock, preorderEnabled, imageUrl } = inventory;
+        
+        // Update product image if imageUrl exists
+        if (imageUrl) {
+          const mainImage = document.getElementById('zoom-image');
+          if (mainImage) {
+            mainImage.src = imageUrl;
+          }
+          // Update first thumbnail
+          const firstThumb = document.querySelector('.thumbs img:first-child');
+          if (firstThumb) {
+            firstThumb.src = imageUrl;
+            firstThumb.dataset.full = imageUrl;
+          }
+        }
+        
+        // Stock banner logic
         if (stock === 0 && !preorderEnabled) {
           addToCartBtn.textContent = '❌ Ausverkauft';
           addToCartBtn.disabled = true;
