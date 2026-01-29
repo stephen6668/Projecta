@@ -3,21 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Produkt — Projecta Armband</title>
-  <meta name="description" content="Stylisch, leicht und einfach zu bedienen - Sicherheitsarmbänder von Projecta" />
+  <title>Produkt — Projecta Halskette</title>
+  <meta name="description" content="Elegant, sicher und personalisierbar - Premium Sicherheitshalsketten von Projecta" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-primary:#0D0907;
-      --bg-secondary: #f7f5f5;
-      --accent-primary: #f7f5f5;
+      --bg-primary: #0D0907;
+      --bg-secondary: #1a1614;
+      --accent-primary: #0D0907;
       --gold: #CFA15A;
       --gold-light: #D4B373;
       --white: #FFFFFF;
-      --shadow-light: rgba(0, 0, 0, 0.08);
-      --shadow-medium: rgba(0, 0, 0, 0.12);
-      --shadow-dark: rgba(0, 0, 0, 0.2);
+      --shadow-dark: rgba(0, 0, 0, 0.25);
+      --shadow-intense: rgba(0, 0, 0, 0.4);
       --border-radius: 16px;
       --border-radius-sm: 8px;
       --container-width: 1200px;
@@ -29,7 +28,7 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-primary);
-      color: var(--accent-primary);
+      color: var(--white);
       background: var(--bg-primary);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -79,18 +78,17 @@
       opacity: 0.5 !important;
     }
 
-    /* Header */
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(13, 9, 7, 0.98);
       backdrop-filter: blur(20px);
       z-index: 1000;
       padding: 1rem 0;
       box-shadow: 0 4px 24px var(--shadow-dark);
-      border-bottom: 1px solid rgba(207, 161, 90, 0.1);
+      border-bottom: 1px solid rgba(207, 161, 90, 0.3);
     }
     .header-inner {
       display: flex;
@@ -101,10 +99,10 @@
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: var(--accent-primary);
+      color: var(--white);
       transition: var(--transition);
     }
-    .logo { height: 52px; margin-right: 0.6rem; }
+    .logo { height: 48px; margin-right: 0.6rem; }
     .brand-text {
       font-family: var(--font-secondary);
       font-weight: 700;
@@ -122,13 +120,14 @@
       padding: 8px;
       border-radius: var(--border-radius-sm);
       transition: var(--transition);
+      position: relative;
       z-index: 1001;
     }
     .burger span {
       display: block;
       width: 24px;
       height: 3px;
-      background: var(--accent-primary);
+      background: var(--white);
       border-radius: 2px;
       transition: var(--transition);
       margin: 2px auto;
@@ -146,7 +145,6 @@
       background: linear-gradient(135deg, rgba(180, 180, 180, 0.08) 0%, rgba(120, 120, 120, 0.08) 100%);
       backdrop-filter: blur(24px);
       box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35);
-      border-left: 1px solid rgba(255, 255, 255, 0.08);
       transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       padding: 6rem 2rem 2rem;
       z-index: 999;
@@ -167,7 +165,7 @@
     .sidebar-nav a:hover { color: var(--gold); background: rgba(207, 161, 90, 0.15); }
     
     .product-section {
-      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
       padding: calc(3rem + 80px) 0 3rem;
       min-height: 100vh;
     }
@@ -179,11 +177,10 @@
     }
     .product-gallery { position: sticky; top: 6rem; }
     .main-image {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.95);
       border-radius: var(--border-radius);
-      box-shadow: 0 16px 48px var(--shadow-dark);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 16px 48px var(--shadow-intense);
+      border: 1px solid rgba(207, 161, 90, 0.3);
       padding: 2rem;
       margin-bottom: 2rem;
       position: relative;
@@ -203,7 +200,6 @@
       display: block;
       margin: 0 auto;
       border-radius: var(--border-radius-sm);
-      transition: var(--transition);
     }
     .thumbs { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .thumbs img {
@@ -218,11 +214,10 @@
     .thumbs img.active { border-color: var(--gold); }
     
     .product-box {
-      background: rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 22, 20, 0.95) 100%);
       border-radius: var(--border-radius);
-      box-shadow: 0 16px 48px var(--shadow-dark);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 60px var(--shadow-intense);
+      border: 1px solid rgba(207, 161, 90, 0.3);
       padding: 2.5rem;
       position: relative;
     }
@@ -238,7 +233,7 @@
     .product-box h1 {
       font-size: clamp(2rem, 5vw, 2.8rem);
       font-family: var(--font-secondary);
-      color: var(--accent-primary);
+      color: var(--white);
       margin-bottom: 1rem;
     }
     .price {
@@ -251,10 +246,10 @@
     .product-description {
       font-size: 1.1rem;
       line-height: 1.7;
-      color: var(--accent-primary);
+      color: rgba(255, 255, 255, 0.9);
       margin-bottom: 2rem;
     }
-    .diamond-options {
+    .product-options {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -264,7 +259,7 @@
     .option-group label {
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--accent-primary);
+      color: var(--white);
       font-family: var(--font-secondary);
     }
     .option-group select,
@@ -273,15 +268,45 @@
       padding: 1rem;
       border-radius: var(--border-radius-sm);
       border: 1px solid rgba(207, 161, 90, 0.3);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.5);
+      color: var(--white);
       width: 100%;
       transition: var(--transition);
     }
     .option-group input:focus,
     .option-group select:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(207, 161, 90, 0.1);
+      box-shadow: 0 0 0 3px rgba(207, 161, 90, 0.2);
     }
+    
+    .file-upload-container { position: relative; margin-top: 1rem; }
+    .file-upload { display: none; }
+    .file-upload-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border: 2px dashed rgba(207, 161, 90, 0.3);
+      border-radius: var(--border-radius-sm);
+      background: rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: var(--transition);
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .file-upload-label:hover { border-color: var(--gold); background: rgba(207, 161, 90, 0.1); }
+    .file-upload-label.has-file { border-color: var(--gold); background: rgba(207, 161, 90, 0.2); color: var(--white); }
+    
+    .file-info, .file-error {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: var(--border-radius-sm);
+      font-size: 0.9rem;
+      display: none;
+    }
+    .file-info { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+    .file-error { background: rgba(244, 67, 54, 0.2); color: #ff5252; }
+    .file-info.show, .file-error.show { display: block; }
     
     .btn {
       display: inline-block;
@@ -303,7 +328,7 @@
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(207, 161, 90, 0.4);
+      box-shadow: 0 12px 32px rgba(207, 161, 90, 0.5);
     }
     .btn-group { display: flex; gap: 1rem; margin-top: 2rem; }
     
@@ -367,59 +392,60 @@
         <div class="product-detail">
           <div class="product-gallery">
             <div class="main-image">
-              <img id="zoom-image" src="images/produkt1.png" alt="Projecta Armband" />
+              <img id="zoom-image" src="images/kette.png" alt="Projecta Halskette" />
             </div>
             <div class="thumbs">
-              <img src="images/produkt1.png" data-full="images/produkt1.png" alt="Ansicht 1" class="active">
-              <img src="images/produkt2.png" data-full="images/produkt2.png" alt="Ansicht 2">
-              <img src="images/produkt3.jpg" data-full="images/produkt3.jpg" alt="Ansicht 3">
+              <img src="images/kette.png" data-full="images/kette.png" alt="Ansicht 1" class="active">
+              <img src="images/halskette2.png" data-full="images/halskette2.png" alt="Ansicht 2">
+              <img src="images/halskette3.jpg" data-full="images/halskette3.jpg" alt="Ansicht 3">
             </div>
           </div>
 
           <div class="product-info">
             <div class="product-box">
-              <h1 id="product-title">Safety-Band</h1>
-              <p class="price" id="product-price">€135.00</p>
+              <h1 id="product-title">Safety-Necklace</h1>
+              <p class="price" id="product-price">€94.00</p>
               <div class="product-description">
-                Stylisch, leicht und einfach zu bedienen: Mit nur einem Knopfdruck sendet das Armband deinen Standort an festgelegte Kontakte und kann einen lauten Alarm auslösen – auch ohne Handy in der Nähe.
+                Ihre elegante Halskette, die außerdem die Standort-Sendefunktion und die Alarmfunktion enthält. Wenn Sie sich in einer Gefahrensituation wiederfinden, betätigen Sie den Knopf auf der Rückseite und Ihr Standort wird automatisch an Ihren Notfallkontakt gesendet.
               </div>
 
-              <div class="diamond-options">
+              <div class="product-options">
                 <div class="option-group">
                   <label for="quantity">Menge</label>
-                  <input id="quantity" type="number" min="1" value="1">
+                  <input id="quantity" type="number" min="1" max="10" value="1">
                 </div>
                 <div class="option-group">
-                  <label for="diamond-form">Diamantform</label>
-                  <select id="diamond-form">
-                    <option value="rund">Rund</option>
-                    <option value="emerald">Emerald</option>
-                    <option value="heart">Heart</option>
-                    <option value="cushion">Cushion</option>
+                  <label for="chain-length">Kettenlänge</label>
+                  <select id="chain-length">
+                    <option value="40cm">40 cm - Kurz</option>
+                    <option value="45cm" selected>45 cm - Standard</option>
+                    <option value="50cm">50 cm - Lang</option>
+                    <option value="55cm">55 cm - Extra Lang</option>
                   </select>
                 </div>
                 <div class="option-group">
-                  <label for="diamond-color">Diamantfarbe</label>
-                  <select id="diamond-color">
-                    <option value="blau-rot">Blau-Rot</option>
-                    <option value="grün-hellblau">Grün-Hellblau</option>
-                    <option value="gelb">Gelb</option>
-                    <option value="weiß-pink">Weiß-Pink</option>
-                    <option value="rot">Rot</option>
-                    <option value="lila-pink">Lila-Pink</option>
-                  </select>
-                </div>
-                <div class="option-group">
-                  <label for="band-color">Armbandfarbe</label>
-                  <select id="band-color">
+                  <label for="chain-color">Kettenfarbe</label>
+                  <select id="chain-color">
                     <option value="silber">Silber</option>
                     <option value="gold">Gold</option>
                     <option value="rosegold">Roségold</option>
+                    <option value="schwarz">Schwarz</option>
                   </select>
                 </div>
                 <div class="option-group">
-                  <label for="engraving">Gravur (optional)</label>
-                  <input type="text" id="engraving" placeholder="Dein Text (max. 20 Zeichen)" maxlength="20" />
+                  <label for="engraving">Textgravur (optional)</label>
+                  <input type="text" id="engraving" placeholder="Dein Text (max. 30 Zeichen)" maxlength="30" />
+                </div>
+                <div class="option-group">
+                  <label for="image-upload">Bildgravur (PDF, JPG, PNG - max. 5MB)</label>
+                  <div class="file-upload-container">
+                    <input type="file" id="image-upload" class="file-upload" accept=".pdf,.jpg,.jpeg,.png" />
+                    <label for="image-upload" class="file-upload-label" id="file-upload-label">
+                      <span>📁 Datei für Gravur auswählen</span>
+                    </label>
+                    <div id="file-info" class="file-info"></div>
+                    <div id="file-error" class="file-error"></div>
+                  </div>
                 </div>
                 <div class="btn-group">
                   <button id="add-to-cart" class="btn btn-primary">In den Warenkorb</button>
@@ -438,7 +464,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
   
-  <!-- Inventory Manager -->
+  <!-- Inventory Manager mit Bildverwaltung -->
   <script>
     const InventoryManager = {
       client: null,
@@ -546,7 +572,7 @@
   </script>
 
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     // Menu
     const burger = document.getElementById('burger');
     const sidebarMenu = document.getElementById('sidebar-menu');
@@ -555,13 +581,54 @@
       sidebarMenu.classList.toggle('active');
     });
 
-    // Thumbnails
+    // Thumbnail Gallery
     document.querySelectorAll('.thumbs img').forEach(thumb => {
-      thumb.addEventListener('click', function() {
+      thumb.addEventListener('click', function () {
         document.querySelectorAll('.thumbs img').forEach(img => img.classList.remove('active'));
         this.classList.add('active');
         document.getElementById('zoom-image').src = this.dataset.full;
       });
+    });
+
+    // File Upload
+    const fileUpload = document.getElementById('image-upload');
+    const fileUploadLabel = document.getElementById('file-upload-label');
+    const fileInfo = document.getElementById('file-info');
+    const fileError = document.getElementById('file-error');
+    let uploadedFile = null;
+
+    fileUpload.addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      fileInfo.classList.remove('show');
+      fileError.classList.remove('show');
+      fileUploadLabel.classList.remove('has-file');
+
+      if (!file) {
+        fileUploadLabel.innerHTML = '<span>📁 Datei für Gravur auswählen</span>';
+        uploadedFile = null;
+        return;
+      }
+
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+      if (!allowedTypes.includes(file.type)) {
+        fileError.textContent = '❌ Nur JPG, PNG und PDF erlaubt.';
+        fileError.classList.add('show');
+        fileUpload.value = '';
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        fileError.textContent = '❌ Datei zu groß. Max. 5MB.';
+        fileError.classList.add('show');
+        fileUpload.value = '';
+        return;
+      }
+
+      uploadedFile = file;
+      fileUploadLabel.classList.add('has-file');
+      fileUploadLabel.innerHTML = `<span>✅ ${file.name}</span>`;
+      fileInfo.textContent = `📋 Datei bereit: ${file.name}`;
+      fileInfo.classList.add('show');
     });
 
     // Cart
@@ -586,31 +653,30 @@
     (async function checkStock() {
       const addToCartBtn = document.getElementById("add-to-cart");
       if (typeof InventoryManager !== 'undefined') {
-        const inventory = await InventoryManager.getInventory('safety-band');
+        const inventory = await InventoryManager.getInventory('necklace');
         InventoryManager.updateUI(inventory, addToCartBtn);
       }
     })();
 
     // Add to Cart with Inventory Check
-    document.getElementById("add-to-cart").addEventListener("click", async function() {
+    document.getElementById("add-to-cart").addEventListener("click", async function () {
       const productTitle = document.getElementById("product-title").textContent.trim();
       const productPriceText = document.getElementById("product-price").textContent;
-      const price = parseFloat(productPriceText.replace('€', '').replace(',', '.'));
+      const price = parseFloat(productPriceText.replace('€', '').replace(',', '.').trim());
       const quantity = parseInt(document.getElementById("quantity").value);
-      const diamondForm = document.getElementById("diamond-form").value;
-      const diamondColor = document.getElementById("diamond-color").value;
-      const bandColor = document.getElementById("band-color").value;
+      const chainLength = document.getElementById("chain-length").value;
+      const chainColor = document.getElementById("chain-color").value;
       const engraving = document.getElementById("engraving").value.trim();
-      const image = document.getElementById("zoom-image").src;
+      const imageSrc = document.getElementById("zoom-image").src;
 
-      if (quantity < 1) {
-        alert("Bitte wähle eine gültige Menge aus.");
+      if (quantity < 1 || isNaN(quantity)) {
+        alert("Bitte gültige Menge wählen.");
         return;
       }
 
       // Check Inventory
       if (typeof InventoryManager !== 'undefined') {
-        const inventory = await InventoryManager.getInventory('safety-band');
+        const inventory = await InventoryManager.getInventory('necklace');
         if (inventory.stock === 0 && !inventory.preorderEnabled) {
           alert("❌ Dieses Produkt ist leider ausverkauft.");
           return;
@@ -622,22 +688,22 @@
       }
 
       const product = {
-        id: 'safety-band-' + Date.now(),
-        productId: 'safety-band',
+        id: 'necklace-' + Date.now(),
+        productId: 'necklace',
         name: productTitle,
         price: price,
         quantity: quantity,
-        diamondForm: diamondForm,
-        diamondColor: diamondColor,
-        bandColor: bandColor,
-        engraving: engraving,
-        image: image,
-        description: 'Premium Sicherheitsarmband mit GPS-Ortung',
+        chainLength: chainLength,
+        chainColor: chainColor,
+        engraving: engraving || '',
+        hasImageUpload: !!uploadedFile,
+        imageFileName: uploadedFile ? uploadedFile.name : '',
+        image: imageSrc,
         isPreorder: false
       };
 
       if (typeof InventoryManager !== 'undefined') {
-        const inventory = await InventoryManager.getInventory('safety-band');
+        const inventory = await InventoryManager.getInventory('necklace');
         product.isPreorder = inventory.stock === 0 && inventory.preorderEnabled;
       }
 
@@ -646,9 +712,9 @@
 
       // Update Inventory
       if (typeof InventoryManager !== 'undefined') {
-        await InventoryManager.updateInventory('safety-band', product.quantity);
+        await InventoryManager.updateInventory('necklace', product.quantity);
         const addToCartBtn = document.getElementById("add-to-cart");
-        const inventory = await InventoryManager.getInventory('safety-band');
+        const inventory = await InventoryManager.getInventory('necklace');
         InventoryManager.updateUI(inventory, addToCartBtn);
       }
 
